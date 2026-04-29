@@ -288,14 +288,18 @@ const db = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
 );
 
-// Map product IDs to folders in Supabase Storage bucket "product-files"
-// Upload your folders directly — e.g. pdf/ and templates/
-const PRODUCT_FOLDERS = {
-  pdf:       [{ folder: 'pdf',       label: '100 Business Ideas' }],
-  templates: [{ folder: 'templates', label: 'Automation Templates' }],
+// Google Drive folder links per product
+const DRIVE = {
+  pdf:       'https://drive.google.com/drive/folders/1g7f5kgyb6T9nckjy0YgbhwhdkzU6g_R4',
+  templates: 'https://drive.google.com/drive/folders/1zGebVQl8VqALBg_jNFSGkuG32QsWi2QB'
+};
+
+const PRODUCT_LINKS = {
+  pdf:       [{ url: DRIVE.pdf,       label: '100 Business Ideas Folder' }],
+  templates: [{ url: DRIVE.templates, label: 'Automation Templates Folder' }],
   combo:     [
-    { folder: 'pdf',       label: '100 Business Ideas' },
-    { folder: 'templates', label: 'Automation Templates' }
+    { url: DRIVE.pdf,       label: '100 Business Ideas Folder' },
+    { url: DRIVE.templates, label: 'Automation Templates Folder' }
   ]
 };
 
@@ -365,18 +369,19 @@ async function loadOrders(user) {
 
 function renderProductCard(order) {
   const icon      = PRODUCT_ICONS[order.product_id] || '📦';
-  const folders   = PRODUCT_FOLDERS[order.product_id];
-  const isDigital = !!folders;
+  const links     = PRODUCT_LINKS[order.product_id];
+  const isDigital = !!links;
   const date      = new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   const amount    = '₹' + (order.amount_paise / 100);
 
-  const dlIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
-
   const actions = isDigital
-    ? folders.map(f => `
-        <button class="dl-btn" onclick="downloadFolder('${f.folder}', '${f.label}', this)">
-          ${dlIcon} Download ${f.label}
-        </button>`).join('')
+    ? links.map(l => `
+        <a class="dl-btn" href="${l.url}" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          📁 Open ${l.label}
+        </a>`).join('')
     : `<p class="mpc-note">📅 Booking link will be sent to <strong>${order.customer_email}</strong> within 24 hours of purchase.</p>
        <a href="mailto:prithal@thesoloentrepreneur.in?subject=Consultation Booking - ${encodeURIComponent(order.product_name)}" class="btn sm">Email to Schedule →</a>`;
 
@@ -392,59 +397,7 @@ function renderProductCard(order) {
     </div>`;
 }
 
-/* ===== DOWNLOAD FOLDER ===== */
-const dlIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
-const spinIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`;
-
-async function downloadFolder(folder, label, btn) {
-  btn.disabled = true;
-  btn.innerHTML = `${spinIcon} Listing files…`;
-
-  // List all files in the folder
-  const { data: files, error: listErr } = await db.storage
-    .from('product-files')
-    .list(folder, { limit: 100, sortBy: { column: 'name', order: 'asc' } });
-
-  if (listErr || !files || files.length === 0) {
-    btn.disabled = false;
-    btn.innerHTML = `${dlIcon} Download ${label}`;
-    alert('Could not list files. Please contact prithal@thesoloentrepreneur.in');
-    return;
-  }
-
-  // Filter out placeholder/folder entries (Supabase returns .emptyFolderPlaceholder)
-  const realFiles = files.filter(f => f.name !== '.emptyFolderPlaceholder' && f.id);
-
-  btn.innerHTML = `${spinIcon} Downloading ${realFiles.length} file${realFiles.length > 1 ? 's' : ''}…`;
-
-  let failed = 0;
-  for (const file of realFiles) {
-    const filePath = `${folder}/${file.name}`;
-    const { data, error: signErr } = await db.storage
-      .from('product-files')
-      .createSignedUrl(filePath, 3600);
-
-    if (signErr || !data?.signedUrl) { failed++; continue; }
-
-    const a = document.createElement('a');
-    a.href = data.signedUrl;
-    a.download = file.name;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    // Brief pause so browser doesn't block multiple downloads
-    if (realFiles.length > 1) await new Promise(r => setTimeout(r, 800));
-  }
-
-  if (failed > 0) alert(`${failed} file(s) could not be downloaded. Email prithal@thesoloentrepreneur.in for help.`);
-
-  setTimeout(() => {
-    btn.disabled = false;
-    btn.innerHTML = `${dlIcon} Download ${label}`;
-  }, 2000);
-}
+/* Drive links are rendered as plain anchor tags — no JS download function needed */
 
 /* ===== AUTH ===== */
 function switchTab(tab) {

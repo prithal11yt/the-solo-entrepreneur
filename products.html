@@ -312,8 +312,9 @@
     <h3 class="h-display" style="font-size:26px;line-height:1">Payment Successful!</h3>
     <p class="h-hand" style="font-size:18px;opacity:.85" id="successMessage"></p>
     <p class="success-pid">Payment ID: <span id="successPaymentId"></span></p>
+    <div id="successLinks" style="display:flex;flex-direction:column;gap:10px;width:100%"></div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="account.html" class="btn primary">View My Products →</a>
+      <a href="account.html" class="btn primary">My Account →</a>
       <button class="btn" onclick="closeSuccess()">Close</button>
     </div>
     <p class="ck-secure-note">Questions? Email <a href="mailto:prithal@thesoloentrepreneur.in" style="color:var(--accent)">prithal@thesoloentrepreneur.in</a></p>
@@ -740,12 +741,40 @@ const db = createClient(
 
 const RZP_KEY = 'rzp_live_SizwsLeDvmH69E';
 
+const DRIVE = {
+  pdf:       'https://drive.google.com/drive/folders/1g7f5kgyb6T9nckjy0YgbhwhdkzU6g_R4',
+  templates: 'https://drive.google.com/drive/folders/1zGebVQl8VqALBg_jNFSGkuG32QsWi2QB'
+};
+
 const PRODUCTS = {
-  pdf:       { name: '100 Business Ideas PDF',             amount: 49900,  afterNote: '📥 Your files are ready — click "View My Products" to download instantly.' },
-  templates: { name: 'Automation Templates Pack',           amount: 49900,  afterNote: '📥 Your files are ready — click "View My Products" to download instantly.' },
-  combo:     { name: 'Combo Deal — PDF + Templates',        amount: 79900,  afterNote: '📥 Both files are ready — click "View My Products" to download instantly.' },
-  consult30: { name: '1:1 Consultation — 30 Minutes',       amount: 99900,  afterNote: '📅 You\'ll receive a booking link via email within 24 hours.' },
-  consult60: { name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900, afterNote: '📅 You\'ll receive a booking link via email within 24 hours.' }
+  pdf: {
+    name: '100 Business Ideas PDF', amount: 49900,
+    afterNote: '📁 Your folder is ready — click the button below to open it in Google Drive.',
+    links: [{ url: DRIVE.pdf, label: '100 Business Ideas Folder' }]
+  },
+  templates: {
+    name: 'Automation Templates Pack', amount: 49900,
+    afterNote: '📁 Your folder is ready — click the button below to open it in Google Drive.',
+    links: [{ url: DRIVE.templates, label: 'Automation Templates Folder' }]
+  },
+  combo: {
+    name: 'Combo Deal — PDF + Templates', amount: 79900,
+    afterNote: '📁 Both folders are ready — open them below.',
+    links: [
+      { url: DRIVE.pdf,       label: '100 Business Ideas Folder' },
+      { url: DRIVE.templates, label: 'Automation Templates Folder' }
+    ]
+  },
+  consult30: {
+    name: '1:1 Consultation — 30 Minutes', amount: 99900,
+    afterNote: '📅 You\'ll receive a booking link via email within 24 hours.',
+    links: []
+  },
+  consult60: {
+    name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900,
+    afterNote: '📅 You\'ll receive a booking link via email within 24 hours.',
+    links: []
+  }
 };
 
 let activeProduct    = null;
@@ -907,6 +936,27 @@ async function submitCheckout(e) {
         p_razorpay_payment_id: response.razorpay_payment_id,
         p_user_id: user?.id || null
       }).then(({ error }) => { if (error) console.error('[TSE] DB error:', error.message); });
+
+      // Populate Drive links in success modal
+      const linksEl = document.getElementById('successLinks');
+      if (product.links && product.links.length > 0) {
+        linksEl.style.display = 'flex';
+        linksEl.innerHTML = product.links.map(l =>
+          `<a href="${l.url}" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;gap:8px;padding:12px 18px;
+                     background:var(--paper-2);border:2px solid var(--rule);
+                     border-radius:var(--radius);font-family:'Patrick Hand',cursive;
+                     font-size:17px;text-decoration:none;color:var(--ink);
+                     transition:transform .12s,box-shadow .12s"
+              onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='3px 3px 0 var(--rule)'"
+              onmouseout="this.style.transform='';this.style.boxShadow=''">
+            📁 Open ${l.label} →
+          </a>`
+        ).join('');
+      } else {
+        linksEl.style.display = 'none';
+      }
+
       document.getElementById('successPaymentId').textContent = response.razorpay_payment_id;
       document.getElementById('successMessage').textContent   = product.afterNote;
       document.getElementById('successOverlay').classList.add('open');
