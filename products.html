@@ -129,8 +129,16 @@
 @media (max-width: 860px) {
   .pd-grid, .pd-grid.reverse { grid-template-columns: 1fr; }
   .pd-grid.reverse .pd-img  { order: 0; }
-  .pd-img { position: static; aspect-ratio: 16/7; }
+  .pd-img { position: static; aspect-ratio: 4/3; }
   .consult-grid { grid-template-columns: 1fr; }
+  .consult-card img { max-height: 160px; object-fit: cover; }
+  .pd-cta-row { flex-direction: column; }
+  .pd-cta-row .btn { width: 100%; text-align: center; justify-content: center; }
+}
+@media (max-width: 520px) {
+  .checkout-modal { padding: 24px 18px; }
+  .auth-tab { font-size: 14px; padding: 8px 10px; }
+  .pd-img { aspect-ratio: 3/2; }
 }
 
 /* ===== AUTH MODAL ===== */
@@ -531,7 +539,7 @@
     <div class="lead-card wobble reveal" style="background:var(--paper-2);border:2px solid var(--rule)">
       <div class="lead-left">
         <span class="tag accent" style="align-self:flex-start">100% FREE</span>
-        <img src="https://www.founderswing.com/ebook-cover.png" alt="10 Startup Ideas eBook" style="max-height:160px;width:auto;border-radius:6px;margin:8px 0;box-shadow:4px 4px 0 var(--rule)"/>
+        <img src="images/ebook-cover.png" alt="10 Startup Ideas eBook" style="max-height:200px;width:auto;border-radius:6px;margin:8px 0"/>
         <h3 class="h-display" style="font-size:28px;line-height:1.05">10 Startup Ideas Worth Stealing.</h3>
         <p class="h-hand" style="font-size:18px;color:var(--muted)">Free account · Instant access. No credit card needed.</p>
       </div>

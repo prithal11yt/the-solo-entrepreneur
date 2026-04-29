@@ -558,7 +558,7 @@ footer { border-top: 2px solid var(--rule); padding-top: 10px; }
 }
 @media (max-width: 620px) {
   .prod-grid  { grid-template-columns: 1fr; }
-  .lead-card  { grid-column: span 1; }
+  .lead-card  { grid-column: span 1; grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
   .video-tabs { flex-direction: column; gap: 8px; }
   .hero-h1    { font-size: clamp(36px, 11vw, 56px); }
@@ -568,4 +568,13 @@ footer { border-top: 2px solid var(--rule); padding-top: 10px; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   .aff-box  { padding: 20px; }
   .fw-band  { padding: 28px 20px; }
+  /* Video thumbnails — prevent overflow */
+  .video-thumb { aspect-ratio: 16/9; }
+  /* Wrap CTAs on small screens */
+  .hero-ctas  { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn { text-align: center; justify-content: center; }
+  /* Prod card price row */
+  .prod-price { flex-wrap: wrap; }
+  /* Wrap long tag rows */
+  .pd-tag { flex-wrap: wrap; }
 }
