@@ -288,16 +288,14 @@ const db = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
 );
 
-// Map product IDs to downloadable files in Supabase Storage
-// Files must be uploaded to Supabase Storage > product-files bucket as:
-//   pdf/100-business-ideas.pdf
-//   templates/automation-pack.zip
-const PRODUCT_FILES = {
-  pdf:       [{ path: 'pdf/100-business-ideas.pdf',    label: '100 Business Ideas PDF' }],
-  templates: [{ path: 'templates/automation-pack.zip', label: 'Automation Templates Pack' }],
+// Map product IDs to folders in Supabase Storage bucket "product-files"
+// Upload your folders directly — e.g. pdf/ and templates/
+const PRODUCT_FOLDERS = {
+  pdf:       [{ folder: 'pdf',       label: '100 Business Ideas' }],
+  templates: [{ folder: 'templates', label: 'Automation Templates' }],
   combo:     [
-    { path: 'pdf/100-business-ideas.pdf',    label: '100 Business Ideas PDF' },
-    { path: 'templates/automation-pack.zip', label: 'Automation Templates Pack' }
+    { folder: 'pdf',       label: '100 Business Ideas' },
+    { folder: 'templates', label: 'Automation Templates' }
   ]
 };
 
@@ -366,21 +364,18 @@ async function loadOrders(user) {
 }
 
 function renderProductCard(order) {
-  const icon     = PRODUCT_ICONS[order.product_id] || '📦';
-  const files    = PRODUCT_FILES[order.product_id];
-  const isDigital = !!files;
-  const date     = new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-  const amount   = '₹' + (order.amount_paise / 100);
+  const icon      = PRODUCT_ICONS[order.product_id] || '📦';
+  const folders   = PRODUCT_FOLDERS[order.product_id];
+  const isDigital = !!folders;
+  const date      = new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  const amount    = '₹' + (order.amount_paise / 100);
+
+  const dlIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
 
   const actions = isDigital
-    ? files.map(f => `
-        <button class="dl-btn" onclick="downloadFile('${f.path}', '${f.label}', this)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download ${f.label}
+    ? folders.map(f => `
+        <button class="dl-btn" onclick="downloadFolder('${f.folder}', '${f.label}', this)">
+          ${dlIcon} Download ${f.label}
         </button>`).join('')
     : `<p class="mpc-note">📅 Booking link will be sent to <strong>${order.customer_email}</strong> within 24 hours of purchase.</p>
        <a href="mailto:prithal@thesoloentrepreneur.in?subject=Consultation Booking - ${encodeURIComponent(order.product_name)}" class="btn sm">Email to Schedule →</a>`;
@@ -397,33 +392,58 @@ function renderProductCard(order) {
     </div>`;
 }
 
-/* ===== DOWNLOAD ===== */
-async function downloadFile(path, label, btn) {
+/* ===== DOWNLOAD FOLDER ===== */
+const dlIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+const spinIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`;
+
+async function downloadFolder(folder, label, btn) {
   btn.disabled = true;
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Preparing…`;
+  btn.innerHTML = `${spinIcon} Listing files…`;
 
-  const { data, error } = await db.storage.from('product-files').createSignedUrl(path, 3600);
+  // List all files in the folder
+  const { data: files, error: listErr } = await db.storage
+    .from('product-files')
+    .list(folder, { limit: 100, sortBy: { column: 'name', order: 'asc' } });
 
-  if (error || !data?.signedUrl) {
+  if (listErr || !files || files.length === 0) {
     btn.disabled = false;
-    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download ${label}`;
-    alert('Download failed. Please contact prithal@thesoloentrepreneur.in');
+    btn.innerHTML = `${dlIcon} Download ${label}`;
+    alert('Could not list files. Please contact prithal@thesoloentrepreneur.in');
     return;
   }
 
-  // Open signed URL to trigger browser download
-  const a = document.createElement('a');
-  a.href = data.signedUrl;
-  a.download = label;
-  a.target = '_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  // Filter out placeholder/folder entries (Supabase returns .emptyFolderPlaceholder)
+  const realFiles = files.filter(f => f.name !== '.emptyFolderPlaceholder' && f.id);
+
+  btn.innerHTML = `${spinIcon} Downloading ${realFiles.length} file${realFiles.length > 1 ? 's' : ''}…`;
+
+  let failed = 0;
+  for (const file of realFiles) {
+    const filePath = `${folder}/${file.name}`;
+    const { data, error: signErr } = await db.storage
+      .from('product-files')
+      .createSignedUrl(filePath, 3600);
+
+    if (signErr || !data?.signedUrl) { failed++; continue; }
+
+    const a = document.createElement('a');
+    a.href = data.signedUrl;
+    a.download = file.name;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Brief pause so browser doesn't block multiple downloads
+    if (realFiles.length > 1) await new Promise(r => setTimeout(r, 800));
+  }
+
+  if (failed > 0) alert(`${failed} file(s) could not be downloaded. Email prithal@thesoloentrepreneur.in for help.`);
 
   setTimeout(() => {
     btn.disabled = false;
-    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download ${label}`;
-  }, 3000);
+    btn.innerHTML = `${dlIcon} Download ${label}`;
+  }, 2000);
 }
 
 /* ===== AUTH ===== */
