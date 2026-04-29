@@ -271,6 +271,9 @@
         <li><a href="community.html">Founders Wing</a></li>
         <li><a href="index.html#about">About Prithal</a></li>
         <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="return-policy.html">Return Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
       </ul></div>
     </div>
     <div class="foot-copy h-print">
@@ -294,16 +297,19 @@ const DRIVE = {
   templates: 'https://drive.google.com/drive/folders/1zGebVQl8VqALBg_jNFSGkuG32QsWi2QB'
 };
 
+const EBOOK_URL = 'https://docs.google.com/presentation/d/1t_snK4kbgu8ZEUF4e-CPlChd85Clpy2BC2RzMH7ZDxM/edit?usp=sharing';
+
 const PRODUCT_LINKS = {
-  pdf:       [{ url: DRIVE.pdf,       label: '100 Business Ideas Folder' }],
-  templates: [{ url: DRIVE.templates, label: 'Automation Templates Folder' }],
-  combo:     [
+  pdf:        [{ url: DRIVE.pdf,       label: '100 Business Ideas Folder' }],
+  templates:  [{ url: DRIVE.templates, label: 'Automation Templates Folder' }],
+  combo:      [
     { url: DRIVE.pdf,       label: '100 Business Ideas Folder' },
     { url: DRIVE.templates, label: 'Automation Templates Folder' }
-  ]
+  ],
+  free_ebook: [{ url: EBOOK_URL, label: '10 Startup Ideas eBook' }]
 };
 
-const PRODUCT_ICONS = { pdf: '📄', templates: '⚡', combo: '🎁', consult30: '💬', consult60: '🎯' };
+const PRODUCT_ICONS = { pdf: '📄', templates: '⚡', combo: '🎁', consult30: '💬', consult60: '🎯', free_ebook: '📖' };
 
 /* ===== INIT ===== */
 (async function init() {

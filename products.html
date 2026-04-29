@@ -533,22 +533,54 @@
         <span class="tag accent" style="align-self:flex-start">100% FREE</span>
         <img src="https://www.founderswing.com/ebook-cover.png" alt="10 Startup Ideas eBook" style="max-height:160px;width:auto;border-radius:6px;margin:8px 0;box-shadow:4px 4px 0 var(--rule)"/>
         <h3 class="h-display" style="font-size:28px;line-height:1.05">10 Startup Ideas Worth Stealing.</h3>
-        <p class="h-hand" style="font-size:18px;color:var(--muted)">Instant PDF download. No credit card needed.</p>
+        <p class="h-hand" style="font-size:18px;color:var(--muted)">Free account · Instant access. No credit card needed.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px">
-        <p class="h-hand" style="font-size:20px;line-height:1.4">Drop your email and get the free eBook instantly — 10 AI-powered startup ideas you can start with ₹0, complete with revenue models and first steps.</p>
+        <p class="h-hand" style="font-size:20px;line-height:1.4">Create a free account and get instant access — 10 AI-powered startup ideas you can start with ₹0, complete with revenue models and first steps.</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
           <li class="h-hand" style="font-size:18px">→ 10 unique startup ideas for 2026</li>
           <li class="h-hand" style="font-size:18px">→ Revenue model for each idea</li>
           <li class="h-hand" style="font-size:18px">→ AI tools to execute faster</li>
           <li class="h-hand" style="font-size:18px">→ ₹0 startup cost ideas</li>
         </ul>
-        <div class="lead-form">
-          <svg viewBox="0 0 64 64" width="24" height="24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" style="flex-shrink:0;margin:auto 4px"><rect x="8" y="14" width="48" height="36"/><path d="M8 14 L32 36 L56 14"/></svg>
-          <input type="email" placeholder="your@email.com" id="leadEmail"/>
-          <button class="btn primary sm" onclick="submitLead()">Send Me the Free eBook →</button>
+
+        <!-- Shown when logged out -->
+        <div id="leadAuthBox" style="display:flex;flex-direction:column;gap:10px">
+          <div class="auth-tabs" style="margin-bottom:4px">
+            <button class="auth-tab active" id="leadTabSignup" onclick="switchLeadTab('signup')">Create Account</button>
+            <button class="auth-tab" id="leadTabSignin" onclick="switchLeadTab('signin')">Sign In</button>
+          </div>
+          <div id="leadFormSignup" style="display:flex;flex-direction:column;gap:8px">
+            <input type="text"     class="ck-input" placeholder="Your name"             id="leadName"    autocomplete="name"/>
+            <input type="email"    class="ck-input" placeholder="your@email.com"        id="leadEmail"   autocomplete="email"/>
+            <input type="password" class="ck-input" placeholder="Choose a password (min 6 chars)" id="leadPass" autocomplete="new-password"/>
+            <button class="btn primary" id="leadSignupBtn" onclick="claimEbook('signup')">Create Account &amp; Get Free eBook →</button>
+          </div>
+          <div id="leadFormSignin" style="display:none;flex-direction:column;gap:8px">
+            <input type="email"    class="ck-input" placeholder="your@email.com"  id="leadSiEmail" autocomplete="email"/>
+            <input type="password" class="ck-input" placeholder="Password"        id="leadSiPass"  autocomplete="current-password"/>
+            <button class="btn primary" id="leadSigninBtn" onclick="claimEbook('signin')">Sign In &amp; Get Free eBook →</button>
+          </div>
+          <div id="leadError" class="auth-error" style="min-height:18px"></div>
         </div>
-        <p class="lead-note h-hand">✱ No spam. Unsubscribe anytime. You'll also get occasional tips from Prithal.</p>
+
+        <!-- Shown when logged in -->
+        <div id="leadDownloadBox" style="display:none;flex-direction:column;gap:12px">
+          <p class="h-hand" style="font-size:18px;color:#2f9e44">✓ You're in! Your free eBook is ready below.</p>
+          <a id="leadDownloadBtn" href="https://docs.google.com/presentation/d/1t_snK4kbgu8ZEUF4e-CPlChd85Clpy2BC2RzMH7ZDxM/edit?usp=sharing"
+             target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:8px;padding:14px 20px;
+                    background:var(--accent);border:2px solid var(--ink);
+                    border-radius:var(--radius);font-family:'Patrick Hand',cursive;
+                    font-size:18px;text-decoration:none;color:#fff;
+                    transition:transform .12s,box-shadow .12s"
+             onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='3px 3px 0 var(--ink)'"
+             onmouseout="this.style.transform='';this.style.boxShadow=''">
+            📖 Open 10 Startup Ideas eBook →
+          </a>
+          <p class="lead-note h-hand">Also saved in your <a href="account.html" style="color:var(--accent);text-decoration:underline">My Account</a> for future access.</p>
+        </div>
+        <p class="lead-note h-hand" id="leadFootnote">✱ No spam. No credit card. Your eBook is also saved to your account.</p>
       </div>
     </div>
   </div>
@@ -570,7 +602,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q h-print" onclick="toggleFaq(this)">What's your refund policy? <span class="arrow">→</span></button>
-        <div class="faq-a h-hand">7-day refund policy, no questions asked, for the PDF and Templates. For consultations: cancellations must be made 24+ hours before the booked slot for a full refund.</div>
+        <div class="faq-a h-hand">All sales are final. We do not offer refunds on any products or consultations once purchased. Please read the full <a href="return-policy.html" style="color:var(--accent);text-decoration:underline">Return Policy</a> before buying.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q h-print" onclick="toggleFaq(this)">How is the consultation conducted? <span class="arrow">→</span></button>
@@ -616,6 +648,9 @@
         <li><a href="index.html#hosting">Hostinger Deal</a></li>
         <li><a href="index.html#about">About Prithal</a></li>
         <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="return-policy.html">Return Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
       </ul></div>
     </div>
     <div class="foot-copy h-print">
@@ -662,13 +697,13 @@ const PRODUCTS = {
   },
   consult30: {
     name: '1:1 Consultation — 30 Minutes', amount: 99900,
-    afterNote: '📅 You\'ll receive a booking link via email within 24 hours.',
-    links: []
+    afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.',
+    links: [], whatsapp: '30-minute consultation'
   },
   consult60: {
     name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900,
-    afterNote: '📅 You\'ll receive a booking link via email within 24 hours.',
-    links: []
+    afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.',
+    links: [], whatsapp: '1-hour deep dive session'
   }
 };
 
@@ -832,25 +867,45 @@ async function submitCheckout(e) {
         p_user_id: user?.id || null
       }).then(({ error }) => { if (error) console.error('[TSE] DB error:', error.message); });
 
-      // Populate Drive links in success modal
+      // Populate links in success modal
       const linksEl = document.getElementById('successLinks');
+      const linkItems = [];
+
       if (product.links && product.links.length > 0) {
-        linksEl.style.display = 'flex';
-        linksEl.innerHTML = product.links.map(l =>
-          `<a href="${l.url}" target="_blank" rel="noopener"
-              style="display:flex;align-items:center;gap:8px;padding:12px 18px;
-                     background:var(--paper-2);border:2px solid var(--rule);
-                     border-radius:var(--radius);font-family:'Patrick Hand',cursive;
-                     font-size:17px;text-decoration:none;color:var(--ink);
-                     transition:transform .12s,box-shadow .12s"
-              onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='3px 3px 0 var(--rule)'"
-              onmouseout="this.style.transform='';this.style.boxShadow=''">
-            📁 Open ${l.label} →
-          </a>`
-        ).join('');
-      } else {
-        linksEl.style.display = 'none';
+        product.links.forEach(l => {
+          linkItems.push(
+            `<a href="${l.url}" target="_blank" rel="noopener"
+                style="display:flex;align-items:center;gap:8px;padding:12px 18px;
+                       background:var(--paper-2);border:2px solid var(--rule);
+                       border-radius:var(--radius);font-family:'Patrick Hand',cursive;
+                       font-size:17px;text-decoration:none;color:var(--ink);
+                       transition:transform .12s,box-shadow .12s"
+                onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='3px 3px 0 var(--rule)'"
+                onmouseout="this.style.transform='';this.style.boxShadow=''">
+              📁 Open ${l.label} →
+            </a>`
+          );
+        });
       }
+
+      if (product.whatsapp) {
+        const waText = encodeURIComponent(`Hi Prithal, I just paid for the ${product.whatsapp}. Please help me book a slot.`);
+        linkItems.push(
+          `<a href="https://wa.me/916239330641?text=${waText}" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;gap:8px;padding:12px 18px;
+                     background:#25d366;border:2px solid #1da851;
+                     border-radius:var(--radius);font-family:'Patrick Hand',cursive;
+                     font-size:17px;text-decoration:none;color:#fff;
+                     transition:transform .12s,box-shadow .12s"
+              onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='3px 3px 0 #1da851'"
+              onmouseout="this.style.transform='';this.style.boxShadow=''">
+            💬 Book a Time on WhatsApp →
+          </a>`
+        );
+      }
+
+      linksEl.style.display = linkItems.length ? 'flex' : 'none';
+      linksEl.innerHTML = linkItems.join('');
 
       document.getElementById('successPaymentId').textContent = response.razorpay_payment_id;
       document.getElementById('successMessage').textContent   = product.afterNote;
@@ -882,6 +937,78 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
   if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
 }
+
+/* ===== FREE EBOOK ===== */
+const EBOOK_URL = 'https://docs.google.com/presentation/d/1t_snK4kbgu8ZEUF4e-CPlChd85Clpy2BC2RzMH7ZDxM/edit?usp=sharing';
+
+function switchLeadTab(tab) {
+  const isSignup = tab === 'signup';
+  document.getElementById('leadTabSignup').classList.toggle('active', isSignup);
+  document.getElementById('leadTabSignin').classList.toggle('active', !isSignup);
+  document.getElementById('leadFormSignup').style.display = isSignup ? 'flex' : 'none';
+  document.getElementById('leadFormSignin').style.display = isSignup ? 'none' : 'flex';
+}
+
+function showLeadDownload() {
+  document.getElementById('leadAuthBox').style.display    = 'none';
+  document.getElementById('leadDownloadBox').style.display = 'flex';
+  document.getElementById('leadFootnote').style.display   = 'none';
+}
+
+async function recordFreeEbook(user) {
+  await db.rpc('record_purchase', {
+    p_name: user.user_metadata?.full_name || user.email.split('@')[0],
+    p_email: user.email,
+    p_phone: '',
+    p_product_id: 'free_ebook',
+    p_product_name: '10 Startup Ideas eBook (Free)',
+    p_amount_paise: 0,
+    p_razorpay_payment_id: 'FREE_EBOOK_' + user.id,
+    p_user_id: user.id
+  });
+}
+
+async function claimEbook(mode) {
+  const errEl = document.getElementById('leadError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+
+  let user;
+  if (mode === 'signup') {
+    const name  = document.getElementById('leadName').value.trim();
+    const email = document.getElementById('leadEmail').value.trim();
+    const pass  = document.getElementById('leadPass').value;
+    if (!name || !email || !pass) { errEl.textContent = 'Please fill in all fields.'; return; }
+    const btn = document.getElementById('leadSignupBtn');
+    btn.disabled = true; btn.textContent = 'Creating account…';
+    const { data, error } = await db.auth.signUp({ email, password: pass, options: { data: { full_name: name } } });
+    btn.disabled = false; btn.textContent = 'Create Account & Get Free eBook →';
+    if (error) { errEl.textContent = error.message; return; }
+    user = data.user;
+  } else {
+    const email = document.getElementById('leadSiEmail').value.trim();
+    const pass  = document.getElementById('leadSiPass').value;
+    if (!email || !pass) { errEl.textContent = 'Please fill in all fields.'; return; }
+    const btn = document.getElementById('leadSigninBtn');
+    btn.disabled = true; btn.textContent = 'Signing in…';
+    const { data, error } = await db.auth.signInWithPassword({ email, password: pass });
+    btn.disabled = false; btn.textContent = 'Sign In & Get Free eBook →';
+    if (error) { errEl.textContent = error.message; return; }
+    user = data.user;
+  }
+
+  if (user) {
+    await recordFreeEbook(user);
+    showLeadDownload();
+  }
+}
+
+/* Check on load if already logged in */
+db.auth.getUser().then(({ data: { user } }) => {
+  if (user) {
+    showLeadDownload();
+    recordFreeEbook(user);
+  }
+});
 </script>
 </body>
 </html>
