@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Founders Wing — The Solo Entrepreneur Community</title>
+<meta name="description" content="Join Founders Wing — Prithal's AI-first paid community for solo founders who want to build real income online. Weekly live sessions, templates, accountability, and the ₹10K sprint."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+/* Community page extras */
+.community-hero {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 2px solid var(--rule);
+  padding: 64px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.community-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(243,238,226,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243,238,226,.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.community-hero .wrap { position: relative; z-index: 1; }
+.community-hero .section-tag { color: rgba(243,238,226,.5); }
+.community-hero .section-tag::before { color: var(--accent); }
+.community-hero h1 {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(38px, 7vw, 86px);
+  line-height: .9; letter-spacing: -.02em;
+  margin-bottom: 18px;
+}
+.community-hero h1 .orange { color: var(--accent); }
+.community-hero .sub {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(20px, 2.8vw, 27px);
+  opacity: .8; max-width: 660px; margin-bottom: 28px;
+}
+.hero-stats-row {
+  display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 32px;
+}
+.hero-stat {
+  display: flex; flex-direction: column;
+  padding: 12px 18px;
+  border: 1.5px solid rgba(243,238,226,.2);
+  border-radius: var(--radius);
+  background: rgba(243,238,226,.06);
+}
+.hero-stat strong { font-family: 'Rubik Mono One', sans-serif; font-size: 28px; line-height: 1; color: var(--accent); }
+.hero-stat span   { font-family: 'Caveat', cursive; font-size: 15px; opacity: .7; margin-top: 3px; }
+
+/* Founder section */
+.founder-grid {
+  display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start;
+}
+.founder-photo {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  overflow: hidden; aspect-ratio: 3/4;
+}
+.founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.founder-quote {
+  border-left: 4px solid var(--accent);
+  padding-left: 20px; margin: 20px 0;
+  font-family: 'Caveat', cursive; font-size: 22px;
+  line-height: 1.45; font-style: italic;
+}
+
+/* Benefits grid */
+.benefits-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.benefit-card {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 22px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: transform .15s, box-shadow .15s;
+}
+.benefit-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--rule); }
+.benefit-icon { font-size: 32px; line-height: 1; }
+.benefit-title { font-family: 'Patrick Hand', cursive; font-size: 19px; line-height: 1.1; }
+.benefit-desc  { font-family: 'Caveat', cursive; font-size: 17px; color: var(--muted); line-height: 1.4; }
+
+/* Pricing cards */
+.pricing-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 760px; margin: 0 auto;
+}
+.pricing-card {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative;
+}
+.pricing-card.best {
+  background: var(--paper-2); border-width: 2.5px;
+}
+.pricing-card .best-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  font-family: 'Patrick Hand', cursive; font-size: 13px;
+  padding: 3px 14px; background: var(--accent);
+  border: 2px solid var(--rule); border-radius: 14px;
+  white-space: nowrap;
+}
+.pricing-plan { font-family: 'Rubik Mono One', sans-serif; font-size: 14px; letter-spacing: .1em; }
+.pricing-price {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 42px; line-height: 1;
+}
+.pricing-period { font-family: 'Caveat', cursive; font-size: 17px; color: var(--muted); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.pricing-features li {
+  font-family: 'Patrick Hand', cursive; font-size: 15px;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.pricing-features li::before { content: "✓"; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+.pricing-features li.strikeout { opacity: .4; }
+.pricing-features li.strikeout::before { content: "–"; color: var(--muted); }
+
+/* Sprint section */
+.sprint-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px;
+}
+.sprint-step {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  padding: 18px; background: var(--paper);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.sprint-num { font-family: 'Rubik Mono One', sans-serif; font-size: 32px; color: var(--accent); line-height: 1; }
+.sprint-title { font-family: 'Patrick Hand', cursive; font-size: 17px; }
+.sprint-desc  { font-family: 'Caveat', cursive; font-size: 16px; color: var(--muted); }
+
+/* Social proof / member rows */
+.member-row {
+  display: flex; gap: 14px; align-items: flex-start; padding: 16px;
+  border-bottom: 1px dashed var(--rule);
+}
+.member-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid var(--rule); overflow: hidden; flex-shrink: 0;
+  background: var(--paper-2);
+}
+.member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.member-message { font-family: 'Caveat', cursive; font-size: 18px; line-height: 1.4; }
+.member-name    { font-family: 'Patrick Hand', cursive; font-size: 14px; color: var(--muted); margin-top: 4px; }
+.member-time    { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+/* CTA banner */
+.cta-banner {
+  background: var(--accent); color: var(--accent-ink);
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  padding: 44px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.cta-banner h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(26px,4vw,46px); line-height: .95; margin: 0; }
+.cta-banner p  { font-family: 'Caveat', cursive; font-size: 20px; margin-top: 10px; opacity: .85; }
+
+@media (max-width: 860px) {
+  .benefits-grid  { grid-template-columns: 1fr 1fr; }
+  .pricing-grid   { grid-template-columns: 1fr; max-width: 440px; }
+  .sprint-steps   { grid-template-columns: 1fr 1fr; }
+  .founder-grid   { grid-template-columns: 1fr; }
+  .founder-photo  { aspect-ratio: 16/9; max-height: 300px; }
+  .founder-photo img { object-position: center 20%; }
+}
+@media (max-width: 580px) {
+  .benefits-grid  { grid-template-columns: 1fr; }
+  .sprint-steps   { grid-template-columns: 1fr; }
+  .cta-banner     { padding: 28px 20px; flex-direction: column; }
+  .community-hero { padding: 40px 0 36px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  </defs>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="community.html" class="active">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn primary nav-cta sm">Join Community →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Join Community →</a>
+</div>
+
+<!-- HERO (dark) -->
+<section class="community-hero">
+  <div class="wrap">
+    <div class="section-tag">Community · founderswing.com</div>
+    <h1 class="h-display">Stop building<br/>alone. Join<br/><span class="orange">Founders Wing.</span></h1>
+    <p class="sub h-hand">An AI-first paid community for founders who are done watching tutorials and finally want to ship something real — with live calls, templates, and real accountability.</p>
+    <div class="hero-stats-row">
+      <div class="hero-stat"><strong>5K+</strong><span>community members</span></div>
+      <div class="hero-stat"><strong>36K+</strong><span>YouTube subscribers</span></div>
+      <div class="hero-stat"><strong>26</strong><span>live sessions / year</span></div>
+      <div class="hero-stat"><strong>₹2,999</strong><span>to get started</span></div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn primary lg">Join Founders Wing →</a>
+      <a href="#about-community" class="btn" style="background:rgba(243,238,226,.1);color:var(--paper);border-color:rgba(243,238,226,.3)">Learn more ↓</a>
+    </div>
+    <!-- Member avatars -->
+    <div style="display:flex;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap">
+      <div style="display:flex">
+        <img src="https://www.founderswing.com/avatar-ind-1.jpg" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);margin-right:-10px;object-fit:cover"/>
+        <img src="https://www.founderswing.com/avatar-ind-2.jpg" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);margin-right:-10px;object-fit:cover"/>
+        <img src="https://www.founderswing.com/avatar-ind-3.jpg" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);margin-right:-10px;object-fit:cover"/>
+        <img src="https://www.founderswing.com/avatar-ind-4.jpg" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);margin-right:-10px;object-fit:cover"/>
+        <img src="https://www.founderswing.com/avatar-ind-5.jpg" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);margin-right:0;object-fit:cover"/>
+      </div>
+      <div class="h-hand" style="font-size:16px;opacity:.75">+5K founders building with AI this quarter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THE COMMUNITY -->
+<section id="about-community" class="section">
+  <div class="wrap">
+    <div class="section-tag">01 — Who's Behind It</div>
+    <div class="founder-grid reveal">
+      <div class="founder-photo wobble">
+        <img src="https://www.founderswing.com/prithal.jpg" alt="Prithal Bhardwaj — Founder"/>
+      </div>
+      <div>
+        <h2 class="h-display" style="font-size:clamp(26px,4vw,42px);line-height:.95;margin-bottom:14px">
+          Built by Prithal.<br/><span style="color:var(--accent)">For founders like you.</span>
+        </h2>
+        <p class="h-hand" style="font-size:21px;line-height:1.45;margin-bottom:16px">
+          I spent 5+ years building businesses online — from an SEO agency to a YouTube channel with 37K+ subscribers — so I could help people who are exactly where I was when I started: full of ideas, zero clue how to execute.
+        </p>
+        <blockquote class="founder-quote">
+          "Free communities plateau — most members watch, like, and never ship anything. I built Founders Wing to be different. This is for the doers."
+          <div class="h-print" style="font-style:normal;font-size:16px;margin-top:8px;opacity:.7">— Prithal Bhardwaj, The Solo Entrepreneur</div>
+        </blockquote>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">
+          <div class="stat-box"><strong class="h-display">37.3K+</strong><span>YouTube subs</span></div>
+          <div class="stat-box"><strong class="h-display">5K+</strong><span>Community members</span></div>
+          <div class="stat-box"><strong class="h-display">7+ yrs</strong><span>Building online</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">02 — What You Get Inside</div>
+    <div class="section-header reveal">
+      <h2 class="h-display">Everything to go from<br/>"I want to start" → <span style="color:var(--accent)">actually building.</span></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card wobble reveal">
+        <div class="benefit-icon">📹</div>
+        <div class="benefit-title h-print">26 Live Sessions / Year</div>
+        <div class="benefit-desc h-hand">Weekly live calls with Prithal — AI tool demos, Q&amp;A, walkthroughs. Not a webinar. A real conversation with a small group. Recordings included.</div>
+      </div>
+      <div class="benefit-card wobble reveal" style="transition-delay:.06s">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title h-print">Templates &amp; Automations</div>
+        <div class="benefit-desc h-hand">Copy-paste business kits — pricing templates, outreach scripts, AI tool setups, landing page frameworks. Ready to deploy, not theory to read.</div>
+      </div>
+      <div class="benefit-card wobble reveal" style="transition-delay:.12s">
+        <div class="benefit-icon">💬</div>
+        <div class="benefit-title h-print">Private WhatsApp Community</div>
+        <div class="benefit-desc h-hand">A private WhatsApp group for paying members only. Daily AI updates, wins, challenges, and founders who push each other to ship.</div>
+      </div>
+      <div class="benefit-card wobble reveal" style="transition-delay:.18s">
+        <div class="benefit-icon">🏃</div>
+        <div class="benefit-title h-print">₹10K Sprint Challenge</div>
+        <div class="benefit-desc h-hand">30-day sprint — pick an idea, build with your cohort, race to earn your first ₹10,000 online together. New cohorts every month.</div>
+      </div>
+      <div class="benefit-card wobble reveal" style="transition-delay:.24s">
+        <div class="benefit-icon">📕</div>
+        <div class="benefit-title h-print">50 Business Ideas eBook</div>
+        <div class="benefit-desc h-hand">Normally sold for ₹299 — yours free as a member. Complete business plans with revenue projections, templates, and step-by-step roadmaps.</div>
+      </div>
+      <div class="benefit-card wobble reveal" style="transition-delay:.30s">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-title h-print">Accountability Buddy System</div>
+        <div class="benefit-desc h-hand">Get paired with a founder at your stage. Weekly check-ins, shared goals, and someone who holds you to your commitments.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ₹10K SPRINT -->
+<section class="section" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="section-tag">03 — Flagship Program</div>
+    <div class="reveal">
+      <h2 class="h-display" style="font-size:clamp(26px,4vw,46px);line-height:.95;margin-bottom:10px">The ₹10K Sprint Challenge</h2>
+      <p class="h-hand" style="font-size:21px;opacity:.8;max-width:640px;margin-bottom:4px">A 30-day structured sprint where you and a cohort of like-minded founders each pick an idea, build with AI, and race to earn your first ₹10,000 online — together.</p>
+    </div>
+    <div class="sprint-steps">
+      <div class="sprint-step wobble reveal">
+        <div class="sprint-num h-display">01</div>
+        <div class="sprint-title h-print">Pick Your Challenge</div>
+        <div class="sprint-desc h-hand">Choose from 50+ AI-friendly ideas or bring your own. Set your 30-day revenue target.</div>
+      </div>
+      <div class="sprint-step wobble reveal" style="transition-delay:.08s">
+        <div class="sprint-num h-display">02</div>
+        <div class="sprint-title h-print">Build Together</div>
+        <div class="sprint-desc h-hand">Build alongside other founders. Share progress, get feedback, move fast with AI tools.</div>
+      </div>
+      <div class="sprint-step wobble reveal" style="transition-delay:.16s">
+        <div class="sprint-num h-display">03</div>
+        <div class="sprint-title h-print">Launch &amp; Sell</div>
+        <div class="sprint-desc h-hand">Get it in front of real people. The community helps with positioning, pricing, and outreach.</div>
+      </div>
+      <div class="sprint-step wobble reveal" style="transition-delay:.24s">
+        <div class="sprint-num h-display">04</div>
+        <div class="sprint-title h-print">Hit the Leaderboard</div>
+        <div class="sprint-desc h-hand">Track your revenue. Climb the leaderboard. Celebrate wins with your cohort.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF / MEMBER WINS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">04 — Member Wins</div>
+    <h2 class="h-display reveal" style="font-size:clamp(26px,4vw,42px);line-height:.95;margin-bottom:28px">
+      Real people. <span style="color:var(--accent)">Real results.</span>
+    </h2>
+    <div style="max-width:620px;border:2px solid var(--rule);border-radius:var(--radius);overflow:hidden;background:var(--paper)" class="reveal">
+      <!-- WhatsApp-style chat UI -->
+      <div style="background:var(--ink);color:var(--paper);padding:12px 18px;display:flex;align-items:center;gap:12px">
+        <img src="https://www.founderswing.com/logo-icon.png" alt="Founders Wing" style="width:36px;height:36px;border-radius:8px"/>
+        <div>
+          <div class="h-display" style="font-size:14px">Founders Wing 🚀</div>
+          <div class="h-hand" style="font-size:13px;opacity:.6">Members only · Private group</div>
+        </div>
+      </div>
+      <div class="member-row">
+        <div class="member-avatar"><img src="https://www.founderswing.com/avatar-ind-1.jpg" alt="Rahul"/></div>
+        <div>
+          <div class="member-message h-hand">Just closed my first ₹8K client using the outreach swipe file 🙌 This community is unreal.</div>
+          <div class="member-name h-print">Rahul M. <span class="member-time">9:14 AM ✓✓</span></div>
+        </div>
+      </div>
+      <div class="member-row">
+        <div class="member-avatar"><img src="https://www.founderswing.com/avatar-ind-2.jpg" alt="Sneha"/></div>
+        <div>
+          <div class="member-message h-hand">Sprint Day 18 — ₹5,200 earned so far. Actually might hit ₹10K 😅 Never thought I'd say that</div>
+          <div class="member-name h-print">Sneha K. <span class="member-time">10:02 AM ✓✓</span></div>
+        </div>
+      </div>
+      <div class="member-row">
+        <div class="member-avatar"><img src="https://www.founderswing.com/avatar-ind-3.jpg" alt="Arjun"/></div>
+        <div>
+          <div class="member-message h-hand">Prithal's live session today just saved me 2 weeks of wrong direction. The AI stack he shared is 🔥</div>
+          <div class="member-name h-print">Arjun D. <span class="member-time">2:30 PM ✓✓</span></div>
+        </div>
+      </div>
+      <div class="member-row">
+        <div class="member-avatar"><img src="https://www.founderswing.com/avatar-ind-4.jpg" alt="Priya"/></div>
+        <div>
+          <div class="member-message h-hand">Used the n8n automation template, set it up in 20 mins. Already saved 6 hours this week alone 💀</div>
+          <div class="member-name h-print">Priya V. <span class="member-time">Yesterday ✓✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="section-tag">05 — Membership</div>
+    <div class="reveal" style="text-align:center;margin-bottom:36px">
+      <h2 class="h-display" style="font-size:clamp(28px,4.5vw,52px);line-height:.95;margin-bottom:10px">One membership.<br/>Everything included.</h2>
+      <p class="h-hand" style="font-size:20px;opacity:.75">No upsells. No hidden tiers. Full experience from day one.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card wobble reveal">
+        <div class="pricing-plan h-display">STARTER</div>
+        <div>
+          <div class="pricing-price h-display">₹2,999</div>
+          <div class="pricing-period h-hand">for 6 months · just ₹500/mo</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Full community access</li>
+          <li>Weekly live sessions (26/year)</li>
+          <li>All playbooks &amp; templates</li>
+          <li>30-day ₹10K sprint challenge</li>
+          <li>50 Business Ideas eBook (free)</li>
+          <li>Private WhatsApp community</li>
+          <li>Accountability buddy system</li>
+          <li class="strikeout">Priority Hot Seat spots</li>
+          <li class="strikeout">Founding member badge</li>
+        </ul>
+        <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn ink" style="text-align:center;justify-content:center">Get Started →</a>
+      </div>
+      <!-- Committed (Best Value) -->
+      <div class="pricing-card best wobble reveal" style="transition-delay:.1s">
+        <span class="best-badge">BEST VALUE — SAVE ₹1,000</span>
+        <div class="pricing-plan h-display">COMMITTED</div>
+        <div>
+          <div class="pricing-price h-display">₹4,999</div>
+          <div class="pricing-period h-hand">for 12 months · just ₹417/mo</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>6 extra months of access</li>
+          <li>Priority Hot Seat spots in calls</li>
+          <li>Founding member badge</li>
+          <li>Sprint leaderboard access</li>
+          <li>First access to offline meetups</li>
+          <li>Priority support from Prithal</li>
+        </ul>
+        <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn primary" style="text-align:center;justify-content:center">Join for ₹4,999/year →</a>
+      </div>
+    </div>
+    <div class="reveal" style="max-width:640px;margin:28px auto 0;text-align:center">
+      <p class="h-hand" style="font-size:18px;color:var(--muted)">
+        💡 Think about it this way — ₹500/month is less than one Swiggy order. One offline workshop = ₹3,000–5,000 for a single day. Here you get 26 live sessions + community + sprint access for 6 months.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">06 — Questions</div>
+    <h2 class="h-display reveal" style="font-size:clamp(26px,4vw,42px);line-height:.95;margin-bottom:28px">Common questions.</h2>
+    <div style="max-width:760px" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:0;border:2px solid var(--rule);border-radius:var(--radius);overflow:hidden">
+        <div class="faq-row">
+          <button class="faq-q h-print" style="padding:18px 20px;border-bottom:1.5px dashed var(--rule)" onclick="toggleFaq(this)">What exactly is the ₹10K Sprint? <span class="faq-arrow h-hand">→</span></button>
+          <div class="faq-ans h-hand" style="font-size:18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px;background:var(--paper-2)">A 30-day challenge where you pick an online income idea and race to earn your first ₹10,000 — alongside a cohort of other founders. New cohorts every month.</div>
+        </div>
+        <div class="faq-row">
+          <button class="faq-q h-print" style="padding:18px 20px;border-bottom:1.5px dashed var(--rule)" onclick="toggleFaq(this)">What platform does the community run on? <span class="faq-arrow h-hand">→</span></button>
+          <div class="faq-ans h-hand" style="font-size:18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px;background:var(--paper-2)">Live sessions run on Google Meet. The community runs on a private WhatsApp group. Templates and resources are shared via links in the group and on the community portal.</div>
+        </div>
+        <div class="faq-row">
+          <button class="faq-q h-print" style="padding:18px 20px;border-bottom:1.5px dashed var(--rule)" onclick="toggleFaq(this)">I'm a complete beginner — is this for me? <span class="faq-arrow h-hand">→</span></button>
+          <div class="faq-ans h-hand" style="font-size:18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px;background:var(--paper-2)">Yes — if you have the drive to learn and take action. Founders Wing is not a course; it's a community where beginners and experienced builders learn together. No prior business or tech experience required.</div>
+        </div>
+        <div class="faq-row">
+          <button class="faq-q h-print" style="padding:18px 20px;border-bottom:1.5px dashed var(--rule)" onclick="toggleFaq(this)">How is this different from the free WhatsApp group? <span class="faq-arrow h-hand">→</span></button>
+          <div class="faq-ans h-hand" style="font-size:18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px;background:var(--paper-2)">The free group is broadcast-only. Founders Wing is interactive — live calls, replies from Prithal, accountability buddies, sprint challenge, templates vault, and a community of paying members who are serious about results.</div>
+        </div>
+        <div class="faq-row">
+          <button class="faq-q h-print" style="padding:18px 20px" onclick="toggleFaq(this)">Can I cancel? <span class="faq-arrow h-hand">→</span></button>
+          <div class="faq-ans h-hand" style="font-size:18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px;background:var(--paper-2)">Yes — cancel anytime after your plan period ends. No auto-renewals. You keep access until the end of your paid period.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section" style="padding-bottom:80px">
+  <div class="wrap">
+    <div class="cta-banner wobble reveal">
+      <div>
+        <h2 class="h-display">Ready to stop<br/>overthinking?</h2>
+        <p class="h-hand">34 / 50 founding spots filled. Join now and get founding member status — for life.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <a href="https://founderswing.com" target="_blank" rel="noopener" class="btn ink lg">Join Founders Wing →</a>
+        <div class="h-hand" style="font-size:15px;opacity:.7">Instant access after payment · No lock-in</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        <div class="foot-socials">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.8" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://founderswing.com" target="_blank" rel="noopener" aria-label="Founders Wing">
+            <img src="https://www.founderswing.com/logo-icon.png" alt="FW" style="width:18px;height:18px;border-radius:4px"/>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Community</h5><ul>
+        <li><a href="#about-community">About Founders Wing</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="https://founderswing.com" target="_blank">founderswing.com ↗</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="products.html#pdf">100 Business Ideas</a></li>
+        <li><a href="products.html#templates">Automation Templates</a></li>
+        <li><a href="products.html#combo">Combo Deal</a></li>
+        <li><a href="products.html#lead">Free eBook</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="videos.html">YouTube Videos</a></li>
+        <li><a href="index.html#hosting">Hostinger Deal</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = ans.style.maxHeight && ans.style.maxHeight !== '0px';
+  document.querySelectorAll('.faq-ans').forEach(a => { a.style.maxHeight = '0'; a.style.paddingTop = '0'; a.style.paddingBottom = '0'; });
+  document.querySelectorAll('.faq-arrow').forEach(a => a.style.transform = '');
+  if (!isOpen) {
+    ans.style.maxHeight = '300px';
+    ans.style.paddingTop = '14px';
+    ans.style.paddingBottom = '18px';
+    btn.querySelector('.faq-arrow').style.transform = 'rotate(90deg)';
+  }
+}
+</script>
+</body>
+</html>

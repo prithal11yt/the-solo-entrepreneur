@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Videos — The Solo Entrepreneur</title>
+<meta name="description" content="Watch all videos from The Solo Entrepreneur — AI tools, online business ideas, automations, and startup strategies from Prithal."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+/* Videos page extras */
+.channel-strip {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 24px 28px;
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-2); margin-bottom: 40px;
+}
+.channel-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 2px solid var(--rule); overflow: hidden; flex-shrink: 0;
+}
+.channel-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.channel-info { flex: 1; }
+.channel-name { font-family: 'Rubik Mono One', sans-serif; font-size: 20px; }
+.channel-sub  { font-family: 'Caveat', cursive; font-size: 17px; color: var(--muted); }
+.channel-stats { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.ch-stat { font-family: 'Patrick Hand', cursive; font-size: 15px; }
+.ch-stat strong { font-family: 'Rubik Mono One', sans-serif; color: var(--accent); }
+
+.filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; align-items: center;
+}
+.filter-label { font-family: 'Caveat', cursive; font-size: 17px; color: var(--muted); margin-right: 4px; }
+
+/* Full video grid — 3 cols on desktop */
+.full-video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.video-card-full {
+  display: block; text-decoration: none; color: inherit;
+  cursor: pointer; border-radius: var(--radius);
+  transition: transform .15s;
+}
+.video-card-full:hover { transform: translate(-2px,-2px); }
+.video-card-full .thumb { aspect-ratio: 16/9; transition: box-shadow .15s; }
+.video-card-full:hover .thumb { box-shadow: 4px 4px 0 var(--rule); }
+.video-card-full:hover .play-btn { background: var(--accent); }
+.vcf-title {
+  font-family: 'Patrick Hand', cursive; font-size: 16px;
+  line-height: 1.25; margin-top: 9px;
+}
+.vcf-meta {
+  font-family: 'Caveat', cursive; font-size: 15px;
+  color: var(--muted); margin-top: 3px;
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.vcf-cat {
+  font-family: 'Patrick Hand', cursive; font-size: 12px;
+  padding: 1px 8px;
+  border: 1.5px solid var(--rule); border-radius: 999px;
+  background: var(--paper-2);
+}
+.vcf-cat.ai       { background: var(--accent); border-color: var(--rule); }
+.vcf-cat.business { background: var(--ink); color: var(--paper); }
+
+/* Featured video hero */
+.featured-video {
+  margin-bottom: 40px;
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  overflow: hidden; background: var(--paper-2);
+  display: grid; grid-template-columns: 1.5fr 1fr;
+}
+.featured-thumb {
+  aspect-ratio: 16/9; position: relative; overflow: hidden;
+  cursor: pointer;
+}
+.featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.featured-thumb .play-btn {
+  width: 64px; height: 64px;
+}
+.featured-thumb .play-btn::after {
+  border-left-width: 20px; border-top-width: 13px; border-bottom-width: 13px;
+}
+.featured-info {
+  padding: 28px; display: flex; flex-direction: column; gap: 12px;
+}
+.featured-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .15em; color: var(--accent); }
+.featured-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px,2.5vw,26px); line-height: 1.05; }
+.featured-views { font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted); }
+.featured-desc  { font-family: 'Patrick Hand', cursive; font-size: 16px; line-height: 1.35; opacity: .8; flex: 1; }
+
+/* Load more / channel link */
+.load-more-row {
+  display: flex; justify-content: center; gap: 14px;
+  margin-top: 40px; flex-wrap: wrap;
+}
+
+/* Active filter */
+.video-tab.active { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 980px) {
+  .full-video-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-video  { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .full-video-grid { grid-template-columns: 1fr; }
+  .channel-strip   { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  </defs>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html" class="active">Videos</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="section-tag">YouTube — Video Archive</div>
+    <h1 class="h-display reveal">Watch &amp; Learn.</h1>
+    <p class="h-hand reveal" style="transition-delay:.08s">AI tools, automation walkthroughs, and online business ideas — new video every week from The Solo Entrepreneur.</p>
+  </div>
+</div>
+
+<div class="section" style="padding-top:40px">
+  <div class="wrap">
+
+    <!-- Channel strip -->
+    <div class="channel-strip wobble reveal">
+      <div class="channel-avatar">
+        <img src="https://yt3.googleusercontent.com/nfCHWz8BlODgLUF1Wyarra45elSelVYAkFiWubHaQmqUkn_ePZV3zKmGmamf9Vc1HOUxlKWBMrU=s900-c-k-c0x00ffffff-no-rj"
+          alt="The Solo Entrepreneur channel avatar"/>
+      </div>
+      <div class="channel-info">
+        <div class="channel-name">The Solo Entrepreneur</div>
+        <div class="channel-sub h-hand">@thesoloentrepreneur07</div>
+        <div class="channel-stats">
+          <div class="ch-stat"><strong>37.3K+</strong> subscribers</div>
+          <div class="ch-stat"><strong>639</strong> videos</div>
+          <div class="ch-stat"><strong>New video</strong> every week</div>
+        </div>
+      </div>
+      <a href="https://www.youtube.com/@thesoloentrepreneur07?sub_confirmation=1"
+         target="_blank" rel="noopener" class="btn primary">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        Subscribe on YouTube
+      </a>
+    </div>
+
+    <!-- Featured video -->
+    <div class="section-tag">Most Watched</div>
+    <a class="featured-video wobble reveal" href="https://www.youtube.com/watch?v=Q0xe_mgdnDQ" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="featured-thumb">
+        <img src="https://i.ytimg.com/vi/Q0xe_mgdnDQ/maxresdefault.jpg"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Q0xe_mgdnDQ/mqdefault.jpg'"
+          alt="PaperClip AI: Build a Full Company with AI"/>
+        <div class="play-btn" style="width:64px;height:64px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;border:2px solid var(--rule);background:rgba(250,247,240,.92);border-radius:50%;display:flex;align-items:center;justify-content:center">
+          <span style="width:0;height:0;border-left:20px solid var(--ink);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:5px"></span>
+        </div>
+        <div class="duration h-mono" style="position:absolute;bottom:8px;right:8px;background:rgba(21,19,15,.82);color:var(--paper);font-size:11px;padding:2px 6px;border-radius:3px;z-index:3">Live demo</div>
+      </div>
+      <div class="featured-info">
+        <div class="featured-label h-mono">// MOST RECENT · NEW AI TOOLS</div>
+        <div class="featured-title h-display">PaperClip AI: Build a Full Company with AI</div>
+        <div class="featured-views h-hand">15,021 views · Apr 23, 2026</div>
+        <p class="featured-desc h-print">A live demo of PaperClip AI — watch how a complete company setup gets built end-to-end using AI. No traditional process, no large team required.</p>
+        <span class="btn primary" style="align-self:flex-start;margin-top:auto">Watch on YouTube →</span>
+      </div>
+    </a>
+
+    <!-- Filter tabs -->
+    <div class="filter-bar reveal">
+      <span class="filter-label h-hand">Filter:</span>
+      <button class="video-tab active" onclick="filterVideos('all', this)">All Videos</button>
+      <button class="video-tab" onclick="filterVideos('business', this)">▶ Online Business Ideas</button>
+      <button class="video-tab" onclick="filterVideos('ai', this)">✦ New AI Tools</button>
+    </div>
+
+    <!-- Full video grid -->
+    <div class="full-video-grid" id="videoGrid"></div>
+
+    <div class="load-more-row reveal">
+      <a href="https://www.youtube.com/@thesoloentrepreneur07/videos" target="_blank" rel="noopener" class="btn ink">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        See all 639 videos on YouTube ↗
+      </a>
+      <a href="products.html" class="btn primary">Browse Products →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        <div class="foot-socials">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.8" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="products.html#pdf">100 Business Ideas PDF</a></li>
+        <li><a href="products.html#templates">Automation Templates</a></li>
+        <li><a href="products.html#combo">Combo Deal</a></li>
+        <li><a href="products.html#lead">Free eBook</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Videos</h5><ul>
+        <li><a href="#" onclick="filterVideos('all',null);return false">All Videos</a></li>
+        <li><a href="#" onclick="filterVideos('business',null);return false">Business Ideas</a></li>
+        <li><a href="#" onclick="filterVideos('ai',null);return false">AI Tools</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#hosting">Hostinger Deal</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// All 15 real videos from channel RSS feed
+// category: 'business' | 'ai'
+// To add real embeds: set youtubeId and the card auto-switches to an iframe
+const ALL_VIDEOS = [
+  { videoId:'5GRrh5j-k-I', title:'10 Unique AI Startup Ideas for Solo Entrepreneurs (₹0 to Start)',   views:'6.3K',  date:'Apr 27, 2026', category:'business' },
+  { videoId:'mRFhX6jKQr4', title:'I Used Google Antigravity to 100% Edit My Video — Honest Results',   views:'2.9K',  date:'Apr 24, 2026', category:'ai' },
+  { videoId:'Q0xe_mgdnDQ', title:'PaperClip AI: Build a Full Company with AI',                          views:'15K',   date:'Apr 23, 2026', category:'ai' },
+  { videoId:'FYN4BYeP_Ec', title:'The VIRAL Hermes Agent: Full Free Setup (Live Demo)',                 views:'6.3K',  date:'Apr 22, 2026', category:'ai' },
+  { videoId:'EikbJuF4Xp4', title:'Anyone Can Build AI Automations Now… Seriously',                     views:'6.7K',  date:'Apr 19, 2026', category:'ai' },
+  { videoId:'f3uYVSQALSw', title:'I Tried the NEW Claude Design… This Is INSANE 🤯',                   views:'2.4K',  date:'Apr 18, 2026', category:'ai' },
+  { videoId:'skOX4VFFE7k', title:'Paperclip AI: Build a Full AI Agent Company in Minutes (Live Demo)', views:'10.6K', date:'Apr 14, 2026', category:'ai' },
+  { videoId:'yB_Zp1XlDCs', title:'₹0 to ₹1 Crore ARR with This AI Startup Idea (No Coding)',          views:'4.2K',  date:'Apr 13, 2026', category:'business' },
+  { videoId:'80IiVJ4B490', title:'I Found a New Way to Make Money With AI (100% Automated)',            views:'6.5K',  date:'Apr 10, 2026', category:'business' },
+  { videoId:'zWam231tooE', title:'Claude MYTHOS Just Launched... World\'s Best AI Model So Far!',       views:'7K',    date:'Apr 8, 2026',  category:'ai' },
+  { videoId:'Y-Heh2ZNqTU', title:'I Generated 1000+ FREE Leads Using Google Antigravity (Step-by-Step)', views:'10.1K', date:'Apr 6, 2026', category:'business' },
+  { videoId:'QWqpk9nXaLY', title:'I Built an AI Agent That Makes Apple-Style 3D Scroll Websites in 1 Click', views:'7.4K', date:'Mar 28, 2026', category:'business' },
+  { videoId:'yg_4QIXwX5Y', title:'I Deleted My n8n Agents After Discovering This! (NEW Agent Skills)', views:'5.3K', date:'Mar 26, 2026',  category:'ai' },
+  { videoId:'AHgGKcY_I4k', title:'Claude Just Launched Claude Computer — Better than OpenClaw?',        views:'3.2K',  date:'Mar 24, 2026', category:'ai' },
+  { videoId:'g9_LEkMXhiE', title:'What Is This NEW Claude Computer, and How Do You Use It?',           views:'3.3K',  date:'Mar 24, 2026', category:'ai' },
+];
+
+let currentFilter = 'all';
+
+function buildCard(v) {
+  const catLabel = v.category === 'ai' ? 'New AI Tools' : 'Business Ideas';
+  const catClass  = v.category === 'ai' ? 'ai' : 'business';
+  return `
+    <a class="video-card-full" href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank" rel="noopener">
+      <div class="thumb" style="aspect-ratio:16/9">
+        <img src="https://i.ytimg.com/vi/${v.videoId}/maxresdefault.jpg"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.videoId}/mqdefault.jpg'"
+             alt="${v.title.replace(/"/g,'&quot;')}" loading="lazy"/>
+        <div class="play-btn"></div>
+        <div class="duration h-mono">${v.date.split(' ').slice(0,2).join(' ')}</div>
+      </div>
+      <div class="vcf-title h-print">${v.title}</div>
+      <div class="vcf-meta h-hand">
+        <span>${v.views} views</span>
+        <span>·</span>
+        <span>${v.date}</span>
+        <span class="vcf-cat ${catClass}">${catLabel}</span>
+      </div>
+    </a>`;
+}
+
+function filterVideos(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.video-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const grid = document.getElementById('videoGrid');
+  const filtered = filter === 'all' ? ALL_VIDEOS : ALL_VIDEOS.filter(v => v.category === filter);
+  grid.style.opacity = '0';
+  setTimeout(() => {
+    grid.innerHTML = filtered.map(buildCard).join('');
+    grid.style.opacity = '1';
+    grid.style.transition = 'opacity .25s ease';
+  }, 150);
+}
+
+// Initial render
+filterVideos('all', null);
+document.querySelector('.video-tab')?.classList.add('active');
+</script>
+</body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Products — The Solo Entrepreneur</title>
+<meta name="description" content="AI & business resources for solo entrepreneurs — PDF guides, automation templates, combo deals, and 1:1 consultations with Prithal."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* Products-page specific */
+.product-detail {
+  border-top: 2px solid var(--rule);
+  padding: 56px 0;
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}
+.product-detail:first-of-type { border-top: none; }
+.pd-grid {
+  display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start;
+}
+.pd-grid.reverse { grid-template-columns: 1fr 340px; }
+.pd-grid.reverse .pd-img { order: 2; }
+.pd-img {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-2); overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  position: sticky; top: calc(var(--nav-h) + 20px);
+}
+.pd-content { display: flex; flex-direction: column; gap: 18px; }
+.pd-tag { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pd-title {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(28px, 4vw, 46px); line-height: .95;
+}
+.pd-price-block {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.pd-price-big {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 42px; line-height: 1;
+}
+.pd-price-big .strike {
+  font-size: 22px; color: var(--muted);
+  text-decoration: line-through; margin-right: 10px;
+}
+.pd-desc { font-family: 'Caveat', cursive; font-size: 22px; line-height: 1.45; max-width: 560px; }
+.pd-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.pd-features li {
+  font-family: 'Patrick Hand', cursive; font-size: 17px;
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--rule); border-radius: 6px 9px 5px 8px;
+  background: var(--paper-2);
+}
+.pd-features li::before { content: "✓"; color: var(--accent); font-weight: bold; flex-shrink: 0; margin-top: 2px; }
+.pd-cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding-top: 8px; }
+.pd-note { font-family: 'Caveat', cursive; font-size: 16px; color: var(--muted); }
+
+/* Divider with text */
+.divider-text {
+  display: flex; align-items: center; gap: 16px;
+  margin: 8px 0;
+  font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted);
+}
+.divider-text::before, .divider-text::after {
+  content: ""; flex: 1; border-top: 1.5px dashed var(--rule);
+}
+
+/* Consultation cards */
+.consult-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;
+}
+.consult-card {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; transition: transform .15s, box-shadow .15s;
+}
+.consult-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--rule); }
+.consult-card.featured { background: var(--paper-2); border-width: 2.5px; }
+.consult-card .badge {
+  position: absolute; top: -11px; left: 16px;
+  font-family: 'Patrick Hand', cursive; font-size: 13px;
+  padding: 2px 12px; background: var(--accent);
+  border: 2px solid var(--rule); border-radius: 12px 6px 12px 6px;
+}
+.consult-duration {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 40px; line-height: 1; color: var(--accent);
+}
+.consult-price {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 32px; line-height: 1;
+}
+.consult-desc { font-family: 'Caveat', cursive; font-size: 20px; opacity: .85; flex: 1; }
+.consult-features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.consult-features li {
+  font-family: 'Patrick Hand', cursive; font-size: 15px;
+  display: flex; gap: 8px;
+}
+.consult-features li::before { content: "→"; color: var(--accent); flex-shrink: 0; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1.5px dashed var(--rule);
+}
+.faq-q {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 18px 0; cursor: pointer;
+  font-family: 'Patrick Hand', cursive; font-size: 19px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+}
+.faq-q .arrow { font-family: 'Caveat', cursive; font-size: 22px; transition: transform .2s; }
+.faq-q.open .arrow { transform: rotate(90deg); }
+.faq-a {
+  font-family: 'Caveat', cursive; font-size: 19px;
+  line-height: 1.5; color: var(--ink); opacity: .85;
+  max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+}
+.faq-a.open { max-height: 400px; padding-bottom: 18px; }
+
+@media (max-width: 860px) {
+  .pd-grid, .pd-grid.reverse { grid-template-columns: 1fr; }
+  .pd-grid.reverse .pd-img  { order: 0; }
+  .pd-img { position: static; aspect-ratio: 16/7; }
+  .consult-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== AUTH MODAL ===== */
+.auth-tabs {
+  display: flex; border: 2px solid var(--rule); border-radius: 30px; overflow: hidden; margin-bottom: 20px;
+}
+.auth-tab {
+  flex: 1; padding: 10px 16px; background: none; border: none;
+  font-family: 'Patrick Hand', cursive; font-size: 16px; cursor: pointer; transition: background .15s, color .15s;
+}
+.auth-tab.active { background: var(--ink); color: var(--paper); }
+.auth-error { font-family: 'Caveat', cursive; font-size: 16px; color: #e53e3e; min-height: 20px; }
+.auth-success { font-family: 'Caveat', cursive; font-size: 16px; color: #2f9e44; min-height: 20px; }
+.auth-divider { font-family: 'Caveat', cursive; font-size: 16px; color: var(--muted); text-align: center; }
+.auth-switch { font-family: 'Caveat', cursive; font-size: 17px; text-align: center; }
+.auth-switch a { color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+/* ===== CHECKOUT MODAL ===== */
+.checkout-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(21,19,15,.55);
+  align-items: center; justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+.checkout-overlay.open { display: flex; }
+.checkout-modal {
+  width: 100%; max-width: 480px;
+  background: var(--paper);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 20px;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--rule);
+  max-height: 90vh; overflow-y: auto;
+}
+.checkout-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; font-size: 20px;
+  cursor: pointer; color: var(--muted); line-height: 1;
+}
+.checkout-close:hover { color: var(--ink); }
+.checkout-product-box {
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px 9px 5px 8px;
+  padding: 14px 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+.checkout-product-name { font-family: 'Patrick Hand', cursive; font-size: 17px; }
+.checkout-product-price { font-family: 'Rubik Mono One', sans-serif; font-size: 22px; color: var(--accent); white-space: nowrap; }
+.checkout-form { display: flex; flex-direction: column; gap: 14px; }
+.ck-field { display: flex; flex-direction: column; gap: 5px; }
+.ck-label {
+  font-family: 'Patrick Hand', cursive; font-size: 14px;
+  color: var(--muted); letter-spacing: .05em; text-transform: uppercase;
+}
+.ck-input {
+  font-family: 'Patrick Hand', cursive; font-size: 17px;
+  padding: 10px 14px;
+  border: 2px solid var(--rule); border-radius: 6px 9px 5px 8px;
+  background: var(--paper); color: var(--ink);
+  outline: none; width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ck-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
+.ck-input.error { border-color: #e53e3e; }
+.ck-pay-btn { width: 100%; justify-content: center; font-size: 18px; margin-top: 4px; }
+.ck-secure-note {
+  font-family: 'Caveat', cursive; font-size: 16px;
+  color: var(--muted); text-align: center;
+}
+.ck-after-note {
+  font-family: 'Caveat', cursive; font-size: 16px;
+  color: var(--muted); background: var(--paper-2);
+  border: 1.5px dashed var(--rule); border-radius: 6px;
+  padding: 10px 14px; text-align: center;
+}
+
+/* Success overlay */
+.success-modal { text-align: center; gap: 16px; }
+.success-icon { font-size: 52px; line-height: 1; }
+.success-pid {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  color: var(--muted); word-break: break-all;
+  background: var(--paper-2); padding: 8px 12px; border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  </defs>
+</svg>
+
+<!-- AUTH MODAL -->
+<div id="authOverlay" class="checkout-overlay" onclick="authOverlayClick(event)">
+  <div class="checkout-modal" style="max-width:420px">
+    <button class="checkout-close" onclick="closeAuthModal()">✕</button>
+    <div class="section-tag" style="margin-bottom:10px">My Account</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabSignIn" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="tabSignUp" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+    <!-- Sign In -->
+    <form id="formSignIn" class="checkout-form" onsubmit="handleSignIn(event)" novalidate>
+      <div class="ck-field">
+        <label class="ck-label" for="siEmail">Email</label>
+        <input class="ck-input" type="email" id="siEmail" placeholder="you@email.com" autocomplete="email" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="siPassword">Password</label>
+        <input class="ck-input" type="password" id="siPassword" placeholder="••••••••" autocomplete="current-password" required/>
+      </div>
+      <p id="siError" class="auth-error"></p>
+      <button type="submit" id="siBtnSubmit" class="btn primary lg ck-pay-btn">Sign In →</button>
+      <p class="auth-divider"><a href="#" onclick="handleForgotPassword(event)" style="color:var(--muted);font-size:15px">Forgot password?</a></p>
+    </form>
+    <!-- Create Account -->
+    <form id="formSignUp" class="checkout-form" style="display:none" onsubmit="handleSignUp(event)" novalidate>
+      <div class="ck-field">
+        <label class="ck-label" for="suName">Full Name</label>
+        <input class="ck-input" type="text" id="suName" placeholder="Your full name" autocomplete="name" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="suEmail">Email</label>
+        <input class="ck-input" type="email" id="suEmail" placeholder="you@email.com" autocomplete="email" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="suPassword">Password <span style="color:var(--muted);font-size:13px">(min 6 chars)</span></label>
+        <input class="ck-input" type="password" id="suPassword" placeholder="••••••••" autocomplete="new-password" required/>
+      </div>
+      <p id="suError" class="auth-error"></p>
+      <button type="submit" id="suBtnSubmit" class="btn primary lg ck-pay-btn">Create Account →</button>
+    </form>
+    <p class="ck-secure-note" style="margin-top:4px">🔒 Your account keeps all your purchases in one place</p>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutOverlay" class="checkout-overlay" onclick="overlayClick(event)">
+  <div class="checkout-modal" role="dialog" aria-modal="true">
+    <button class="checkout-close" onclick="closeCheckout()" aria-label="Close">✕</button>
+    <div>
+      <div class="section-tag" style="margin-bottom:4px">Order Summary</div>
+      <div class="checkout-product-box">
+        <span class="checkout-product-name" id="ckProductName"></span>
+        <span class="checkout-product-price" id="ckProductPrice"></span>
+      </div>
+    </div>
+    <form class="checkout-form" id="checkoutForm" onsubmit="submitCheckout(event)" novalidate>
+      <div class="ck-field">
+        <label class="ck-label" for="ckName">Full Name</label>
+        <input class="ck-input" type="text" id="ckName" placeholder="Your full name" autocomplete="name" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="ckEmail">Email Address</label>
+        <input class="ck-input" type="email" id="ckEmail" placeholder="you@email.com" autocomplete="email" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="ckPhone">Phone Number</label>
+        <input class="ck-input" type="tel" id="ckPhone" placeholder="10-digit mobile number" autocomplete="tel" required/>
+      </div>
+      <button type="submit" class="btn primary lg ck-pay-btn" id="ckPayBtn">Pay →</button>
+    </form>
+    <p class="ck-after-note" id="ckAfterNote"></p>
+    <p class="ck-secure-note">🔒 Secured by Razorpay &middot; UPI · Cards · Netbanking · Wallets</p>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successOverlay" class="checkout-overlay" onclick="successOverlayClick(event)">
+  <div class="checkout-modal success-modal" role="dialog" aria-modal="true">
+    <button class="checkout-close" onclick="closeSuccess()" aria-label="Close">✕</button>
+    <div class="success-icon">🎉</div>
+    <h3 class="h-display" style="font-size:26px;line-height:1">Payment Successful!</h3>
+    <p class="h-hand" style="font-size:18px;opacity:.85" id="successMessage"></p>
+    <p class="success-pid">Payment ID: <span id="successPaymentId"></span></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="account.html" class="btn primary">View My Products →</a>
+      <button class="btn" onclick="closeSuccess()">Close</button>
+    </div>
+    <p class="ck-secure-note">Questions? Email <a href="mailto:prithal@thesoloentrepreneur.in" style="color:var(--accent)">prithal@thesoloentrepreneur.in</a></p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="section-tag">Products &amp; Resources</div>
+    <h1 class="h-display reveal">Stuff that'll actually<br/><span style="color:var(--accent)">move the needle.</span></h1>
+    <p class="h-hand reveal" style="transition-delay:.1s">Guides, templates, and sessions to help you build smarter and earn online — all made by Prithal from real experience.</p>
+    <!-- Quick nav pills -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px" class="reveal" style="transition-delay:.15s">
+      <a href="#pdf" class="btn sm">📄 100 Business Ideas</a>
+      <a href="#templates" class="btn sm">⚡ Automation Pack</a>
+      <a href="#combo" class="btn sm ink">🎁 Combo Deal</a>
+      <a href="#consultation" class="btn sm">💬 Consultation</a>
+      <a href="#lead" class="btn sm primary">📩 Free eBook</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCT 1: 100 Business Ideas PDF ===== -->
+<section class="product-detail" id="pdf">
+  <div class="wrap">
+    <div class="pd-grid reveal">
+      <div class="pd-img wobble">
+        <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+          <!-- Shadow pages -->
+          <rect x="55" y="30" width="180" height="215" rx="6" fill="#e8e2d4" stroke="#15130f" stroke-width="1.5"/>
+          <rect x="45" y="22" width="180" height="215" rx="6" fill="#f0ead8" stroke="#15130f" stroke-width="1.5"/>
+          <!-- Main page -->
+          <rect x="35" y="14" width="180" height="215" rx="6" fill="#faf7f0" stroke="#15130f" stroke-width="2"/>
+          <!-- Header band -->
+          <rect x="35" y="14" width="180" height="46" rx="6" fill="#ff5b1f" stroke="#15130f" stroke-width="2"/>
+          <rect x="35" y="44" width="180" height="16" fill="#ff5b1f"/>
+          <text x="55" y="44" font-family="Rubik Mono One" font-size="17" fill="#15130f">100 BUSINESS</text>
+          <text x="55" y="58" font-family="Rubik Mono One" font-size="11" fill="#15130f" opacity=".8">IDEAS PDF</text>
+          <!-- Content lines -->
+          <line x1="50" y1="80" x2="195" y2="80" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="95" x2="195" y2="95" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="110" x2="170" y2="110" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="125" x2="185" y2="125" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="140" x2="160" y2="140" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="155" x2="190" y2="155" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="50" y1="170" x2="175" y2="170" stroke="#15130f" stroke-width="1" stroke-dasharray="4,3"/>
+          <!-- Bullet points -->
+          <circle cx="44" cy="80" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="95" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="110" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="125" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="140" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="155" r="3" fill="#ff5b1f"/>
+          <circle cx="44" cy="170" r="3" fill="#ff5b1f"/>
+          <!-- Badge -->
+          <rect x="50" y="185" width="100" height="32" rx="4" fill="#15130f"/>
+          <text x="60" y="206" font-family="Patrick Hand" font-size="14" fill="#faf7f0">50+ NICHES</text>
+          <!-- Star -->
+          <text x="230" y="50" font-family="Caveat" font-size="48" fill="#faf7f0" opacity=".15">★</text>
+          <!-- Episode tag -->
+          <rect x="230" y="80" width="90" height="28" rx="14" fill="#faf7f0" stroke="#15130f" stroke-width="1.5"/>
+          <text x="238" y="99" font-family="Caveat" font-size="14" fill="#15130f">EP #12</text>
+          <!-- Most popular ribbon -->
+          <rect x="228" y="120" width="100" height="24" rx="4" fill="#ff5b1f" stroke="#15130f" stroke-width="1.5" transform="rotate(-8 228 120)"/>
+          <text x="234" y="136" font-family="Patrick Hand" font-size="12" fill="#15130f" transform="rotate(-8 228 120)">Most Popular</text>
+        </svg>
+      </div>
+      <div class="pd-content">
+        <div class="pd-tag">
+          <span class="tag accent">Most Popular</span>
+          <span class="tag">As seen in Episode #12</span>
+          <span class="tag">Digital Download</span>
+        </div>
+        <h2 class="pd-title h-display">100 Business Ideas PDF</h2>
+        <p class="pd-desc h-hand">A pocket arsenal of 100 validated business ideas across 50+ niches — complete with revenue models, startup costs, and step-by-step business plans. No fluff, just actionable ideas you can start today.</p>
+        <ul class="pd-features">
+          <li>100 ideas across 50+ business niches</li>
+          <li>Complete business plans for each idea</li>
+          <li>Revenue model &amp; startup cost estimate for every idea</li>
+          <li>AI tools to execute each idea faster</li>
+          <li>Instant PDF download after purchase</li>
+          <li>Lifetime access + free updates</li>
+        </ul>
+        <div class="pd-price-block">
+          <div class="pd-price-big h-display">₹499</div>
+          <div class="pd-note h-hand">one-time payment · instant download</div>
+        </div>
+        <div class="pd-cta-row">
+          <button class="btn primary lg" onclick="openCheckout('pdf')">Buy Now — ₹499 →</button>
+          <a href="#combo" class="btn">Or get the Combo Deal →</a>
+        </div>
+        <p class="pd-note h-hand">✱ Secure payment via Razorpay. Instant access. 7-day refund if not satisfied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT 2: AUTOMATION TEMPLATES PACK ===== -->
+<section class="product-detail" id="templates">
+  <div class="wrap">
+    <div class="pd-grid reverse reveal">
+      <div class="pd-content">
+        <div class="pd-tag">
+          <span class="tag">As seen in Episode #24</span>
+          <span class="tag">n8n + AI</span>
+          <span class="tag">Instant Access</span>
+        </div>
+        <h2 class="pd-title h-display">Automation Templates Pack</h2>
+        <p class="pd-desc h-hand">4-5 ready-to-deploy n8n and AI workflow templates. Import, configure, run. Save 10+ hours every week by automating the boring stuff — so you can focus on building.</p>
+        <ul class="pd-features">
+          <li>4-5 production-ready n8n workflow templates</li>
+          <li>AI-powered content generation automation</li>
+          <li>Lead capture &amp; outreach automation</li>
+          <li>Social media scheduling pipeline</li>
+          <li>Step-by-step setup video for each template</li>
+          <li>Works with free-tier n8n (self-hosted)</li>
+        </ul>
+        <div class="pd-price-block">
+          <div class="pd-price-big h-display">₹499</div>
+          <div class="pd-note h-hand">one-time payment · instant download</div>
+        </div>
+        <div class="pd-cta-row">
+          <button class="btn primary lg" onclick="openCheckout('templates')">Buy Now — ₹499 →</button>
+          <a href="#combo" class="btn">Or get the Combo Deal →</a>
+        </div>
+        <p class="pd-note h-hand">✱ Requires n8n (free self-hosted version works fine). Setup guide included.</p>
+      </div>
+      <div class="pd-img wobble">
+        <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+          <!-- Background grid -->
+          <rect x="10" y="10" width="300" height="200" rx="8" fill="#f3eee2" stroke="#15130f" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <!-- Node 1: Trigger -->
+          <rect x="28" y="95" width="64" height="40" rx="6" fill="#ff5b1f" stroke="#15130f" stroke-width="2"/>
+          <text x="36" y="112" font-family="JetBrains Mono" font-size="9" fill="#15130f">TRIGGER</text>
+          <text x="36" y="126" font-family="JetBrains Mono" font-size="8" fill="#15130f" opacity=".8">webhook</text>
+          <!-- Arrow 1→2 -->
+          <path d="M92 115 L118 115" stroke="#15130f" stroke-width="2" marker-end="url(#a)"/>
+          <!-- Node 2: GPT -->
+          <rect x="118" y="95" width="64" height="40" rx="6" fill="#faf7f0" stroke="#15130f" stroke-width="2"/>
+          <text x="128" y="112" font-family="JetBrains Mono" font-size="9" fill="#15130f">GPT-4o</text>
+          <text x="128" y="126" font-family="JetBrains Mono" font-size="8" fill="#15130f" opacity=".8">process</text>
+          <!-- Arrow 2→3 -->
+          <path d="M182 115 L208 115" stroke="#15130f" stroke-width="2" marker-end="url(#a)"/>
+          <!-- Node 3: Output -->
+          <rect x="208" y="95" width="64" height="40" rx="6" fill="#15130f" stroke="#15130f" stroke-width="2"/>
+          <text x="218" y="112" font-family="JetBrains Mono" font-size="9" fill="#faf7f0">OUTPUT</text>
+          <text x="218" y="126" font-family="JetBrains Mono" font-size="8" fill="#faf7f0" opacity=".8">email/slack</text>
+          <!-- Branch up -->
+          <path d="M150 95 L150 60 L210 60" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a)"/>
+          <rect x="210" y="42" width="64" height="36" rx="6" fill="#faf7f0" stroke="#15130f" stroke-width="1.5"/>
+          <text x="220" y="58" font-family="JetBrains Mono" font-size="9" fill="#15130f">NOTION</text>
+          <text x="220" y="71" font-family="JetBrains Mono" font-size="8" fill="#15130f" opacity=".7">save</text>
+          <!-- Branch down -->
+          <path d="M150 135 L150 168 L210 168" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a)"/>
+          <rect x="210" y="150" width="64" height="36" rx="6" fill="#faf7f0" stroke="#15130f" stroke-width="1.5"/>
+          <text x="216" y="166" font-family="JetBrains Mono" font-size="9" fill="#15130f">AIRTABLE</text>
+          <text x="220" y="179" font-family="JetBrains Mono" font-size="8" fill="#15130f" opacity=".7">log</text>
+          <!-- n8n logo area -->
+          <rect x="28" y="165" width="64" height="28" rx="4" fill="#faf7f0" stroke="#15130f" stroke-width="1.5"/>
+          <text x="36" y="184" font-family="Rubik Mono One" font-size="11" fill="#ff5b1f">n8n</text>
+          <!-- Lightning -->
+          <path d="M295 20 L282 46 L292 46 L279 72 L300 38 L288 38 Z" fill="#ff5b1f" stroke="#15130f" stroke-width="1.5"/>
+          <!-- Arrow marker def -->
+          <defs>
+            <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L0 6 L8 3 Z" fill="#15130f"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT 3: COMBO DEAL ===== -->
+<section class="product-detail" id="combo">
+  <div class="wrap">
+    <div class="pd-grid reveal">
+      <div class="pd-img" style="background:var(--ink)">
+        <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+          <!-- Shadow pages for PDF -->
+          <rect x="30" y="50" width="130" height="160" rx="5" fill="#2a2820" stroke="#f3eee2" stroke-width="1.5"/>
+          <rect x="20" y="40" width="130" height="160" rx="5" fill="#3a3830" stroke="#f3eee2" stroke-width="1.5"/>
+          <!-- PDF card -->
+          <rect x="10" y="30" width="130" height="160" rx="5" fill="#faf7f0" stroke="#f3eee2" stroke-width="2"/>
+          <rect x="10" y="30" width="130" height="36" rx="5" fill="#ff5b1f" stroke="#f3eee2" stroke-width="2"/>
+          <rect x="10" y="50" width="130" height="16" fill="#ff5b1f"/>
+          <text x="22" y="51" font-family="Rubik Mono One" font-size="11" fill="#15130f">100 IDEAS</text>
+          <!-- Templates card -->
+          <rect x="180" y="40" width="130" height="160" rx="5" fill="#1e1c18" stroke="#f3eee2" stroke-width="2" stroke-dasharray="5,3"/>
+          <rect x="180" y="40" width="130" height="36" rx="5" fill="#faf7f0" stroke="#f3eee2" stroke-width="2"/>
+          <rect x="180" y="60" width="130" height="16" fill="#faf7f0"/>
+          <text x="192" y="60" font-family="Rubik Mono One" font-size="9" fill="#15130f">AUTOMATION</text>
+          <!-- n8n nodes on templates card -->
+          <rect x="192" y="90" width="36" height="22" rx="3" fill="#ff5b1f" opacity=".8"/>
+          <text x="198" y="105" font-family="JetBrains Mono" font-size="7" fill="#15130f">n8n</text>
+          <line x1="228" y1="101" x2="244" y2="101" stroke="#faf7f0" stroke-width="1.5"/>
+          <rect x="244" y="90" width="36" height="22" rx="3" fill="#faf7f0" opacity=".4"/>
+          <text x="249" y="105" font-family="JetBrains Mono" font-size="7" fill="#faf7f0">GPT</text>
+          <!-- Combo badge -->
+          <ellipse cx="165" cy="130" rx="32" ry="32" fill="#ff5b1f" stroke="#f3eee2" stroke-width="2.5"/>
+          <text x="148" y="125" font-family="Rubik Mono One" font-size="9" fill="#15130f">SAVE</text>
+          <text x="148" y="138" font-family="Rubik Mono One" font-size="9" fill="#15130f">₹199</text>
+          <!-- Plus sign -->
+          <text x="153" y="152" font-family="Rubik Mono One" font-size="18" fill="#faf7f0" opacity=".4">+</text>
+          <!-- Best value ribbon at top -->
+          <rect x="80" y="10" width="170" height="26" rx="4" fill="#faf7f0" stroke="#f3eee2" stroke-width="1.5" transform="rotate(-2 80 10)"/>
+          <text x="90" y="28" font-family="Patrick Hand" font-size="14" fill="#15130f" transform="rotate(-2 80 10)">★ BEST VALUE BUNDLE</text>
+        </svg>
+      </div>
+      <div class="pd-content">
+        <div class="pd-tag">
+          <span class="tag ink">Best Value</span>
+          <span class="tag accent">Save ₹199</span>
+          <span class="tag">Bundle Deal</span>
+        </div>
+        <h2 class="pd-title h-display">Combo Deal<br/>PDF + Templates</h2>
+        <p class="pd-desc h-hand">Get the 100 Business Ideas PDF and the Automation Templates Pack together at a bundled price. The complete starter kit for a solo entrepreneur — ideas to execute, and the automation to scale them.</p>
+        <ul class="pd-features">
+          <li>Everything in the 100 Business Ideas PDF (₹499 value)</li>
+          <li>Everything in the Automation Templates Pack (₹499 value)</li>
+          <li>₹199 off vs buying separately</li>
+          <li>Single purchase, instant access to both</li>
+          <li>Free updates to both products</li>
+        </ul>
+        <div class="pd-price-block">
+          <div class="pd-price-big h-display"><span class="strike">₹998</span>₹799</div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="tag accent" style="align-self:flex-start">Save ₹199</div>
+            <div class="pd-note h-hand">one-time · instant download</div>
+          </div>
+        </div>
+        <div class="pd-cta-row">
+          <button class="btn primary lg" onclick="openCheckout('combo')">Grab the Combo — ₹799 →</button>
+        </div>
+        <p class="pd-note h-hand">✱ Most popular choice. Secure payment. Instant access to both products.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT 4 & 5: CONSULTATIONS ===== -->
+<section class="product-detail" id="consultation">
+  <div class="wrap">
+    <div class="section-tag">04 — 1:1 Sessions</div>
+    <div class="reveal">
+      <h2 class="h-display" style="font-size:clamp(28px,4vw,46px);line-height:.95;margin-bottom:10px">Book a 1:1 Session with Prithal</h2>
+      <p class="h-hand" style="font-size:22px;opacity:.8;max-width:640px;margin-bottom:28px">Get direct access to 7+ years of building businesses online. Bring your specific challenge — leave with a clear action plan.</p>
+    </div>
+    <div class="consult-grid reveal">
+      <!-- 30 min -->
+      <div class="consult-card wobble">
+        <div class="consult-duration h-display">30</div>
+        <div class="h-hand" style="font-size:18px;color:var(--muted);margin-top:-8px">minutes</div>
+        <div class="consult-price h-display">₹999</div>
+        <p class="consult-desc h-hand">1:1 strategy call. Bring one focused problem — walk away with a clear action plan.</p>
+        <ul class="consult-features">
+          <li>Focused on 1 specific challenge or question</li>
+          <li>Video call (Google Meet)</li>
+          <li>Post-call notes + resources shared</li>
+          <li>Booking link provided after payment</li>
+        </ul>
+        <button class="btn primary" style="margin-top:auto" onclick="openCheckout('consult30')">Book 30-min Call — ₹999 →</button>
+      </div>
+      <!-- 1 hour -->
+      <div class="consult-card featured wobble">
+        <span class="badge">Deep Dive</span>
+        <div class="consult-duration h-display">1hr</div>
+        <div class="h-hand" style="font-size:18px;color:var(--muted);margin-top:-8px">deep dive session</div>
+        <div class="consult-price h-display">₹1999</div>
+        <p class="consult-desc h-hand">Full deep dive. Business model review, tooling, automations strategy, and a 90-day roadmap — all in one session.</p>
+        <ul class="consult-features">
+          <li>Full business/idea review &amp; strategy</li>
+          <li>AI tools + automation recommendations</li>
+          <li>90-day action roadmap</li>
+          <li>Video call (Google Meet)</li>
+          <li>Post-call notes, resources + template links</li>
+          <li>1 follow-up question via email (within 7 days)</li>
+        </ul>
+        <button class="btn primary" style="margin-top:auto" onclick="openCheckout('consult60')">Book 1-Hour Deep Dive — ₹1999 →</button>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:20px;padding:18px 24px;border:1.5px dashed var(--rule);border-radius:var(--radius);background:var(--paper-2)">
+      <p class="h-hand" style="font-size:18px">
+        📩 To book: email <a href="mailto:prithal@thesoloentrepreneur.in" style="color:var(--accent);text-decoration:underline">prithal@thesoloentrepreneur.in</a> with subject "Consultation Request" — or click a button above once payment is set up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FREE EBOOK LEAD MAGNET ===== -->
+<section class="product-detail" id="lead">
+  <div class="wrap">
+    <div class="lead-card wobble reveal" style="background:var(--paper-2);border:2px solid var(--rule)">
+      <div class="lead-left">
+        <span class="tag accent" style="align-self:flex-start">100% FREE</span>
+        <img src="https://www.founderswing.com/ebook-cover.png" alt="10 Startup Ideas eBook" style="max-height:160px;width:auto;border-radius:6px;margin:8px 0;box-shadow:4px 4px 0 var(--rule)"/>
+        <h3 class="h-display" style="font-size:28px;line-height:1.05">10 Startup Ideas Worth Stealing.</h3>
+        <p class="h-hand" style="font-size:18px;color:var(--muted)">Instant PDF download. No credit card needed.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="h-hand" style="font-size:20px;line-height:1.4">Drop your email and get the free eBook instantly — 10 AI-powered startup ideas you can start with ₹0, complete with revenue models and first steps.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li class="h-hand" style="font-size:18px">→ 10 unique startup ideas for 2026</li>
+          <li class="h-hand" style="font-size:18px">→ Revenue model for each idea</li>
+          <li class="h-hand" style="font-size:18px">→ AI tools to execute faster</li>
+          <li class="h-hand" style="font-size:18px">→ ₹0 startup cost ideas</li>
+        </ul>
+        <div class="lead-form">
+          <svg viewBox="0 0 64 64" width="24" height="24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" style="flex-shrink:0;margin:auto 4px"><rect x="8" y="14" width="48" height="36"/><path d="M8 14 L32 36 L56 14"/></svg>
+          <input type="email" placeholder="your@email.com" id="leadEmail"/>
+          <button class="btn primary sm" onclick="submitLead()">Send Me the Free eBook →</button>
+        </div>
+        <p class="lead-note h-hand">✱ No spam. Unsubscribe anytime. You'll also get occasional tips from Prithal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">FAQ</div>
+    <h2 class="h-display reveal" style="font-size:clamp(28px,4vw,42px);line-height:.95;margin-bottom:28px">Common questions.</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q h-print" onclick="toggleFaq(this)">How do I access the products after purchase? <span class="arrow">→</span></button>
+        <div class="faq-a h-hand">After payment is confirmed, you'll receive an email with download links. All products are digital — no shipping, instant access.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q h-print" onclick="toggleFaq(this)">Do I need technical knowledge to use the Automation Templates? <span class="arrow">→</span></button>
+        <div class="faq-a h-hand">Basic comfort with web tools is enough. Each template comes with a step-by-step setup video. n8n has a free self-hosted option. If you get stuck, email prithal@thesoloentrepreneur.in.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q h-print" onclick="toggleFaq(this)">What's your refund policy? <span class="arrow">→</span></button>
+        <div class="faq-a h-hand">7-day refund policy, no questions asked, for the PDF and Templates. For consultations: cancellations must be made 24+ hours before the booked slot for a full refund.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q h-print" onclick="toggleFaq(this)">How is the consultation conducted? <span class="arrow">→</span></button>
+        <div class="faq-a h-hand">Via Google Meet. After booking, you'll get a calendar invite with the meeting link. You can share your screen if needed. Sessions are not recorded.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q h-print" onclick="toggleFaq(this)">Is the Combo Deal a one-time purchase? <span class="arrow">→</span></button>
+        <div class="faq-a h-hand">Yes — one-time payment, lifetime access to both products, including all future updates at no extra cost.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        <div class="foot-socials">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.8" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="#pdf">100 Business Ideas PDF</a></li>
+        <li><a href="#templates">Automation Templates</a></li>
+        <li><a href="#combo">Combo Deal</a></li>
+        <li><a href="#consultation">Consultations</a></li>
+        <li><a href="#lead">Free eBook</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#hosting">Hostinger Deal</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* ===== SUPABASE + AUTH ===== */
+const { createClient } = window.supabase;
+const db = createClient(
+  'https://jgujptvmrduaymvhjwfa.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
+);
+
+const RZP_KEY = 'rzp_live_SizwsLeDvmH69E';
+
+const PRODUCTS = {
+  pdf:       { name: '100 Business Ideas PDF',             amount: 49900,  afterNote: '📥 Your files are ready — click "View My Products" to download instantly.' },
+  templates: { name: 'Automation Templates Pack',           amount: 49900,  afterNote: '📥 Your files are ready — click "View My Products" to download instantly.' },
+  combo:     { name: 'Combo Deal — PDF + Templates',        amount: 79900,  afterNote: '📥 Both files are ready — click "View My Products" to download instantly.' },
+  consult30: { name: '1:1 Consultation — 30 Minutes',       amount: 99900,  afterNote: '📅 You\'ll receive a booking link via email within 24 hours.' },
+  consult60: { name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900, afterNote: '📅 You\'ll receive a booking link via email within 24 hours.' }
+};
+
+let activeProduct    = null;
+let activeProductId  = null;
+let pendingProductId = null;
+
+/* ===== AUTH MODAL ===== */
+function openAuthModal() {
+  switchAuthTab('signin');
+  ['siEmail','siPassword'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('siError').textContent = '';
+  document.getElementById('authOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('siEmail').focus(), 100);
+}
+
+function closeAuthModal() {
+  document.getElementById('authOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function authOverlayClick(e) {
+  if (e.target === document.getElementById('authOverlay')) closeAuthModal();
+}
+
+function switchAuthTab(tab) {
+  const s = tab === 'signin';
+  document.getElementById('tabSignIn').classList.toggle('active', s);
+  document.getElementById('tabSignUp').classList.toggle('active', !s);
+  document.getElementById('formSignIn').style.display = s ? '' : 'none';
+  document.getElementById('formSignUp').style.display = s ? 'none' : '';
+}
+
+function setBtnLoading(id, loading, label) {
+  const b = document.getElementById(id);
+  b.disabled = loading;
+  b.textContent = loading ? 'Please wait…' : label;
+}
+
+async function handleSignIn(e) {
+  e.preventDefault();
+  const email    = document.getElementById('siEmail').value.trim();
+  const password = document.getElementById('siPassword').value;
+  const errEl    = document.getElementById('siError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  setBtnLoading('siBtnSubmit', true, 'Sign In →');
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  setBtnLoading('siBtnSubmit', false, 'Sign In →');
+  if (error) { errEl.textContent = error.message; return; }
+  const { data: { user } } = await db.auth.getUser();
+  closeAuthModal();
+  if (pendingProductId) showCheckoutModal(pendingProductId, user);
+}
+
+async function handleSignUp(e) {
+  e.preventDefault();
+  const name     = document.getElementById('suName').value.trim();
+  const email    = document.getElementById('suEmail').value.trim();
+  const password = document.getElementById('suPassword').value;
+  const errEl    = document.getElementById('suError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  setBtnLoading('suBtnSubmit', true, 'Create Account →');
+  const { data, error } = await db.auth.signUp({ email, password, options: { data: { full_name: name } } });
+  setBtnLoading('suBtnSubmit', false, 'Create Account →');
+  if (error) { errEl.textContent = error.message; return; }
+  closeAuthModal();
+  if (pendingProductId && data.user) showCheckoutModal(pendingProductId, data.user);
+}
+
+async function handleForgotPassword(e) {
+  e.preventDefault();
+  const email = document.getElementById('siEmail').value.trim();
+  const errEl = document.getElementById('siError');
+  if (!email) { errEl.textContent = 'Enter your email above first.'; return; }
+  await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + '/account.html' });
+  errEl.className = 'auth-success';
+  errEl.textContent = '✓ Password reset email sent — check your inbox.';
+}
+
+/* ===== CHECKOUT ===== */
+async function openCheckout(productId) {
+  const { data: { user } } = await db.auth.getUser();
+  if (!user) { pendingProductId = productId; openAuthModal(); return; }
+  showCheckoutModal(productId, user);
+}
+
+function showCheckoutModal(productId, user) {
+  activeProduct    = PRODUCTS[productId];
+  activeProductId  = productId;
+  pendingProductId = null;
+
+  document.getElementById('ckProductName').textContent  = activeProduct.name;
+  document.getElementById('ckProductPrice').textContent = '₹' + (activeProduct.amount / 100);
+  document.getElementById('ckPayBtn').textContent       = 'Pay ₹' + (activeProduct.amount / 100) + ' →';
+  document.getElementById('ckAfterNote').textContent    = activeProduct.afterNote;
+
+  const meta    = user.user_metadata || {};
+  const nameEl  = document.getElementById('ckName');
+  const emailEl = document.getElementById('ckEmail');
+  nameEl.value          = meta.full_name || '';
+  emailEl.value         = user.email || '';
+  emailEl.readOnly      = true;
+  emailEl.style.opacity = '.65';
+  document.getElementById('ckPhone').value = '';
+  ['ckName','ckEmail','ckPhone'].forEach(id => document.getElementById(id).classList.remove('error'));
+  document.getElementById('checkoutOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => (nameEl.value ? document.getElementById('ckPhone') : nameEl).focus(), 100);
+}
+
+function closeCheckout() {
+  const emailEl = document.getElementById('ckEmail');
+  emailEl.readOnly = false; emailEl.style.opacity = '';
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closeCheckout();
+}
+
+function validateCheckout() {
+  const name  = document.getElementById('ckName');
+  const email = document.getElementById('ckEmail');
+  const phone = document.getElementById('ckPhone');
+  [name, email, phone].forEach(el => el.classList.remove('error'));
+  if (!name.value.trim()) { name.classList.add('error'); name.focus(); return false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { email.classList.add('error'); email.focus(); return false; }
+  if (!/^[6-9]\d{9}$/.test(phone.value.trim())) { phone.classList.add('error'); phone.focus(); return false; }
+  return true;
+}
+
+async function submitCheckout(e) {
+  e.preventDefault();
+  if (!validateCheckout()) return;
+  const name    = document.getElementById('ckName').value.trim();
+  const email   = document.getElementById('ckEmail').value.trim();
+  const phone   = document.getElementById('ckPhone').value.trim();
+  const product = activeProduct;
+  const prodId  = activeProductId;
+  const { data: { user } } = await db.auth.getUser();
+  closeCheckout();
+
+  const rzp = new Razorpay({
+    key: RZP_KEY,
+    amount: product.amount,
+    currency: 'INR',
+    name: 'The Solo Entrepreneur',
+    description: product.name,
+    image: 'https://www.founderswing.com/logo-icon.png',
+    prefill: { name, email, contact: phone },
+    notes: { product: product.name },
+    theme: { color: '#ff5b1f' },
+    handler: function(response) {
+      db.rpc('record_purchase', {
+        p_name: name, p_email: email, p_phone: phone,
+        p_product_id: prodId, p_product_name: product.name,
+        p_amount_paise: product.amount,
+        p_razorpay_payment_id: response.razorpay_payment_id,
+        p_user_id: user?.id || null
+      }).then(({ error }) => { if (error) console.error('[TSE] DB error:', error.message); });
+      document.getElementById('successPaymentId').textContent = response.razorpay_payment_id;
+      document.getElementById('successMessage').textContent   = product.afterNote;
+      document.getElementById('successOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    },
+    modal: { ondismiss: () => { document.body.style.overflow = ''; } }
+  });
+  rzp.on('payment.failed', res => {
+    alert('Payment failed: ' + (res.error.description || 'Please try again.') + '\n\nHelp: prithal@thesoloentrepreneur.in');
+  });
+  rzp.open();
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function successOverlayClick(e) {
+  if (e.target === document.getElementById('successOverlay')) closeSuccess();
+}
+
+/* ===== FAQ ===== */
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+}
+</script>
+</body>
+</html>

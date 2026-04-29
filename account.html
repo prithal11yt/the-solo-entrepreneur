@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Account — The Solo Entrepreneur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+.account-hero {
+  padding: 48px 0 40px;
+  border-bottom: 2px solid var(--rule);
+}
+.account-greeting {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: .95;
+  margin-bottom: 8px;
+}
+.account-meta {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--muted);
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+}
+.account-meta span::before { content: "· "; color: var(--accent); }
+.account-meta span:first-child::before { content: ""; }
+
+/* Products grid */
+.my-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+.my-product-card {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .15s, box-shadow .15s;
+}
+.my-product-card:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--rule); }
+.my-product-card.consultation { background: var(--paper-2); }
+.mpc-icon { font-size: 32px; line-height: 1; }
+.mpc-name {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 17px; line-height: 1.1;
+}
+.mpc-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--muted);
+}
+.mpc-amount {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 22px; color: var(--accent);
+}
+.mpc-note {
+  font-family: 'Caveat', cursive;
+  font-size: 17px; color: var(--muted); line-height: 1.4;
+}
+.mpc-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.dl-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid var(--rule);
+  border-radius: 20px;
+  background: var(--ink); color: var(--paper);
+  font-family: 'Patrick Hand', cursive; font-size: 16px;
+  cursor: pointer; transition: transform .12s, box-shadow .12s;
+  text-decoration: none;
+}
+.dl-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+.dl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.dl-btn svg { flex-shrink: 0; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  border: 2px dashed var(--rule);
+  border-radius: var(--radius);
+  margin-top: 28px;
+}
+.empty-state .h-display { font-size: 28px; margin: 12px 0 8px; }
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--paper-2) 25%, var(--paper) 50%, var(--paper-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.sk-card { height: 220px; border-radius: var(--radius); }
+
+/* Auth gate */
+.auth-gate {
+  max-width: 440px; margin: 80px auto; text-align: center;
+  padding: 40px 32px;
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-2);
+  box-shadow: 5px 5px 0 var(--rule);
+}
+.auth-gate h2 { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-bottom: 10px; }
+.auth-gate p { font-family: 'Caveat', cursive; font-size: 19px; color: var(--muted); margin-bottom: 24px; }
+
+/* Auth tabs (reused from products.html) */
+.auth-tabs { display: flex; border: 2px solid var(--rule); border-radius: 30px; overflow: hidden; margin-bottom: 20px; }
+.auth-tab { flex: 1; padding: 10px 16px; background: none; border: none; font-family: 'Patrick Hand', cursive; font-size: 16px; cursor: pointer; transition: background .15s; }
+.auth-tab.active { background: var(--ink); color: var(--paper); }
+.auth-error   { font-family: 'Caveat', cursive; font-size: 16px; color: #e53e3e; min-height: 20px; }
+.auth-success { font-family: 'Caveat', cursive; font-size: 16px; color: #2f9e44; min-height: 20px; }
+
+.ck-field  { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+.ck-label  { font-family: 'Patrick Hand', cursive; font-size: 14px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.ck-input  { font-family: 'Patrick Hand', cursive; font-size: 17px; padding: 10px 14px; border: 2px solid var(--rule); border-radius: 6px 9px 5px 8px; background: var(--paper); color: var(--ink); outline: none; width: 100%; transition: border-color .15s, box-shadow .15s; }
+.ck-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
+.ck-pay-btn { width: 100%; justify-content: center; font-size: 18px; margin-top: 4px; }
+
+@media (max-width: 620px) {
+  .my-products-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  </defs>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <button class="btn primary nav-cta sm" id="navAuthBtn" onclick="handleNavAuth()">My Account</button>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="wrap" id="mainContent">
+
+  <!-- AUTH GATE (shown when not logged in) -->
+  <div id="authGate" style="display:none">
+    <div class="auth-gate">
+      <div style="font-size:40px">🔐</div>
+      <h2>Sign in to your account</h2>
+      <p>Access your purchased products and download your files.</p>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
+        <button class="auth-tab" id="tabSignUp" onclick="switchTab('signup')">Create Account</button>
+      </div>
+      <!-- Sign In -->
+      <form id="formSignIn" style="display:flex;flex-direction:column;gap:14px" onsubmit="handleSignIn(event)" novalidate>
+        <div class="ck-field">
+          <label class="ck-label" for="siEmail">Email</label>
+          <input class="ck-input" type="email" id="siEmail" placeholder="you@email.com" required/>
+        </div>
+        <div class="ck-field">
+          <label class="ck-label" for="siPassword">Password</label>
+          <input class="ck-input" type="password" id="siPassword" placeholder="••••••••" required/>
+        </div>
+        <p id="siError" class="auth-error"></p>
+        <button type="submit" id="siBtnSubmit" class="btn primary lg ck-pay-btn">Sign In →</button>
+        <p style="font-family:'Caveat',cursive;font-size:15px;color:var(--muted)"><a href="#" onclick="handleForgot(event)" style="color:var(--muted)">Forgot password?</a></p>
+      </form>
+      <!-- Create Account -->
+      <form id="formSignUp" style="display:none;flex-direction:column;gap:14px" onsubmit="handleSignUp(event)" novalidate>
+        <div class="ck-field">
+          <label class="ck-label" for="suName">Full Name</label>
+          <input class="ck-input" type="text" id="suName" placeholder="Your full name" required/>
+        </div>
+        <div class="ck-field">
+          <label class="ck-label" for="suEmail">Email</label>
+          <input class="ck-input" type="email" id="suEmail" placeholder="you@email.com" required/>
+        </div>
+        <div class="ck-field">
+          <label class="ck-label" for="suPassword">Password</label>
+          <input class="ck-input" type="password" id="suPassword" placeholder="Min. 6 characters" required/>
+        </div>
+        <p id="suError" class="auth-error"></p>
+        <button type="submit" id="suBtnSubmit" class="btn primary lg ck-pay-btn">Create Account →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT DASHBOARD (shown when logged in) -->
+  <div id="accountDash" style="display:none">
+    <div class="account-hero">
+      <div class="section-tag">My Account</div>
+      <div class="account-greeting h-display">Hey, <span id="userName" style="color:var(--accent)">there</span>.</div>
+      <div class="account-meta">
+        <span id="userEmail"></span>
+        <span id="memberSince"></span>
+        <span id="orderCount"></span>
+      </div>
+    </div>
+
+    <!-- My Products -->
+    <div class="section" style="border-top:none;padding-top:40px">
+      <div class="section-tag">My Products</div>
+      <h2 class="h-display reveal" style="font-size:clamp(24px,4vw,38px);line-height:.95;margin-bottom:4px">Your purchases</h2>
+      <p class="h-hand" style="color:var(--muted);font-size:18px">Click any download button to get your file instantly.</p>
+
+      <!-- Skeleton shown while loading -->
+      <div id="productsLoading" class="my-products-grid">
+        <div class="skeleton sk-card"></div>
+        <div class="skeleton sk-card"></div>
+      </div>
+
+      <!-- Actual products injected here -->
+      <div id="productsGrid" class="my-products-grid" style="display:none"></div>
+
+      <!-- Empty state -->
+      <div id="productsEmpty" class="empty-state" style="display:none">
+        <div style="font-size:48px">🛒</div>
+        <div class="h-display">No purchases yet</div>
+        <p class="h-hand" style="color:var(--muted);font-size:18px;max-width:360px;margin:0 auto 20px">Head over to the Products page to grab your first resource.</p>
+        <a href="products.html" class="btn primary">Browse Products →</a>
+      </div>
+    </div>
+
+    <!-- Sign out -->
+    <div class="section" style="padding:28px 0">
+      <button class="btn ghost" onclick="handleSignOut()" style="color:var(--muted);font-size:15px">Sign out →</button>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="products.html#pdf">100 Business Ideas PDF</a></li>
+        <li><a href="products.html#templates">Automation Templates</a></li>
+        <li><a href="products.html#combo">Combo Deal</a></li>
+        <li><a href="products.html#consultation">Consultations</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+const { createClient } = window.supabase;
+const db = createClient(
+  'https://jgujptvmrduaymvhjwfa.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
+);
+
+// Map product IDs to downloadable files in Supabase Storage
+// Files must be uploaded to Supabase Storage > product-files bucket as:
+//   pdf/100-business-ideas.pdf
+//   templates/automation-pack.zip
+const PRODUCT_FILES = {
+  pdf:       [{ path: 'pdf/100-business-ideas.pdf',    label: '100 Business Ideas PDF' }],
+  templates: [{ path: 'templates/automation-pack.zip', label: 'Automation Templates Pack' }],
+  combo:     [
+    { path: 'pdf/100-business-ideas.pdf',    label: '100 Business Ideas PDF' },
+    { path: 'templates/automation-pack.zip', label: 'Automation Templates Pack' }
+  ]
+};
+
+const PRODUCT_ICONS = { pdf: '📄', templates: '⚡', combo: '🎁', consult30: '💬', consult60: '🎯' };
+
+/* ===== INIT ===== */
+(async function init() {
+  const { data: { user } } = await db.auth.getUser();
+  if (!user) { showAuthGate(); return; }
+  showDashboard(user);
+  loadOrders(user);
+})();
+
+db.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session?.user) {
+    showDashboard(session.user);
+    loadOrders(session.user);
+  }
+  if (event === 'SIGNED_OUT') showAuthGate();
+});
+
+/* ===== UI STATE ===== */
+function showAuthGate() {
+  document.getElementById('authGate').style.display   = '';
+  document.getElementById('accountDash').style.display = 'none';
+  document.getElementById('navAuthBtn').textContent    = 'Sign In';
+}
+
+function showDashboard(user) {
+  document.getElementById('authGate').style.display   = 'none';
+  document.getElementById('accountDash').style.display = '';
+  document.getElementById('navAuthBtn').textContent    = 'Sign Out';
+
+  const meta = user.user_metadata || {};
+  const name = meta.full_name || user.email.split('@')[0];
+  document.getElementById('userName').textContent  = name;
+  document.getElementById('userEmail').textContent = user.email;
+  document.getElementById('memberSince').textContent =
+    'Member since ' + new Date(user.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+}
+
+function handleNavAuth() {
+  db.auth.getUser().then(({ data: { user } }) => {
+    if (user) handleSignOut(); else switchTab('signin');
+  });
+}
+
+/* ===== LOAD ORDERS ===== */
+async function loadOrders(user) {
+  const { data: orders, error } = await db
+    .from('tse_orders')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  document.getElementById('productsLoading').style.display = 'none';
+
+  if (error || !orders || orders.length === 0) {
+    document.getElementById('productsEmpty').style.display = '';
+    return;
+  }
+
+  document.getElementById('orderCount').textContent = orders.length + ' purchase' + (orders.length > 1 ? 's' : '');
+  document.getElementById('productsGrid').style.display = '';
+  document.getElementById('productsGrid').innerHTML = orders.map(renderProductCard).join('');
+}
+
+function renderProductCard(order) {
+  const icon     = PRODUCT_ICONS[order.product_id] || '📦';
+  const files    = PRODUCT_FILES[order.product_id];
+  const isDigital = !!files;
+  const date     = new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  const amount   = '₹' + (order.amount_paise / 100);
+
+  const actions = isDigital
+    ? files.map(f => `
+        <button class="dl-btn" onclick="downloadFile('${f.path}', '${f.label}', this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download ${f.label}
+        </button>`).join('')
+    : `<p class="mpc-note">📅 Booking link will be sent to <strong>${order.customer_email}</strong> within 24 hours of purchase.</p>
+       <a href="mailto:prithal@thesoloentrepreneur.in?subject=Consultation Booking - ${encodeURIComponent(order.product_name)}" class="btn sm">Email to Schedule →</a>`;
+
+  return `
+    <div class="my-product-card ${isDigital ? '' : 'consultation'}">
+      <div class="mpc-icon">${icon}</div>
+      <div>
+        <div class="mpc-name">${order.product_name}</div>
+        <div class="mpc-date">Purchased ${date}</div>
+      </div>
+      <div class="mpc-amount">${amount}</div>
+      <div class="mpc-actions">${actions}</div>
+    </div>`;
+}
+
+/* ===== DOWNLOAD ===== */
+async function downloadFile(path, label, btn) {
+  btn.disabled = true;
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Preparing…`;
+
+  const { data, error } = await db.storage.from('product-files').createSignedUrl(path, 3600);
+
+  if (error || !data?.signedUrl) {
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download ${label}`;
+    alert('Download failed. Please contact prithal@thesoloentrepreneur.in');
+    return;
+  }
+
+  // Open signed URL to trigger browser download
+  const a = document.createElement('a');
+  a.href = data.signedUrl;
+  a.download = label;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download ${label}`;
+  }, 3000);
+}
+
+/* ===== AUTH ===== */
+function switchTab(tab) {
+  const s = tab === 'signin';
+  document.getElementById('tabSignIn').classList.toggle('active', s);
+  document.getElementById('tabSignUp').classList.toggle('active', !s);
+  document.getElementById('formSignIn').style.display = s ? 'flex' : 'none';
+  document.getElementById('formSignUp').style.display = s ? 'none' : 'flex';
+}
+
+function setBtnLoading(id, loading, label) {
+  const b = document.getElementById(id);
+  b.disabled = loading;
+  b.textContent = loading ? 'Please wait…' : label;
+}
+
+async function handleSignIn(e) {
+  e.preventDefault();
+  const email    = document.getElementById('siEmail').value.trim();
+  const password = document.getElementById('siPassword').value;
+  const errEl    = document.getElementById('siError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  setBtnLoading('siBtnSubmit', true, 'Sign In →');
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  setBtnLoading('siBtnSubmit', false, 'Sign In →');
+  if (error) { errEl.textContent = error.message; return; }
+}
+
+async function handleSignUp(e) {
+  e.preventDefault();
+  const name     = document.getElementById('suName').value.trim();
+  const email    = document.getElementById('suEmail').value.trim();
+  const password = document.getElementById('suPassword').value;
+  const errEl    = document.getElementById('suError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  setBtnLoading('suBtnSubmit', true, 'Create Account →');
+  const { error } = await db.auth.signUp({ email, password, options: { data: { full_name: name } } });
+  setBtnLoading('suBtnSubmit', false, 'Create Account →');
+  if (error) { errEl.textContent = error.message; return; }
+  errEl.className = 'auth-success';
+  errEl.textContent = '✓ Account created — signing you in…';
+}
+
+async function handleForgot(e) {
+  e.preventDefault();
+  const email = document.getElementById('siEmail').value.trim();
+  const errEl = document.getElementById('siError');
+  if (!email) { errEl.textContent = 'Enter your email above first.'; return; }
+  await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
+  errEl.className = 'auth-success';
+  errEl.textContent = '✓ Password reset email sent — check your inbox.';
+}
+
+async function handleSignOut() {
+  await db.auth.signOut();
+}
+</script>
+</body>
+</html>
