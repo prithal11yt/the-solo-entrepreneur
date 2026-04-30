@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/product/ideas",
+      "destination": "/products",
+      "permanent": true
+    }
+  ]
 }
