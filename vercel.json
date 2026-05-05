@@ -6,6 +6,16 @@
       "source": "/product/ideas",
       "destination": "/products",
       "permanent": true
+    },
+    {
+      "source": "/product/the-solo-entrepreneur-tee",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/consultation",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
