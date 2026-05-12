@@ -866,8 +866,25 @@ async function submitCheckout(e) {
   const { data: { user } } = await db.auth.getUser();
   closeCheckout();
 
+  // Step 1: Create order server-side (ensures payment_capture: 1)
+  let orderId;
+  try {
+    const orderRes = await fetch('/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: product.amount, product: product.name }),
+    });
+    const orderData = await orderRes.json();
+    if (!orderRes.ok) throw new Error(orderData.error || 'Could not create order');
+    orderId = orderData.orderId;
+  } catch (err) {
+    alert('Could not initiate payment. Please try again.\n\n' + err.message);
+    return;
+  }
+
   const rzp = new Razorpay({
     key: RZP_KEY,
+    order_id: orderId,
     amount: product.amount,
     currency: 'INR',
     name: 'The Solo Entrepreneur',
@@ -876,7 +893,29 @@ async function submitCheckout(e) {
     prefill: { name, email, contact: phone },
     notes: { product: product.name },
     theme: { color: '#ff5b1f' },
-    handler: function(response) {
+    handler: async function(response) {
+      // Step 2: Verify payment signature server-side before doing anything
+      try {
+        const verifyRes = await fetch('/api/verify-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id:   response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature:  response.razorpay_signature,
+          }),
+        });
+        const verifyData = await verifyRes.json();
+        if (!verifyData.valid) {
+          alert('Payment verification failed. If money was deducted it will be refunded automatically.\n\nContact: prithal@thesoloentrepreneur.in');
+          return;
+        }
+      } catch (err) {
+        alert('Could not verify payment. Please contact prithal@thesoloentrepreneur.in with Payment ID: ' + response.razorpay_payment_id);
+        return;
+      }
+
+      // Step 3: Record in DB (payment is verified)
       db.rpc('record_purchase', {
         p_name: name, p_email: email, p_phone: phone,
         p_product_id: prodId, p_product_name: product.name,
@@ -885,7 +924,7 @@ async function submitCheckout(e) {
         p_user_id: user?.id || null
       }).then(({ error }) => { if (error) console.error('[TSE] DB error:', error.message); });
 
-      // Populate links in success modal
+      // Step 4: Show success modal
       const linksEl = document.getElementById('successLinks');
       const linkItems = [];
 
