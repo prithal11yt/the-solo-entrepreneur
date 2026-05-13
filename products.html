@@ -866,7 +866,14 @@ async function submitCheckout(e) {
     const orderRes = await fetch('/api/create-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: product.amount, product: product.name }),
+      body: JSON.stringify({
+        amount:       product.amount,
+        product_id:   prodId,
+        product_name: product.name,
+        name,
+        email,
+        user_id: user?.id || '',
+      }),
     });
     const orderData = await orderRes.json();
     if (!orderRes.ok) throw new Error(orderData.error || 'Could not create order');
