@@ -311,10 +311,6 @@
         <label class="ck-label" for="ckEmail">Email Address</label>
         <input class="ck-input" type="email" id="ckEmail" placeholder="you@email.com" autocomplete="email" required/>
       </div>
-      <div class="ck-field">
-        <label class="ck-label" for="ckPhone">Phone Number</label>
-        <input class="ck-input" type="tel" id="ckPhone" placeholder="10-digit mobile number" autocomplete="tel" required/>
-      </div>
       <button type="submit" class="btn primary lg ck-pay-btn" id="ckPayBtn">Pay →</button>
     </form>
     <p class="ck-after-note" id="ckAfterNote"></p>
@@ -349,6 +345,7 @@
       <li><a href="videos.html">Videos</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="index.html#about">About</a></li>
+      <li><a href="account.html" id="navAccountLink" style="display:none">My Account</a></li>
     </ul>
     <a href="#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
     <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
@@ -360,6 +357,7 @@
   <a href="videos.html" onclick="toggleMenu()">Videos</a>
   <a href="community.html" onclick="toggleMenu()">Community</a>
   <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="account.html" id="mobileAccountLink" style="display:none" onclick="toggleMenu()">My Account</a>
   <a href="#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
 </div>
 
@@ -826,8 +824,7 @@ function showCheckoutModal(productId, user) {
   emailEl.value         = user.email || '';
   emailEl.readOnly      = true;
   emailEl.style.opacity = '.65';
-  document.getElementById('ckPhone').value = '';
-  ['ckName','ckEmail','ckPhone'].forEach(id => document.getElementById(id).classList.remove('error'));
+  ['ckName','ckEmail'].forEach(id => document.getElementById(id).classList.remove('error'));
   document.getElementById('checkoutOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => (nameEl.value ? document.getElementById('ckPhone') : nameEl).focus(), 100);
@@ -847,11 +844,9 @@ function overlayClick(e) {
 function validateCheckout() {
   const name  = document.getElementById('ckName');
   const email = document.getElementById('ckEmail');
-  const phone = document.getElementById('ckPhone');
-  [name, email, phone].forEach(el => el.classList.remove('error'));
+  [name, email].forEach(el => el.classList.remove('error'));
   if (!name.value.trim()) { name.classList.add('error'); name.focus(); return false; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { email.classList.add('error'); email.focus(); return false; }
-  if (!/^[6-9]\d{9}$/.test(phone.value.trim())) { phone.classList.add('error'); phone.focus(); return false; }
   return true;
 }
 
@@ -860,7 +855,6 @@ async function submitCheckout(e) {
   if (!validateCheckout()) return;
   const name    = document.getElementById('ckName').value.trim();
   const email   = document.getElementById('ckEmail').value.trim();
-  const phone   = document.getElementById('ckPhone').value.trim();
   const product = activeProduct;
   const prodId  = activeProductId;
   const { data: { user } } = await db.auth.getUser();
@@ -890,7 +884,7 @@ async function submitCheckout(e) {
     name: 'The Solo Entrepreneur',
     description: product.name,
     image: 'https://www.founderswing.com/logo-icon.png',
-    prefill: { name, email, contact: phone },
+    prefill: { name, email },
     notes: { product: product.name },
     theme: { color: '#ff5b1f' },
     handler: async function(response) {
@@ -917,7 +911,7 @@ async function submitCheckout(e) {
 
       // Step 3: Record in DB (payment is verified)
       db.rpc('record_purchase', {
-        p_name: name, p_email: email, p_phone: phone,
+        p_name: name, p_email: email, p_phone: '',
         p_product_id: prodId, p_product_name: product.name,
         p_amount_paise: product.amount,
         p_razorpay_payment_id: response.razorpay_payment_id,
@@ -1064,7 +1058,18 @@ db.auth.getUser().then(({ data: { user } }) => {
   if (user) {
     showLeadDownload();
     recordFreeEbook(user);
+    document.getElementById('navAccountLink').style.display = '';
+    const mob = document.getElementById('mobileAccountLink');
+    if (mob) mob.style.display = '';
   }
+});
+
+/* Also update nav when auth state changes (e.g. sign-in/out during session) */
+db.auth.onAuthStateChange((event, session) => {
+  const show = !!session;
+  document.getElementById('navAccountLink').style.display = show ? '' : 'none';
+  const mob = document.getElementById('mobileAccountLink');
+  if (mob) mob.style.display = show ? '' : 'none';
 });
 </script>
 
