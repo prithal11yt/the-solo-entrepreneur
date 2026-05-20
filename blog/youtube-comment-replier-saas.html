@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Build an AI YouTube Comment Replier Chrome Extension | The Solo Entrepreneur</title>
+<meta name="description" content="How to build and sell an AI Chrome extension that auto-replies to YouTube comments. Freemium SaaS model, $9/month Pro plan, $6,500/month by year 1."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/blog/youtube-comment-replier-saas.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/blog/youtube-comment-replier-saas.html"/>
+<meta property="og:title" content="Build an AI YouTube Comment Replier Chrome Extension"/>
+<meta property="og:description" content="How to build and sell an AI Chrome extension that auto-replies to YouTube comments. Freemium SaaS model, $9/month Pro plan, $6,500/month by year 1."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="article:author" content="Prithal Bhardwaj"/>
+<meta property="article:published_time" content="2025-05-19"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Build an AI YouTube Comment Replier Chrome Extension"/>
+<meta name="twitter:description" content="How to build and sell an AI Chrome extension that auto-replies to YouTube comments. Freemium SaaS model, $9/month Pro plan, $6,500/month by year 1."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Build an AI YouTube Comment Replier Chrome Extension","author":{"@type":"Person","name":"Prithal Bhardwaj"},"publisher":{"@type":"Organization","name":"The Solo Entrepreneur","url":"https://www.thesoloentrepreneur.in"},"datePublished":"2025-05-19","mainEntityOfPage":"https://www.thesoloentrepreneur.in/blog/youtube-comment-replier-saas.html"}</script>
+<style>
+.post-header{padding:64px 0 48px;border-bottom:2px solid var(--rule)}
+.post-breadcrumb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.1em}
+.post-breadcrumb a{color:var(--accent)}
+.post-cat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}
+.post-title{font-family:'Rubik Mono One',sans-serif;font-size:clamp(26px,5vw,52px);line-height:.95;margin-bottom:20px}
+.post-title em{font-style:normal;color:var(--accent)}
+.post-subtitle{font-family:'Caveat',cursive;font-size:22px;color:var(--muted);max-width:680px;margin-bottom:24px}
+.post-meta{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
+.post-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;padding:48px 0 80px;align-items:start}
+@media(max-width:900px){.post-layout{grid-template-columns:1fr}}
+.post-content h2{font-family:'Rubik Mono One',sans-serif;font-size:clamp(20px,3vw,28px);line-height:1;margin:48px 0 16px;padding-top:12px;border-top:2px solid var(--rule)}
+.post-content h2:first-of-type{margin-top:0;border-top:none}
+.post-content h3{font-family:'Patrick Hand',cursive;font-size:21px;font-weight:700;margin:28px 0 10px}
+.post-content p{font-size:18px;line-height:1.65;margin-bottom:18px}
+.post-content ul,.post-content ol{padding-left:24px;margin-bottom:18px}
+.post-content li{font-size:18px;line-height:1.6;margin-bottom:8px}
+.post-content strong{font-weight:700}
+.post-content a{color:var(--accent);text-decoration:underline}
+.callout{border:2px solid var(--rule);border-radius:var(--radius);padding:20px 24px;margin:28px 0;background:var(--paper-2)}
+.callout.accent{background:#fff3ed;border-color:var(--accent)}
+.callout.ink{background:var(--ink);color:var(--paper)}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.callout.ink .callout-label{color:rgba(250,247,240,.6)}
+.number-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin:24px 0}
+.number-box{border:2px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--paper);text-align:center}
+.number-box .num{font-family:'Rubik Mono One',sans-serif;font-size:24px;color:var(--accent);display:block;margin-bottom:4px}
+.number-box .label{font-family:'Patrick Hand',cursive;font-size:13px;color:var(--muted)}
+.post-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
+.post-table th{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);border:2px solid var(--rule)}
+.post-table td{padding:10px 14px;border:1.5px solid var(--rule);font-family:'Patrick Hand',cursive;vertical-align:top}
+.post-table tr:nth-child(even) td{background:var(--paper-2)}
+.post-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}
+.sidebar-toc{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px}
+.sidebar-toc h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.sidebar-toc ol{padding-left:18px}
+.sidebar-toc li{font-family:'Patrick Hand',cursive;font-size:15px;margin-bottom:8px}
+.sidebar-toc a{color:var(--ink)}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:2px solid var(--rule)}
+.post-tag{font-family:'JetBrains Mono',monospace;font-size:12px;padding:4px 12px;border:1.5px solid var(--rule);border-radius:12px;background:var(--paper-2)}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.related-card{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+.related-card:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--rule)}
+.related-card h4{font-family:'Patrick Hand',cursive;font-size:17px;margin-bottom:8px}
+.related-card p{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><defs><filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs></svg>
+<nav class="navbar" role="navigation">
+  <div class="wrap nav-wrap">
+    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../products.html">Products</a></li><li><a href="../videos.html">Videos</a></li><li><a href="../blog.html" class="active">Blog</a></li><li><a href="../community.html">Community</a></li><li><a href="../index.html#about">About</a></li><li><a href="../account.html" id="navAccountLink">My Account</a></li></ul>
+    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html" onclick="toggleMenu()">Home</a><a href="../products.html" onclick="toggleMenu()">Products</a><a href="../videos.html" onclick="toggleMenu()">Videos</a><a href="../blog.html" onclick="toggleMenu()">Blog</a><a href="../community.html" onclick="toggleMenu()">Community</a><a href="../index.html#about" onclick="toggleMenu()">About</a><a href="../account.html" onclick="toggleMenu()">My Account</a>
+  <a href="../products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+</div>
+<header class="post-header">
+  <div class="wrap">
+    <div class="post-breadcrumb"><a href="../blog.html">Blog</a> / SaaS</div>
+    <div class="post-cat">§ SaaS</div>
+    <h1 class="post-title">BUILD AN <em>AI COMMENT REPLIER</em> FOR YOUTUBE AND SELL IT TO CREATORS</h1>
+    <p class="post-subtitle">YouTubers drown in comments. A one-click AI reply tool that understands video context could be the best solo SaaS you build this year.</p>
+    <div class="post-meta"><span>✍️ Prithal Bhardwaj</span><span>📅 May 2025</span><span>⏱ 7 min read</span><span>🇮🇳 India-specific</span></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="post-layout">
+    <article class="post-content" id="article">
+
+      <!-- Hero SVG -->
+      <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;margin-bottom:32px">
+        <rect width="720" height="280" fill="#f3eee2"/>
+        <!-- Browser chrome -->
+        <rect x="30" y="30" width="480" height="220" rx="8" fill="none" stroke="#15130f" stroke-width="2.5"/>
+        <rect x="30" y="30" width="480" height="36" rx="8" fill="#15130f"/>
+        <circle cx="58" cy="48" r="6" fill="#ff5b1f"/>
+        <circle cx="78" cy="48" r="6" fill="rgba(250,247,240,.3)"/>
+        <circle cx="98" cy="48" r="6" fill="rgba(250,247,240,.3)"/>
+        <text x="200" y="53" font-family="monospace" font-size="11" fill="rgba(250,247,240,.6)" text-anchor="middle">youtube.com/studio/comments</text>
+        <!-- Comment rows -->
+        <rect x="50" y="85" width="380" height="40" rx="4" fill="#fff3ed" stroke="#ff5b1f" stroke-width="1.5"/>
+        <text x="65" y="100" font-family="monospace" font-size="10" fill="#15130f">"Great video! How do I get started?"</text>
+        <rect x="340" y="93" width="80" height="24" rx="4" fill="#ff5b1f"/>
+        <text x="380" y="109" font-family="monospace" font-size="10" fill="white" text-anchor="middle">AI Reply</text>
+        <rect x="50" y="138" width="380" height="40" rx="4" fill="var(--paper-2)" stroke="#15130f" stroke-width="1"/>
+        <text x="65" y="153" font-family="monospace" font-size="10" fill="#15130f">"Can you do a tutorial on part 2?"</text>
+        <rect x="340" y="146" width="80" height="24" rx="4" fill="#15130f"/>
+        <text x="380" y="162" font-family="monospace" font-size="10" fill="white" text-anchor="middle">✓ Sent</text>
+        <rect x="50" y="191" width="380" height="40" rx="4" fill="var(--paper-2)" stroke="#15130f" stroke-width="1"/>
+        <text x="65" y="206" font-family="monospace" font-size="10" fill="#15130f">"This is exactly what I needed, thanks!"</text>
+        <rect x="340" y="199" width="80" height="24" rx="4" fill="#15130f"/>
+        <text x="380" y="215" font-family="monospace" font-size="10" fill="white" text-anchor="middle">✓ Sent</text>
+        <!-- Extension popup -->
+        <rect x="540" y="50" width="150" height="200" rx="8" fill="#15130f"/>
+        <text x="615" y="80" font-family="monospace" font-size="11" fill="#ff5b1f" text-anchor="middle">ReplyAI</text>
+        <text x="615" y="100" font-family="monospace" font-size="9" fill="rgba(250,247,240,.6)" text-anchor="middle">Tone: Friendly</text>
+        <rect x="555" y="110" width="110" height="20" rx="4" fill="rgba(250,247,240,.1)"/>
+        <text x="610" y="124" font-family="monospace" font-size="9" fill="rgba(250,247,240,.8)" text-anchor="middle">● Casual ○ Pro</text>
+        <text x="615" y="155" font-family="monospace" font-size="9" fill="rgba(250,247,240,.6)" text-anchor="middle">Replied today: 47</text>
+        <text x="615" y="175" font-family="monospace" font-size="9" fill="#ff5b1f" text-anchor="middle">PRO PLAN</text>
+        <rect x="560" y="205" width="100" height="28" rx="4" fill="#ff5b1f"/>
+        <text x="610" y="223" font-family="monospace" font-size="10" fill="white" text-anchor="middle">Reply All →</text>
+      </svg>
+
+      <div class="callout accent"><div class="callout-label">💡 Quick Summary</div><p style="margin:0;font-size:17px">YouTubers with 1K+ subscribers spend hours manually replying to comments — and most fall behind, hurting their algorithmic reach. A Chrome extension using GPT-4 to generate context-aware replies in one click can hit $6,500/month by month 12 with a freemium SaaS model. Build time: 4 weeks, zero investment.</p></div>
+
+      <h2 id="problem">The Comment Problem Is Bigger Than You Think</h2>
+      <p>Ask any creator with more than 5,000 subscribers what their biggest operational headache is. Nine times out of ten: comments. As your channel grows, the comment volume becomes unmanageable. A video that gets 50,000 views might generate 300–500 comments in 48 hours. Replying to even 20% of them manually takes 2–3 hours of focused work.</p>
+      <p>Here's why this matters beyond creator comfort: YouTube's algorithm actively rewards engagement. When creators reply to comments, it signals that the community is active and healthy — which boosts the video in recommendations. Creators who stop replying to comments aren't just being rude; they're actively hurting their channel's growth metrics. Most know this and feel terrible about it.</p>
+      <p>That's the exact kind of guilt + productivity problem that SaaS tools are built on. The creator <em>wants</em> to reply. They just can't. You're giving them a way to do it at scale without sacrificing quality.</p>
+
+      <div class="number-grid">
+        <div class="number-box"><span class="num">1K+</span><span class="label">Subs where comment volume becomes painful</span></div>
+        <div class="number-box"><span class="num">$9/mo</span><span class="label">Pro plan price</span></div>
+        <div class="number-box"><span class="num">$29/mo</span><span class="label">Agency plan price</span></div>
+        <div class="number-box"><span class="num">$6,500</span><span class="label">Projected month-12 revenue</span></div>
+        <div class="number-box"><span class="num">4 weeks</span><span class="label">MVP build time</span></div>
+      </div>
+
+      <h2 id="solution">What the Extension Actually Does</h2>
+      <p>The core product is simple: a Chrome extension that sits inside YouTube Studio, reads unreplied comments, and generates personalized responses using GPT-4. Here's what makes it actually useful (vs. just another spam tool):</p>
+      <ul>
+        <li><strong>Context-aware replies:</strong> The AI reads both the comment <em>and</em> the video title to generate relevant responses. "Great video!" on a finance tutorial gets a different reply than "Great video!" on a coding walkthrough.</li>
+        <li><strong>Tone selector:</strong> Professional, casual, or funny — the creator picks the voice that matches their brand.</li>
+        <li><strong>One-click with override:</strong> The AI drafts the reply. The creator reviews and sends. It's assistance, not automation — this is important for trust.</li>
+        <li><strong>Sentiment analysis:</strong> Priority queue that surfaces genuine questions and positive comments first. Hate and spam get flagged for review or auto-hidden.</li>
+        <li><strong>Comment categorization:</strong> Automatically tags comments as support queries, questions, praise, spam — so creators can triage efficiently.</li>
+      </ul>
+      <p>The manual review step is crucial. Don't build an "auto-send without review" feature in v1. Creators are terrified of a bot saying something embarrassing on their channel. Trust builds slowly; one weird auto-reply can kill your product's reputation overnight.</p>
+
+      <h2 id="build">Building the MVP in 4 Weeks</h2>
+      <table class="post-table">
+        <thead><tr><th>Layer</th><th>Tool</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Extension Frontend</td><td>Vanilla JS + Chrome Manifest V3</td><td>Free</td></tr>
+          <tr><td>AI Reply Generation</td><td>OpenAI API (GPT-3.5 to start)</td><td>~$0.002/reply</td></tr>
+          <tr><td>Backend / Auth / DB</td><td>Supabase (Free Tier)</td><td>Free</td></tr>
+          <tr><td>Hosting / API</td><td>Vercel (Free Tier)</td><td>Free</td></tr>
+          <tr><td>Payments</td><td>Razorpay or Lemon Squeezy</td><td>2–3% per transaction</td></tr>
+          <tr><td>Development Environment</td><td>Cursor.sh or Replit</td><td>Free</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Week 1–2:</strong> Study YouTube Studio's DOM structure. Build the extension skeleton — manifest.json, popup.html, content.js. Design the popup UI with tone settings and a reply preview pane.</p>
+      <p><strong>Week 3:</strong> Connect OpenAI API. Build the comment scraper that pulls unreplied comments from YouTube Studio DOM. Pass each comment + video title to GPT for reply generation. Inject the reply into the YouTube reply box.</p>
+      <p><strong>Week 4:</strong> Add reply customization (tone, length), set up Supabase to log usage and enforce free tier limits (15 replies/day), package as a Chrome extension. The Chrome Web Store listing costs a one-time $5 developer fee.</p>
+      <p>Total upfront cost: under ₹500. Even including OpenAI API costs at scale, your cost per reply is roughly ₹0.15–0.20 — at ₹750/month Pro pricing, you have massive margins.</p>
+
+      <h2 id="pricing">The Freemium Pricing Model</h2>
+      <table class="post-table">
+        <thead><tr><th>Plan</th><th>Features</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td>Free</td><td>15 replies/day, basic tones</td><td>$0 / ₹0</td></tr>
+          <tr><td>Pro</td><td>500 replies/day, all tones, analytics dashboard</td><td>$9/month (~₹750)</td></tr>
+          <tr><td>Agency</td><td>Unlimited replies, team seats, custom templates, priority support</td><td>$29/month (~₹2,400)</td></tr>
+        </tbody>
+      </table>
+      <p>The free tier is your acquisition engine. Every creator who installs it and uses 15 replies/day will immediately feel the limitation when a big video drops. That's your upgrade moment. Send an in-extension notification: "You've hit today's limit. Your video is getting traction — upgrade to Pro to keep replying."</p>
+
+      <h2 id="gtm">Getting Your First 100 Users</h2>
+      <p>This is where being an Indian creator yourself is an unfair advantage. You already have access to creator communities that would take a foreign founder months to penetrate.</p>
+      <p><strong>DM YouTubers directly:</strong> Start with creators in the 1K–10K subscriber range. They feel the comment pain acutely but don't have the budget for expensive tools. Message 20–30 of them per day on LinkedIn and Twitter. Offer the Pro plan free for 30 days in exchange for honest feedback. This strategy alone can get you 30–50 beta users in the first month.</p>
+      <p><strong>Post on creator-focused communities:</strong> r/YouTube, r/NewTubers, IndieHackers, and the many Indian creator WhatsApp groups. Share a demo video showing the before/after — "I had 247 unreplied comments, cleared them in 20 minutes" is a compelling hook.</p>
+      <p><strong>Build in public on Twitter/LinkedIn:</strong> Document the build process. Share revenue milestones. Creators love tools built by other creators who understand their problems. Your authenticity is a marketing asset.</p>
+      <p><strong>Affiliate program:</strong> Offer creators 30% recurring commission for referrals via Lemon Squeezy. A single creator with 50K subscribers who recommends your tool to their audience can drive 200+ installs in a day.</p>
+
+      <h2 id="revenue">Revenue Projections</h2>
+      <table class="post-table">
+        <thead><tr><th>Month</th><th>Total Users</th><th>Pro Users</th><th>Agency Users</th><th>Monthly Revenue</th></tr></thead>
+        <tbody>
+          <tr><td>Month 1</td><td>100</td><td>5</td><td>0</td><td>$45</td></tr>
+          <tr><td>Month 3</td><td>500</td><td>35</td><td>3</td><td>$402</td></tr>
+          <tr><td>Month 6</td><td>2,000</td><td>180</td><td>20</td><td>$2,200</td></tr>
+          <tr><td>Month 12</td><td>5,000</td><td>400</td><td>50</td><td>$6,500</td></tr>
+        </tbody>
+      </table>
+      <p>These are conservative. A single viral Twitter thread or Product Hunt launch can spike user count by 500–1,000 overnight. The key is the freemium flywheel — users refer friends, friends install, the tool gets reviews on Chrome Web Store, which drives organic installs.</p>
+
+      <h2 id="risks">Watch Out For These</h2>
+      <p>YouTube DOM changes are real. Google updates Studio's interface periodically, which can break your comment scraper. Build fallback logic that degrades gracefully — if the DOM selector fails, show an error message rather than silently doing nothing. Follow YouTube Studio release notes and have an update pipeline ready.</p>
+      <p>OpenAI API costs can creep up as you scale. The fix is simple: enforce reply limits tightly on free users and move to GPT-3.5 for free-tier replies (cheaper, still good enough), reserving GPT-4 for Pro users. At scale, consider fine-tuning a smaller model on good creator reply examples for even lower costs.</p>
+
+      <h2 id="thisweek">This Week's Action Plan</h2>
+      <div class="callout ink">
+        <div class="callout-label">Your 4-Week MVP Plan</div>
+        <ol style="margin:0;padding-left:20px">
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Week 1:</strong> Open YouTube Studio, use <code style="font-family:monospace;background:rgba(255,255,255,.1);padding:2px 6px;border-radius:3px">document.querySelectorAll</code> in the console to map the comments DOM. Understand which elements hold comment text and the reply button.</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Week 2:</strong> Build the Chrome extension skeleton. Add a simple popup UI with tone settings. Test DOM scraping on your own YouTube Studio.</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Week 3:</strong> Connect OpenAI API. Pass comment + video title. Get reply. Inject into reply box. Manual send button only.</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Week 4:</strong> Add Supabase for user auth and usage limits. Package the extension. DM 20 creators on YouTube with 1K–10K subs to beta test free.</li>
+        </ol>
+      </div>
+      <p>The creator tools space in India is massively underserved. Most tools are built for US creators and priced in dollars. A well-priced, India-first comment management tool — deeply integrated with how Indian creators work — has a real shot at becoming the default choice for millions of Indian YouTubers as the creator economy matures.</p>
+
+      <div class="post-tags">
+        <span class="post-tag">chrome-extension</span>
+        <span class="post-tag">saas</span>
+        <span class="post-tag">youtube-tools</span>
+        <span class="post-tag">creator-economy</span>
+        <span class="post-tag">openai-api</span>
+        <span class="post-tag">solo-saas</span>
+      </div>
+    </article>
+    <aside class="post-sidebar">
+      <nav class="sidebar-toc"><h4>📋 In This Post</h4><ol>
+        <li><a href="#problem">The Comment Problem</a></li>
+        <li><a href="#solution">What the Extension Does</a></li>
+        <li><a href="#build">Building the MVP</a></li>
+        <li><a href="#pricing">Pricing Model</a></li>
+        <li><a href="#gtm">Getting First 100 Users</a></li>
+        <li><a href="#revenue">Revenue Projections</a></li>
+        <li><a href="#risks">Risks to Watch</a></li>
+        <li><a href="#thisweek">4-Week Plan</a></li>
+      </ol></nav>
+      <div style="border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--accent);text-align:center"><h4 style="font-family:'Rubik Mono One',sans-serif;font-size:18px;margin-bottom:8px">Want 1:1 Advice?</h4><p style="font-size:15px;margin-bottom:16px;opacity:.85">Book a strategy call with Prithal.</p><a href="../products.html" class="btn ink" style="display:inline-flex;font-size:15px">Book a Call →</a></div>
+    </aside>
+  </div>
+</div>
+<div style="border-top:2px solid var(--rule);padding:48px 0;background:var(--paper-2)"><div class="wrap"><h3 style="font-family:'Rubik Mono One',sans-serif;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3><div class="related-grid"><a href="ai-consulting-agency-india.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">AGENCY</div><h4>AI Consulting Agency in India</h4><p>₹2L investment, ₹9.45L year-1 revenue plan.</p></a><a href="../blog.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">ALL IDEAS</div><h4>Browse All 45+ Business Ideas →</h4><p>Agency, SaaS, App and product business plans.</p></a></div></div></div>
+<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px"><div><div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div><div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div></div><div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8"><a href="../index.html">Home</a><a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../community.html">Community</a></div></div></footer>
+<script src="../shared.js"></script>
+</body>
+</html>

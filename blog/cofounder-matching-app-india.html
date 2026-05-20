@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Build a Co-Founder Matching App for Indian Entrepreneurs | The Solo Entrepreneur</title>
+<meta name="description" content="How to build MakerMatch — a Tinder-style co-founder & collaborator matching app for India. ₹299/month plan, 10K users in Year 1, ₹17.94L ARR potential."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/blog/cofounder-matching-app-india.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/blog/cofounder-matching-app-india.html"/>
+<meta property="og:title" content="Build a Co-Founder Matching App for Indian Entrepreneurs"/>
+<meta property="og:description" content="How to build MakerMatch — a Tinder-style co-founder & collaborator matching app for India. ₹299/month plan, 10K users in Year 1, ₹17.94L ARR potential."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="article:author" content="Prithal Bhardwaj"/>
+<meta property="article:published_time" content="2025-05-19"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Build a Co-Founder Matching App for Indian Entrepreneurs"/>
+<meta name="twitter:description" content="How to build MakerMatch — a Tinder-style co-founder & collaborator matching app for India. ₹299/month plan, 10K users in Year 1, ₹17.94L ARR potential."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Build a Co-Founder Matching App for Indian Entrepreneurs","author":{"@type":"Person","name":"Prithal Bhardwaj"},"publisher":{"@type":"Organization","name":"The Solo Entrepreneur","url":"https://www.thesoloentrepreneur.in"},"datePublished":"2025-05-19","mainEntityOfPage":"https://www.thesoloentrepreneur.in/blog/cofounder-matching-app-india.html"}</script>
+<style>
+.post-header{padding:64px 0 48px;border-bottom:2px solid var(--rule)}
+.post-breadcrumb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.1em}
+.post-breadcrumb a{color:var(--accent)}
+.post-cat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}
+.post-title{font-family:'Rubik Mono One',sans-serif;font-size:clamp(26px,5vw,52px);line-height:.95;margin-bottom:20px}
+.post-title em{font-style:normal;color:var(--accent)}
+.post-subtitle{font-family:'Caveat',cursive;font-size:22px;color:var(--muted);max-width:680px;margin-bottom:24px}
+.post-meta{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
+.post-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;padding:48px 0 80px;align-items:start}
+@media(max-width:900px){.post-layout{grid-template-columns:1fr}}
+.post-content h2{font-family:'Rubik Mono One',sans-serif;font-size:clamp(20px,3vw,28px);line-height:1;margin:48px 0 16px;padding-top:12px;border-top:2px solid var(--rule)}
+.post-content h2:first-of-type{margin-top:0;border-top:none}
+.post-content h3{font-family:'Patrick Hand',cursive;font-size:21px;font-weight:700;margin:28px 0 10px}
+.post-content p{font-size:18px;line-height:1.65;margin-bottom:18px}
+.post-content ul,.post-content ol{padding-left:24px;margin-bottom:18px}
+.post-content li{font-size:18px;line-height:1.6;margin-bottom:8px}
+.post-content strong{font-weight:700}
+.post-content a{color:var(--accent);text-decoration:underline}
+.callout{border:2px solid var(--rule);border-radius:var(--radius);padding:20px 24px;margin:28px 0;background:var(--paper-2)}
+.callout.accent{background:#fff3ed;border-color:var(--accent)}
+.callout.ink{background:var(--ink);color:var(--paper)}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.callout.ink .callout-label{color:rgba(250,247,240,.6)}
+.number-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin:24px 0}
+.number-box{border:2px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--paper);text-align:center}
+.number-box .num{font-family:'Rubik Mono One',sans-serif;font-size:24px;color:var(--accent);display:block;margin-bottom:4px}
+.number-box .label{font-family:'Patrick Hand',cursive;font-size:13px;color:var(--muted)}
+.post-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
+.post-table th{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);border:2px solid var(--rule)}
+.post-table td{padding:10px 14px;border:1.5px solid var(--rule);font-family:'Patrick Hand',cursive;vertical-align:top}
+.post-table tr:nth-child(even) td{background:var(--paper-2)}
+.post-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}
+.sidebar-toc{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px}
+.sidebar-toc h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.sidebar-toc ol{padding-left:18px}
+.sidebar-toc li{font-family:'Patrick Hand',cursive;font-size:15px;margin-bottom:8px}
+.sidebar-toc a{color:var(--ink)}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:2px solid var(--rule)}
+.post-tag{font-family:'JetBrains Mono',monospace;font-size:12px;padding:4px 12px;border:1.5px solid var(--rule);border-radius:12px;background:var(--paper-2)}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.related-card{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+.related-card:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--rule)}
+.related-card h4{font-family:'Patrick Hand',cursive;font-size:17px;margin-bottom:8px}
+.related-card p{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><defs><filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs></svg>
+<nav class="navbar" role="navigation">
+  <div class="wrap nav-wrap">
+    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../products.html">Products</a></li><li><a href="../videos.html">Videos</a></li><li><a href="../blog.html" class="active">Blog</a></li><li><a href="../community.html">Community</a></li><li><a href="../index.html#about">About</a></li><li><a href="../account.html" id="navAccountLink">My Account</a></li></ul>
+    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html" onclick="toggleMenu()">Home</a><a href="../products.html" onclick="toggleMenu()">Products</a><a href="../videos.html" onclick="toggleMenu()">Videos</a><a href="../blog.html" onclick="toggleMenu()">Blog</a><a href="../community.html" onclick="toggleMenu()">Community</a><a href="../index.html#about" onclick="toggleMenu()">About</a><a href="../account.html" onclick="toggleMenu()">My Account</a>
+  <a href="../products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+</div>
+<header class="post-header">
+  <div class="wrap">
+    <div class="post-breadcrumb"><a href="../blog.html">Blog</a> / App</div>
+    <div class="post-cat">§ App</div>
+    <h1 class="post-title">BUILD THE <em>TINDER FOR FOUNDERS</em> — INDIA'S MISSING CO-FOUNDER MATCHING APP</h1>
+    <p class="post-subtitle">300 million creators globally. No dedicated platform to find a collaborator. Here's how to build the app that changes that — for ₹299/month.</p>
+    <div class="post-meta"><span>✍️ Prithal Bhardwaj</span><span>📅 May 2025</span><span>⏱ 8 min read</span><span>🇮🇳 India-specific</span></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="post-layout">
+    <article class="post-content" id="article">
+
+      <!-- Hero SVG -->
+      <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;margin-bottom:32px">
+        <rect width="720" height="280" fill="#f3eee2"/>
+        <!-- Phone mockup left -->
+        <rect x="60" y="30" width="140" height="220" rx="12" fill="none" stroke="#15130f" stroke-width="2.5"/>
+        <rect x="60" y="30" width="140" height="220" rx="12" fill="#15130f" opacity=".04"/>
+        <!-- Profile card -->
+        <rect x="75" y="55" width="110" height="140" rx="8" fill="white" stroke="#ff5b1f" stroke-width="2"/>
+        <circle cx="130" cy="95" r="22" fill="#ff5b1f" opacity=".2"/>
+        <circle cx="130" cy="95" r="16" fill="#ff5b1f"/>
+        <text x="130" y="101" font-family="monospace" font-size="11" fill="white" text-anchor="middle">RB</text>
+        <text x="130" y="126" font-family="monospace" font-size="9" fill="#15130f" text-anchor="middle">Riya, Bengaluru</text>
+        <text x="130" y="140" font-family="monospace" font-size="8" fill="#ff5b1f" text-anchor="middle">UI Design · React</text>
+        <text x="130" y="153" font-family="monospace" font-size="8" fill="#15130f" text-anchor="middle">Building: AI tool</text>
+        <!-- Swipe arrows -->
+        <text x="75" y="220" font-family="monospace" font-size="20" fill="#15130f" text-anchor="middle">✗</text>
+        <text x="185" y="220" font-family="monospace" font-size="20" fill="#ff5b1f" text-anchor="middle">♥</text>
+        <!-- Center match animation -->
+        <circle cx="360" cy="140" r="55" fill="none" stroke="#ff5b1f" stroke-width="2.5" stroke-dasharray="8,4"/>
+        <text x="360" y="130" font-family="monospace" font-size="13" fill="#ff5b1f" text-anchor="middle">MATCH!</text>
+        <text x="360" y="150" font-family="monospace" font-size="10" fill="#15130f" text-anchor="middle">Skill overlap: 85%</text>
+        <text x="360" y="165" font-family="monospace" font-size="10" fill="#15130f" text-anchor="middle">Location: Mumbai</text>
+        <!-- Phone right -->
+        <rect x="520" y="30" width="140" height="220" rx="12" fill="none" stroke="#15130f" stroke-width="2.5"/>
+        <rect x="520" y="30" width="140" height="220" rx="12" fill="#15130f" opacity=".04"/>
+        <rect x="535" y="55" width="110" height="140" rx="8" fill="white" stroke="#15130f" stroke-width="2"/>
+        <circle cx="590" cy="95" r="22" fill="#15130f" opacity=".15"/>
+        <circle cx="590" cy="95" r="16" fill="#15130f"/>
+        <text x="590" y="101" font-family="monospace" font-size="11" fill="white" text-anchor="middle">AK</text>
+        <text x="590" y="126" font-family="monospace" font-size="9" fill="#15130f" text-anchor="middle">Arjun, Mumbai</text>
+        <text x="590" y="140" font-family="monospace" font-size="8" fill="#ff5b1f" text-anchor="middle">Marketing · Growth</text>
+        <text x="590" y="153" font-family="monospace" font-size="8" fill="#15130f" text-anchor="middle">Building: SaaS MVP</text>
+        <text x="535" y="220" font-family="monospace" font-size="20" fill="#15130f" text-anchor="middle">✗</text>
+        <text x="645" y="220" font-family="monospace" font-size="20" fill="#ff5b1f" text-anchor="middle">♥</text>
+        <!-- Lines to center -->
+        <line x1="215" y1="140" x2="300" y2="140" stroke="#ff5b1f" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <line x1="420" y1="140" x2="515" y2="140" stroke="#ff5b1f" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="360" y="265" font-family="monospace" font-size="11" fill="#15130f" text-anchor="middle">MakerMatch — Tinder + Trello for Creators</text>
+      </svg>
+
+      <div class="callout accent"><div class="callout-label">💡 Quick Summary</div><p style="margin:0;font-size:17px">300 million creators globally. No platform for streamlined collaboration matching. MakerMatch is Tinder + Trello for makers — swipe to find a co-founder, collaborate in-app. ₹299/month Pro plan, 10K users in Year 1 = ₹17.94L ARR. Exit potential at 5x revenue: ₹17–20 crore.</p></div>
+
+      <h2 id="insight">The Loneliness Problem Nobody Talks About</h2>
+      <p>I'll be honest — this is the startup idea I think about the most. Not because it's the most profitable (it might not be in the short run), but because the problem is so viscerally real.</p>
+      <p>If you've ever had a startup idea and tried to find a co-founder or technical collaborator, you know the pain. LinkedIn feels transactional. Reddit threads are chaotic. Discord servers are noisy. And Facebook groups — don't get me started. You end up posting "looking for a co-founder" into the void and hearing nothing back, or getting spam replies from people who want equity for doing nothing.</p>
+      <p>Over 300 million creators exist globally. That number includes indie hackers, developers building side projects, designers prototyping apps, musicians wanting a producer, content creators looking for editors, and makers building physical products. All of them have the same problem: "I have the idea. I don't have the right person to build it with." And there is no dedicated platform to solve this. That's your opportunity.</p>
+
+      <div class="number-grid">
+        <div class="number-box"><span class="num">300M+</span><span class="label">Creators globally needing collaborators</span></div>
+        <div class="number-box"><span class="num">₹299/mo</span><span class="label">Pro plan price</span></div>
+        <div class="number-box"><span class="num">₹17.94L</span><span class="label">Year-1 ARR potential</span></div>
+        <div class="number-box"><span class="num">₹17–20Cr</span><span class="label">5x exit valuation at Year-3 ARR</span></div>
+        <div class="number-box"><span class="num">23K</span><span class="label">Twitter likes on the original concept post</span></div>
+      </div>
+
+      <h2 id="product">What MakerMatch Actually Is</h2>
+      <p>Think of it as Tinder + Trello for makers. The dating-app UX (swipe-to-match) removes the awkwardness of cold outreach, while project management tools built into the platform make it easy to actually ship something once you've matched.</p>
+      <h3>Free Features (Acquisition Layer)</h3>
+      <ul>
+        <li>Create a "maker profile" — skills, interests, current and dream projects</li>
+        <li>Discover collaborators via swipe or scroll feed</li>
+        <li>5 matches per month + in-app chat</li>
+        <li>Public project ideas board (community discovery)</li>
+      </ul>
+      <h3>Pro Features (₹299/month)</h3>
+      <ul>
+        <li>Unlimited matches + advanced skill filters ("looking for iOS dev + UX designer")</li>
+        <li>Local-only filter for in-person collaboration</li>
+        <li>Kanban project boards, task lists, shared docs</li>
+        <li>Event board for IRL meetups and hack nights</li>
+      </ul>
+      <h3>Teams Plan (₹999/month)</h3>
+      <ul>
+        <li>Group collaboration for 3+ people</li>
+        <li>Event hosting tools for workshops and hackathons</li>
+        <li>Community spaces for city-level maker hubs</li>
+      </ul>
+
+      <h2 id="india">Why This Works Particularly Well in India</h2>
+      <p>The Indian maker/indie hacker ecosystem is growing faster than most people realize. IIT-Bombay, IIT-Delhi, and Bangalore have enormous communities of technically-skilled builders who have ideas but no business co-founder. Meanwhile, MBA graduates from IIM Ahmedabad and ISB have the business sense but struggle to find technical partners outside their immediate networks.</p>
+      <p>LinkedIn is the closest thing India has to a professional matching platform, but it's designed for jobs, not collaboration. There's no cultural or social infrastructure for "I want to build a side project with you" conversations — especially between strangers across cities. MakerMatch fills exactly this gap.</p>
+      <p>City-based communities are a major unlock here. Bangalore has a thriving startup community. Mumbai has finance and media people who want to build things. Chennai has a strong engineering base. A city filter — "show me makers in Pune who are interested in healthcare" — is genuinely something that doesn't exist and would get immediate traction in college communities and coworking spaces.</p>
+
+      <h2 id="build">Building It Solo with No-Code + AI</h2>
+      <table class="post-table">
+        <thead><tr><th>Function</th><th>Tool</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Mobile App (iOS + Android)</td><td>FlutterFlow or Lovable.dev</td><td>Free / ₹1,500/mo</td></tr>
+          <tr><td>Backend & Auth</td><td>Supabase or Firebase</td><td>Free tier</td></tr>
+          <tr><td>Matching Logic</td><td>OpenAI embeddings + Pinecone/Weaviate</td><td>Usage-based</td></tr>
+          <tr><td>In-App Chat</td><td>Stream or Sendbird</td><td>Free up to 1K users</td></tr>
+          <tr><td>Landing Page</td><td>Webflow</td><td>Free tier</td></tr>
+          <tr><td>Payments</td><td>Razorpay</td><td>2% per transaction</td></tr>
+        </tbody>
+      </table>
+      <p>Lovable.dev + Supabase + OpenAI can get you 80% of the MVP. The AI matching logic is the interesting part — you create vector embeddings of each user's skill tags and project interests, then find the closest matches mathematically. This is more sophisticated than a simple keyword filter and produces meaningfully better match quality, which is your core product differentiator.</p>
+      <p>You can stay solo until 50K users. After that, bring in one developer and one marketer. Until then, Telegram and Discord communities can handle user support.</p>
+
+      <h2 id="gtm">The Chicken-and-Egg Problem (and How to Solve It)</h2>
+      <p>Every two-sided platform faces this. No users = no matches. No matches = no users. Here's the playbook:</p>
+      <p><strong>Seed the supply side manually first.</strong> Go to Twitter, IndieHackers, and LinkedIn and find 200 people who have posted "looking for a co-founder" or "building X, need Y." DM them personally and offer free Pro access to join the platform. This is tedious but essential. Your first 500 users will determine everything about the network effects that follow.</p>
+      <p><strong>Use the public project board as content.</strong> Allow anyone to post an idea publicly — "Building an app for X, looking for someone who knows Y." This creates indexed, searchable content. Someone Googling "find a co-founder in Bangalore" might land on a project board post, sign up, and become a user. SEO compound growth from user-generated content is powerful.</p>
+      <p><strong>Launch on Product Hunt with a story.</strong> "I was trying to find a co-founder for 6 months and couldn't. So I built MakerMatch." That narrative lands. It's personal, it's specific, and it speaks to the exact audience you want as early adopters.</p>
+      <p><strong>Partner with college entrepreneurship cells.</strong> IIT, IIM, NIT entrepreneurship cells are constantly running events and looking for tools for their communities. Offer MakerMatch as the official collaboration platform for their hackathons and startup weekends. Free branding for them, free user acquisition for you.</p>
+
+      <h2 id="revenue">Revenue Model and Projections</h2>
+      <table class="post-table">
+        <thead><tr><th>Year</th><th>Active Users</th><th>Paid Users (5%)</th><th>MRR</th><th>ARR</th></tr></thead>
+        <tbody>
+          <tr><td>Year 1</td><td>10,000</td><td>500</td><td>₹1,49,500</td><td>₹17,94,000</td></tr>
+          <tr><td>Year 2</td><td>50,000</td><td>2,500</td><td>₹7,47,500</td><td>₹89,70,000</td></tr>
+          <tr><td>Year 3</td><td>2,00,000</td><td>10,000</td><td>₹29,90,000</td><td>₹3.58 Crore</td></tr>
+        </tbody>
+      </table>
+      <p>At ₹3.58 Cr ARR in year 3, a 5x exit valuation puts the company at ₹17–20 Crore (~$2–2.5M). Obvious acquirers include Etsy (community + DIY tools), Meetup (IRL events), or Discord/Reddit (IRL collaboration infrastructure). This is a realistic outcome for a solo founder who executes consistently for 3 years.</p>
+      <p>Additional revenue streams: 10% cut on event ticketing for local maker workshops, affiliate revenue from tools like Notion, Figma, and Descript, and a creator templates marketplace with 30% commission per sale.</p>
+
+      <h2 id="thisweek">This Week's Action Plan</h2>
+      <div class="callout ink">
+        <div class="callout-label">Your 12-Month Roadmap</div>
+        <ol style="margin:0;padding-left:20px">
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Month 1:</strong> Build a Webflow landing page with a waitlist. Position clearly: "Find your co-founder in India."</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Month 2:</strong> Build MVP on Lovable.dev — profiles, swiping, basic chat via Supabase.</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Month 3:</strong> Launch on Product Hunt, Reddit (r/india, r/IndianStartups, IndieHackers).</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Month 4–5:</strong> Build community blog and newsletter. Start weekly "Project of the Week" feature.</li>
+          <li style="color:var(--paper);margin-bottom:10px"><strong>Month 6–9:</strong> Add Pro features — city filters, event boards, Kanban project tools. Launch Razorpay subscription.</li>
+          <li style="color:var(--paper);margin-bottom:0"><strong>Month 10–12:</strong> Target 10K users. Partner with 3 college entrepreneurship cells for beta community programs.</li>
+        </ol>
+      </div>
+      <p>The original concept got 23K likes on X with a single tweet. The demand is clearly there. The only thing missing is someone willing to actually build it for the Indian market. If you're a maker yourself — which you probably are if you're reading this — you are the perfect person to build this. You understand the problem from the inside out.</p>
+
+      <div class="post-tags">
+        <span class="post-tag">cofounder-matching</span>
+        <span class="post-tag">app-india</span>
+        <span class="post-tag">maker-community</span>
+        <span class="post-tag">no-code-app</span>
+        <span class="post-tag">startup-india</span>
+        <span class="post-tag">creator-tools</span>
+      </div>
+    </article>
+    <aside class="post-sidebar">
+      <nav class="sidebar-toc"><h4>📋 In This Post</h4><ol>
+        <li><a href="#insight">The Loneliness Problem</a></li>
+        <li><a href="#product">What MakerMatch Is</a></li>
+        <li><a href="#india">Why India Specifically</a></li>
+        <li><a href="#build">Building It Solo</a></li>
+        <li><a href="#gtm">Solving Chicken-and-Egg</a></li>
+        <li><a href="#revenue">Revenue Projections</a></li>
+        <li><a href="#thisweek">12-Month Roadmap</a></li>
+      </ol></nav>
+      <div style="border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--accent);text-align:center"><h4 style="font-family:'Rubik Mono One',sans-serif;font-size:18px;margin-bottom:8px">Want 1:1 Advice?</h4><p style="font-size:15px;margin-bottom:16px;opacity:.85">Book a strategy call with Prithal.</p><a href="../products.html" class="btn ink" style="display:inline-flex;font-size:15px">Book a Call →</a></div>
+    </aside>
+  </div>
+</div>
+<div style="border-top:2px solid var(--rule);padding:48px 0;background:var(--paper-2)"><div class="wrap"><h3 style="font-family:'Rubik Mono One',sans-serif;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3><div class="related-grid"><a href="ai-consulting-agency-india.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">AGENCY</div><h4>AI Consulting Agency in India</h4><p>₹2L investment, ₹9.45L year-1 revenue plan.</p></a><a href="../blog.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">ALL IDEAS</div><h4>Browse All 45+ Business Ideas →</h4><p>Agency, SaaS, App and product business plans.</p></a></div></div></div>
+<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px"><div><div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div><div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div></div><div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8"><a href="../index.html">Home</a><a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../community.html">Community</a></div></div></footer>
+<script src="../shared.js"></script>
+</body>
+</html>
