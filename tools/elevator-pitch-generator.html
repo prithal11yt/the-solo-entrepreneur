@@ -442,7 +442,6 @@
 <script src="../shared.js"></script>
 <script>
 // ===== ELEVATOR PITCH GENERATOR =====
-const OPENAI_KEY = window.OPENAI_KEY || '';
 
 async function generatePitch() {
   const startupName = document.getElementById('startupName').value.trim();
@@ -454,10 +453,6 @@ async function generatePitch() {
 
   if (!startupName || !problem || !solution) {
     alert('Please fill in your startup name, problem, and solution at minimum.');
-    return;
-  }
-  if (!OPENAI_KEY) {
-    alert('API key not configured. Please set window.OPENAI_KEY before using this tool.');
     return;
   }
 
@@ -477,11 +472,10 @@ Make it confident, specific, and written for an Indian startup context. Use rupe
 Return ONLY the pitch text — no labels, no section headers, just the flowing pitch.`;
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_KEY
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',

@@ -456,7 +456,6 @@
 <script src="../shared.js"></script>
 <script>
 // ===== BUSINESS NAME GENERATOR =====
-const OPENAI_KEY = window.OPENAI_KEY || '';
 
 async function generateNames() {
   const industry = document.getElementById('industry').value.trim();
@@ -466,10 +465,6 @@ async function generateNames() {
 
   if (!industry) {
     alert('Please enter your industry or niche first.');
-    return;
-  }
-  if (!OPENAI_KEY) {
-    alert('API key not configured. Please set window.OPENAI_KEY before using this tool.');
     return;
   }
 
@@ -485,11 +480,10 @@ Return ONLY a JSON array of objects like: [{"name": "XYZ", "tagline": "one-line 
 The names should be: memorable, easy to spell in Hindi/English, not already a major brand, suitable for Indian market. No markdown, no extra text — just the JSON array.`;
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_KEY
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',

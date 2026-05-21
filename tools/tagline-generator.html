@@ -438,7 +438,6 @@
 <script src="../shared.js"></script>
 <script>
 // ===== TAGLINE GENERATOR =====
-const OPENAI_KEY = window.OPENAI_KEY || '';
 
 async function generateTaglines() {
   const bizName = document.getElementById('bizName').value.trim();
@@ -448,10 +447,6 @@ async function generateTaglines() {
 
   if (!bizName || !whatYouDo) {
     alert('Please enter your business name and what you do.');
-    return;
-  }
-  if (!OPENAI_KEY) {
-    alert('API key not configured. Please set window.OPENAI_KEY before using this tool.');
     return;
   }
 
@@ -466,11 +461,10 @@ Each tagline must be under 8 words, original, and NOT a cliché like "Empowering
 Make them punchy, specific, and relevant to the Indian market. No markdown — just the JSON array.`;
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_KEY
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',

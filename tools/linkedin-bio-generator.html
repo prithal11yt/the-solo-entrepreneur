@@ -404,7 +404,6 @@
 <script src="../shared.js"></script>
 <script>
 /* ===== LinkedIn Bio Generator ===== */
-const OPENAI_KEY = window.OPENAI_KEY || '';
 
 function buildPrompt() {
   const name    = document.getElementById('bioName').value.trim() || 'the founder';
@@ -439,20 +438,15 @@ async function generate() {
     alert('Please enter at least your name and what you do.');
     return;
   }
-  if (!OPENAI_KEY) {
-    alert('API key not configured. Set window.OPENAI_KEY before generating.');
-    return;
-  }
   showSpinner();
   hideResults();
   document.getElementById('generateBtn').disabled = true;
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_KEY
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',

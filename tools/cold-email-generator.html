@@ -409,7 +409,6 @@
 <script src="../shared.js"></script>
 <script>
 /* ===== Cold Email Generator ===== */
-const OPENAI_KEY = window.OPENAI_KEY || '';
 
 function buildPrompt() {
   const sender     = document.getElementById('emailSender').value.trim() || 'an Indian entrepreneur';
@@ -445,20 +444,15 @@ async function generate() {
     alert('Please fill in your name/company and your value proposition.');
     return;
   }
-  if (!OPENAI_KEY) {
-    alert('API key not configured. Set window.OPENAI_KEY before generating.');
-    return;
-  }
   showSpinner();
   hideResults();
   document.getElementById('generateBtn').disabled = true;
 
   try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_KEY
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',

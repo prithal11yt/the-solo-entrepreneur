@@ -640,7 +640,6 @@
 <script src="../shared.js"></script>
 <script>
   // ── API key (injected at runtime or set globally) ──
-  const OPENAI_KEY = window.OPENAI_KEY || '';
 
   // ── Build prompt from form ──
   function buildPrompt() {
@@ -667,10 +666,6 @@ Return ONLY a JSON array with no markdown fences, no extra text, just valid JSON
 
   // ── Main generate function ──
   async function generate() {
-    if (!OPENAI_KEY) {
-      alert('API key not configured. Set window.OPENAI_KEY before using this tool.');
-      return;
-    }
 
     const btn = document.getElementById('generateBtn');
     btn.disabled = true;
@@ -678,11 +673,10 @@ Return ONLY a JSON array with no markdown fences, no extra text, just valid JSON
     document.getElementById('results').classList.remove('active');
 
     try {
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      const res = await fetch('/api/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + OPENAI_KEY
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
