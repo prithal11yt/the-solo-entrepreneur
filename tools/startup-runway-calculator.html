@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<link rel="shortcut icon" href="../favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Startup Runway Calculator — How Many Months Can You Survive? | The Solo Entrepreneur</title>
+<meta name="description" content="Calculate your startup's runway in months. Free tool — enter your cash balance and monthly burn rate to see how long you have before you run out of money."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/tools/startup-runway-calculator.html"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/tools/startup-runway-calculator.html"/>
+<meta property="og:title" content="Startup Runway Calculator — How Many Months Can You Survive?"/>
+<meta property="og:description" content="Calculate your startup's runway in months. Free tool — enter your cash balance and monthly burn rate to see how long you have before you run out of money."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Startup Runway Calculator — How Many Months Can You Survive?"/>
+<meta name="twitter:description" content="Calculate your startup's runway in months. Free tool — enter your cash balance and monthly burn rate to see how long you have before you run out of money."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared.css"/>
+<!-- JSON-LD -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Startup Runway Calculator",
+    "url": "https://www.thesoloentrepreneur.in/tools/startup-runway-calculator.html",
+    "description": "Calculate your startup's runway in months. Free tool for Indian entrepreneurs.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+    "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is startup runway and why does it matter?", "acceptedAnswer": { "@type": "Answer", "text": "Startup runway is the number of months your startup can operate before running out of cash, given your current burn rate and cash balance. It matters because it defines your decision window — how long you have to reach profitability, close a funding round, or pivot. A startup with 3 months of runway has almost no room to manoeuvre. One with 18+ months can experiment, iterate, and negotiate from strength." } },
+      { "@type": "Question", "name": "What's a good startup runway to have?", "acceptedAnswer": { "@type": "Answer", "text": "The standard advice is 18-24 months. This gives you enough time to raise a next round (fundraising takes 4-8 months in India), run meaningful experiments, hire and onboard key people, and respond to market feedback. Bootstrapped founders should target 6+ months of personal savings as a personal runway buffer, separate from business cash." } },
+      { "@type": "Question", "name": "What should I include in my monthly burn rate?", "acceptedAnswer": { "@type": "Answer", "text": "Include everything: founder salaries (even if partially deferred), team salaries, rent and utilities, cloud/hosting (AWS, GCP), SaaS subscriptions, marketing spend, contractor payments, legal and compliance costs, loan EMIs, and a 10-15% buffer for unexpected expenses. Many founders undercount by 20-30% by forgetting quarterly or annual expenses — divide these by 12 and include monthly." } },
+      { "@type": "Question", "name": "How do I extend my startup's runway without raising money?", "acceptedAnswer": { "@type": "Answer", "text": "Five practical levers: (1) Cut SaaS tools you use less than weekly. (2) Move to a shared office or WFH to reduce rent. (3) Delay non-critical hires by 60-90 days. (4) Raise prices — even 15-20% can significantly reduce net burn. (5) Explore revenue-based financing or government grants (Startup India, DPIIT, state schemes) which are non-dilutive." } },
+      { "@type": "Question", "name": "When should I start fundraising based on runway?", "acceptedAnswer": { "@type": "Answer", "text": "Start fundraising when you have 12-18 months of runway left. Fundraising in India takes 4-8 months from first meeting to money in the bank. If you wait until you have 6 months left, you're fundraising under desperation — investors can sense it and will negotiate harder. The best fundraises happen from a position of strength with 12+ months of runway." } },
+      { "@type": "Question", "name": "What's the difference between gross burn and net burn?", "acceptedAnswer": { "@type": "Answer", "text": "Gross burn is your total monthly operating expenses before any revenue. Net burn is gross burn minus monthly revenue. Runway should always be calculated on net burn (how much cash you're actually losing per month). A company with ₹10L gross burn and ₹7L revenue has a ₹3L net burn — very different runway implications." } },
+      { "@type": "Question", "name": "How do government grants affect my runway calculation?", "acceptedAnswer": { "@type": "Answer", "text": "Government grants (DPIIT recognition, Startup India Seed Fund, state incubator grants) can meaningfully extend runway. Add approved grant amounts to your cash balance once received — not when applied for. Some schemes also provide tax benefits (80IAC) that reduce your effective cash outflow. Don't plan runway around grants in pipeline — only count cash in hand." } },
+      { "@type": "Question", "name": "Should founder salaries count as burn rate?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, absolutely. If you're paying yourself (which you should, even a reduced amount), it's burn. If you're deferring salary, it's a liability that will need to be paid eventually — include it in your extended burn calculation. The dangerous scenario: founders who claim zero salary are underreporting burn and overestimating runway. Investors will find this during due diligence and it erodes trust." } },
+      { "@type": "Question", "name": "What happens when a startup runs out of runway?", "acceptedAnswer": { "@type": "Answer", "text": "When runway hits zero with no revenue or funding secured, the startup typically shuts down. In India, this means settling vendor dues, employee severance (if applicable), and formally striking off the company with MCA. Some founders try a last-minute bridge round from angels or friends-and-family, but these are expensive (often 20-30% discount on future round valuation). Prevention is vastly better." } },
+      { "@type": "Question", "name": "How accurate are runway calculations with changing revenue?", "acceptedAnswer": { "@type": "Answer", "text": "Runway calculations are most accurate for static burn. Once you add revenue growth, they become probabilistic — the faster revenue grows, the faster runway extends, but growth also often requires more spend. Our calculator handles revenue growth scenarios with a month-by-month simulation. Treat the growth scenario as optimistic and the static scenario as your floor — plan for the floor, aspire to the ceiling." } }
+    ]
+  }
+]
+</script>
+<style>
+.calc-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.calc-stat {
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+.calc-stat-num {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  word-break: break-word;
+}
+.calc-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+.runway-scenarios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+.runway-scenario {
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+  background: var(--paper-2);
+}
+.runway-scenario-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.runway-scenario-num {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 28px;
+  color: var(--ink);
+}
+.runway-scenario-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+@media (max-width: 620px) {
+  .calc-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .runway-scenarios { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../products.html">Products</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../tools.html" class="active">Tools</a></li>
+      <li><a href="../community.html">Community</a></li>
+      <li><a href="../account.html" id="navAccountLink">My Account</a></li>
+    </ul>
+    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html" onclick="toggleMenu()">Home</a>
+  <a href="../products.html" onclick="toggleMenu()">Products</a>
+  <a href="../blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="../tools.html" onclick="toggleMenu()">Tools</a>
+  <a href="../community.html" onclick="toggleMenu()">Community</a>
+  <a href="../account.html" onclick="toggleMenu()">My Account</a>
+</div>
+
+<!-- TOOL HERO -->
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="tool-hero-label">§ FREE CALCULATOR · NO SIGNUP</div>
+    <h1><em>Startup Runway</em> Calculator</h1>
+    <p class="tool-hero-sub">Know your runway. Enter your bank balance and monthly burn — see exactly how many months you have before you need to either make money or raise money.</p>
+    <div class="trust-row">
+      <span class="trust-pill"><strong>Free</strong> · No signup</span>
+      <span class="trust-pill"><strong>Instant</strong> results</span>
+      <span class="trust-pill">Built for <strong>Indian founders</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL UI -->
+<div class="wrap">
+  <div class="tool-ui">
+    <div class="tool-ui-title">Calculate Your Runway</div>
+    <div class="tool-input-row">
+      <div class="tool-input-group">
+        <label for="cash">Current Cash Balance (₹)</label>
+        <input type="number" id="cash" class="tool-input" placeholder="e.g. 5000000" min="0"/>
+        <span style="font-family:'Caveat',cursive;font-size:13px;color:var(--muted)">Bank balance + FDs + liquid investments</span>
+      </div>
+      <div class="tool-input-group">
+        <label for="monthly-revenue">Monthly Revenue (₹)</label>
+        <input type="number" id="monthly-revenue" class="tool-input" placeholder="0 if pre-revenue" min="0" value="0"/>
+      </div>
+      <div class="tool-input-group">
+        <label for="monthly-expenses">Monthly Operating Expenses (₹)</label>
+        <input type="number" id="monthly-expenses" class="tool-input" placeholder="e.g. 400000" min="0"/>
+      </div>
+      <div class="tool-input-group">
+        <label for="growth-rate">Expected Monthly Revenue Growth</label>
+        <select id="growth-rate" class="tool-input">
+          <option value="0" selected>0% — No growth assumed</option>
+          <option value="5">5% — Slow and steady</option>
+          <option value="10">10% — Moderate growth</option>
+          <option value="20">20% — Fast growth</option>
+          <option value="30">30% — Very aggressive</option>
+        </select>
+      </div>
+    </div>
+    <div class="tool-input-actions">
+      <button class="tool-generate-btn" onclick="calculate()">Calculate Runway 🛫</button>
+      <button class="tool-reset-btn" onclick="resetCalc()">Reset</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="calc-result-box" id="result-box">
+      <div class="calc-result-label">Runway (Base Scenario)</div>
+      <div class="calc-result-number" id="result-number">—</div>
+      <div class="calc-status" id="status">—</div>
+
+      <div class="runway-scenarios" id="scenarios-row" style="display:none">
+        <div class="runway-scenario">
+          <div class="runway-scenario-label">Base (0% growth)</div>
+          <div class="runway-scenario-num" id="base-runway">—</div>
+          <div class="runway-scenario-sub" id="base-date">—</div>
+        </div>
+        <div class="runway-scenario">
+          <div class="runway-scenario-label" id="growth-label">With Growth</div>
+          <div class="runway-scenario-num" id="growth-runway">—</div>
+          <div class="runway-scenario-sub" id="growth-date">—</div>
+        </div>
+      </div>
+
+      <div class="calc-stat-grid">
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="net-burn">—</span>
+          <span class="calc-stat-label">Net Monthly Burn</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="cash-out-date">—</span>
+          <span class="calc-stat-label">Cash Exhaustion</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="profitable">—</span>
+          <span class="calc-stat-label">Profitable Now?</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="gross-burn-stat">—</span>
+          <span class="calc-stat-label">Gross Monthly Burn</span>
+        </div>
+      </div>
+      <div class="calc-tip" id="tip" style="margin-top:16px">—</div>
+    </div>
+  </div>
+
+  <!-- POPULAR TOOLS -->
+  <div class="popular-tools">
+    <a href="profit-margin-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">📊</div>
+      <div class="ptc-name">Profit Margin Calculator</div>
+      <div class="ptc-desc">Know your real business profitability</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="break-even-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">⚖️</div>
+      <div class="ptc-name">Break-Even Calculator</div>
+      <div class="ptc-desc">Units needed before you stop losing money</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="freelancer-rate-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">💰</div>
+      <div class="ptc-name">Freelancer Rate Calculator</div>
+      <div class="ptc-desc">Know exactly what to charge per hour</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="business-name-generator.html" class="popular-tool-card">
+      <div class="ptc-icon">🏢</div>
+      <div class="ptc-name">Business Name Generator</div>
+      <div class="ptc-desc">8 unique name ideas for your startup</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="tool-content">
+
+    <h2>What is Startup Runway and Why Does It Matter?</h2>
+    <p>Runway is how many months your startup can survive at its current burn rate before running out of cash. It's the most important number for any pre-profitability startup — because time is the only resource you can't get back.</p>
+    <p>Think of runway like the fuel in your rocket. You need enough to either reach orbit (profitability) or reach a refuelling station (your next funding round). If you run dry mid-flight, the company doesn't gently float down — it crashes. This is why experienced founders obsess over runway the way bootstrappers obsess over profit margin.</p>
+    <p>Knowing your runway precisely changes how you make decisions. With 18+ months, you have the luxury to experiment with product, hire carefully, and negotiate from strength. With 6 months, every decision is survival-mode — and survival-mode decisions are often bad long-term decisions made under pressure. Most Indian founders have a vague sense of "we have enough for a few months" — this tool replaces that vagueness with a precise number you can act on.</p>
+
+    <h2>What Counts as "Burn Rate"? (What to Include and Exclude)</h2>
+    <p>This is where most founders make mistakes. Your real burn rate is higher than you think. Here's exactly what to include in monthly expenses for Indian startups:</p>
+    <p><strong>Include:</strong> Founder salaries (even if reduced), all team salaries and contractor payments, office rent + utilities, AWS/GCP/Azure bills, all SaaS subscriptions (Slack, Notion, Figma, CRM, etc.), marketing spend, chartered accountant/legal fees, loan EMIs, and a 10-15% buffer for unexpected costs (legal notices, equipment failures, emergency travel).</p>
+    <p><strong>Pro tip for India — annual expenses:</strong> Divide annual costs by 12 and add to monthly burn. This includes: company registration renewal, trademark fees, domain renewals, annual software plans, and CA fees if billed annually.</p>
+    <p><strong>What's trickier — AWS credits and government grants:</strong> If you have AWS Activate or Google for Startups credits, these reduce your effective cash burn for infrastructure. But they're time-limited — when they expire, your burn jumps. Don't count these as permanent cost reductions in your runway calculation. Similarly, government grants (Startup India Seed Fund, state incubator grants) should only enter your cash balance once the money is actually received — not when approved.</p>
+    <p><strong>Exclude from expenses but track separately:</strong> Accounts payable you've deferred, founder deferred salary, unpaid vendor invoices. These are liabilities that inflate your cash position artificially — your true runway may be shorter once these are paid.</p>
+
+    <h2>What's a Safe Runway for an Indian Startup?</h2>
+    <p><strong>Bootstrapped, pre-revenue:</strong> You need 12-18 months of personal financial runway (savings + partner income + freelance income). This lets you build without desperation. Most successful bootstrapped Indian companies — Zerodha, Zoho, Freshworks in early days — had founders with enough personal financial cushion to not need revenue immediately.</p>
+    <p><strong>Bootstrapped, post-revenue:</strong> If your business is generating ₹3-5L/month and growing, you can run lean with 6 months of runway — because you're actively building toward profitability. Track net burn closely and adjust the moment revenue dips.</p>
+    <p><strong>Funded startup:</strong> The standard advice is 18-24 months after each funding round. Fundraising in India takes 4-8 months — so you need to start the process at 12+ months runway. The 18-month target gives you 12 months to make meaningful progress and 6 months to close the round. Anything under 18 months as a funded startup should trigger a burn reduction or fundraise conversation.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit-card reveal">
+        <div class="bc-icon">⏱️</div>
+        <h4>Know Your Actual Timeline</h4>
+        <p>Replace "we have a few months" with a precise number. Make decisions with full information.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">🎯</div>
+        <h4>Fundraise From Strength</h4>
+        <p>Know exactly when to start talking to investors — ideally 12+ months before you need the money.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">📉</div>
+        <h4>Model Growth Scenarios</h4>
+        <p>See how different revenue growth rates extend your runway — and which milestones to hit first.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">🛡️</div>
+        <h4>Avoid Cash Crisis</h4>
+        <p>Identify danger zones early, before you're making desperate decisions under time pressure.</p>
+      </div>
+    </div>
+
+    <h2>How to Extend Your Runway Without Raising Money</h2>
+    <ol>
+      <li><strong>Audit your SaaS stack ruthlessly.</strong> The average Indian startup pays for 15-25 SaaS tools. Half aren't used more than once a week. Cut anything under 3 uses/week. Typical saving: ₹15,000-40,000/month for a small team.</li>
+      <li><strong>Delay non-critical hiring.</strong> Every full-time hire in India costs ₹50,000-2,00,000/month including salary, PF, gratuity accrual, and management overhead. If a hire is "nice to have" vs "critical path to next milestone," delay by 60-90 days. This adds 0.5-1 month of runway per hire delayed.</li>
+      <li><strong>Raise prices immediately.</strong> This is the single highest-ROI action for a startup with any revenue. A 20% price increase on ₹3L/month revenue = ₹60,000 more/month = roughly 15% more runway with zero other changes. Most founders are scared to raise prices — most find retention barely moves.</li>
+      <li><strong>Explore government and institutional grants.</strong> Startup India Seed Fund (up to ₹50L for early-stage), state incubator grants, BIRAC for biotech, NASSCOM for tech — these are non-dilutive cash injections. The application process takes 1-2 months but the runway extension is real. Also check if you qualify for DPIIT income tax exemptions under 80IAC.</li>
+      <li><strong>Revenue-based financing and im-voicing.</strong> Platforms like Velocity, Klub, and GetVantage provide revenue-based financing to Indian D2C and SaaS companies. Repayment is a % of revenue, not fixed EMIs. Less dilutive than equity, more flexible than debt. Can bridge a 3-6 month gap while you close a proper round.</li>
+    </ol>
+
+    <h2>Fundraising Timelines in India — When to Start Talking to Investors</h2>
+    <p>The Indian startup funding ecosystem has matured significantly, but fundraising still takes longer than most founders expect. Here's a realistic timeline:</p>
+    <p><strong>Angel round (₹25L - ₹1.5 Cr):</strong> 2-4 months from first meeting to money in bank. Angels move faster but diligence varies wildly.</p>
+    <p><strong>Pre-seed / seed round (₹1.5 Cr - ₹8 Cr):</strong> 3-6 months. Institutional angels and micro-VCs (100X, Blume, Antler, etc.) have structured processes. Due diligence on financials, team, and market takes 4-6 weeks after term sheet.</p>
+    <p><strong>Series A and beyond (₹8 Cr+):</strong> 4-8 months from first meeting to close. Large VC funds like Sequoia, Accel, and Peak XV run formal processes. Expect 6-10 partner meetings, a data room, financial model reviews, customer reference calls, and legal documentation.</p>
+    <p>The golden rule: start fundraising when you have 12 months of runway left. Any less and investors know you're desperate, which means worse terms, more pressure, and founders accepting deals they shouldn't. Any more and you're raising too early — you haven't de-risked enough to command a good valuation.</p>
+
+    <h2>Related Blog Posts</h2>
+    <div class="related-posts">
+      <a href="../blog/micro-saas-ideas-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">Business Ideas</div>
+        <div class="rpc-title">35 Micro-SaaS Ideas for Indian Founders in 2025</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+      <a href="../blog/no-code-saas-ideas-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">No-Code</div>
+        <div class="rpc-title">No-Code SaaS Ideas You Can Build in India Right Now</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+      <a href="../blog/government-schemes-consulting-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">Funding</div>
+        <div class="rpc-title">Government Schemes for Startups in India — Complete Guide</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is startup runway and why does it matter?</div>
+        <div class="faq-a">Startup runway is the number of months your startup can operate before running out of cash, given your current burn rate and cash balance. It matters because it defines your decision window — how long you have to reach profitability, close a funding round, or pivot. A startup with 3 months of runway has almost no room to manoeuvre. One with 18+ months can experiment, iterate, and negotiate from strength.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's a good startup runway to have?</div>
+        <div class="faq-a">The standard advice is 18-24 months. This gives you enough time to raise a next round (fundraising takes 4-8 months in India), run meaningful experiments, hire and onboard key people, and respond to market feedback. Bootstrapped founders should target 6+ months of personal savings as a personal runway buffer, separate from business cash.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What should I include in my monthly burn rate?</div>
+        <div class="faq-a">Include everything: founder salaries (even if partially deferred), team salaries, rent and utilities, cloud/hosting, SaaS subscriptions, marketing spend, contractor payments, legal and compliance costs, loan EMIs, and a 10-15% buffer for unexpected expenses. Many founders undercount by 20-30% by forgetting quarterly or annual expenses — divide these by 12 and include monthly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I extend my startup's runway without raising money?</div>
+        <div class="faq-a">Five practical levers: (1) Cut SaaS tools you use less than weekly. (2) Move to shared office or WFH to reduce rent. (3) Delay non-critical hires by 60-90 days. (4) Raise prices — even 15-20% can significantly reduce net burn. (5) Explore revenue-based financing or government grants (Startup India, DPIIT, state schemes) which are non-dilutive.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When should I start fundraising based on runway?</div>
+        <div class="faq-a">Start fundraising when you have 12-18 months of runway left. Fundraising in India takes 4-8 months from first meeting to money in the bank. If you wait until you have 6 months left, you're fundraising under desperation — investors can sense it and will negotiate harder. The best fundraises happen from a position of strength with 12+ months of runway.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between gross burn and net burn?</div>
+        <div class="faq-a">Gross burn is your total monthly operating expenses before any revenue. Net burn is gross burn minus monthly revenue. Runway should always be calculated on net burn (how much cash you're actually losing per month). A company with ₹10L gross burn and ₹7L revenue has a ₹3L net burn — very different runway implications.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do government grants affect my runway calculation?</div>
+        <div class="faq-a">Government grants (DPIIT recognition, Startup India Seed Fund, state incubator grants) can meaningfully extend runway. Add approved grant amounts to your cash balance once received — not when applied for. Some schemes also provide tax benefits (80IAC) that reduce your effective cash outflow. Don't plan runway around grants in pipeline — only count cash in hand.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Should founder salaries count as burn rate?</div>
+        <div class="faq-a">Yes, absolutely. If you're paying yourself (which you should, even a reduced amount), it's burn. If you're deferring salary, it's a liability that will need to be paid eventually. The dangerous scenario: founders who claim zero salary are underreporting burn and overestimating runway. Investors will find this during due diligence and it erodes trust.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens when a startup runs out of runway?</div>
+        <div class="faq-a">When runway hits zero with no revenue or funding secured, the startup typically shuts down. In India, this means settling vendor dues, employee severance (if applicable), and formally striking off the company with MCA. Some founders try a last-minute bridge round from angels or friends-and-family, but these are expensive. Prevention is vastly better than the cure.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How accurate are runway calculations with changing revenue?</div>
+        <div class="faq-a">Runway calculations are most accurate for static burn. Once you add revenue growth, they become probabilistic. Our calculator handles revenue growth scenarios with a month-by-month simulation. Treat the growth scenario as optimistic and the static scenario as your floor — plan for the floor, aspire to the ceiling.</div>
+      </div>
+    </div>
+
+  </div><!-- end tool-content -->
+</div><!-- end wrap -->
+
+<!-- FOOTER -->
+<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+    <div>
+      <div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div>
+      <div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../community.html">Community</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared.js"></script>
+<script>
+function fmtNum(n) {
+  if (Math.abs(n) >= 10000000) return '₹' + (n/10000000).toFixed(1) + 'Cr';
+  if (Math.abs(n) >= 100000) return '₹' + (n/100000).toFixed(1) + 'L';
+  if (Math.abs(n) >= 1000) return '₹' + (n/1000).toFixed(1) + 'k';
+  return '₹' + Math.abs(Math.round(n));
+}
+
+function getExhaustionDate(monthsFromNow) {
+  if (!isFinite(monthsFromNow) || monthsFromNow > 600) return 'Never (profitable)';
+  const d = new Date();
+  d.setMonth(d.getMonth() + Math.ceil(monthsFromNow));
+  return d.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+}
+
+function simulateRunway(cash, revenue, expenses, growthRate) {
+  // Month-by-month simulation up to 60 months
+  let balance = cash;
+  let rev = revenue;
+  const gr = growthRate / 100;
+  for (let m = 0; m < 60; m++) {
+    const netBurn = expenses - rev;
+    if (netBurn <= 0) return Infinity; // profitable
+    balance -= netBurn;
+    if (balance <= 0) return m + (balance + netBurn) / netBurn; // fractional month
+    rev = rev * (1 + gr);
+  }
+  return 60; // capped
+}
+
+function calculate() {
+  const cash     = parseFloat(document.getElementById('cash').value) || 0;
+  const revenue  = parseFloat(document.getElementById('monthly-revenue').value) || 0;
+  const expenses = parseFloat(document.getElementById('monthly-expenses').value) || 0;
+  const growthRate = parseFloat(document.getElementById('growth-rate').value) || 0;
+
+  if (cash <= 0 || expenses <= 0) return;
+
+  const netBurn = expenses - revenue;
+  const isProfitable = netBurn <= 0;
+
+  const box = document.getElementById('result-box');
+  box.classList.add('active');
+
+  // Base runway (no growth)
+  const baseRunway = isProfitable ? Infinity : cash / netBurn;
+  // Growth runway
+  const growthRunway = growthRate > 0 ? simulateRunway(cash, revenue, expenses, growthRate) : baseRunway;
+
+  const displayRunway = isFinite(baseRunway) ? Math.floor(baseRunway) + ' months' : '∞ (profitable!)';
+  document.getElementById('result-number').textContent = displayRunway;
+
+  document.getElementById('net-burn').textContent = isProfitable ? '+' + fmtNum(Math.abs(netBurn)) : fmtNum(netBurn);
+  document.getElementById('cash-out-date').textContent = isFinite(baseRunway) ? getExhaustionDate(baseRunway) : 'N/A';
+  document.getElementById('profitable').textContent = isProfitable ? 'Yes ✓' : 'No';
+  document.getElementById('gross-burn-stat').textContent = fmtNum(expenses);
+
+  // Scenarios row
+  const scenariosRow = document.getElementById('scenarios-row');
+  if (growthRate > 0) {
+    scenariosRow.style.display = 'grid';
+    document.getElementById('base-runway').textContent = isFinite(baseRunway) ? Math.floor(baseRunway) + ' mo' : '∞';
+    document.getElementById('base-date').textContent = isFinite(baseRunway) ? getExhaustionDate(baseRunway) : 'Profitable';
+    document.getElementById('growth-label').textContent = 'With ' + growthRate + '% MoM Growth';
+    document.getElementById('growth-runway').textContent = isFinite(growthRunway) ? Math.floor(growthRunway) + ' mo' : '∞';
+    document.getElementById('growth-date').textContent = isFinite(growthRunway) ? getExhaustionDate(growthRunway) : 'Profitable';
+  } else {
+    scenariosRow.style.display = 'none';
+  }
+
+  const statusEl = document.getElementById('status');
+  const tipEl    = document.getElementById('tip');
+
+  if (isProfitable) {
+    statusEl.textContent = '✓ Profitable';
+    statusEl.className = 'calc-status good';
+    tipEl.textContent = 'You\'re cash-flow positive — that\'s a great position. Your "runway" is effectively infinite. Focus on growing revenue while maintaining or improving margins. If you want to raise money, now is the ideal time — you\'re negotiating from strength, not desperation.';
+  } else if (baseRunway >= 18) {
+    statusEl.textContent = '✓ Strong Runway';
+    statusEl.className = 'calc-status good';
+    tipEl.textContent = 'You have ' + Math.floor(baseRunway) + ' months of runway — solid position. If you\'re planning to raise a round, start conversations now. 18+ months of runway is the sweet spot: enough time to make meaningful progress before investors, but not so long that you look like you don\'t need money.';
+  } else if (baseRunway >= 6) {
+    statusEl.textContent = '⚡ Start Fundraising Now';
+    statusEl.className = 'calc-status warn';
+    tipEl.textContent = 'You have ' + Math.floor(baseRunway) + ' months of runway. This is the "start fundraising immediately" zone. Fundraising in India takes 4-8 months minimum. Also explore burn reduction in parallel — can you cut ₹30-50k/month from expenses without slowing growth?';
+  } else {
+    statusEl.textContent = '🚨 Critical — Act Immediately';
+    statusEl.className = 'calc-status danger';
+    tipEl.textContent = 'You have ' + Math.floor(baseRunway) + ' months of runway — this is an emergency. In the next 2 weeks: (1) Identify the top 3 expenses you can cut immediately. (2) Call your best customers and close any pending deals. (3) Have an honest conversation with your team. (4) Explore bridge funding from existing investors or angels who know you.';
+  }
+}
+
+function resetCalc() {
+  document.getElementById('cash').value = '';
+  document.getElementById('monthly-revenue').value = '0';
+  document.getElementById('monthly-expenses').value = '';
+  document.getElementById('growth-rate').value = '0';
+  document.getElementById('result-box').classList.remove('active');
+  document.getElementById('scenarios-row').style.display = 'none';
+}
+
+document.querySelectorAll('.tool-input').forEach(el => el.addEventListener('input', calculate));
+document.querySelectorAll('.tool-input').forEach(el => el.addEventListener('change', calculate));
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+
+(function() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>

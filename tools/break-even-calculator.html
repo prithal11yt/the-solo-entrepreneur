@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<link rel="shortcut icon" href="../favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Break-Even Calculator for Indian Startups — Free Tool | The Solo Entrepreneur</title>
+<meta name="description" content="Calculate your break-even point in units and days. Free tool for Indian entrepreneurs — enter your fixed costs, variable costs, and price to know when you'll be profitable."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/tools/break-even-calculator.html"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/tools/break-even-calculator.html"/>
+<meta property="og:title" content="Break-Even Calculator for Indian Startups — Free Tool"/>
+<meta property="og:description" content="Calculate your break-even point in units and days. Free tool for Indian entrepreneurs — enter your fixed costs, variable costs, and price to know when you'll be profitable."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Break-Even Calculator for Indian Startups — Free Tool"/>
+<meta name="twitter:description" content="Calculate your break-even point in units and days. Free tool for Indian entrepreneurs — enter your fixed costs, variable costs, and price to know when you'll be profitable."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared.css"/>
+<!-- JSON-LD -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Break-Even Calculator for Indian Startups",
+    "url": "https://www.thesoloentrepreneur.in/tools/break-even-calculator.html",
+    "description": "Calculate your break-even point in units and days. Free tool for Indian entrepreneurs.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+    "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the break-even point in business?", "acceptedAnswer": { "@type": "Answer", "text": "The break-even point is the number of units (or revenue) you need to sell to cover all your costs — fixed and variable — resulting in zero profit and zero loss. Every unit sold beyond the break-even point generates pure profit. It's the most important number to calculate before launching or scaling any business." } },
+      { "@type": "Question", "name": "How do I calculate the break-even point for a product business?", "acceptedAnswer": { "@type": "Answer", "text": "Break-Even Units = Fixed Costs ÷ (Selling Price − Variable Cost per unit). The denominator is called the Contribution Margin. For example: ₹1,00,000 fixed costs ÷ (₹500 price − ₹200 variable cost) = 333 units. Sell 333 units and you're at break-even. Unit 334 onwards is profit." } },
+      { "@type": "Question", "name": "What's the difference between fixed costs and variable costs?", "acceptedAnswer": { "@type": "Answer", "text": "Fixed costs stay the same regardless of how many units you sell — rent, staff salaries, SaaS subscriptions, loan EMIs. Variable costs change with every unit — raw materials, packaging, shipping, payment gateway fees. The key insight: once you pass break-even, fixed costs are already covered, so each additional unit costs only the variable cost to produce." } },
+      { "@type": "Question", "name": "What's a realistic break-even timeline for an Indian startup?", "acceptedAnswer": { "@type": "Answer", "text": "For bootstrapped product startups in India, breaking even within 6-12 months is achievable. D2C brands often take 12-18 months due to high initial marketing spend. SaaS companies can take 18-36 months to break even on a unit economics basis. Service businesses (agencies, consulting) typically break even within 1-3 months of the first client." } },
+      { "@type": "Question", "name": "How do I lower my break-even point?", "acceptedAnswer": { "@type": "Answer", "text": "Five ways: (1) Reduce fixed costs — cut non-essential subscriptions, negotiate rent, delay hiring. (2) Increase your selling price — even 10-15% raises contribution margin significantly. (3) Reduce variable cost per unit — better supplier deals, optimise packaging, negotiate logistics. (4) Focus on higher-margin products in your range. (5) Change the model — switch from physical to digital, or one-time to subscription." } },
+      { "@type": "Question", "name": "Can a service business also calculate break-even?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For a service business, replace 'units' with 'clients' or 'hours.' Your variable cost per client is the direct time/resources to deliver the service. Fixed costs are your overhead (rent, staff, software). Break-even = Fixed Costs ÷ (Revenue per client − Variable cost per client). This works for agencies, consultants, tutors, trainers — any service model." } },
+      { "@type": "Question", "name": "How does GST affect my break-even calculation?", "acceptedAnswer": { "@type": "Answer", "text": "Use ex-GST prices in your break-even calculation. If you charge ₹590 including 18% GST, your actual revenue per unit is ₹500. GST collected doesn't belong to you — it's a pass-through to the government. Similarly, GST you pay on purchases (inputs) can be claimed as ITC, which effectively reduces your variable costs if you're GST-registered." } },
+      { "@type": "Question", "name": "What is contribution margin and why does it matter?", "acceptedAnswer": { "@type": "Answer", "text": "Contribution margin = Selling Price − Variable Cost per unit. It's the amount each sale 'contributes' toward covering fixed costs and generating profit. A high contribution margin means you break even faster and generate more profit per unit beyond break-even. It's also why pricing matters so much — a ₹50 price increase on a ₹500 product increases contribution margin by 10%, dramatically reducing break-even units." } },
+      { "@type": "Question", "name": "Should I calculate break-even before launching my business?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely — this is the most important financial exercise before launch. It tells you: how many customers you need, whether your pricing is viable, how long you can sustain losses before needing more capital, and which cost items to attack first. Most failed Indian startups could have predicted their problems before launch with a simple break-even analysis." } },
+      { "@type": "Question", "name": "How often should I recalculate my break-even point?", "acceptedAnswer": { "@type": "Answer", "text": "Recalculate whenever you: change your pricing, hire new staff (fixed cost change), add significant new subscriptions or expenses, change your product mix, or see your variable costs shift (supplier price change, new shipping rates). In practice, most businesses should review this quarterly at minimum." } }
+    ]
+  }
+]
+</script>
+<style>
+.calc-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.calc-stat {
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+.calc-stat-num {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 18px;
+  color: var(--ink);
+  display: block;
+}
+.calc-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+.be-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.be-example {
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 16px;
+}
+.be-example-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.be-example-name {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.be-example ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.be-example li {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: var(--muted);
+  padding: 2px 0;
+}
+.be-example .be-result {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule);
+}
+@media (max-width: 620px) { .calc-stat-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../products.html">Products</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../tools.html" class="active">Tools</a></li>
+      <li><a href="../community.html">Community</a></li>
+      <li><a href="../account.html" id="navAccountLink">My Account</a></li>
+    </ul>
+    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html" onclick="toggleMenu()">Home</a>
+  <a href="../products.html" onclick="toggleMenu()">Products</a>
+  <a href="../blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="../tools.html" onclick="toggleMenu()">Tools</a>
+  <a href="../community.html" onclick="toggleMenu()">Community</a>
+  <a href="../account.html" onclick="toggleMenu()">My Account</a>
+</div>
+
+<!-- TOOL HERO -->
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="tool-hero-label">§ FREE CALCULATOR · NO SIGNUP</div>
+    <h1>Break-Even Point <em>Calculator</em></h1>
+    <p class="tool-hero-sub">How many units do you need to sell before you stop losing money? Find out in 30 seconds. Essential before you spend a single rupee on marketing.</p>
+    <div class="trust-row">
+      <span class="trust-pill"><strong>Free</strong> · No signup</span>
+      <span class="trust-pill"><strong>Instant</strong> results</span>
+      <span class="trust-pill">Built for <strong>Indian founders</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL UI -->
+<div class="wrap">
+  <div class="tool-ui">
+    <div class="tool-ui-title">Enter Your Numbers</div>
+    <div class="tool-input-row">
+      <div class="tool-input-group">
+        <label for="price">Selling Price per Unit (₹)</label>
+        <input type="number" id="price" class="tool-input" placeholder="e.g. 599" min="0"/>
+      </div>
+      <div class="tool-input-group">
+        <label for="variable-cost">Variable Cost per Unit (₹)</label>
+        <input type="number" id="variable-cost" class="tool-input" placeholder="e.g. 200" min="0"/>
+        <span style="font-family:'Caveat',cursive;font-size:13px;color:var(--muted)">Materials, packaging, shipping per unit</span>
+      </div>
+      <div class="tool-input-group">
+        <label for="fixed-costs">Monthly Fixed Costs (₹)</label>
+        <input type="number" id="fixed-costs" class="tool-input" placeholder="e.g. 80000" min="0"/>
+        <span style="font-family:'Caveat',cursive;font-size:13px;color:var(--muted)">Rent, salaries, subscriptions</span>
+      </div>
+      <div class="tool-input-group">
+        <label for="expected-units">Expected Monthly Sales (units)</label>
+        <input type="number" id="expected-units" class="tool-input" placeholder="Optional — for days estimate" min="0"/>
+      </div>
+    </div>
+    <div class="tool-input-actions">
+      <button class="tool-generate-btn" onclick="calculate()">Calculate Break-Even ⚖️</button>
+      <button class="tool-reset-btn" onclick="resetCalc()">Reset</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="calc-result-box" id="result-box">
+      <div class="calc-result-label">Break-Even Units per Month</div>
+      <div class="calc-result-number" id="result-number">—</div>
+      <div class="calc-status" id="status">—</div>
+      <div class="calc-stat-grid">
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="be-revenue">—</span>
+          <span class="calc-stat-label">Break-Even Revenue</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="contrib-margin">—</span>
+          <span class="calc-stat-label">Contribution Margin</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="be-days">—</span>
+          <span class="calc-stat-label">Days to Break-Even</span>
+        </div>
+        <div class="calc-stat">
+          <span class="calc-stat-num" id="monthly-profit">—</span>
+          <span class="calc-stat-label">Monthly Profit at Target</span>
+        </div>
+      </div>
+      <div class="calc-tip" id="tip" style="margin-top:16px">—</div>
+    </div>
+  </div>
+
+  <!-- POPULAR TOOLS -->
+  <div class="popular-tools">
+    <a href="profit-margin-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">📊</div>
+      <div class="ptc-name">Profit Margin Calculator</div>
+      <div class="ptc-desc">Know your real business profitability</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="freelancer-rate-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">💰</div>
+      <div class="ptc-name">Freelancer Rate Calculator</div>
+      <div class="ptc-desc">Know exactly what to charge per hour</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="startup-runway-calculator.html" class="popular-tool-card">
+      <div class="ptc-icon">🛫</div>
+      <div class="ptc-name">Startup Runway Calculator</div>
+      <div class="ptc-desc">How many months of cash do you have?</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+    <a href="business-name-generator.html" class="popular-tool-card">
+      <div class="ptc-icon">🏢</div>
+      <div class="ptc-name">Business Name Generator</div>
+      <div class="ptc-desc">8 unique name ideas for your startup</div>
+      <div class="ptc-cta">Try free →</div>
+    </a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="tool-content">
+
+    <h2>What is Break-Even Analysis and Why Every Founder Needs It?</h2>
+    <p>Break-even analysis answers the most fundamental business question: at what point do I stop losing money? It tells you the exact number of units, customers, or revenue you need to cover all your costs. Below break-even, every sale still results in a net loss. Above it, every sale is profit.</p>
+    <p>Most Indian founders skip this calculation and jump straight to growth mode — spending on ads, hiring, stocking inventory — before they even know if the unit economics work. This is how businesses burn through their initial capital and fail before they've had a real chance to learn.</p>
+    <p>Do the break-even analysis before spending anything significant. If your break-even is 50 units/month and you can realistically sell 200, you have a viable business. If your break-even is 5,000 units/month and you have no distribution channel, you need to rethink the model — specifically your cost structure or pricing.</p>
+
+    <h2>The 3 Numbers You Need to Know</h2>
+
+    <h3>Fixed Costs</h3>
+    <p>These are costs you pay every month regardless of sales: office/warehouse rent (₹15,000-80,000 for most Indian SMBs), full-time salaries, SaaS tools (Shopify, AWS, CRM), loan EMIs, insurance. The only way to lower your break-even is to either reduce these fixed costs or increase your contribution margin. Fixed costs are your biggest enemy early-stage.</p>
+
+    <h3>Variable Costs</h3>
+    <p>These scale directly with sales: raw materials, packaging (₹20-80 per unit for most D2C brands), shipping (₹40-120/order for most Indian couriers), payment gateway fees (1.5-3% of transaction value), and returns processing. Variable costs per unit should ideally fall as you scale (volume discounts from suppliers), which automatically lowers your break-even over time.</p>
+
+    <h3>Selling Price</h3>
+    <p>The most powerful lever you have. A ₹50 price increase on a ₹500 product increases contribution margin by ₹50 and slashes your break-even units by 10-15%. Many Indian founders are scared to price higher because they compare to cheap Chinese imports on Amazon. But your real competition isn't always the cheapest — it's the most trusted, most convenient, best for a specific use case. Price for your positioning, not for the bottom of the market.</p>
+
+    <h2>Break-Even Examples for Common Indian Business Types</h2>
+    <div class="be-examples">
+      <div class="be-example">
+        <div class="be-example-type">D2C Product</div>
+        <div class="be-example-name">Skincare Brand</div>
+        <ul>
+          <li>Price: ₹799/unit</li>
+          <li>Variable cost: ₹280/unit</li>
+          <li>Fixed costs: ₹1,20,000/month</li>
+        </ul>
+        <div class="be-result">Break-even: ~231 units/month</div>
+      </div>
+      <div class="be-example">
+        <div class="be-example-type">SaaS</div>
+        <div class="be-example-name">B2B Tool</div>
+        <ul>
+          <li>Price: ₹2,999/month per seat</li>
+          <li>Variable cost: ₹150/seat (infra)</li>
+          <li>Fixed costs: ₹2,50,000/month</li>
+        </ul>
+        <div class="be-result">Break-even: ~88 paying seats</div>
+      </div>
+      <div class="be-example">
+        <div class="be-example-type">Agency</div>
+        <div class="be-example-name">Digital Marketing</div>
+        <ul>
+          <li>Revenue: ₹50,000/client</li>
+          <li>Variable cost: ₹15,000 (freelancer work)</li>
+          <li>Fixed costs: ₹1,80,000/month</li>
+        </ul>
+        <div class="be-result">Break-even: ~5.1 clients/month</div>
+      </div>
+      <div class="be-example">
+        <div class="be-example-type">Food / Tiffin</div>
+        <div class="be-example-name">Tiffin Service</div>
+        <ul>
+          <li>Price: ₹3,500/month per customer</li>
+          <li>Variable cost: ₹1,800/customer</li>
+          <li>Fixed costs: ₹45,000/month</li>
+        </ul>
+        <div class="be-result">Break-even: ~27 subscribers</div>
+      </div>
+      <div class="be-example">
+        <div class="be-example-type">EdTech</div>
+        <div class="be-example-name">Online Course</div>
+        <ul>
+          <li>Price: ₹4,999/course</li>
+          <li>Variable cost: ₹200 (payment gateway)</li>
+          <li>Fixed costs: ₹80,000/month</li>
+        </ul>
+        <div class="be-result">Break-even: ~17 enrolments/month</div>
+      </div>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit-card reveal">
+        <div class="bc-icon">🎯</div>
+        <h4>Know Before You Spend</h4>
+        <p>Calculate break-even before hiring, before ads, before inventory. Know what you need to sell first.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">💡</div>
+        <h4>Validate Your Model</h4>
+        <p>If break-even seems unreachable, it's a sign to rethink pricing or cost structure before it's too late.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">📉</div>
+        <h4>Identify Cost Levers</h4>
+        <p>See instantly how a ₹50 price increase or ₹20,000 cost cut changes your break-even units.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="bc-icon">🏦</div>
+        <h4>Impress Investors</h4>
+        <p>Any investor worth their term sheet will ask for your unit economics. Have this ready.</p>
+      </div>
+    </div>
+
+    <h2>How to Lower Your Break-Even Point</h2>
+    <ol>
+      <li><strong>Reduce fixed costs.</strong> Audit every recurring expense. Cancel SaaS tools you use less than 3x/week. Negotiate your office rent (post-COVID, many landlords in tier-2 cities offer 15-25% discounts for longer commitments). Delay that hire by 60 days if you can manage.</li>
+      <li><strong>Raise your price.</strong> Most Indian founders underestimate how much they can charge. Test a 15-20% price increase on new customers. If churn doesn't spike, you've just lowered your break-even by 10-15% with zero other changes.</li>
+      <li><strong>Reduce variable cost per unit.</strong> Order larger quantities to unlock volume discounts from suppliers. Optimise packaging — often 30-40% of variable cost for D2C brands. Renegotiate shipping rates (most courier companies give discounts at 500+ shipments/month).</li>
+      <li><strong>Focus on high-CM products.</strong> If you sell multiple products, break even on each individually. Double down on marketing for the product with the highest contribution margin — that's your fastest path to overall profitability.</li>
+      <li><strong>Change the business model.</strong> A one-time sale has no recurring revenue. A subscription converts the same customer to predictable monthly revenue. If you can convert 30% of buyers to a subscription, your break-even drops dramatically because CAC is amortized over a longer relationship.</li>
+    </ol>
+
+    <h2>Common Break-Even Mistakes Indian Founders Make</h2>
+    <p><strong>Including GST-inclusive prices:</strong> If you sell at ₹590 including 18% GST, your actual revenue per unit is ₹500. Using ₹590 in your calculation overstates contribution margin and makes break-even look easier than it is.</p>
+    <p><strong>Forgetting returns:</strong> For D2C, factor in a 10-20% return rate. Your effective revenue per order is lower. A 15% return rate on 100 orders means you're really getting 85 units of revenue but paying variable costs for all 100 shipped.</p>
+    <p><strong>Not including founder salary in fixed costs:</strong> If you're not paying yourself, add what you'd need to pay someone else to do your job. It's a real cost — just deferred.</p>
+
+    <h2>Related Blog Posts</h2>
+    <div class="related-posts">
+      <a href="../blog/dog-subscription-box-business-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">D2C Business</div>
+        <div class="rpc-title">Starting a Dog Subscription Box Business in India</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+      <a href="../blog/micro-saas-ideas-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">Business Ideas</div>
+        <div class="rpc-title">35 Micro-SaaS Ideas for Indian Founders in 2025</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+      <a href="../blog/online-course-business-india.html" class="related-post-card reveal">
+        <div class="rpc-cat">Revenue Models</div>
+        <div class="rpc-title">How to Start an Online Course Business in India</div>
+        <div class="rpc-arrow">Read →</div>
+      </a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the break-even point in business?</div>
+        <div class="faq-a">The break-even point is the number of units (or revenue) you need to sell to cover all your costs — fixed and variable — resulting in zero profit and zero loss. Every unit sold beyond the break-even point generates pure profit. It's the most important number to calculate before launching or scaling any business.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I calculate the break-even point for a product business?</div>
+        <div class="faq-a">Break-Even Units = Fixed Costs ÷ (Selling Price − Variable Cost per unit). The denominator is called the Contribution Margin. For example: ₹1,00,000 fixed costs ÷ (₹500 price − ₹200 variable cost) = 333 units. Sell 333 units and you're at break-even. Unit 334 onwards is profit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between fixed costs and variable costs?</div>
+        <div class="faq-a">Fixed costs stay the same regardless of how many units you sell — rent, staff salaries, SaaS subscriptions, loan EMIs. Variable costs change with every unit — raw materials, packaging, shipping, payment gateway fees. The key insight: once you pass break-even, fixed costs are already covered, so each additional unit costs only the variable cost to produce.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's a realistic break-even timeline for an Indian startup?</div>
+        <div class="faq-a">For bootstrapped product startups in India, breaking even within 6–12 months is achievable. D2C brands often take 12–18 months due to high initial marketing spend. SaaS companies can take 18–36 months on unit economics. Service businesses (agencies, consulting) typically break even within 1–3 months of the first client.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I lower my break-even point?</div>
+        <div class="faq-a">Five ways: (1) Reduce fixed costs — cut non-essential subscriptions, negotiate rent, delay hiring. (2) Increase your selling price — even 10–15% raises contribution margin significantly. (3) Reduce variable cost per unit — better supplier deals, optimise packaging. (4) Focus on higher-margin products. (5) Change the model — switch from one-time to subscription.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can a service business also calculate break-even?</div>
+        <div class="faq-a">Yes. For a service business, replace 'units' with 'clients' or 'hours.' Your variable cost per client is the direct time/resources to deliver the service. Fixed costs are your overhead. Break-even = Fixed Costs ÷ (Revenue per client − Variable cost per client). This works for agencies, consultants, tutors, trainers — any service model.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does GST affect my break-even calculation?</div>
+        <div class="faq-a">Use ex-GST prices in your break-even calculation. If you charge ₹590 including 18% GST, your actual revenue per unit is ₹500. GST collected doesn't belong to you — it's a pass-through to the government. GST you pay on purchases can be claimed as ITC, which effectively reduces your variable costs if you're GST-registered.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is contribution margin and why does it matter?</div>
+        <div class="faq-a">Contribution margin = Selling Price − Variable Cost per unit. It's the amount each sale 'contributes' toward covering fixed costs and generating profit. A high contribution margin means you break even faster. It's why pricing matters so much — a ₹50 price increase on a ₹500 product can reduce break-even units by 10–15%.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Should I calculate break-even before launching my business?</div>
+        <div class="faq-a">Absolutely — this is the most important financial exercise before launch. It tells you: how many customers you need, whether your pricing is viable, how long you can sustain losses, and which cost items to attack first. Most failed Indian startups could have predicted their problems before launch with a simple break-even analysis.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How often should I recalculate my break-even point?</div>
+        <div class="faq-a">Recalculate whenever you change your pricing, hire new staff, add significant new expenses, change your product mix, or see variable costs shift. In practice, most businesses should review this quarterly at minimum — or any time you make a significant financial decision.</div>
+      </div>
+    </div>
+
+  </div><!-- end tool-content -->
+</div><!-- end wrap -->
+
+<!-- FOOTER -->
+<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+    <div>
+      <div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div>
+      <div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../community.html">Community</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared.js"></script>
+<script>
+function fmtNum(n) {
+  if (n === Infinity || isNaN(n)) return '—';
+  if (Math.abs(n) >= 100000) return '₹' + (n/100000).toFixed(1) + 'L';
+  if (Math.abs(n) >= 1000) return '₹' + (n/1000).toFixed(1) + 'k';
+  return '₹' + Math.round(n);
+}
+
+function calculate() {
+  const price         = parseFloat(document.getElementById('price').value) || 0;
+  const variableCost  = parseFloat(document.getElementById('variable-cost').value) || 0;
+  const fixedCosts    = parseFloat(document.getElementById('fixed-costs').value) || 0;
+  const expectedUnits = parseFloat(document.getElementById('expected-units').value) || 0;
+
+  if (price <= 0 || fixedCosts <= 0) return;
+
+  const cm = price - variableCost;
+  if (cm <= 0) {
+    document.getElementById('result-box').classList.add('active');
+    document.getElementById('result-number').textContent = '∞';
+    document.getElementById('status').textContent = '✗ Price < Variable Cost';
+    document.getElementById('status').className = 'calc-status danger';
+    document.getElementById('tip').textContent = 'Your variable cost is equal to or higher than your selling price — you lose money on every sale. You must either raise the price or reduce the variable cost per unit before this business can work.';
+    return;
+  }
+
+  const beUnits   = fixedCosts / cm;
+  const beRevenue = beUnits * price;
+  const cmPct     = (cm / price) * 100;
+
+  let beDays = null;
+  let monthlyProfit = null;
+  if (expectedUnits > 0) {
+    beDays = (beUnits / expectedUnits) * 30;
+    monthlyProfit = (expectedUnits - beUnits) * cm;
+  }
+
+  const box = document.getElementById('result-box');
+  box.classList.add('active');
+
+  document.getElementById('result-number').textContent = Math.ceil(beUnits).toLocaleString('en-IN');
+  document.getElementById('be-revenue').textContent = fmtNum(beRevenue);
+  document.getElementById('contrib-margin').textContent = cmPct.toFixed(1) + '%';
+  document.getElementById('be-days').textContent = beDays !== null ? Math.ceil(beDays) + 'd' : '—';
+  document.getElementById('monthly-profit').textContent = monthlyProfit !== null && monthlyProfit > 0 ? fmtNum(monthlyProfit) : (monthlyProfit !== null ? '₹' + Math.round(monthlyProfit).toLocaleString('en-IN') : '—');
+
+  const statusEl = document.getElementById('status');
+  const tipEl    = document.getElementById('tip');
+  const beu = Math.ceil(beUnits);
+
+  if (beu < 100) {
+    statusEl.textContent = '✓ Achievable';
+    statusEl.className = 'calc-status good';
+    tipEl.textContent = 'Your break-even is very achievable. Focus on your first 10 customers to validate the model, then double down on whatever channel works. With low break-even, you can afford to experiment.';
+  } else if (beu < 1000) {
+    statusEl.textContent = '⚡ Moderate';
+    statusEl.className = 'calc-status warn';
+    tipEl.textContent = 'Achievable with focus. Map out exactly how you\'ll get to ' + beu + ' units — which channels, what CAC, what conversion rate. If the math to reach break-even requires more than 6 months, consider reducing fixed costs while you build initial traction.';
+  } else {
+    statusEl.textContent = '⚠ High — Review Your Model';
+    statusEl.className = 'calc-status danger';
+    tipEl.textContent = 'Breaking even requires ' + beu.toLocaleString('en-IN') + ' units — that\'s a high bar. Consider: (1) Can you raise price? (2) Can you cut fixed costs by 30-50%? (3) Is there a way to launch with lower overhead first, then scale fixed costs only after traction?';
+  }
+}
+
+function resetCalc() {
+  ['price','variable-cost','fixed-costs','expected-units'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('result-box').classList.remove('active');
+}
+
+document.querySelectorAll('.tool-input').forEach(el => el.addEventListener('input', calculate));
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+
+(function() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>
