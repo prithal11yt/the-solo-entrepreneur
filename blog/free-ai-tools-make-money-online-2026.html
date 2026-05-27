@@ -181,8 +181,11 @@
   padding: 48px 0 80px;
   align-items: start;
 }
-@media(max-width:900px) {
-  .post-layout { grid-template-columns: 1fr; }
+@media(max-width:1100px) {
+  .post-layout { grid-template-columns: 1fr; gap: 40px; }
+  .post-sidebar { order: 2; position: static; }
+}
+@media(max-width:600px) {
   .post-sidebar { order: -1; }
 }
 .post-content { max-width: 720px; }
@@ -534,7 +537,7 @@
         <p style="margin:0;font-size:17px;">A 4 vCPU / 8 GB VPS on Hetzner costs ~₹800/month. It can run 4-5 of these tools simultaneously. One paying client at ₹10,000/month covers your server for over a year.</p>
       </div>
 
-      <div class="number-grid reveal">
+      <div class="number-grid">
         <div class="number-box"><span class="num">₹800</span><span class="label">VPS/month to run everything</span></div>
         <div class="number-box"><span class="num">50+</span><span class="label">open-source AI tools in 2026</span></div>
         <div class="number-box"><span class="num">0</span><span class="label">SaaS subscriptions needed</span></div>
@@ -546,7 +549,7 @@
       ============================= -->
       <h2 id="n8n">1. n8n — Build an Automation Agency</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 01</div>
         <div class="tool-name">n8n</div>
         <div class="tool-tagline">The self-hosted Zapier that's actually better than Zapier</div>
@@ -567,7 +570,7 @@
       ============================= -->
       <h2 id="openwebui">2. Open WebUI — Sell Private AI Portals</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 02</div>
         <div class="tool-name">Open WebUI</div>
         <div class="tool-tagline">A polished ChatGPT-style interface for any AI model — self-hosted</div>
@@ -588,7 +591,7 @@
       ============================= -->
       <h2 id="anythingllm">3. AnythingLLM — Custom Chatbots for Local Businesses</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 03</div>
         <div class="tool-name">AnythingLLM</div>
         <div class="tool-tagline">Chat with documents, websites, and databases — no code needed</div>
@@ -609,7 +612,7 @@
       ============================= -->
       <h2 id="flowise">4. Flowise — No-Code AI Pipelines for Non-Technical Founders</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 04</div>
         <div class="tool-name">Flowise</div>
         <div class="tool-tagline">Drag-and-drop AI agent builder — visual LangChain without the Python</div>
@@ -630,7 +633,7 @@
       ============================= -->
       <h2 id="librechat">5. LibreChat — Multi-Model AI Portal for Teams</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 05</div>
         <div class="tool-name">LibreChat</div>
         <div class="tool-tagline">One chat interface for ChatGPT, Claude, Gemini, and local models</div>
@@ -651,7 +654,7 @@
       ============================= -->
       <h2 id="firecrawl">6. Firecrawl — Web Scraping as a Service</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 06</div>
         <div class="tool-name">Firecrawl</div>
         <div class="tool-tagline">Turn any website into clean, structured data for AI — instantly</div>
@@ -672,7 +675,7 @@
       ============================= -->
       <h2 id="crewai">7. CrewAI — Build AI Agent Teams That Work While You Sleep</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 07</div>
         <div class="tool-name">CrewAI</div>
         <div class="tool-tagline">Role-based multi-agent framework — give each AI agent a job title</div>
@@ -693,7 +696,7 @@
       ============================= -->
       <h2 id="boltdiy">8. Bolt.diy — Turn Prompts Into Full-Stack Web Apps</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 08</div>
         <div class="tool-name">Bolt.diy</div>
         <div class="tool-tagline">Community fork of Bolt.new — prompt to full-stack app in minutes</div>
@@ -713,7 +716,7 @@
       ============================= -->
       <h2 id="aider">9. Aider — AI Pair Programmer That Supercharges Your Dev Output</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 09</div>
         <div class="tool-name">Aider</div>
         <div class="tool-tagline">Terminal AI pair-programmer with Git discipline and auto-commits</div>
@@ -734,7 +737,7 @@
       ============================= -->
       <h2 id="perplexica">10. Perplexica — Private AI Search Engine</h2>
 
-      <div class="tool-card-blog reveal">
+      <div class="tool-card-blog">
         <div class="tool-number"># 10</div>
         <div class="tool-name">Perplexica</div>
         <div class="tool-tagline">Self-hosted Perplexity AI — real-time web search answers with citations</div>
@@ -756,16 +759,16 @@
 
       <p>Here's a realistic reference for what solo founders in India are charging for AI services built on these tools. These are not aspirational numbers — they're drawn from freelance communities and agency founders I've spoken to.</p>
 
-      <div class="earnings-band reveal"><span class="service">Automation workflow (n8n) — one-time</span><span class="amount">₹15K–₹80K</span></div>
-      <div class="earnings-band reveal"><span class="service">Custom AI chatbot (AnythingLLM/Flowise) — one-time</span><span class="amount">₹15K–₹50K</span></div>
-      <div class="earnings-band reveal"><span class="service">Private AI portal (Open WebUI/LibreChat) — setup</span><span class="amount">₹20K–₹80K</span></div>
-      <div class="earnings-band reveal"><span class="service">Monthly hosting + maintenance retainer</span><span class="amount">₹5K–₹25K/mo</span></div>
-      <div class="earnings-band reveal"><span class="service">Competitor intelligence report (Firecrawl)</span><span class="amount">₹5K–₹25K/report</span></div>
-      <div class="earnings-band reveal"><span class="service">Data feed subscription (ongoing scraping)</span><span class="amount">₹10K–₹40K/mo</span></div>
-      <div class="earnings-band reveal"><span class="service">MVP development sprint (Bolt.diy)</span><span class="amount">₹30K–₹1.5L</span></div>
-      <div class="earnings-band reveal"><span class="service">Content automation pipeline (CrewAI)</span><span class="amount">₹20K–₹1L setup</span></div>
+      <div class="earnings-band"><span class="service">Automation workflow (n8n) — one-time</span><span class="amount">₹15K–₹80K</span></div>
+      <div class="earnings-band"><span class="service">Custom AI chatbot (AnythingLLM/Flowise) — one-time</span><span class="amount">₹15K–₹50K</span></div>
+      <div class="earnings-band"><span class="service">Private AI portal (Open WebUI/LibreChat) — setup</span><span class="amount">₹20K–₹80K</span></div>
+      <div class="earnings-band"><span class="service">Monthly hosting + maintenance retainer</span><span class="amount">₹5K–₹25K/mo</span></div>
+      <div class="earnings-band"><span class="service">Competitor intelligence report (Firecrawl)</span><span class="amount">₹5K–₹25K/report</span></div>
+      <div class="earnings-band"><span class="service">Data feed subscription (ongoing scraping)</span><span class="amount">₹10K–₹40K/mo</span></div>
+      <div class="earnings-band"><span class="service">MVP development sprint (Bolt.diy)</span><span class="amount">₹30K–₹1.5L</span></div>
+      <div class="earnings-band"><span class="service">Content automation pipeline (CrewAI)</span><span class="amount">₹20K–₹1L setup</span></div>
 
-      <div class="callout ink reveal">
+      <div class="callout ink">
         <div class="callout-label">💡 The realistic year-1 target</div>
         <p style="margin:0;font-size:17px;">3 automation clients (₹15K setup + ₹8K/month each) + 2 chatbot clients (₹25K setup + ₹5K/month each) = ₹85,000 setup + ₹34,000/month recurring. By month 3: ₹1.87 lakh + predictable monthly income. Your server cost: ₹800/month.</p>
       </div>
@@ -850,7 +853,7 @@
       </div>
 
       <!-- Free Tools CTA -->
-      <div class="callout accent reveal" style="margin-top:40px;">
+      <div class="callout accent" style="margin-top:40px;">
         <div class="callout-label">🛠 Free Tools on This Site</div>
         <p style="margin-bottom:12px;font-size:17px;">We've built free AI tools for solo founders — try them right now, no signup needed:</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">

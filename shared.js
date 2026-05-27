@@ -22,7 +22,15 @@ const revealObserver = new IntersectionObserver(entries => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
   });
 }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// Run immediately for elements already in DOM, then again after DOM is fully parsed
+function observeRevealEls() {
+  document.querySelectorAll('.reveal:not([data-observed])').forEach(el => {
+    el.setAttribute('data-observed', '1');
+    revealObserver.observe(el);
+  });
+}
+observeRevealEls();
+document.addEventListener('DOMContentLoaded', observeRevealEls);
 
 /* ---- Copy coupon ---- */
 function copyCoupon() {
