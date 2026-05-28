@@ -2,20 +2,31 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/product/ideas",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
-      "source": "/product/the-solo-entrepreneur-tee",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/consultation",
-      "destination": "/",
-      "permanent": true
-    }
+    { "source": "/product/ideas", "destination": "/products", "permanent": true },
+    { "source": "/product/the-solo-entrepreneur-tee", "destination": "/", "permanent": true },
+    { "source": "/consultation", "destination": "/", "permanent": true },
+
+    { "source": "/cart", "destination": "/products", "permanent": true },
+    { "source": "/cart/", "destination": "/products", "permanent": true },
+    { "source": "/shop-2", "destination": "/products", "permanent": true },
+    { "source": "/shop-2/", "destination": "/products", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/home/", "destination": "/", "permanent": true },
+    { "source": "/my-account", "destination": "/", "permanent": true },
+    { "source": "/my-account/", "destination": "/", "permanent": true },
+    { "source": "/privacy-policy-2", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/privacy-policy-2/", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/product-category/business-ideas", "destination": "/products", "permanent": true },
+    { "source": "/product-category/business-ideas/", "destination": "/products", "permanent": true },
+    { "source": "/product-category/:cat", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-first-edition", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-first-edition/", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-second-edition", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-second-edition/", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-detailed-business-plans-combo", "destination": "/products", "permanent": true },
+    { "source": "/product/50-business-ideas-detailed-business-plans-combo/", "destination": "/products", "permanent": true },
+    { "source": "/product/consulation", "destination": "/products", "permanent": true },
+    { "source": "/product/consulation/", "destination": "/products", "permanent": true },
+    { "source": "/product/:slug", "destination": "/products", "permanent": true }
   ]
 }
