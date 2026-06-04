@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Build a WhatsApp AI Agent? (Absolute Beginners) | The Solo Entrepreneur</title>
+<meta name="description" content="Step-by-step guide to building a WhatsApp AI Agent using YCloud — free, no code, works with your existing WhatsApp Business number. Ideal for Indian solopreneurs."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/ycloud"/>
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/ycloud"/>
+<meta property="og:title" content="How to Build a WhatsApp AI Agent? (Absolute Beginners)"/>
+<meta property="og:description" content="Free, no-code WhatsApp AI Agent setup using YCloud. Works with your existing WhatsApp Business number. Step-by-step for Indian solopreneurs."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="article:author" content="Prithal Bhardwaj"/>
+<meta property="article:published_time" content="2026-06-04"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="How to Build a WhatsApp AI Agent? (Absolute Beginners)"/>
+<meta name="twitter:description" content="Free, no-code WhatsApp AI Agent using YCloud. Set up in 10 minutes. Works with your real WhatsApp number."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a WhatsApp AI Agent? (Absolute Beginners)",
+  "description": "Step-by-step guide to building a WhatsApp AI Agent using YCloud — free, no code, works with your existing WhatsApp Business number.",
+  "author": {
+    "@type": "Person",
+    "name": "Prithal Bhardwaj",
+    "url": "https://www.thesoloentrepreneur.in"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Solo Entrepreneur",
+    "url": "https://www.thesoloentrepreneur.in"
+  },
+  "datePublished": "2026-06-04",
+  "dateModified": "2026-06-04",
+  "mainEntityOfPage": "https://www.thesoloentrepreneur.in/ycloud",
+  "image": "https://www.thesoloentrepreneur.in/images/ebook-cover.webp",
+  "keywords": ["whatsapp ai agent", "ycloud tutorial", "whatsapp chatbot india", "whatsapp business api india", "ai agent for small business india"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use my existing WhatsApp Business number for a YCloud AI Agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. YCloud supports Coexistence mode, which lets you connect your existing WhatsApp Business App number to YCloud without porting it or losing your chat history. You keep using your regular number — YCloud adds an AI agent layer on top of it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is YCloud free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YCloud has a free tier that includes AI Agent features, an inbox, and basic automation. You only pay when you send outbound messages at scale (WhatsApp's per-conversation charges apply). For a solo founder or small business receiving inbound queries, the free tier is sufficient to start."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to know coding to build a WhatsApp AI Agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. YCloud's AI Agent is fully no-code. You set up the agent profile, add your business knowledge base (FAQs, product info, pricing), configure assignment rules, and go live — all through a web UI with no programming required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Meta Business Manager and why do I need it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meta Business Manager (business.facebook.com) is Meta's central dashboard for managing your Facebook Page, WhatsApp Business Account, and ad accounts. You need it because the WhatsApp Business API — which powers third-party tools like YCloud — requires a verified business account linked to a Meta Business Manager."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the AI agent doesn't know the answer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You configure a human handoff skill in YCloud. When the agent detects it can't answer (or when a user says 'talk to a human'), the conversation is transferred to you or another team member. You can set specific trigger phrases like 'speak to Prithal' or 'need help' to activate the handoff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my AI agent not responding to messages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common cause is that Priority 2 in Assignment Rules is ON. This routes messages to the last agent who handled the conversation (i.e., you), bypassing the AI. Go to WhatsApp Accounts → Number Settings → Assignment and turn Priority 2 OFF, keeping only Priority 3 (AI Agent) active."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use YCloud for my D2C brand's customer support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely — it's one of the best use cases. Train the knowledge base with your product catalogue, shipping policy, return policy, and common FAQs. The AI handles 80-90% of inbound queries automatically, 24/7. You step in only when a customer needs something specific."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is YCloud different from n8n + Claude for WhatsApp automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YCloud is a complete, hosted product — zero setup time, no servers, no coding. n8n + Claude gives you more control and customisation but requires technical setup and a VPS. For most Indian solopreneurs, YCloud is the right starting point. You can graduate to n8n workflows later as needs grow."
+      }
+    }
+  ]
+}
+</script>
+<style>
+.post-header {
+  padding: 64px 0 48px;
+  border-bottom: 2px solid var(--rule);
+}
+.post-breadcrumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.post-breadcrumb a { color: var(--accent); }
+.post-cat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.post-title {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(26px, 5vw, 52px);
+  line-height: .95;
+  margin-bottom: 20px;
+}
+.post-title em { font-style: normal; color: var(--accent); }
+.post-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--muted);
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+.post-meta {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  color: var(--muted);
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+}
+.post-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 60px;
+  padding: 48px 0 80px;
+  align-items: start;
+}
+@media(max-width:1100px) {
+  .post-layout { grid-template-columns: 1fr; gap: 40px; }
+  .post-sidebar { order: 2; position: static; }
+}
+@media(max-width:600px) {
+  .post-sidebar { order: -1; }
+}
+.post-content { max-width: 720px; }
+.post-content h2 {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1;
+  margin: 52px 0 16px;
+  padding-top: 12px;
+  border-top: 2px solid var(--rule);
+}
+.post-content h2:first-of-type { margin-top: 0; border-top: none; }
+.post-content h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 21px;
+  font-weight: 700;
+  margin: 32px 0 10px;
+}
+.post-content p {
+  font-size: 18px;
+  line-height: 1.65;
+  margin-bottom: 18px;
+  color: var(--ink);
+}
+.post-content ul, .post-content ol {
+  padding-left: 24px;
+  margin-bottom: 18px;
+}
+.post-content li {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.post-content strong { font-weight: 700; }
+.post-content a { color: var(--accent); text-decoration: underline; }
+.callout {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: var(--paper-2);
+}
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout.ink { background: var(--ink); color: var(--paper); }
+.callout.ink .callout-label { color: rgba(250,247,240,.6); }
+.callout.warn { background: #fff8e1; border-color: #f59e0b; }
+.callout.danger { background: #fef2f2; border-color: #dc2626; }
+.callout-icon { font-size: 20px; margin-bottom: 6px; }
+
+/* Step blocks */
+.step-list { margin: 24px 0; }
+.step-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+.step-dot {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.step-body {
+  flex: 1;
+}
+.step-body strong {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+.step-body p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.path {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+.path .sep { color: var(--muted); }
+
+/* Comparison cards */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.option-card {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--paper);
+}
+.option-card.highlight { border-color: var(--accent); background: #fff3ed; }
+.option-card .oc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.option-card .oc-title {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.option-card .oc-title.green { color: #059669; }
+.option-card .oc-desc {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--rule);
+  background: var(--paper-2);
+  margin: 2px 2px 2px 0;
+}
+.pill.green { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
+.pill.orange { background: #fff3ed; border-color: var(--accent); color: var(--accent); }
+.pill.red { background: #fef2f2; border-color: #dc2626; color: #dc2626; }
+
+/* Checklist */
+.chk {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+.chk li {
+  padding: 10px 14px 10px 38px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  position: relative;
+}
+.chk li::before {
+  content: '☐';
+  position: absolute;
+  left: 12px;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+/* Issue grid */
+.issue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+@media(max-width:600px) { .issue-grid { grid-template-columns: 1fr; } }
+.issue-card {
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  background: var(--paper);
+}
+.issue-card .issue-title {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 6px;
+}
+.issue-card .issue-fix {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Tables */
+.post-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 15px;
+  overflow-x: auto;
+  display: block;
+}
+.post-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--rule);
+  white-space: nowrap;
+}
+.post-table td {
+  padding: 10px 14px;
+  border: 1.5px solid var(--rule);
+  font-family: 'Patrick Hand', cursive;
+  vertical-align: top;
+}
+.post-table tr:nth-child(even) td { background: var(--paper-2); }
+.post-table td.check { color: #059669; font-weight: 700; }
+.post-table td.cross { color: #dc2626; }
+
+/* Sidebar */
+.post-sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+.sidebar-toc {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--paper);
+  margin-bottom: 24px;
+}
+.sidebar-toc h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.sidebar-toc ol { padding-left: 18px; }
+.sidebar-toc li {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.sidebar-toc a { color: var(--ink); }
+.sidebar-toc a:hover { color: var(--accent); }
+.sidebar-cta {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--accent);
+  text-align: center;
+  color: var(--paper);
+}
+.sidebar-cta h4 {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
+
+/* Hero banner */
+.whatsapp-hero {
+  background: linear-gradient(135deg, #075e54 0%, #128c7e 60%, #25d366 100%);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  margin: 32px 0 40px;
+  border: 2px solid var(--rule);
+  color: #fff;
+  text-align: center;
+}
+.whatsapp-hero .wh-icon { font-size: 52px; display: block; margin-bottom: 12px; }
+.whatsapp-hero h2 {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: clamp(18px, 3vw, 26px);
+  color: #fff;
+  margin-bottom: 8px;
+  border: none;
+  padding: 0;
+  margin-top: 0;
+}
+.whatsapp-hero p {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: rgba(255,255,255,.85);
+  margin: 0;
+}
+
+/* Tags */
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 4px 12px;
+  border: 1.5px solid var(--rule);
+  border-radius: 12px;
+  background: var(--paper-2);
+  color: var(--muted);
+}
+
+/* FAQ */
+.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section h2 {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--paper-2);
+  user-select: none;
+}
+.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+  line-height: 1.6;
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .25s ease;
+}
+.faq-item.open .faq-a { max-height: 400px; padding: 16px 20px; }
+
+/* Prerequisites cards */
+.prereq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.prereq-card {
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  background: var(--paper);
+  text-align: center;
+}
+.prereq-card .pc-num {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 28px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 6px;
+}
+.prereq-card .pc-title {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.prereq-card .pc-desc {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+</style>
+</head>
+<body>
+<script src="shared.js"></script>
+
+<!-- NAV inserted by shared.js -->
+
+<div class="container">
+  <div class="post-header">
+    <div class="post-breadcrumb">
+      <a href="blog.html">Blog</a> › WhatsApp AI › Beginner Guide
+    </div>
+    <div class="post-cat">WhatsApp AI · No-Code · YCloud · 2026</div>
+    <h1 class="post-title">HOW TO BUILD A<br><em>WHATSAPP AI AGENT</em><br>— Absolute Beginners</h1>
+    <p class="post-subtitle">Free, no-code, works with your existing WhatsApp Business number. Live in 10 minutes.</p>
+    <div class="post-meta">
+      <span>✍ Prithal Bhardwaj</span>
+      <span>📅 June 4, 2026</span>
+      <span>⏱ 8 min read</span>
+      <span>🛠 Tool: YCloud (Free)</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <main class="post-content">
+
+      <!-- Hero Banner -->
+      <div class="whatsapp-hero">
+        <span class="wh-icon">📱</span>
+        <h2>WhatsApp AI Agent — Build It Free</h2>
+        <p>Your number. Your knowledge base. Your AI. No credit card. No code.</p>
+      </div>
+
+      <p>If you run any kind of business in India, WhatsApp is where your customers are. Most D2C founders, coaches, consultants, and freelancers I know spend hours every week answering the same 10 questions on WhatsApp — pricing, availability, how to order, what's included.</p>
+
+      <p>A WhatsApp AI Agent fixes that. It answers for you, 24/7, from a knowledge base you define. And the best part: you can build one for free, with zero code, in under 10 minutes — using <strong>YCloud</strong>. This is the complete, step-by-step guide.</p>
+
+      <div class="callout accent">
+        <div class="callout-label">⚡ What You're Building</div>
+        <p style="margin:0;font-size:17px;">An AI agent connected to your WhatsApp Business number that automatically responds to incoming messages using your business information — product details, pricing, FAQs, policies. When someone needs a human, it hands off to you.</p>
+      </div>
+
+      <!-- SECTION 1: Prerequisites -->
+      <h2 id="prerequisites">What You Need Before You Start</h2>
+
+      <p>You need three things — all free. Think of them like Russian nesting dolls: each one sits inside the next.</p>
+
+      <div class="prereq-grid">
+        <div class="prereq-card">
+          <span class="pc-num">1</span>
+          <div class="pc-title">Meta Business Manager</div>
+          <div class="pc-desc">The master dashboard at business.facebook.com. Everything lives inside here.</div>
+        </div>
+        <div class="prereq-card">
+          <span class="pc-num">2</span>
+          <div class="pc-title">Facebook Business Page</div>
+          <div class="pc-desc">A Facebook Page for your business. It goes inside your Meta Business Manager.</div>
+        </div>
+        <div class="prereq-card">
+          <span class="pc-num">3</span>
+          <div class="pc-title">WhatsApp Business Account</div>
+          <div class="pc-desc">Your WhatsApp Business number. Connected to the Page. This is what YCloud plugs into.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">🎯 Analogy</div>
+        <p style="margin:0;font-size:17px;"><strong>Meta Business Manager</strong> = your office building. <strong>Facebook Page</strong> = your company's reception desk. <strong>WhatsApp Business Account</strong> = the phone at the desk that your AI answers.</p>
+      </div>
+
+      <ul>
+        <li>Use a personal Facebook account you actually own (Meta will verify it)</li>
+        <li>Your phone number must be active on WhatsApp Business App <em>before</em> you connect it</li>
+        <li>A real business email address is recommended (not Gmail)</li>
+      </ul>
+
+      <!-- SECTION 2: Meta Business Manager -->
+      <h2 id="meta-bm">Step 1 — Set Up Meta Business Manager</h2>
+
+      <p>Go to <a href="https://business.facebook.com" target="_blank" rel="noopener">business.facebook.com</a> and create your business account. This is free and takes 5 minutes.</p>
+
+      <div class="step-list">
+        <div class="step-row">
+          <div class="step-dot">1</div>
+          <div class="step-body">
+            <strong>Go to business.facebook.com</strong>
+            <p>Click <strong>Create account</strong>. Sign in with your personal Facebook account — Meta uses this to verify it's a real human.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">2</div>
+          <div class="step-body">
+            <strong>Enter your business details</strong>
+            <p>Business name, your name, and a business email. Use the name your customers know you by.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">3</div>
+          <div class="step-body">
+            <strong>Verify your email</strong>
+            <p>Meta sends a confirmation email. Click the link. Your Business Manager is now active.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">4</div>
+          <div class="step-body">
+            <strong>Add your business info</strong>
+            <p>Go to <strong>Business Settings → Business Info</strong>. Add your address, phone number, and website. This helps with Meta's verification process later.</p>
+            <div class="path">Business Settings <span class="sep">›</span> Business Info</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">5</div>
+          <div class="step-body">
+            <strong>You're done with Meta BM</strong>
+            <p>Keep this tab open — you'll come back to it. Now create your Facebook Business Page.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Facebook Business Page -->
+      <h2 id="fb-page">Step 2 — Create a Facebook Business Page</h2>
+
+      <p>Your Facebook Page is the public face of your business on Meta's platform. Even if you never post on Facebook, you need it because WhatsApp Business accounts are linked to Pages.</p>
+
+      <div class="step-list">
+        <div class="step-row">
+          <div class="step-dot">1</div>
+          <div class="step-body">
+            <strong>Go to facebook.com/pages/create</strong>
+            <p>Or go to <strong>Meta Business Manager → Pages → Add → Create a new Page</strong>.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">2</div>
+          <div class="step-body">
+            <strong>Choose "Business or Brand"</strong>
+            <p>Enter your Page name (your business name) and select a category. Pick something general like "Product/Service" or "Entrepreneur" if unsure.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">3</div>
+          <div class="step-body">
+            <strong>Add a profile photo and cover</strong>
+            <p>Use your logo or a clean photo. A complete Page looks more professional and helps with Meta's verification.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">4</div>
+          <div class="step-body">
+            <strong>Add the Page to your Business Manager</strong>
+            <p>In Meta Business Manager → <strong>Pages → Add → Add a Page</strong> you own. Select the Page you just created.</p>
+            <div class="path">Business Manager <span class="sep">›</span> Pages <span class="sep">›</span> Add <span class="sep">›</span> Add a Page</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">5</div>
+          <div class="step-body">
+            <strong>Page is now inside your BM</strong>
+            <p>Next: connect your WhatsApp Business number.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: WhatsApp Business Account -->
+      <h2 id="whatsapp-account">Step 3 — Connect Your WhatsApp Business Number</h2>
+
+      <p>This is the step most people get confused about. There are two ways to use WhatsApp with Meta's API. You want <strong>Coexistence mode</strong> — it lets you keep using your regular WhatsApp Business App while also connecting to YCloud.</p>
+
+      <h3>Coexistence vs. API-only — What's the Difference?</h3>
+
+      <table class="post-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Coexistence (Use This ✓)</th>
+            <th>API Only</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Keep using WA Business App</td>
+            <td class="check">✓ Yes</td>
+            <td class="cross">✗ No</td>
+          </tr>
+          <tr>
+            <td>Keep chat history</td>
+            <td class="check">✓ Yes</td>
+            <td class="cross">✗ No</td>
+          </tr>
+          <tr>
+            <td>Can still reply manually</td>
+            <td class="check">✓ Yes</td>
+            <td class="cross">Limited</td>
+          </tr>
+          <tr>
+            <td>Connect to YCloud</td>
+            <td class="check">✓ Yes</td>
+            <td class="check">✓ Yes</td>
+          </tr>
+          <tr>
+            <td>Setup complexity</td>
+            <td>Easy</td>
+            <td>Medium</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>How to Connect Your Number via YCloud (Coexistence)</h3>
+
+      <div class="step-list">
+        <div class="step-row">
+          <div class="step-dot">1</div>
+          <div class="step-body">
+            <strong>Create a free YCloud account</strong>
+            <p>Go to <a href="https://www.ycloud.com/console/#/entry/register" target="_blank" rel="noopener">ycloud.com</a> and sign up. No credit card required.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">2</div>
+          <div class="step-body">
+            <strong>Go to WhatsApp Accounts → Add Number</strong>
+            <p>In the YCloud dashboard, find the WhatsApp Accounts section and click <strong>Add WhatsApp Business Number</strong>.</p>
+            <div class="path">YCloud Dashboard <span class="sep">›</span> WhatsApp Accounts <span class="sep">›</span> Add Number</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">3</div>
+          <div class="step-body">
+            <strong>Choose "Connect via WhatsApp Business App (Coexistence)"</strong>
+            <p>YCloud will ask you to scan a QR code with your WhatsApp Business App. Open WhatsApp Business → Settings → Linked Devices → Link a Device → scan the QR.</p>
+            <div class="callout warn" style="margin-top:10px;padding:10px 14px">
+              <div style="font-size:13px"><strong>Requirement:</strong> WhatsApp Business App version 2.24.17 or above. Update from Play Store / App Store if needed.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">4</div>
+          <div class="step-body">
+            <strong>Connect to Meta Business Manager</strong>
+            <p>YCloud will prompt you to log in to Meta and authorise the connection. Select your Business Manager account and Facebook Page.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">5</div>
+          <div class="step-body">
+            <strong>Your number is now connected</strong>
+            <p>YCloud shows your number as Active. Your existing WhatsApp Business App still works. You now have the API layer on top for AI features.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: Why Use a Tool -->
+      <h2 id="why-ycloud">Why Use a Tool Like YCloud?</h2>
+
+      <p>You have three paths to build a WhatsApp AI agent. Here's the honest comparison:</p>
+
+      <div class="option-grid">
+        <div class="option-card highlight">
+          <div class="oc-label">Recommended for Beginners</div>
+          <div class="oc-title green">YCloud</div>
+          <div class="oc-desc">Complete hosted product. AI Agent, inbox, automation — all in one. No code, no server, no setup.</div>
+          <span class="pill green">Free tier</span>
+          <span class="pill green">No-code</span>
+          <span class="pill green">Live in 10 min</span>
+        </div>
+        <div class="option-card">
+          <div class="oc-label">For Power Users</div>
+          <div class="oc-title">Claude + n8n</div>
+          <div class="oc-desc">Maximum flexibility. Build custom workflows. Requires a VPS, n8n setup, and some technical knowledge.</div>
+          <span class="pill orange">Needs VPS</span>
+          <span class="pill">Low-code</span>
+          <span class="pill">₹800/mo server</span>
+        </div>
+        <div class="option-card">
+          <div class="oc-label">Advanced</div>
+          <div class="oc-title">Direct WhatsApp API</div>
+          <div class="oc-desc">Full control, own infrastructure. Complex setup. Not recommended unless you have developer resources.</div>
+          <span class="pill red">Requires dev</span>
+          <span class="pill">Maximum control</span>
+        </div>
+      </div>
+
+      <p>For most Indian solopreneurs and small businesses, <strong>YCloud is the right choice</strong>. It's free, instant, and you don't need to understand anything technical. You can always graduate to n8n workflows later — see our guide on <a href="blog/ai-saas-agency-india.html">building an AI SaaS agency in India</a> for when you're ready to scale.</p>
+
+      <!-- SECTION 6: Feature Comparison -->
+      <h2 id="comparison">YCloud vs. Alternatives — Full Comparison</h2>
+
+      <h3>Features</h3>
+      <div style="overflow-x:auto;">
+        <table class="post-table" style="display:table;">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>YCloud</th>
+              <th>Claude + n8n</th>
+              <th>Direct API</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI agent (responds automatically)</td>
+              <td class="check">✓ Built-in</td>
+              <td class="check">✓ Custom</td>
+              <td class="cross">Build it yourself</td>
+            </tr>
+            <tr>
+              <td>Knowledge base</td>
+              <td class="check">✓ UI-based</td>
+              <td class="check">✓ Vector DB</td>
+              <td class="cross">Build it yourself</td>
+            </tr>
+            <tr>
+              <td>Human inbox / handoff</td>
+              <td class="check">✓ Built-in</td>
+              <td>Via n8n</td>
+              <td class="cross">Build it yourself</td>
+            </tr>
+            <tr>
+              <td>Setup time</td>
+              <td class="check">10 minutes</td>
+              <td>2–4 hours</td>
+              <td>Days</td>
+            </tr>
+            <tr>
+              <td>Coding required</td>
+              <td class="check">None</td>
+              <td>Some</td>
+              <td class="cross">Yes</td>
+            </tr>
+            <tr>
+              <td>Custom workflows</td>
+              <td>Basic</td>
+              <td class="check">Advanced</td>
+              <td class="check">Full control</td>
+            </tr>
+            <tr>
+              <td>Broadcast campaigns</td>
+              <td class="check">✓ Built-in</td>
+              <td>Via n8n</td>
+              <td>Build it yourself</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pricing</h3>
+      <div style="overflow-x:auto;">
+        <table class="post-table" style="display:table;">
+          <thead>
+            <tr>
+              <th>Cost</th>
+              <th>YCloud</th>
+              <th>Claude + n8n</th>
+              <th>Direct API</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Platform / software</td>
+              <td class="check">Free</td>
+              <td>Free (self-hosted n8n)</td>
+              <td>Free (DIY)</td>
+            </tr>
+            <tr>
+              <td>Server cost</td>
+              <td class="check">None (hosted)</td>
+              <td>₹800–₹1,500/mo</td>
+              <td>₹800–₹1,500/mo</td>
+            </tr>
+            <tr>
+              <td>AI model cost</td>
+              <td class="check">Included</td>
+              <td>Claude API: ~₹1–4/1K tokens</td>
+              <td>OpenAI / Claude: per usage</td>
+            </tr>
+            <tr>
+              <td>WhatsApp message cost</td>
+              <td>Meta's per-conversation rates</td>
+              <td>Meta's per-conversation rates</td>
+              <td>Meta's per-conversation rates</td>
+            </tr>
+            <tr>
+              <td><strong>Total to start</strong></td>
+              <td class="check"><strong>₹0</strong></td>
+              <td><strong>~₹1,500/mo</strong></td>
+              <td><strong>₹1,500+/mo</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 7: AI Agent Setup -->
+      <h2 id="setup-agent">Step 4 — Build Your AI Agent in YCloud</h2>
+
+      <p>With your WhatsApp number connected, here's how to build the actual AI agent. This takes about 10 minutes.</p>
+
+      <div class="step-list">
+        <div class="step-row">
+          <div class="step-dot">1</div>
+          <div class="step-body">
+            <strong>Create your AI Agent Profile</strong>
+            <p>Go to <strong>AI Agent → Create Agent</strong>. Give it a name (e.g. "Priya from The Solo Entrepreneur"), a role, and a personality. This is what the AI "becomes" in your WhatsApp conversations.</p>
+            <div class="path">AI Agent <span class="sep">›</span> Create Agent</div>
+            <div class="callout" style="margin-top:10px;padding:10px 14px">
+              <div style="font-size:14px"><strong>Tip:</strong> Give it a human name. "Hi, I'm Priya from [Your Brand]" converts better than "Hi, I'm an AI Bot".</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">2</div>
+          <div class="step-body">
+            <strong>Build your Knowledge Base</strong>
+            <p>This is what the AI knows and answers from. Add:</p>
+            <ul style="font-size:15px;margin:8px 0;">
+              <li>Your product/service descriptions and pricing</li>
+              <li>FAQs you answer most often</li>
+              <li>Shipping, return, or cancellation policies</li>
+              <li>How to buy / book / enrol</li>
+              <li>Your contact details and working hours</li>
+            </ul>
+            <div class="path">AI Agent <span class="sep">›</span> Knowledge Base <span class="sep">›</span> Add Content</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">3</div>
+          <div class="step-body">
+            <strong>Set the Assignment Rules — critical step</strong>
+            <p>Go to <strong>WhatsApp Accounts → Number Settings → Assignment</strong>. Set it exactly like this:</p>
+            <div style="margin-top:10px;background:var(--paper-2);border-radius:8px;padding:14px 16px;font-family:'Patrick Hand',cursive;font-size:15px;border:1.5px solid var(--rule)">
+              <div style="margin:5px 0"><strong>Priority 1</strong> — Assign to owner → <span style="color:#dc2626;font-weight:700">OFF</span></div>
+              <div style="margin:5px 0"><strong>Priority 2</strong> — Assign to last handling agent → <span style="color:#dc2626;font-weight:700">OFF</span></div>
+              <div style="margin:5px 0"><strong>Priority 3</strong> — Assign to: <code>AI Agent</code> → Your agent name → <span style="color:#059669;font-weight:700">ACTIVE ✓</span></div>
+            </div>
+            <div class="callout danger" style="margin-top:10px;padding:10px 14px">
+              <div style="font-size:14px"><strong>🚨 Turn OFF Priority 2.</strong> If you've chatted with someone before, Priority 2 will route messages to you instead of the AI. Keep ONLY Priority 3 active.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">4</div>
+          <div class="step-body">
+            <strong>Test with a fresh number</strong>
+            <p>Ask someone who has <strong>never messaged your WhatsApp Business number before</strong> to send a message. The AI Agent should reply automatically within seconds.</p>
+            <div class="callout warn" style="margin-top:8px;padding:10px 14px">
+              <div style="font-size:14px"><strong>Why "fresh"?</strong> Saved contacts may have existing conversation threads that trigger Priority 2. Always test with a number that has never contacted you.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-dot">5</div>
+          <div class="step-body">
+            <strong>Set up human handoff</strong>
+            <p>In <strong>AI Agent → Skills</strong>, add a handoff skill so the agent transfers to you when someone says things like <code>"talk to a human"</code> or <code>"speak to [your name]"</code>.</p>
+            <div class="path">AI Agent <span class="sep">›</span> Skills <span class="sep">›</span> Add Handoff Action</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Go-Live Checklist -->
+      <h3>Go-Live Checklist</h3>
+      <ul class="chk">
+        <li>WhatsApp Business App number connected to YCloud</li>
+        <li>AI Agent Profile configured — name, role, personality set</li>
+        <li>Knowledge Base populated with your business info</li>
+        <li>Assignment Rules: Priority 1 &amp; 2 OFF, Priority 3 → AI Agent ACTIVE</li>
+        <li>Tested with a fresh number — AI responds correctly</li>
+        <li>Tested 3–4 different questions from your knowledge base</li>
+        <li>Tested an off-topic question — AI handles gracefully</li>
+        <li>Human handoff skill configured and tested</li>
+      </ul>
+
+      <!-- Common Issues -->
+      <h3>Common Issues &amp; Fixes</h3>
+      <div class="issue-grid">
+        <div class="issue-card">
+          <div class="issue-title">❌ AI not responding?</div>
+          <p class="issue-fix">Priority 2 is likely ON and routing to you. Go to Assignment Rules → turn Priority 2 OFF.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-title">❌ Saved contacts not getting AI?</div>
+          <p class="issue-fix">Go to their conversation in the Inbox → Resolve it → ask them to message again fresh.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-title">❌ Agent giving wrong answers?</div>
+          <p class="issue-fix">Knowledge base needs more detail. Add the specific Q&amp;A it got wrong and re-test.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-title">❌ QR code not scanning?</div>
+          <p class="issue-fix">Update WhatsApp Business App to version 2.24.17 or above from Play Store / App Store.</p>
+        </div>
+      </div>
+
+      <!-- What to Do Next -->
+      <h2 id="next-steps">What to Do After It's Live</h2>
+
+      <p>Once your AI Agent is running, here's how to get more from it:</p>
+
+      <ul>
+        <li><strong>Iterate your knowledge base weekly.</strong> Every question the agent fumbles is a new entry to add. After 2 weeks, 90%+ of queries will be handled perfectly.</li>
+        <li><strong>Add a broadcast campaign.</strong> Use YCloud's broadcast feature to send updates to your contact list — new products, sales, announcements. No extra tool needed.</li>
+        <li><strong>Build automation workflows.</strong> Once you're comfortable, try connecting YCloud with n8n for advanced automation — auto-tagging leads, syncing to Google Sheets, sending invoice PDFs. See our post on <a href="blog/no-code-saas-ideas-india.html">no-code SaaS ideas for India</a> for inspiration.</li>
+        <li><strong>Offer this as a service.</strong> You just learned something 99% of Indian business owners don't know how to do. Setting up WhatsApp AI Agents for other businesses is a real <a href="blog/ai-consulting-agency-india.html">AI consulting service you can charge ₹15,000–₹50,000 for</a>.</li>
+      </ul>
+
+      <div class="callout ink">
+        <div class="callout-label">💡 Want to Build a Business Around This?</div>
+        <p style="margin:0;font-size:17px;color:var(--paper);">Setting up WhatsApp AI Agents is a genuine productised service. Local restaurants, D2C brands, coaches, and SMEs will pay ₹15,000–₹50,000 for a setup + ₹5,000/month for maintenance. If this interests you, read our <a href="blog/digital-marketing-agency-india.html" style="color:#ff5b1f;">digital marketing agency guide</a> for the full business model.</p>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <div class="faq-q">Can I use my existing WhatsApp Business number for a YCloud AI Agent?</div>
+          <div class="faq-a">Yes. YCloud supports Coexistence mode, which lets you connect your existing WhatsApp Business App number to YCloud without porting it or losing your chat history. You keep using your regular number — YCloud adds an AI agent layer on top of it.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is YCloud free to use?</div>
+          <div class="faq-a">YCloud has a free tier that includes AI Agent features, an inbox, and basic automation. You only pay when you send outbound messages at scale (WhatsApp's per-conversation charges apply). For a solo founder or small business receiving inbound queries, the free tier is sufficient to start.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need coding skills to build a WhatsApp AI Agent?</div>
+          <div class="faq-a">No. YCloud's AI Agent is fully no-code. You set up the agent profile, add your business knowledge base (FAQs, product info, pricing), configure assignment rules, and go live — all through a web UI with no programming required.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is a Meta Business Manager and why do I need it?</div>
+          <div class="faq-a">Meta Business Manager (business.facebook.com) is Meta's central dashboard for managing your Facebook Page, WhatsApp Business Account, and ad accounts. You need it because the WhatsApp Business API — which powers third-party tools like YCloud — requires a verified business account linked to a Meta Business Manager.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens if the AI agent doesn't know the answer?</div>
+          <div class="faq-a">You configure a human handoff skill in YCloud. When the agent detects it can't answer (or when a user says "talk to a human"), the conversation is transferred to you or another team member. You can set specific trigger phrases like "speak to Prithal" or "need help" to activate the handoff.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is my AI agent not responding to messages?</div>
+          <div class="faq-a">The most common cause is that Priority 2 in Assignment Rules is ON. This routes messages to the last agent who handled the conversation (i.e., you), bypassing the AI. Go to WhatsApp Accounts → Number Settings → Assignment and turn Priority 2 OFF, keeping only Priority 3 (AI Agent) active.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use this for my D2C brand's customer support?</div>
+          <div class="faq-a">Absolutely — it's one of the best use cases. Train the knowledge base with your product catalogue, shipping policy, return policy, and common FAQs. The AI handles 80–90% of inbound queries automatically, 24/7. You step in only when a customer needs something specific.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How is YCloud different from n8n + Claude for WhatsApp automation?</div>
+          <div class="faq-a">YCloud is a complete, hosted product — zero setup time, no servers, no coding. n8n + Claude gives you more control and customisation but requires technical setup and a VPS. For most Indian solopreneurs, YCloud is the right starting point. You can graduate to n8n workflows later as needs grow.</div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="post-tags">
+        <span class="post-tag">whatsapp-ai</span>
+        <span class="post-tag">ycloud</span>
+        <span class="post-tag">no-code</span>
+        <span class="post-tag">whatsapp-business</span>
+        <span class="post-tag">ai-agent</span>
+        <span class="post-tag">india</span>
+        <span class="post-tag">solopreneur</span>
+        <span class="post-tag">chatbot</span>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <div class="sidebar-toc">
+        <h4>Table of Contents</h4>
+        <ol>
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#meta-bm">Step 1 — Meta Business Manager</a></li>
+          <li><a href="#fb-page">Step 2 — Facebook Business Page</a></li>
+          <li><a href="#whatsapp-account">Step 3 — Connect WhatsApp Number</a></li>
+          <li><a href="#why-ycloud">Why Use YCloud?</a></li>
+          <li><a href="#comparison">YCloud vs. Alternatives</a></li>
+          <li><a href="#setup-agent">Step 4 — Build Your AI Agent</a></li>
+          <li><a href="#next-steps">What to Do Next</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-cta">
+        <h4>GET THE FREE EBOOK</h4>
+        <p>100 startup ideas validated for the Indian market — with revenue models.</p>
+        <a href="products.html" class="btn" style="background:var(--paper);color:var(--ink);font-size:15px;padding:10px 20px;display:inline-block;border-radius:var(--radius);font-family:'Rubik Mono One',sans-serif;text-decoration:none;">GET IT FREE →</a>
+      </div>
+      <div class="sidebar-toc" style="margin-top:20px;">
+        <h4>Related Reading</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="blog/ai-consulting-agency-india.html" style="color:var(--accent);">→ Start an AI Consulting Agency</a></li>
+          <li style="margin-bottom:10px;"><a href="blog/digital-marketing-agency-india.html" style="color:var(--accent);">→ Digital Marketing Agency Guide</a></li>
+          <li style="margin-bottom:10px;"><a href="blog/no-code-saas-ideas-india.html" style="color:var(--accent);">→ No-Code SaaS Ideas India</a></li>
+          <li style="margin-bottom:10px;"><a href="blog/free-ai-tools-make-money-online-2026.html" style="color:var(--accent);">→ 10 Free AI Tools (2026)</a></li>
+          <li><a href="blog.html" style="color:var(--muted);">View all posts →</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-toc" style="margin-top:20px;">
+        <h4>Free Tools</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="tools/cold-email-generator.html" style="color:var(--accent);">→ Cold Email Generator</a></li>
+          <li style="margin-bottom:10px;"><a href="tools/elevator-pitch-generator.html" style="color:var(--accent);">→ Elevator Pitch Generator</a></li>
+          <li><a href="tools.html" style="color:var(--muted);">View all tools →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer inserted by shared.js -->
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
