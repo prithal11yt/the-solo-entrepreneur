@@ -119,6 +119,12 @@
   </url>
   <!-- Blog posts -->
   <url>
+    <loc>https://www.thesoloentrepreneur.in/ai-for-kids</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.thesoloentrepreneur.in/saas-marketing</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
