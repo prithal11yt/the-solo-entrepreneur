@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Founders Wing Membership — Become a Founding Member</title>
+<meta name="description" content="Join Founders Wing — weekly live sessions, the ₹10K Sprint Challenge, accountability buddies, templates & playbooks, and a private founder community. Starter ₹2,999/6mo or Annual ₹4,999/yr."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/fw-membership"/>
+<meta name="robots" content="noindex, follow"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Founders Wing"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/fw-membership"/>
+<meta property="og:title" content="Founders Wing Membership — Become a Founding Member"/>
+<meta property="og:description" content="Weekly live sessions, ₹10K Sprint Challenge, accountability buddies, templates & playbooks, private founder community. Starter ₹2,999/6mo or Annual ₹4,999/yr."/>
+<meta property="og:image" content="https://www.founderswing.com/logo-icon.png"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Founders Wing Membership — Become a Founding Member"/>
+<meta name="twitter:description" content="Weekly live sessions, ₹10K Sprint Challenge, accountability buddies, templates & playbooks, private founder community. Starter ₹2,999/6mo or Annual ₹4,999/yr."/>
+<meta name="twitter:image" content="https://www.founderswing.com/logo-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+/* ===== PLANS ===== */
+.consult-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;
+}
+.consult-card {
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper); padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; transition: transform .15s, box-shadow .15s;
+}
+.consult-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--rule); }
+.consult-card.featured { background: var(--paper-2); border-width: 2.5px; border-color: #0ea5e9; }
+.consult-card .badge {
+  position: absolute; top: -11px; left: 16px;
+  font-family: 'Patrick Hand', cursive; font-size: 13px;
+  padding: 2px 12px; background: #0ea5e9; color: #fff;
+  border: 2px solid var(--rule); border-radius: 12px 6px 12px 6px;
+}
+.consult-duration { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; letter-spacing: .05em; }
+.consult-price { font-family: 'Rubik Mono One', sans-serif; font-size: 38px; line-height: 1; }
+.consult-desc { font-family: 'Caveat', cursive; font-size: 20px; opacity: .85; }
+.consult-features { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.consult-features li {
+  font-family: 'Patrick Hand', cursive; font-size: 15px;
+  display: flex; gap: 8px;
+}
+.consult-features li::before { content: "→"; color: var(--accent); flex-shrink: 0; }
+
+/* ===== WHAT YOU UNLOCK ===== */
+.unlock-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap: 14px; margin-top: 24px;
+}
+.unlock-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 16px 18px; border: 1.5px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-2); font-family: 'Patrick Hand', cursive; font-size: 16px;
+}
+.unlock-item .ico { font-size: 20px; flex-shrink: 0; line-height: 1.3; }
+
+/* ===== TRUST ROW ===== */
+.trust-row {
+  display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px;
+}
+.trust-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border: 1.5px solid var(--rule); border-radius: 30px;
+  font-family: 'Patrick Hand', cursive; font-size: 14px; background: var(--paper);
+}
+
+@media (max-width: 980px) {
+  .consult-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== CHECKOUT MODAL ===== */
+.checkout-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(21,19,15,.55);
+  align-items: center; justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+.checkout-overlay.open { display: flex; }
+.checkout-modal {
+  width: 100%; max-width: 480px;
+  background: var(--paper);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 20px;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--rule);
+  max-height: 90vh; overflow-y: auto;
+}
+.checkout-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; font-size: 20px;
+  cursor: pointer; color: var(--muted); line-height: 1;
+}
+.checkout-close:hover { color: var(--ink); }
+.checkout-product-box {
+  background: var(--paper-2);
+  border: 1.5px solid var(--rule);
+  border-radius: 6px 9px 5px 8px;
+  padding: 14px 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+.checkout-product-name { font-family: 'Patrick Hand', cursive; font-size: 17px; }
+.checkout-product-price { font-family: 'Rubik Mono One', sans-serif; font-size: 22px; color: var(--accent); white-space: nowrap; }
+.checkout-form { display: flex; flex-direction: column; gap: 14px; }
+.ck-field { display: flex; flex-direction: column; gap: 5px; }
+.ck-label {
+  font-family: 'Patrick Hand', cursive; font-size: 14px;
+  color: var(--muted); letter-spacing: .05em; text-transform: uppercase;
+}
+.ck-input {
+  font-family: 'Patrick Hand', cursive; font-size: 17px;
+  padding: 10px 14px;
+  border: 2px solid var(--rule); border-radius: 6px 9px 5px 8px;
+  background: var(--paper); color: var(--ink);
+  outline: none; width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ck-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
+.ck-input.error { border-color: #e53e3e; }
+.ck-pay-btn { width: 100%; justify-content: center; font-size: 18px; margin-top: 4px; }
+.ck-secure-note {
+  font-family: 'Caveat', cursive; font-size: 16px;
+  color: var(--muted); text-align: center;
+}
+.ck-after-note {
+  font-family: 'Caveat', cursive; font-size: 16px;
+  color: var(--muted); background: var(--paper-2);
+  border: 1.5px dashed var(--rule); border-radius: 6px;
+  padding: 10px 14px; text-align: center;
+}
+.success-modal { text-align: center; gap: 16px; }
+.success-icon { font-size: 52px; line-height: 1; }
+.success-pid {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  color: var(--muted); word-break: break-all;
+  background: var(--paper-2); padding: 8px 12px; border-radius: 4px;
+}
+@media (max-width: 520px) {
+  .checkout-modal { padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  </defs>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="#plans" class="btn primary nav-cta sm">View Plans ↓</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="#plans" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">View Plans ↓</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="section-tag">Founders Wing · Membership</div>
+    <h1 class="h-display reveal">Become a Founding<br/><span style="color:#0ea5e9">Member.</span></h1>
+    <p class="h-hand reveal" style="transition-delay:.1s">Stop overthinking, start building with AI. Join the first 50 founding members of Founders Wing — weekly live sessions, the ₹10K Sprint Challenge, accountability buddies, and a private founder community. Pay once, get instant access.</p>
+  </div>
+</div>
+
+<!-- PLANS -->
+<section class="product-detail" id="plans">
+  <div class="wrap">
+    <div class="section-tag">Choose Your Plan</div>
+    <div class="reveal">
+      <h2 class="h-display" style="font-size:clamp(28px,4vw,46px);line-height:.95;margin-bottom:10px">Founding Member Pricing</h2>
+      <p class="h-hand" style="font-size:22px;opacity:.8;max-width:640px;margin-bottom:8px">We're onboarding our first 50 founding members at this rate — locked in for as long as you stay a member.</p>
+    </div>
+    <div class="consult-grid reveal">
+      <!-- Starter -->
+      <div class="consult-card wobble">
+        <div class="consult-duration">STARTER</div>
+        <div class="h-hand" style="font-size:18px;color:var(--muted);margin-top:-8px">6 months · ₹500/mo</div>
+        <div class="consult-price h-display">₹2,999</div>
+        <p class="consult-desc">Full access to Founders Wing for 6 months — everything you need to stop overthinking and start shipping.</p>
+        <ul class="consult-features">
+          <li>Weekly live group sessions with Prithal</li>
+          <li>₹10K Sprint Challenge access + leaderboard</li>
+          <li>Private founder community (WhatsApp)</li>
+          <li>Templates, playbooks &amp; AI tool guides</li>
+          <li>50 Business Ideas ebook — free</li>
+        </ul>
+        <button class="btn primary lg" style="margin-top:auto" onclick="openCheckout('starter')">Get Starter — ₹2,999 →</button>
+      </div>
+      <!-- Annual -->
+      <div class="consult-card featured wobble">
+        <span class="badge">Best Value</span>
+        <div class="consult-duration">ANNUAL</div>
+        <div class="h-hand" style="font-size:18px;color:var(--muted);margin-top:-8px">12 months · ₹417/mo</div>
+        <div class="consult-price h-display">₹4,999</div>
+        <p class="consult-desc">Everything in Starter, plus priority hot-seat coaching and first access to offline meetups — for a full year.</p>
+        <ul class="consult-features">
+          <li>Everything in Starter</li>
+          <li>Accountability buddy matching</li>
+          <li>Priority hot-seat coaching slots</li>
+          <li>First access to offline meetups &amp; demo days</li>
+          <li>Founding-member pricing locked in for 12 months</li>
+        </ul>
+        <button class="btn primary lg" style="margin-top:auto" onclick="openCheckout('annual')">Get Annual — ₹4,999 →</button>
+      </div>
+    </div>
+    <div class="trust-row reveal">
+      <span class="trust-pill">🔒 Razorpay secured</span>
+      <span class="trust-pill">💳 UPI · Cards · Netbanking · EMI</span>
+      <span class="trust-pill">⚡ Instant access after payment</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU UNLOCK -->
+<section class="product-detail" style="border-top:2px solid var(--rule)">
+  <div class="wrap">
+    <div class="section-tag">What You Unlock</div>
+    <div class="reveal">
+      <h2 class="h-display" style="font-size:clamp(28px,4vw,46px);line-height:.95;margin-bottom:10px">Everything a founding member gets</h2>
+    </div>
+    <div class="unlock-grid reveal">
+      <div class="unlock-item"><span class="ico">🎥</span><span>Weekly live sessions with Prithal</span></div>
+      <div class="unlock-item"><span class="ico">🏆</span><span>₹10K Sprint Challenge access + leaderboard</span></div>
+      <div class="unlock-item"><span class="ico">🤝</span><span>Accountability buddy matching</span></div>
+      <div class="unlock-item"><span class="ico">📘</span><span>50 Business Ideas ebook (free)</span></div>
+      <div class="unlock-item"><span class="ico">🧰</span><span>Templates, playbooks &amp; AI tool guides</span></div>
+      <div class="unlock-item"><span class="ico">💬</span><span>Private founder community + hot seat coaching</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutOverlay" class="checkout-overlay" onclick="overlayClick(event)">
+  <div class="checkout-modal" role="dialog" aria-modal="true">
+    <button class="checkout-close" onclick="closeCheckout()" aria-label="Close">✕</button>
+    <div>
+      <div class="section-tag" style="margin-bottom:4px">Order Summary</div>
+      <div class="checkout-product-box">
+        <span class="checkout-product-name" id="ckProductName"></span>
+        <span class="checkout-product-price" id="ckProductPrice"></span>
+      </div>
+    </div>
+    <form class="checkout-form" id="checkoutForm" onsubmit="submitCheckout(event)" novalidate>
+      <div class="ck-field">
+        <label class="ck-label" for="ckName">Full Name</label>
+        <input class="ck-input" type="text" id="ckName" placeholder="Your full name" autocomplete="name" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="ckEmail">Email Address</label>
+        <input class="ck-input" type="email" id="ckEmail" placeholder="you@email.com" autocomplete="email" required/>
+      </div>
+      <div class="ck-field">
+        <label class="ck-label" for="ckPhone">WhatsApp Number <span style="color:var(--muted);font-size:13px;text-transform:none">(optional)</span></label>
+        <input class="ck-input" type="tel" id="ckPhone" placeholder="+91 98765 43210" autocomplete="tel"/>
+      </div>
+      <button type="submit" class="btn primary lg ck-pay-btn" id="ckPayBtn">Pay →</button>
+    </form>
+    <p class="ck-after-note" id="ckAfterNote"></p>
+    <p class="ck-secure-note">🔒 Secured by Razorpay &middot; UPI · Cards · Netbanking · Wallets</p>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successOverlay" class="checkout-overlay" onclick="successOverlayClick(event)">
+  <div class="checkout-modal success-modal" role="dialog" aria-modal="true">
+    <button class="checkout-close" onclick="closeSuccess()" aria-label="Close">✕</button>
+    <div class="success-icon">🎉</div>
+    <h3 class="h-display" style="font-size:26px;line-height:1">Welcome to Founders Wing!</h3>
+    <p class="h-hand" style="font-size:18px;opacity:.85" id="successMessage"></p>
+    <p class="success-pid">Payment ID: <span id="successPaymentId"></span></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.founderswing.com" class="btn primary">Back to Founders Wing →</a>
+      <button class="btn" onclick="closeSuccess()">Close</button>
+    </div>
+    <p class="ck-secure-note">Questions? Email <a href="mailto:prithalbhardwaj@gmail.com" style="color:var(--accent)">prithalbhardwaj@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        <div class="foot-socials">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.8" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Founders Wing</h5><ul>
+        <li><a href="https://www.founderswing.com" target="_blank" rel="noopener">Founders Wing Home</a></li>
+        <li><a href="#plans">Membership Plans</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithalbhardwaj@gmail.com">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="return-policy.html">Return Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+const RZP_KEY = 'rzp_live_SoVUf3reYGaO8O';
+
+const PLANS = {
+  starter: {
+    id: 'fw-membership-starter',
+    name: 'Founders Wing — Starter (6 Months)',
+    amount: 299900,
+    afterNote: "We'll reach out on WhatsApp/email within 24 hours with your community invite and onboarding steps."
+  },
+  annual: {
+    id: 'fw-membership-annual',
+    name: 'Founders Wing — Annual (12 Months)',
+    amount: 499900,
+    afterNote: "We'll reach out on WhatsApp/email within 24 hours with your community invite and onboarding steps."
+  }
+};
+
+let activePlan    = null;
+let activePlanKey = null;
+
+function openCheckout(planKey, prefill = {}) {
+  activePlan    = PLANS[planKey];
+  activePlanKey = planKey;
+
+  document.getElementById('ckProductName').textContent  = activePlan.name;
+  document.getElementById('ckProductPrice').textContent = '₹' + (activePlan.amount / 100).toLocaleString('en-IN');
+  document.getElementById('ckPayBtn').textContent       = 'Pay ₹' + (activePlan.amount / 100).toLocaleString('en-IN') + ' →';
+  document.getElementById('ckAfterNote').textContent    = activePlan.afterNote;
+
+  document.getElementById('ckName').value  = prefill.name  || '';
+  document.getElementById('ckEmail').value = prefill.email || '';
+  document.getElementById('ckPhone').value = prefill.whatsapp || '';
+  ['ckName','ckEmail'].forEach(id => document.getElementById(id).classList.remove('error'));
+
+  document.getElementById('checkoutOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    const nameEl = document.getElementById('ckName');
+    (nameEl.value ? document.getElementById('ckEmail') : nameEl).focus();
+  }, 100);
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closeCheckout();
+}
+
+function validateCheckout() {
+  const name  = document.getElementById('ckName');
+  const email = document.getElementById('ckEmail');
+  [name, email].forEach(el => el.classList.remove('error'));
+  if (!name.value.trim()) { name.classList.add('error'); name.focus(); return false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { email.classList.add('error'); email.focus(); return false; }
+  return true;
+}
+
+async function submitCheckout(e) {
+  e.preventDefault();
+  if (!validateCheckout()) return;
+  const name  = document.getElementById('ckName').value.trim();
+  const email = document.getElementById('ckEmail').value.trim();
+  const phone = document.getElementById('ckPhone').value.trim();
+  const plan  = activePlan;
+  closeCheckout();
+
+  // Step 1: Create order server-side (ensures payment_capture: 1)
+  let orderId;
+  try {
+    const orderRes = await fetch('/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount:       plan.amount,
+        product_id:   plan.id,
+        product_name: plan.name,
+        name, email, phone,
+      }),
+    });
+    const orderData = await orderRes.json();
+    if (!orderRes.ok) throw new Error(orderData.error || 'Could not create order');
+    orderId = orderData.orderId;
+  } catch (err) {
+    alert('Could not initiate payment. Please try again.\n\n' + err.message);
+    return;
+  }
+
+  const rzp = new Razorpay({
+    key: RZP_KEY,
+    order_id: orderId,
+    amount: plan.amount,
+    currency: 'INR',
+    name: 'Founders Wing',
+    description: plan.name,
+    image: 'https://www.founderswing.com/logo-icon.png',
+    prefill: { name, email, contact: phone },
+    notes: { product: plan.name },
+    theme: { color: '#0ea5e9' },
+    handler: async function(response) {
+      // Step 2: Verify payment signature server-side
+      try {
+        const verifyRes = await fetch('/api/verify-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id:   response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature:  response.razorpay_signature,
+          }),
+        });
+        const verifyData = await verifyRes.json();
+        if (!verifyData.valid) {
+          alert('Payment verification failed. If money was deducted it will be refunded automatically.\n\nContact: prithalbhardwaj@gmail.com');
+          return;
+        }
+      } catch (err) {
+        alert('Could not verify payment. Please contact prithalbhardwaj@gmail.com with Payment ID: ' + response.razorpay_payment_id);
+        return;
+      }
+
+      // Step 3: Show success modal (membership is recorded server-side via webhook)
+      document.getElementById('successPaymentId').textContent = response.razorpay_payment_id;
+      document.getElementById('successMessage').textContent   = plan.afterNote;
+      document.getElementById('successOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    },
+    modal: { ondismiss: () => { document.body.style.overflow = ''; } }
+  });
+  rzp.on('payment.failed', res => {
+    alert('Payment failed: ' + (res.error.description || 'Please try again.') + '\n\nHelp: prithalbhardwaj@gmail.com');
+  });
+  rzp.open();
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function successOverlayClick(e) {
+  if (e.target === document.getElementById('successOverlay')) closeSuccess();
+}
+
+/* ===== Prefill from query params (?plan=starter&name=&email=&whatsapp=) ===== */
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get('plan');
+  if (plan === 'starter' || plan === 'annual') {
+    document.addEventListener('DOMContentLoaded', () => {
+      openCheckout(plan, {
+        name: params.get('name') || '',
+        email: params.get('email') || '',
+        whatsapp: params.get('whatsapp') || ''
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

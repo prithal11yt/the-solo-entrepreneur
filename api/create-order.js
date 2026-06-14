@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { amount, product_id, product_name, name, email, user_id } = req.body;
+  const { amount, product_id, product_name, name, email, phone, user_id } = req.body;
 
   if (!amount || amount <= 0) {
     return res.status(400).json({ error: 'Invalid amount' });
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         currency: 'INR',
         payment_capture: 1,
         // Store everything the webhook needs to record the purchase in the DB
-        notes: { product_id, product_name, name, email, user_id: user_id || '' },
+        notes: { product_id, product_name, name, email, phone: phone || '', user_id: user_id || '' },
       }),
     });
 

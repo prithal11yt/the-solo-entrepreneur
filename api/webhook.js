@@ -75,6 +75,7 @@ export default async function handler(req, res) {
   const productName = notes.product_name || '';
   const userName    = notes.name         || '';
   const userEmail   = notes.email        || '';
+  const userPhone   = notes.phone        || '';
   const userId      = notes.user_id      || null;
 
   if (!productId || !userEmail) {
@@ -99,7 +100,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         p_name:                userName,
         p_email:               userEmail,
-        p_phone:               '',
+        p_phone:               userPhone,
         p_product_id:          productId,
         p_product_name:        productName,
         p_amount_paise:        amountPaise,
@@ -121,5 +122,43 @@ export default async function handler(req, res) {
   }
 
   console.log(`[webhook] ✓ Recorded purchase: ${paymentId} → ${productId} for ${userEmail}`);
+
+  // 7. Founders Wing membership purchases also get a record in FW's own Supabase project
+  if (productId.startsWith('fw-membership-')) {
+    const fwSupabaseUrl  = process.env.FW_SUPABASE_URL;
+    const fwServiceKey   = process.env.FW_SUPABASE_SERVICE_ROLE_KEY;
+    const plan           = productId === 'fw-membership-annual' ? 'annual' : 'starter';
+
+    try {
+      const fwRes = await fetch(`${fwSupabaseUrl}/rest/v1/fw_memberships?on_conflict=razorpay_payment_id`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'apikey':        fwServiceKey,
+          'Authorization': `Bearer ${fwServiceKey}`,
+          'Prefer':        'resolution=ignore-duplicates,return=minimal',
+        },
+        body: JSON.stringify({
+          full_name:           userName,
+          email:               userEmail,
+          whatsapp:            userPhone,
+          plan,
+          amount_paise:        amountPaise,
+          razorpay_payment_id: paymentId,
+          razorpay_order_id:   orderId,
+        }),
+      });
+
+      if (!fwRes.ok) {
+        const errText = await fwRes.text();
+        console.error('[webhook] fw_memberships insert error:', errText);
+      } else {
+        console.log(`[webhook] ✓ Recorded Founders Wing membership: ${paymentId} → ${plan} for ${userEmail}`);
+      }
+    } catch (err) {
+      console.error('[webhook] fw_memberships insert failed:', err.message);
+    }
+  }
+
   return res.status(200).json({ received: true, success: true });
 }
