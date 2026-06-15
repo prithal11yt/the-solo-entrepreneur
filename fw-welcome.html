@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/png" href="https://www.founderswing.com/favicon.png"/>
+<link rel="shortcut icon" href="https://www.founderswing.com/favicon.png"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Welcome to Founders Wing 🎉</title>
+<meta name="description" content="You're officially a Founders Wing founding member. Here's how to get started."/>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/fw-welcome"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root {
+  --bg: #030712; --card: #0f172a; --fg: #ffffff; --muted: #a6b8d4;
+  --border: rgba(255,255,255,.08); --cyan: #0ea5e9; --cyan-light: #38bdf8;
+  --warm: #f59e0b; --violet: #8b5cf6; --green: #22c55e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: dark; }
+body {
+  background-color: var(--bg); color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; line-height: 1.6; min-height: 100vh;
+  display: flex; flex-direction: column;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23030712'/%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+h1, h2, h3 { font-family: 'Space Grotesk', 'Inter', sans-serif; line-height: 1.1; letter-spacing: -.02em; }
+a { color: inherit; text-decoration: none; }
+
+#confettiCanvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
+.glow-blob { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; opacity: .5; }
+.glow-cyan { top: -180px; left: -120px; width: 480px; height: 480px; background: radial-gradient(circle, rgba(14,165,233,.40), transparent 70%); }
+.glow-violet { bottom: -220px; right: -160px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(139,92,246,.28), transparent 70%); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
+
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(14,165,233,.3); border-radius: 4px; }
+
+.grad-cyan {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(14,165,233,.25);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  padding: 13px 24px; border-radius: 14px; cursor: pointer; border: 1px solid var(--border);
+  transition: all .25s cubic-bezier(.4,0,.2,1); color: #fff; background: rgba(255,255,255,.06);
+}
+.btn:hover { background: rgba(255,255,255,.1); transform: translateY(-1px); }
+.btn.primary { background: linear-gradient(135deg, #0284c7, #2563eb); border: none; box-shadow: 0 4px 18px rgba(2,132,199,.4); }
+.btn.primary:hover { background: linear-gradient(135deg, #0369a1, #1d4ed8); box-shadow: 0 6px 28px rgba(2,132,199,.55); transform: translateY(-2px); }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(3,7,18,.7); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+.nav-logo img { width: 30px; height: 30px; object-fit: contain; }
+.nav-back { font-size: 14px; color: var(--muted); transition: color .2s; }
+.nav-back:hover { color: var(--cyan-light); }
+
+/* Welcome card */
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 0; }
+.welcome-card {
+  width: 100%; max-width: 600px; margin: 0 auto; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  border-radius: 28px; padding: 40px 32px;
+  background: linear-gradient(160deg, rgba(30,41,59,.55), rgba(15,23,42,.6));
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.07), 0 16px 50px rgba(0,0,0,.45);
+}
+.success-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em;
+  color: var(--warm); background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.3);
+  padding: 6px 14px; border-radius: 30px;
+}
+.success-ring {
+  width: 82px; height: 82px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 40px;
+  background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3);
+  box-shadow: 0 0 40px rgba(34,197,94,.3);
+  animation: pop .5s cubic-bezier(.2,.9,.3,1.4) both;
+}
+@keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+.welcome-card h1 { font-size: clamp(26px,5vw,38px); font-weight: 700; }
+.welcome-card h1 span { color: var(--cyan-light); }
+.lead { font-size: 16px; color: var(--muted); max-width: 460px; }
+.lead strong { color: #fff; }
+
+.onb-steps { display: flex; flex-direction: column; gap: 12px; width: 100%; text-align: left; margin-top: 6px; }
+.onb-step {
+  display: flex; gap: 14px; align-items: flex-start; padding: 17px 18px; border-radius: 16px;
+  background: rgba(2,6,23,.45); border: 1px solid var(--border);
+  transition: border-color .2s, background .2s, transform .2s;
+}
+a.onb-step { cursor: pointer; }
+a.onb-step:hover { transform: translateY(-2px); }
+.onb-primary {
+  background: linear-gradient(135deg, rgba(2,132,199,.2), rgba(37,99,235,.12));
+  border-color: rgba(14,165,233,.45); box-shadow: 0 0 24px rgba(2,132,199,.15);
+}
+.onb-primary:hover { border-color: rgba(56,189,248,.7); }
+.onb-num {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+  background: var(--cyan); color: #03121f;
+}
+.onb-body { display: flex; flex-direction: column; gap: 5px; }
+.onb-title { font-size: 16px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 6px; }
+.onb-arrow { color: var(--cyan-light); transition: transform .2s; }
+a.onb-step:hover .onb-arrow { transform: translateX(3px); }
+.onb-sub { font-size: 14px; color: var(--muted); line-height: 1.55; }
+.onb-sub strong { color: #cfe0f5; }
+.onb-sub em { color: var(--warm); font-style: normal; }
+.onb-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+.onb-link { font-size: 14px; font-weight: 600; color: var(--cyan-light); background: none; border: none; cursor: pointer; padding: 0; font-family: 'Inter', sans-serif; }
+.onb-link:hover { text-decoration: underline; }
+.onb-link[disabled] { color: var(--muted); cursor: default; text-decoration: none; }
+
+.success-pid {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted);
+  background: rgba(2,6,23,.6); border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 12px; word-break: break-all; width: 100%;
+}
+.note-secure { font-size: 12.5px; color: #8499b8; text-align: center; }
+.note-secure a { color: var(--cyan-light); }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0; position: relative; z-index: 2; }
+.foot-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.foot-copy { font-size: 13px; color: #5b6b85; }
+
+@media (max-width: 520px) {
+  .welcome-card { padding: 32px 20px; border-radius: 22px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+<div class="glow-blob glow-cyan"></div>
+<div class="glow-blob glow-violet"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="https://www.founderswing.com" class="nav-logo">
+      <img src="https://www.founderswing.com/logo-icon.png" alt="Founders Wing"/>
+      <span>Founders Wing</span>
+    </a>
+    <a href="https://www.founderswing.com" class="nav-back">← Back to site</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="welcome-card">
+      <div class="success-badge">★ FOUNDING MEMBER</div>
+      <div class="success-ring">🎉</div>
+      <h1>You're in, <span id="wName">founder</span>!</h1>
+      <p class="lead">Welcome to <strong>Founders Wing</strong> — you're officially one of our first 50 founding members. Here's how to get started 👇</p>
+
+      <div class="onb-steps">
+        <a href="https://chat.whatsapp.com/D4V4uYn3s2d8TVJLt1qJUv?mode=gi_t" target="_blank" rel="noopener" class="onb-step onb-primary">
+          <span class="onb-num">1</span>
+          <span class="onb-body">
+            <span class="onb-title">Join the founder community <span class="onb-arrow">→</span></span>
+            <span class="onb-sub">Your private WhatsApp group is where the live sessions, ₹10K Sprint &amp; accountability buddies happen. Tap to join now.</span>
+          </span>
+        </a>
+
+        <div class="onb-step">
+          <span class="onb-num">2</span>
+          <span class="onb-body">
+            <span class="onb-title">Unlock your resources</span>
+            <span class="onb-sub">We've emailed a 1-click login link to <strong id="wEmail">your email</strong> — it unlocks all templates, playbooks &amp; the 50 Business Ideas ebook. <em>Don't see it? Check your Spam / Promotions folder.</em></span>
+            <span class="onb-actions">
+              <a href="https://www.thesoloentrepreneur.in/account" class="onb-link">Open my account →</a>
+              <button id="resendBtn" class="onb-link" onclick="resendLink()">Resend login link</button>
+            </span>
+          </span>
+        </div>
+
+        <div class="onb-step">
+          <span class="onb-num">3</span>
+          <span class="onb-body">
+            <span class="onb-title">Watch for what's next</span>
+            <span class="onb-sub">Weekly live sessions, the ₹10K Sprint Challenge &amp; your accountability buddy all kick off inside the community. See you there 🚀</span>
+          </span>
+        </div>
+      </div>
+
+      <p class="success-pid" id="pidLine" style="display:none">Payment ID: <span id="wPid"></span></p>
+      <p class="note-secure">Need help getting in? Call or WhatsApp <a href="https://wa.me/916239330641" target="_blank" rel="noopener">+91 62393 30641</a></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-wrap">
+    <p class="note-secure">Payments securely processed via Razorpay.</p>
+    <p class="foot-copy">© 2025 Founders Wing · by Prithal Bhardwaj</p>
+  </div>
+</footer>
+
+<script>
+const db = window.supabase.createClient(
+  'https://jgujptvmrduaymvhjwfa.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
+);
+
+// Read the data stashed by the checkout page (no personal info in the URL)
+const WELCOME = (function () {
+  try { return JSON.parse(sessionStorage.getItem('fw_welcome') || '{}'); }
+  catch (e) { return {}; }
+})();
+
+document.getElementById('wName').textContent = (WELCOME.name || '').trim().split(/\s+/)[0] || 'founder';
+if (WELCOME.email) document.getElementById('wEmail').textContent = WELCOME.email;
+if (WELCOME.pid) {
+  document.getElementById('wPid').textContent = WELCOME.pid;
+  document.getElementById('pidLine').style.display = '';
+}
+
+/* ===== Resend magic link ===== */
+let resendBusy = false;
+async function resendLink() {
+  if (resendBusy) return;
+  const btn = document.getElementById('resendBtn');
+  if (!WELCOME.email) { btn.textContent = 'No email on file — use the support number'; btn.disabled = true; return; }
+  resendBusy = true; btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    await db.auth.signInWithOtp({
+      email: WELCOME.email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: 'https://www.thesoloentrepreneur.in/account',
+        data: { full_name: WELCOME.name || '' }
+      }
+    });
+    btn.textContent = '✓ Sent — check your inbox';
+  } catch (e) {
+    btn.textContent = 'Couldn\'t send — try the support number';
+  }
+  setTimeout(() => { btn.textContent = 'Resend login link'; btn.disabled = false; resendBusy = false; }, 30000);
+}
+
+/* ===== Confetti burst ===== */
+(function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.width = window.innerWidth * dpr;
+  const H = canvas.height = window.innerHeight * dpr;
+  const colors = ['#0ea5e9', '#38bdf8', '#8b5cf6', '#f59e0b', '#22c55e', '#ffffff'];
+  const pieces = Array.from({ length: 160 }, () => ({
+    x: W / 2 + (Math.random() - 0.5) * W * 0.5,
+    y: H * 0.12 + (Math.random() - 0.5) * 60,
+    vx: (Math.random() - 0.5) * 13 * dpr,
+    vy: (Math.random() * 2 + 1) * dpr,
+    g: (0.12 + Math.random() * 0.10) * dpr,
+    s: (5 + Math.random() * 5) * dpr,
+    rot: Math.random() * Math.PI,
+    vr: (Math.random() - 0.5) * 0.3,
+    color: colors[(Math.random() * colors.length) | 0],
+  }));
+  const start = performance.now();
+  (function frame(now) {
+    const t = now - start;
+    ctx.clearRect(0, 0, W, H);
+    pieces.forEach(p => {
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vx *= 0.99;
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, 1 - t / 3200);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+      ctx.restore();
+    });
+    if (t < 3200) requestAnimationFrame(frame);
+    else ctx.clearRect(0, 0, W, H);
+  })(start);
+})();
+</script>
+</body>
+</html>
