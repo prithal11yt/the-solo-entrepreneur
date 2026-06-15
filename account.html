@@ -90,6 +90,22 @@
 .dl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 .dl-btn svg { flex-shrink: 0; }
 
+/* Founders Wing member banner */
+.member-banner {
+  display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  border: 2px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-2); box-shadow: 5px 5px 0 var(--accent);
+  padding: 22px 26px; margin-top: 26px;
+}
+.mb-badge { font-family: 'Patrick Hand', cursive; font-size: 13px; letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
+.mb-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px,3vw,22px); line-height: 1.1; margin: 7px 0 7px; }
+.mb-sub { font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted); max-width: 540px; line-height: 1.35; }
+.member-banner .btn { white-space: nowrap; }
+.mpc-tag {
+  display: inline-block; font-family: 'Patrick Hand', cursive; font-size: 12px;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--accent);
+}
+
 /* Empty state */
 .empty-state {
   text-align: center;
@@ -231,6 +247,9 @@
       </div>
     </div>
 
+    <!-- Founders Wing member banner (shown only for members) -->
+    <div id="memberBanner" style="display:none"></div>
+
     <!-- My Products -->
     <div class="section" style="border-top:none;padding-top:40px">
       <div class="section-tag">My Products</div>
@@ -325,6 +344,17 @@ const PRODUCT_LINKS = {
 
 const PRODUCT_ICONS = { pdf: '📄', templates: '⚡', combo: '🎁', consult30: '💬', consult60: '🎯', free_ebook: '📖' };
 
+const PRODUCT_NAMES = {
+  pdf:        '100 Business Ideas PDF',
+  templates:  'Automation Templates',
+  combo:      'Combo Deal — PDF + Templates',
+  free_ebook: '10 Startup Ideas eBook'
+};
+
+// Founders Wing members get the full digital library unlocked, regardless of what they individually bought
+const MEMBER_LIBRARY = ['pdf', 'templates', 'free_ebook'];
+const WHATSAPP_GROUP = 'https://chat.whatsapp.com/D4V4uYn3s2d8TVJLt1qJUv?mode=gi_t';
+
 /* ===== INIT ===== */
 (async function init() {
   const { data: { user } } = await db.auth.getUser();
@@ -369,6 +399,9 @@ function handleNavAuth() {
 
 /* ===== LOAD ORDERS ===== */
 async function loadOrders(user) {
+  // Link any guest orders placed with this email (e.g. a Founders Wing membership) to this account
+  try { await db.rpc('claim_my_orders'); } catch (e) { /* non-fatal — page still works */ }
+
   const { data: orders, error } = await db
     .from('tse_orders')
     .select('*')
@@ -382,9 +415,66 @@ async function loadOrders(user) {
     return;
   }
 
+  const membershipOrder = orders.find(o => (o.product_id || '').startsWith('fw-membership-'));
+  const isMember = !!membershipOrder;
+
   document.getElementById('orderCount').textContent = orders.length + ' purchase' + (orders.length > 1 ? 's' : '');
+
+  let cards;
+  if (isMember) {
+    renderMemberBanner(membershipOrder);
+    // Unlock the full digital library for members…
+    cards = MEMBER_LIBRARY.map(renderLibraryCard);
+    // …plus any other real purchases (e.g. a consultation), excluding the membership + already-shown library/combo
+    const extras = orders.filter(o => {
+      const pid = o.product_id || '';
+      return !pid.startsWith('fw-membership-') && !MEMBER_LIBRARY.includes(pid) && pid !== 'combo';
+    });
+    cards = cards.concat(extras.map(renderProductCard));
+  } else {
+    cards = orders.map(renderProductCard);
+  }
+
   document.getElementById('productsGrid').style.display = '';
-  document.getElementById('productsGrid').innerHTML = orders.map(renderProductCard).join('');
+  document.getElementById('productsGrid').innerHTML = cards.join('');
+}
+
+function renderMemberBanner(order) {
+  const el = document.getElementById('memberBanner');
+  if (!el) return;
+  const plan = (order && order.product_id === 'fw-membership-annual') ? 'Annual (12 months)' : 'Starter (6 months)';
+  el.style.display = '';
+  el.innerHTML = `
+    <div class="member-banner">
+      <div>
+        <div class="mb-badge">★ Founders Wing Member</div>
+        <div class="mb-title">You've got full access 🎉</div>
+        <div class="mb-sub">Your ${plan} membership unlocks every template, playbook &amp; ebook below. Live sessions, the ₹10K Sprint &amp; the community all happen on WhatsApp.</div>
+      </div>
+      <a class="btn primary" href="${WHATSAPP_GROUP}" target="_blank" rel="noopener">Open community →</a>
+    </div>`;
+}
+
+function renderLibraryCard(pid) {
+  const icon    = PRODUCT_ICONS[pid] || '📦';
+  const name    = PRODUCT_NAMES[pid] || pid;
+  const links   = PRODUCT_LINKS[pid] || [];
+  const actions = links.map(l => `
+    <a class="dl-btn" href="${l.url}" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      </svg>
+      📁 Open ${l.label}
+    </a>`).join('');
+  return `
+    <div class="my-product-card">
+      <div class="mpc-icon">${icon}</div>
+      <div>
+        <div class="mpc-name">${name}</div>
+        <div class="mpc-tag">★ Member access</div>
+      </div>
+      <div class="mpc-actions">${actions}</div>
+    </div>`;
 }
 
 function renderProductCard(order) {
