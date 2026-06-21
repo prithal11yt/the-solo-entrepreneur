@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Daily LinkedIn Content Automation — Free AI Pipeline Download | The Solo Entrepreneur</title>
+<meta name="description" content="Download the free open pipeline I use to research, write, design and schedule daily LinkedIn posts & carousels with AI. Python + Node.js, bring your own API keys. No signup."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/content-automation"/>
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/content-automation"/>
+<meta property="og:title" content="Daily LinkedIn Content Automation — Free AI Pipeline"/>
+<meta property="og:description" content="The actual AI pipeline behind my daily LinkedIn posts & carousels — research, writing, design, delivery & scheduling. Free download, bring your own keys."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Daily LinkedIn Content Automation — Free AI Pipeline"/>
+<meta name="twitter:description" content="The actual AI pipeline behind my daily LinkedIn posts & carousels. Free download, bring your own keys."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Daily LinkedIn Content Automation Pipeline",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows, macOS, Linux (Python 3 + Node.js)",
+  "description": "An open automation pipeline to research, write, design and schedule daily LinkedIn posts and carousels using AI. Bring your own API keys.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "author": { "@type": "Person", "name": "Prithal Bhardwaj", "url": "https://www.thesoloentrepreneur.in" },
+  "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What exactly is this pipeline?", "acceptedAnswer": { "@type": "Answer", "text": "It's the actual set of scripts and skills I use to run daily LinkedIn content: it researches trending AI and startup topics, writes posts in a defined voice, generates branded carousels and infographics, and can deliver them to Slack and help schedule them. It's a starting kit you run on your own machine with your own API keys." } },
+    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "Some comfort with the command line helps. You'll need to install Python and Node.js, paste your API keys into a .env file, and run scripts. The README and help.txt walk through the commands. If you can follow setup instructions and run a terminal command, you can use it." } },
+    { "@type": "Question", "name": "Which API keys do I need, and are they free?", "acceptedAnswer": { "@type": "Answer", "text": "Bring your own keys. For writing you can use OpenRouter, Anthropic, or Gemini (all have free or low-cost tiers). For research, Apify or Scrapingdog are optional (there's an RSS fallback). Slack delivery is optional and needs a Slack bot token. A .env.example file lists every variable." } },
+    { "@type": "Question", "name": "Are any of your API keys included in the download?", "acceptedAnswer": { "@type": "Answer", "text": "No. The package was scrubbed of all secrets before publishing — there are no API keys, tokens, or .env file inside. You add your own keys via the provided .env.example template." } },
+    { "@type": "Question", "name": "Can I modify it or use it for my own brand?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's meant to be customized — swap the voice, branding, prompts, and sources to fit your own LinkedIn presence or your clients'. Use it freely." } },
+    { "@type": "Question", "name": "What does it actually produce?", "acceptedAnswer": { "@type": "Answer", "text": "Ready-to-post LinkedIn text posts, branded image carousels (PNG + PDF), and data infographics — plus optional Slack delivery and scheduling helpers. A sample-outputs folder shows real examples." } }
+  ]
+}
+</script>
+<style>
+/* Header */
+.post-header { padding: 40px 0 8px; }
+.post-breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.post-breadcrumb a { color: var(--accent); }
+.post-cat { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.post-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(26px, 5vw, 52px); line-height: .95; margin-bottom: 20px; }
+.post-title em { font-style: normal; color: var(--accent); }
+.post-subtitle { font-family: 'Caveat', cursive; font-size: 22px; color: var(--muted); max-width: 680px; margin-bottom: 24px; }
+.post-meta { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+.post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 40px 0 80px; align-items: start; }
+@media(max-width:1100px){ .post-layout { grid-template-columns: 1fr; gap: 40px; } .post-sidebar { order: 2; position: static; } }
+.post-content { max-width: 720px; }
+.post-content h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(20px, 3vw, 28px); line-height: 1; margin: 52px 0 16px; padding-top: 12px; border-top: 2px solid var(--rule); }
+.post-content h2:first-of-type { margin-top: 0; border-top: none; }
+.post-content p { font-size: 18px; line-height: 1.65; margin-bottom: 18px; color: var(--ink); }
+.post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 18px; }
+.post-content li { font-size: 18px; line-height: 1.6; margin-bottom: 8px; }
+.post-content strong { font-weight: 700; }
+.post-content a { color: var(--accent); text-decoration: underline; }
+
+/* Download CTA */
+.download-banner { background: var(--ink); border: 2px solid var(--rule); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.download-banner .db-icon { font-size: 48px; flex-shrink: 0; }
+.download-banner .db-text { flex: 1; min-width: 200px; }
+.download-banner h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
+.download-banner p { font-family: 'Caveat', cursive; font-size: 19px; color: rgba(250,247,240,.7); margin: 0; }
+.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family: 'Rubik Mono One', sans-serif; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.download-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+
+/* Feature grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.feature-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
+.feature-card .fc-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.feature-card h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.feature-card p { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+
+/* Callout */
+.callout { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px 24px; margin: 28px 0; background: var(--paper-2); }
+.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.callout p { margin: 0; font-size: 17px; }
+
+/* Included list (columns) */
+.mvp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin: 24px 0; }
+.mvp-col { border: 2px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.mvp-col-head { background: var(--ink); color: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; padding: 10px 14px; }
+.mvp-col ul { list-style: none; padding: 0; margin: 0; }
+.mvp-col li { font-family: 'Patrick Hand', cursive; font-size: 14px; padding: 9px 14px; border-bottom: 1px solid var(--paper-2); line-height: 1.35; }
+.mvp-col li:last-child { border-bottom: none; }
+.mvp-col li::before { content: '✓ '; color: #2e7d32; font-weight: 700; }
+
+/* Badges */
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 24px; }
+.badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid var(--rule); background: var(--paper-2); }
+
+/* Quickstart code */
+.code-steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+.code-steps li { position: relative; padding: 0 0 18px 40px; font-size: 17px; }
+.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Rubik Mono One', sans-serif; font-size: 13px; }
+code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 7px; }
+
+/* Sidebar */
+.sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
+.sidebar-cta h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; margin-bottom: 8px; }
+.sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
+.sidebar-cta .download-btn { background: var(--paper); color: var(--ink); border-color: var(--ink); width: 100%; justify-content: center; }
+.sidebar-cta .download-btn:hover { box-shadow: 3px 3px 0 var(--ink); }
+.sidebar-toc { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
+.sidebar-toc h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.sidebar-toc ol, .sidebar-toc ul { padding-left: 18px; }
+.sidebar-toc li { font-family: 'Patrick Hand', cursive; font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
+.sidebar-toc a { color: var(--ink); }
+.sidebar-toc a:hover { color: var(--accent); }
+
+/* Tags */
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; border: 1.5px solid var(--rule); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
+
+/* FAQ */
+.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section h2 { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-bottom: 24px; }
+.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q { font-family: 'Patrick Hand', cursive; font-size: 17px; font-weight: 700; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper-2); user-select: none; }
+.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { font-family: 'Patrick Hand', cursive; font-size: 17px; line-height: 1.6; padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+.faq-item.open .faq-a { max-height: 500px; padding: 16px 20px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="account.html" class="btn primary nav-cta sm">My Account</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+</div>
+
+<div class="container">
+  <div class="post-header">
+    <div class="post-breadcrumb"><a href="blog.html">Blog</a> › Free Tools › Content Automation</div>
+    <div class="post-cat">Free Download · Automation Pipeline · LinkedIn</div>
+    <h1 class="post-title">DAILY LINKEDIN<br><em>CONTENT AUTOMATION</em><br>— Free AI Pipeline</h1>
+    <p class="post-subtitle">The exact pipeline I use to research, write, design &amp; schedule daily LinkedIn posts and carousels with AI. Download it, plug in your own keys, and run it.</p>
+    <div class="post-meta">
+      <span>✍ Prithal Bhardwaj</span>
+      <span>🐍 Python + Node.js</span>
+      <span>🔑 Bring your own API keys</span>
+      <span>📦 4.2 MB ZIP · Free</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <main class="post-content">
+
+      <!-- Download Banner -->
+      <div class="download-banner">
+        <div class="db-icon">⚙️</div>
+        <div class="db-text">
+          <h2>Download the Full Pipeline (ZIP)</h2>
+          <p>Every script, skill &amp; sample output — free, no signup. Bring your own keys.</p>
+        </div>
+        <a class="download-btn dl" target="_blank" rel="noopener">⬇ DOWNLOAD PIPELINE</a>
+      </div>
+
+      <h2 id="what">What This Is</h2>
+      <p>This is the actual automation pipeline behind my daily LinkedIn content. Instead of staring at a blank page every morning, it does the heavy lifting: it <strong>researches</strong> trending AI &amp; startup topics, <strong>writes</strong> posts in a defined voice, <strong>designs</strong> branded carousels and data infographics, and can <strong>deliver</strong> them to Slack and help you <strong>schedule</strong> them.</p>
+      <p>It's not a polished SaaS — it's the real working toolkit, shared as-is so you can run it, learn from it, and bend it to your own brand.</p>
+
+      <h2 id="what-it-does">What It Does</h2>
+      <div class="feature-grid">
+        <div class="feature-card"><span class="fc-icon">✍️</span><h4>AI Post Writing</h4><p>Generates ready-to-post LinkedIn text via OpenRouter, Anthropic or Gemini.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎨</span><h4>Branded Carousels</h4><p>Builds multi-slide carousels as PNG + PDF from HTML templates.</p></div>
+        <div class="feature-card"><span class="fc-icon">📊</span><h4>Data Infographics</h4><p>Renders clean single-image infographics for performance posts.</p></div>
+        <div class="feature-card"><span class="fc-icon">🔎</span><h4>Topic Research</h4><p>Pulls trending topics from Reddit &amp; AI news (Apify / Scrapingdog / RSS).</p></div>
+        <div class="feature-card"><span class="fc-icon">💬</span><h4>Slack Delivery</h4><p>Sends finished posts &amp; assets straight to a Slack channel.</p></div>
+        <div class="feature-card"><span class="fc-icon">🗓️</span><h4>Scheduling Helpers</h4><p>Scripts to queue and organise posts across the week.</p></div>
+      </div>
+
+      <h2 id="inside">What's Inside the ZIP</h2>
+      <div class="mvp-grid">
+        <div class="mvp-col">
+          <div class="mvp-col-head">Generators</div>
+          <ul>
+            <li>Post writers (multi-model)</li>
+            <li>Carousel builders</li>
+            <li>Infographic renderers</li>
+            <li>Daily paper generator</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">Research &amp; Delivery</div>
+          <ul>
+            <li>Reddit + AI-news fetchers</li>
+            <li>RSS fallback</li>
+            <li>Slack delivery scripts</li>
+            <li>Scheduling helpers</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">Docs &amp; Extras</div>
+          <ul>
+            <li>README + help.txt</li>
+            <li>4 reusable skills</li>
+            <li>.env.example template</li>
+            <li>sample-outputs folder</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="need">What You'll Need</h2>
+      <p>Everything runs on <strong>your own</strong> accounts and machine — so you control usage and cost.</p>
+      <ul>
+        <li><strong>Python 3</strong> and <strong>Node.js</strong> installed.</li>
+        <li><strong>A writing model key</strong> — OpenRouter, Anthropic, or Gemini (all have free / low-cost tiers).</li>
+        <li><strong>Research keys (optional)</strong> — Apify or Scrapingdog; there's an RSS fallback if you skip them.</li>
+        <li><strong>Slack bot token (optional)</strong> — only if you want auto-delivery to Slack.</li>
+      </ul>
+
+      <div class="callout accent">
+        <div class="callout-label">🔑 No keys included</div>
+        <p>This download was scrubbed of all secrets — there are <strong>no API keys, tokens, or .env file</strong> inside. You add your own keys to the included <span class="code-inline">.env.example</span> (rename it to <span class="code-inline">.env</span>).</p>
+      </div>
+
+      <h2 id="quickstart">Quick Start</h2>
+      <ol class="code-steps">
+        <li>Unzip the folder anywhere on your computer.</li>
+        <li>Rename <span class="code-inline">.env.example</span> → <span class="code-inline">.env</span> and paste in your own API keys.</li>
+        <li>Install dependencies: Python packages (e.g. <span class="code-inline">requests</span>) and run <span class="code-inline">npm install</span> inside <span class="code-inline">carousel-routine/</span>.</li>
+        <li>Run a generator — for example <span class="code-inline">python generate_all_content_gemini.py</span>.</li>
+        <li>Open <span class="code-inline">README.md</span> and <span class="code-inline">help.txt</span> for the full command list.</li>
+      </ol>
+
+      <div class="badge-row">
+        <span class="badge-pill">🐍 Python</span>
+        <span class="badge-pill">⬢ Node.js</span>
+        <span class="badge-pill">🤖 AI-Powered</span>
+        <span class="badge-pill">🔓 Bring Your Own Keys</span>
+        <span class="badge-pill">💸 Free</span>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="download-banner">
+        <div class="db-icon">📥</div>
+        <div class="db-text">
+          <h2>Grab the Whole Pipeline</h2>
+          <p>Scripts, skills, templates &amp; samples — 4.2 MB ZIP, free.</p>
+        </div>
+        <a class="download-btn dl" target="_blank" rel="noopener">⬇ DOWNLOAD PIPELINE</a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><div class="faq-q">What exactly is this pipeline?</div><div class="faq-a">It's the actual set of scripts and skills I use to run daily LinkedIn content: it researches trending AI and startup topics, writes posts in a defined voice, generates branded carousels and infographics, and can deliver them to Slack and help schedule them. It's a starting kit you run on your own machine with your own API keys.</div></div>
+        <div class="faq-item"><div class="faq-q">Do I need to know how to code?</div><div class="faq-a">Some comfort with the command line helps. You'll install Python and Node.js, paste your keys into a .env file, and run scripts. The README and help.txt walk through the commands — if you can follow setup steps and run a terminal command, you can use it.</div></div>
+        <div class="faq-item"><div class="faq-q">Which API keys do I need, and are they free?</div><div class="faq-a">Bring your own keys. For writing you can use OpenRouter, Anthropic, or Gemini (all have free or low-cost tiers). For research, Apify or Scrapingdog are optional (there's an RSS fallback). Slack delivery is optional and needs a Slack bot token. The .env.example file lists every variable.</div></div>
+        <div class="faq-item"><div class="faq-q">Are any of your API keys included in the download?</div><div class="faq-a">No. The package was scrubbed of all secrets before publishing — there are no API keys, tokens, or .env file inside. You add your own keys via the provided .env.example template.</div></div>
+        <div class="faq-item"><div class="faq-q">Can I modify it or use it for my own brand?</div><div class="faq-a">Yes. It's meant to be customized — swap the voice, branding, prompts, and sources to fit your own LinkedIn presence or your clients'. Use it freely.</div></div>
+        <div class="faq-item"><div class="faq-q">What does it actually produce?</div><div class="faq-a">Ready-to-post LinkedIn text posts, branded image carousels (PNG + PDF), and data infographics — plus optional Slack delivery and scheduling helpers. A sample-outputs folder shows real examples.</div></div>
+      </div>
+
+      <!-- Tags -->
+      <div class="post-tags">
+        <span class="post-tag">linkedin-automation</span>
+        <span class="post-tag">ai-content</span>
+        <span class="post-tag">content-pipeline</span>
+        <span class="post-tag">python</span>
+        <span class="post-tag">free-download</span>
+        <span class="post-tag">india</span>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <div class="sidebar-cta">
+        <h4>FREE DOWNLOAD</h4>
+        <p>The full LinkedIn content pipeline — scripts, skills &amp; samples.</p>
+        <a class="download-btn dl" target="_blank" rel="noopener">⬇ DOWNLOAD ZIP</a>
+      </div>
+      <div class="sidebar-toc">
+        <h4>On This Page</h4>
+        <ol>
+          <li><a href="#what">What This Is</a></li>
+          <li><a href="#what-it-does">What It Does</a></li>
+          <li><a href="#inside">What's Inside</a></li>
+          <li><a href="#need">What You'll Need</a></li>
+          <li><a href="#quickstart">Quick Start</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-toc">
+        <h4>More From Me</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="products.html" style="color:var(--accent);">→ Products &amp; Templates</a></li>
+          <li style="margin-bottom:10px;"><a href="blog.html" style="color:var(--accent);">→ The Blog</a></li>
+          <li><a href="community.html" style="color:var(--muted);">→ Founders Wing</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="products.html#pdf">100 Business Ideas PDF</a></li>
+        <li><a href="products.html#templates">Automation Templates</a></li>
+        <li><a href="content-automation.html">Content Automation</a></li>
+        <li><a href="products.html#consultation">Consultations</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* Download link — set to your Google Drive share URL */
+const DOWNLOAD_URL = "https://drive.google.com/uc?export=download&id=1AZg_zoLRtHZFDKOrWhs-o_EPNEO5cMM6";
+document.querySelectorAll('a.download-btn.dl').forEach(a => {
+  if (DOWNLOAD_URL && DOWNLOAD_URL !== "PASTE_DRIVE_LINK_HERE") {
+    a.href = DOWNLOAD_URL;
+  } else {
+    a.href = "#";
+    a.addEventListener('click', e => { e.preventDefault(); alert('Download link is being set up — please check back shortly!'); });
+  }
+});
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
