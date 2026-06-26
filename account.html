@@ -235,6 +235,27 @@
     </div>
   </div>
 
+  <!-- PASSWORD RECOVERY (shown after clicking a reset link) -->
+  <div id="recoveryView" style="display:none">
+    <div class="auth-gate">
+      <div style="font-size:40px">🔑</div>
+      <h2>Set a new password</h2>
+      <p>Almost there — choose a new password to finish signing in.</p>
+      <form id="formNewPassword" style="display:flex;flex-direction:column;gap:14px" onsubmit="handleUpdatePassword(event)" novalidate>
+        <div class="ck-field">
+          <label class="ck-label" for="npPassword">New Password</label>
+          <input class="ck-input" type="password" id="npPassword" placeholder="Min. 6 characters" required/>
+        </div>
+        <div class="ck-field">
+          <label class="ck-label" for="npConfirm">Confirm Password</label>
+          <input class="ck-input" type="password" id="npConfirm" placeholder="Re-enter password" required/>
+        </div>
+        <p id="npError" class="auth-error"></p>
+        <button type="submit" id="npBtnSubmit" class="btn primary lg ck-pay-btn">Set Password &amp; Continue →</button>
+      </form>
+    </div>
+  </div>
+
   <!-- ACCOUNT DASHBOARD (shown when logged in) -->
   <div id="accountDash" style="display:none">
     <div class="account-hero">
@@ -356,7 +377,12 @@ const MEMBER_LIBRARY = ['pdf', 'templates', 'free_ebook'];
 const WHATSAPP_GROUP = 'https://chat.whatsapp.com/D4V4uYn3s2d8TVJLt1qJUv?mode=gi_t';
 
 /* ===== INIT ===== */
+let inRecovery = false;
+
 (async function init() {
+  // Arrived via a password-reset link? Wait for the PASSWORD_RECOVERY event and
+  // show the set-password form instead of flashing the sign-in gate.
+  if (window.location.hash.includes('type=recovery')) { inRecovery = true; return; }
   const { data: { user } } = await db.auth.getUser();
   if (!user) { showAuthGate(); return; }
   showDashboard(user);
@@ -364,7 +390,9 @@ const WHATSAPP_GROUP = 'https://chat.whatsapp.com/D4V4uYn3s2d8TVJLt1qJUv?mode=gi
 })();
 
 db.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY') { inRecovery = true; showRecoveryView(); return; }
   if (event === 'SIGNED_IN' && session?.user) {
+    if (inRecovery) { showRecoveryView(); return; } // mid password-reset — don't jump to dashboard
     showDashboard(session.user);
     loadOrders(session.user);
   }
@@ -373,14 +401,23 @@ db.auth.onAuthStateChange((event, session) => {
 
 /* ===== UI STATE ===== */
 function showAuthGate() {
-  document.getElementById('authGate').style.display   = '';
+  document.getElementById('authGate').style.display    = '';
   document.getElementById('accountDash').style.display = 'none';
+  document.getElementById('recoveryView').style.display = 'none';
   document.getElementById('navAuthBtn').textContent    = 'Sign In';
 }
 
+function showRecoveryView() {
+  document.getElementById('authGate').style.display     = 'none';
+  document.getElementById('accountDash').style.display  = 'none';
+  document.getElementById('recoveryView').style.display = '';
+  document.getElementById('navAuthBtn').textContent     = 'Sign Out';
+}
+
 function showDashboard(user) {
-  document.getElementById('authGate').style.display   = 'none';
+  document.getElementById('authGate').style.display    = 'none';
   document.getElementById('accountDash').style.display = '';
+  document.getElementById('recoveryView').style.display = 'none';
   document.getElementById('navAuthBtn').textContent    = 'Sign Out';
 
   const meta = user.user_metadata || {};
@@ -556,9 +593,28 @@ async function handleForgot(e) {
   const email = document.getElementById('siEmail').value.trim();
   const errEl = document.getElementById('siError');
   if (!email) { errEl.textContent = 'Enter your email above first.'; return; }
-  await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
+  await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + window.location.pathname });
   errEl.className = 'auth-success';
-  errEl.textContent = '✓ Password reset email sent — check your inbox.';
+  errEl.textContent = '✓ Password reset email sent — check your inbox (and Spam/Promotions).';
+}
+
+async function handleUpdatePassword(e) {
+  e.preventDefault();
+  const pw      = document.getElementById('npPassword').value;
+  const confirm = document.getElementById('npConfirm').value;
+  const errEl   = document.getElementById('npError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  if (pw.length < 6)  { errEl.textContent = 'Password must be at least 6 characters.'; return; }
+  if (pw !== confirm) { errEl.textContent = 'Passwords do not match.'; return; }
+  setBtnLoading('npBtnSubmit', true, 'Set Password & Continue →');
+  const { error } = await db.auth.updateUser({ password: pw });
+  setBtnLoading('npBtnSubmit', false, 'Set Password & Continue →');
+  if (error) { errEl.textContent = error.message; return; }
+  inRecovery = false;
+  // Strip the recovery token from the URL so a refresh doesn't re-trigger recovery
+  history.replaceState(null, '', window.location.origin + window.location.pathname);
+  const { data: { user } } = await db.auth.getUser();
+  if (user) { showDashboard(user); loadOrders(user); }
 }
 
 async function handleSignOut() {
