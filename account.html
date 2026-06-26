@@ -342,7 +342,8 @@
 const { createClient } = window.supabase;
 const db = createClient(
   'https://jgujptvmrduaymvhjwfa.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo',
+  { auth: { detectSessionInUrl: false, persistSession: true, autoRefreshToken: true } }
 );
 
 // Google Drive folder links per product
@@ -380,14 +381,56 @@ const WHATSAPP_GROUP = 'https://chat.whatsapp.com/D4V4uYn3s2d8TVJLt1qJUv?mode=gi
 let inRecovery = false;
 
 (async function init() {
-  // Arrived via a password-reset link? Wait for the PASSWORD_RECOVERY event and
-  // show the set-password form instead of flashing the sign-in gate.
-  if (window.location.hash.includes('type=recovery')) { inRecovery = true; return; }
+  if (await handleAuthCallback()) return;
   const { data: { user } } = await db.auth.getUser();
   if (!user) { showAuthGate(); return; }
   showDashboard(user);
   loadOrders(user);
 })();
+
+// We process the auth fragment ourselves (detectSessionInUrl is off) so we can
+// tolerate the malformed double-"#" URLs Supabase sometimes produces, where an
+// error fragment and a valid token fragment are concatenated.
+async function handleAuthCallback() {
+  const raw = window.location.hash || '';
+  if (!raw.includes('access_token') && !raw.includes('error')) return false;
+
+  // Flatten "#a=1&sb=#b=2" into one set of params
+  const params = new URLSearchParams(raw.replace(/^#/, '').replace(/#/g, '&'));
+  const access_token  = params.get('access_token');
+  const refresh_token = params.get('refresh_token');
+  const type          = params.get('type');
+  const hasError      = !!(params.get('error') || params.get('error_description'));
+
+  // If a usable token is present, try to establish the session even if an error
+  // fragment is also tacked on (the token wins).
+  if (access_token && refresh_token) {
+    if (type === 'recovery') inRecovery = true; // make the SIGNED_IN handler defer
+    const { error } = await db.auth.setSession({ access_token, refresh_token });
+    history.replaceState(null, '', window.location.origin + window.location.pathname);
+    if (!error) {
+      if (type === 'recovery') { showRecoveryView(); }
+      else { const { data: { user } } = await db.auth.getUser(); user ? (showDashboard(user), loadOrders(user)) : showAuthGate(); }
+      return true;
+    }
+    inRecovery = false; // token was rejected (expired) — fall through to the error message
+  }
+
+  // No usable token (expired / already used / error-only)
+  history.replaceState(null, '', window.location.origin + window.location.pathname);
+  if (hasError || access_token) { showResetError(); return true; }
+  return false;
+}
+
+function showResetError() {
+  showAuthGate();
+  switchTab('signin');
+  const el = document.getElementById('siError');
+  if (el) {
+    el.className = 'auth-error';
+    el.textContent = 'That login/reset link expired or was already used. Enter your email below and tap “Forgot password?” to get a fresh one — then open it once, right away.';
+  }
+}
 
 db.auth.onAuthStateChange((event, session) => {
   if (event === 'PASSWORD_RECOVERY') { inRecovery = true; showRecoveryView(); return; }
