@@ -213,6 +213,12 @@
         </div>
         <p id="siError" class="auth-error"></p>
         <button type="submit" id="siBtnSubmit" class="btn primary lg ck-pay-btn">Sign In →</button>
+        <div style="display:flex;align-items:center;gap:10px;color:var(--muted)">
+          <span style="flex:1;height:2px;background:var(--rule);opacity:.35"></span>
+          <span style="font-family:'Caveat',cursive;font-size:16px">or</span>
+          <span style="flex:1;height:2px;background:var(--rule);opacity:.35"></span>
+        </div>
+        <button type="button" id="magicBtn" onclick="handleMagicLink()" class="btn lg ck-pay-btn" style="background:var(--paper);color:var(--ink);border:2px solid var(--rule)">✉️ Email me a one-tap login link</button>
         <p style="font-family:'Caveat',cursive;font-size:15px;color:var(--muted)"><a href="#" onclick="handleForgot(event)" style="color:var(--muted)">Forgot password?</a></p>
       </form>
       <!-- Create Account -->
@@ -639,6 +645,22 @@ async function handleForgot(e) {
   await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + window.location.pathname });
   errEl.className = 'auth-success';
   errEl.textContent = '✓ Password reset email sent — check your inbox (and Spam/Promotions).';
+}
+
+async function handleMagicLink() {
+  const email = document.getElementById('siEmail').value.trim();
+  const errEl = document.getElementById('siError');
+  errEl.textContent = ''; errEl.className = 'auth-error';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Enter your email above first.'; return; }
+  setBtnLoading('magicBtn', true, '✉️ Email me a one-tap login link');
+  const { error } = await db.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.origin + window.location.pathname, shouldCreateUser: true }
+  });
+  setBtnLoading('magicBtn', false, '✉️ Email me a one-tap login link');
+  if (error) { errEl.textContent = error.message; return; }
+  errEl.className = 'auth-success';
+  errEl.textContent = '✓ Login link sent — check your email (and Spam/Promotions), then open it once.';
 }
 
 async function handleUpdatePassword(e) {
