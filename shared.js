@@ -103,7 +103,7 @@ function switchTab(tab, btn) {
   if (page.indexOf('community') === 0 || page.indexOf('fw-') === 0) return;
   try { if (sessionStorage.getItem('fw_pop_seen')) return; } catch (e) {}
 
-  const FW_URL = 'https://www.founderswing.com';
+  const FW_URL = 'https://www.founderswing.com/?utm_source=thesoloentrepreneur&utm_medium=popup&utm_campaign=fw_promo';
   const LOGO   = 'https://www.founderswing.com/logo-icon.png';
   const seen = () => { try { sessionStorage.setItem('fw_pop_seen', '1'); } catch (e) {} };
 
