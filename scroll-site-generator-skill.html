@@ -124,6 +124,13 @@
 .code-steps li { position: relative; padding: 0 0 18px 40px; font-size: 17px; }
 .code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Rubik Mono One', sans-serif; font-size: 13px; }
 code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 7px; }
+.how-step-label { font-family: 'Rubik Mono One', sans-serif; font-size: 15px; margin: 30px 0 12px; display: flex; align-items: center; gap: 8px; }
+.how-step-label:first-of-type { margin-top: 14px; }
+
+/* Example prompt cards */
+.prompt-card { border: 2px solid var(--rule); border-left: 5px solid var(--accent); border-radius: var(--radius); background: var(--paper-2); padding: 14px 18px; margin: 12px 0; }
+.prompt-card .pc-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
+.prompt-card p { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink); }
 
 /* Sidebar */
 .sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
@@ -268,14 +275,57 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
         <p>This download was scrubbed before publishing — the only <span class="code-inline">.env</span> inside is a <strong>placeholder</strong> (<span class="code-inline">HF_KEY=your_higgsfield_api_key_here</span>). No real keys, tokens or secrets. Add your own Higgsfield key.</p>
       </div>
 
-      <h2 id="quickstart">Quick Start</h2>
+      <h2 id="how-to-use">How to Use It</h2>
+      <p>Two minutes of one-time setup, then you drive the whole thing in plain English. Here's the entire flow.</p>
+
+      <div class="how-step-label">⚙️ First-time setup <span style="font-family:'Patrick Hand',cursive;font-size:14px;color:var(--muted);">(once)</span></div>
       <ol class="code-steps">
-        <li>Unzip and drop the <span class="code-inline">scroll-site-generator</span> folder into your skills directory (e.g. <span class="code-inline">~/.claude/skills/</span>).</li>
-        <li>Open <span class="code-inline">.env</span> and paste in your Higgsfield key: <span class="code-inline">HF_KEY=key:secret</span>.</li>
-        <li>Install dependencies: <span class="code-inline">pip install pillow higgsfield_client</span>, and make sure <span class="code-inline">ffmpeg</span> is on your PATH.</li>
-        <li>In Claude, ask: <em>"make an Apple-style scroll site for [your product]"</em> — with any scroll beats or vibe you want.</li>
-        <li>Claude storyboards, generates the media, builds the frames and serves the site locally. Open <span class="code-inline">SKILL.md</span> for the full pipeline.</li>
+        <li>Unzip and drop the <span class="code-inline">scroll-site-generator</span> folder into your Claude skills directory — <span class="code-inline">~/.claude/skills/</span>. Restart Claude Code so it loads the new skill.</li>
+        <li>Open <span class="code-inline">scroll-site-generator/.env</span> and paste your Higgsfield key in <span class="code-inline">key:secret</span> form — for example <span class="code-inline">HF_KEY=abc123:def456</span>. (Grab the key &amp; secret from your Higgsfield account.)</li>
+        <li>Install the tools it uses: <span class="code-inline">pip install pillow higgsfield_client</span>, and make sure <span class="code-inline">ffmpeg</span> is installed (<span class="code-inline">brew install ffmpeg</span> on Mac).</li>
       </ol>
+
+      <div class="how-step-label">🎬 Every time you want a site</div>
+      <ol class="code-steps">
+        <li><strong>Describe your product to Claude.</strong> Give it the product, a few scroll beats, a vibe and a brand name — anything you leave out, it invents tastefully. (Copy-paste an example below.)</li>
+        <li><strong>Pick the hero.</strong> Claude generates a few hero stills first — this is the cheap step. Choose your favourite; every video clip is anchored to it so the product stays consistent, no morphing.</li>
+        <li><strong>Let it build.</strong> It animates each chapter with Kling, slices the film into ~400 scrubbable frames, wires them to scroll, then continues the scroll into a full brand homepage.</li>
+        <li><strong>Review &amp; ship.</strong> Claude serves the site locally and opens it in your browser. Ask for tweaks, regenerate any single clip you don't like, or have it deploy to GitHub Pages.</li>
+      </ol>
+
+      <h2 id="how-it-works">How It Works Behind the Scenes</h2>
+      <p>You don't need to touch any of this — but here's the pipeline Claude runs for every build:</p>
+      <div class="feature-grid">
+        <div class="feature-card"><span class="fc-icon">🗺️</span><h4>1 · Storyboard</h4><p>Maps your brief onto 5–8 scroll chapters, one visual idea each.</p></div>
+        <div class="feature-card"><span class="fc-icon">🖼️</span><h4>2 · Hero Still</h4><p>Generates the anchor image with Higgsfield's Soul model — you approve it.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎥</span><h4>3 · Chapter Clips</h4><p>Kling animates each beat, each clip chained to the last so state carries over.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎞️</span><h4>4 · Frame Slicing</h4><p>Concats the clips and slices ~400 lightweight WebP frames.</p></div>
+        <div class="feature-card"><span class="fc-icon">📜</span><h4>5 · Scroll Engine</h4><p>Wires the frames to scroll position on a canvas, with captions per chapter.</p></div>
+        <div class="feature-card"><span class="fc-icon">🏛️</span><h4>6 · Brand Page</h4><p>Continues below the film into manifesto, specs, gallery, nav &amp; footer.</p></div>
+      </div>
+
+      <h2 id="examples">Example Briefs You Can Paste</h2>
+      <p>Copy one, swap in your own product, and send it to Claude. These show the level of detail that works well — a product, a few beats, and a vibe.</p>
+      <div class="prompt-card">
+        <div class="pc-label">☕ Coffee machine · vanilla scroll-film</div>
+        <p>"Make an Apple-style scroll site for AURUM One, a premium espresso machine. Beans fall into the hopper, the machine assembles itself piece by piece, then espresso pours into a glass. Vibe: matte black + brass, near-black background, huge tight type."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="pc-label">📷 Camera · cinematic</div>
+        <p>"Build a scroll-driven product page for OBSCURA M, a full-frame camera. Lens elements float apart, the sensor is revealed, then everything reassembles. Dark, cinematic, generous negative space."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="pc-label">👟 Sneaker · GSAP / Next.js hybrid</div>
+        <p>"Create a GSAP scroll site for a running sneaker. Exploded view of the layers, an energy pulse runs through the sole, then it comes together. Neon accent on black, pinned sections with spec labels."</p>
+      </div>
+
+      <div class="callout accent">
+        <div class="callout-label">💡 Tips for the best result</div>
+        <p style="line-height:1.7;">• Get the hero still right <strong>before</strong> any video — it's cheap, and every clip inherits it.<br>
+        • Keep every still the same aspect ratio so the clips match seamlessly.<br>
+        • Each clip costs Higgsfield credits — a typical site is a few stills + 5–8 clips, so keep an eye on your balance.<br>
+        • Any single clip can be regenerated on its own — you never have to rebuild the whole site.</p>
+      </div>
 
       <div class="badge-row">
         <span class="badge-pill">🤖 Claude Skill</span>
@@ -333,7 +383,9 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
           <li><a href="#what-it-does">What It Does</a></li>
           <li><a href="#inside">What's Inside</a></li>
           <li><a href="#need">What You'll Need</a></li>
-          <li><a href="#quickstart">Quick Start</a></li>
+          <li><a href="#how-to-use">How to Use It</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#examples">Example Briefs</a></li>
         </ol>
       </div>
       <div class="sidebar-toc">
