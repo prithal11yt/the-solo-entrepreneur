@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Scroll-Site Generator — Free Claude Skill for Apple-Style Scroll Websites | The Solo Entrepreneur</title>
+<meta name="description" content="Download the free Claude skill I use to generate cinematic, Apple-style scroll-driven product websites — an AI scroll film (Higgsfield + Kling) that flows into a full brand homepage. Bring your own key. No signup."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/scroll-site-generator-skill"/>
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/scroll-site-generator-skill"/>
+<meta property="og:title" content="Scroll-Site Generator — Free Claude Skill for Apple-Style Scroll Sites"/>
+<meta property="og:description" content="The Claude skill behind my cinematic, scroll-driven product pages — AI scroll film that flows into a full brand homepage. Free download, bring your own Higgsfield key."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Scroll-Site Generator — Free Claude Skill"/>
+<meta name="twitter:description" content="Generate Apple-style, scroll-driven product websites with AI. Free download, bring your own key."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Scroll-Site Generator (Claude Skill)",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "macOS, Linux, Windows (Claude Code + Python 3 + ffmpeg)",
+  "description": "A Claude skill that generates a complete Apple-style, scroll-driven brand website from a short brief — an AI scroll film (Higgsfield stills + Kling clips scrubbed frame-by-frame) that flows into a full brand homepage. Bring your own Higgsfield API key.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "author": { "@type": "Person", "name": "Prithal Bhardwaj", "url": "https://www.thesoloentrepreneur.in" },
+  "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What exactly is the Scroll-Site Generator?", "acceptedAnswer": { "@type": "Answer", "text": "It's a Claude skill (a SKILL.md playbook plus scripts and front-end assets) that turns a short product brief into a cinematic, Apple-style scroll website: an AI-generated product film that scrubs frame-by-frame as you scroll, flowing into a full brand homepage with manifesto, story, specs, gallery, nav and footer. You drop it into your Claude skills folder and ask Claude to build a scroll site." } },
+    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "You need Claude Code (or an agent that runs SKILL.md skills) and some comfort with the terminal. Claude does the heavy lifting — storyboarding, generating stills and clips, slicing frames and assembling the site — but you'll install Python, ffmpeg and Pillow, add your API key, and run a local server. If you can follow setup steps, you can use it." } },
+    { "@type": "Question", "name": "Which API keys do I need?", "acceptedAnswer": { "@type": "Answer", "text": "One: a Higgsfield API key (HF_KEY), used for the AI stills (Soul model) and the Kling image-to-video clips. Those are paid credits — a typical site uses a handful of stills and 5–8 clips. Everything else (frame slicing, the website itself, hosting) is free and runs locally." } },
+    { "@type": "Question", "name": "Are any of your API keys included in the download?", "acceptedAnswer": { "@type": "Answer", "text": "No. The package was scrubbed before publishing — the only .env inside is a placeholder (HF_KEY=your_higgsfield_api_key_here). There are no real keys, tokens or secrets. You add your own Higgsfield key." } },
+    { "@type": "Question", "name": "What does it actually produce?", "acceptedAnswer": { "@type": "Answer", "text": "A complete, ready-to-host website: either a zero-build vanilla scroll-film (canvas frames scrubbed by scroll) or a GSAP/Next.js hybrid with pinned sections. Below the film it builds a full brand homepage in the same design system. You can serve it locally or deploy to GitHub Pages." } },
+    { "@type": "Question", "name": "Can I use it for my own products or clients?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's meant to be customized — swap the product, brand colors, copy and scroll beats. Use it for your own launches or client work freely." } }
+  ]
+}
+</script>
+<style>
+/* Header */
+.post-header { padding: 40px 0 8px; }
+.post-breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.post-breadcrumb a { color: var(--accent); }
+.post-cat { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.post-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(26px, 5vw, 52px); line-height: .95; margin-bottom: 20px; }
+.post-title em { font-style: normal; color: var(--accent); }
+.post-subtitle { font-family: 'Caveat', cursive; font-size: 22px; color: var(--muted); max-width: 680px; margin-bottom: 24px; }
+.post-meta { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+.post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 40px 0 80px; align-items: start; }
+@media(max-width:1100px){ .post-layout { grid-template-columns: 1fr; gap: 40px; } .post-sidebar { order: 2; position: static; } }
+.post-content { max-width: 720px; }
+.post-content h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(20px, 3vw, 28px); line-height: 1; margin: 52px 0 16px; padding-top: 12px; border-top: 2px solid var(--rule); }
+.post-content h2:first-of-type { margin-top: 0; border-top: none; }
+.post-content p { font-size: 18px; line-height: 1.65; margin-bottom: 18px; color: var(--ink); }
+.post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 18px; }
+.post-content li { font-size: 18px; line-height: 1.6; margin-bottom: 8px; }
+.post-content strong { font-weight: 700; }
+.post-content a { color: var(--accent); text-decoration: underline; }
+
+/* Download CTA */
+.download-banner { background: var(--ink); border: 2px solid var(--rule); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.download-banner .db-icon { font-size: 48px; flex-shrink: 0; }
+.download-banner .db-text { flex: 1; min-width: 200px; }
+.download-banner h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
+.download-banner p { font-family: 'Caveat', cursive; font-size: 19px; color: rgba(250,247,240,.7); margin: 0; }
+.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family: 'Rubik Mono One', sans-serif; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.download-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+
+/* Feature grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.feature-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
+.feature-card .fc-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.feature-card h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.feature-card p { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+
+/* Callout */
+.callout { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px 24px; margin: 28px 0; background: var(--paper-2); }
+.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.callout p { margin: 0; font-size: 17px; }
+
+/* Included list (columns) */
+.mvp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin: 24px 0; }
+.mvp-col { border: 2px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.mvp-col-head { background: var(--ink); color: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; padding: 10px 14px; }
+.mvp-col ul { list-style: none; padding: 0; margin: 0; }
+.mvp-col li { font-family: 'Patrick Hand', cursive; font-size: 14px; padding: 9px 14px; border-bottom: 1px solid var(--paper-2); line-height: 1.35; }
+.mvp-col li:last-child { border-bottom: none; }
+.mvp-col li::before { content: '✓ '; color: #2e7d32; font-weight: 700; }
+
+/* Badges */
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 24px; }
+.badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid var(--rule); background: var(--paper-2); }
+
+/* Quickstart code */
+.code-steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+.code-steps li { position: relative; padding: 0 0 18px 40px; font-size: 17px; }
+.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Rubik Mono One', sans-serif; font-size: 13px; }
+code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 7px; }
+
+/* Sidebar */
+.sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
+.sidebar-cta h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; margin-bottom: 8px; }
+.sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
+.sidebar-cta .download-btn { background: var(--paper); color: var(--ink); border-color: var(--ink); width: 100%; justify-content: center; }
+.sidebar-cta .download-btn:hover { box-shadow: 3px 3px 0 var(--ink); }
+.sidebar-toc { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
+.sidebar-toc h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.sidebar-toc ol, .sidebar-toc ul { padding-left: 18px; }
+.sidebar-toc li { font-family: 'Patrick Hand', cursive; font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
+.sidebar-toc a { color: var(--ink); }
+.sidebar-toc a:hover { color: var(--accent); }
+
+/* Tags */
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; border: 1.5px solid var(--rule); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
+
+/* FAQ */
+.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section h2 { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-bottom: 24px; }
+.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q { font-family: 'Patrick Hand', cursive; font-size: 17px; font-weight: 700; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper-2); user-select: none; }
+.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { font-family: 'Patrick Hand', cursive; font-size: 17px; line-height: 1.6; padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+.faq-item.open .faq-a { max-height: 600px; padding: 16px 20px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="account.html" class="btn primary nav-cta sm">My Account</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+</div>
+
+<div class="container">
+  <div class="post-header">
+    <div class="post-breadcrumb"><a href="blog.html">Blog</a> › Free Tools › Scroll-Site Generator</div>
+    <div class="post-cat">Free Download · Claude Skill · Apple-Style Scroll Sites</div>
+    <h1 class="post-title">SCROLL-SITE<br><em>GENERATOR</em><br>— The Claude Skill</h1>
+    <p class="post-subtitle">The skill I use to turn a one-line product brief into a cinematic, Apple-style scroll website — an AI film that scrubs as you scroll, flowing into a full brand homepage.</p>
+    <div class="post-meta">
+      <span>✍ Prithal Bhardwaj</span>
+      <span>🤖 Claude skill (SKILL.md)</span>
+      <span>🔑 Bring your own Higgsfield key</span>
+      <span>📦 32 KB ZIP · Free</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <main class="post-content">
+
+      <!-- Download Banner -->
+      <div class="download-banner">
+        <div class="db-icon">🎬</div>
+        <div class="db-text">
+          <h2>Download the Skill (ZIP)</h2>
+          <p>Playbook, scripts &amp; front-end engine — free, no signup. Bring your own key.</p>
+        </div>
+        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD SKILL</a>
+      </div>
+
+      <h2 id="what">What This Is</h2>
+      <p>This is the actual Claude skill behind those cinematic, scroll-driven product pages — the kind where a product film plays out <strong>frame-by-frame as you scroll</strong> (the technique Apple uses for the AirPods pages), then flows straight into a full brand homepage below it.</p>
+      <p>You drop the folder into your Claude skills directory, give Claude a product brief — real or invented — and it does the whole thing: storyboards the scroll, generates the stills and video clips with AI, slices them into scrubbable frames, and assembles a complete, hostable website in one continuous scroll story. It's not a polished SaaS — it's the real working skill, shared as-is.</p>
+
+      <h2 id="what-it-does">What It Does</h2>
+      <div class="feature-grid">
+        <div class="feature-card"><span class="fc-icon">🎞️</span><h4>Scroll Film</h4><p>An AI product film sliced into ~400 frames, scrubbed on a canvas by scroll position.</p></div>
+        <div class="feature-card"><span class="fc-icon">🖼️</span><h4>Higgsfield Stills</h4><p>Cinematic hero stills via the Soul model, anchored so every clip stays consistent.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎥</span><h4>Kling Clips</h4><p>Chapter clips via Kling v2.1 image-to-video, chained frame-to-frame for continuity.</p></div>
+        <div class="feature-card"><span class="fc-icon">🏗️</span><h4>Full Brand Page</h4><p>Manifesto, story, craft, specs, gallery, CTA, sticky nav &amp; footer — one scroll.</p></div>
+        <div class="feature-card"><span class="fc-icon">⚡</span><h4>Two Architectures</h4><p>Zero-build vanilla scroll-film, or a GSAP / Next.js hybrid with pinned sections.</p></div>
+        <div class="feature-card"><span class="fc-icon">🚀</span><h4>Serve &amp; Deploy</h4><p>Runs locally out of the box, with an optional one-command GitHub Pages deploy.</p></div>
+      </div>
+
+      <h2 id="inside">What's Inside the ZIP</h2>
+      <div class="mvp-grid">
+        <div class="mvp-col">
+          <div class="mvp-col-head">Skill &amp; Docs</div>
+          <ul>
+            <li>SKILL.md playbook</li>
+            <li>vanilla-film reference</li>
+            <li>gsap-nextjs reference</li>
+            <li>brand-page + prompts + deploy</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">Scripts</div>
+          <ul>
+            <li>hf.py — Higgsfield + Kling</li>
+            <li>build_master.py — frame slicer</li>
+            <li>extract.py — sequence tool</li>
+            <li>.env template (no keys)</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">Front-end Engine</div>
+          <ul>
+            <li>scrubber-index.html</li>
+            <li>scrubber-main.js</li>
+            <li>brand-sections.html</li>
+            <li>useFrameSequence.ts + SmoothScroll.tsx</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="need">What You'll Need</h2>
+      <p>Claude does the creative work, but it all runs on <strong>your own</strong> machine and accounts — so you control usage and cost.</p>
+      <ul>
+        <li><strong>Claude Code</strong> (or an agent that runs <span class="code-inline">SKILL.md</span> skills).</li>
+        <li><strong>Python 3</strong>, <strong>ffmpeg</strong>, and <strong>Pillow</strong> installed.</li>
+        <li><strong>A Higgsfield API key</strong> (<span class="code-inline">HF_KEY</span>) — powers the AI stills and Kling video clips (paid credits).</li>
+        <li>Some comfort with the terminal — Claude walks you through the rest.</li>
+      </ul>
+
+      <div class="callout accent">
+        <div class="callout-label">🔑 No keys included</div>
+        <p>This download was scrubbed before publishing — the only <span class="code-inline">.env</span> inside is a <strong>placeholder</strong> (<span class="code-inline">HF_KEY=your_higgsfield_api_key_here</span>). No real keys, tokens or secrets. Add your own Higgsfield key.</p>
+      </div>
+
+      <h2 id="quickstart">Quick Start</h2>
+      <ol class="code-steps">
+        <li>Unzip and drop the <span class="code-inline">scroll-site-generator</span> folder into your skills directory (e.g. <span class="code-inline">~/.claude/skills/</span>).</li>
+        <li>Open <span class="code-inline">.env</span> and paste in your Higgsfield key: <span class="code-inline">HF_KEY=key:secret</span>.</li>
+        <li>Install dependencies: <span class="code-inline">pip install pillow higgsfield_client</span>, and make sure <span class="code-inline">ffmpeg</span> is on your PATH.</li>
+        <li>In Claude, ask: <em>"make an Apple-style scroll site for [your product]"</em> — with any scroll beats or vibe you want.</li>
+        <li>Claude storyboards, generates the media, builds the frames and serves the site locally. Open <span class="code-inline">SKILL.md</span> for the full pipeline.</li>
+      </ol>
+
+      <div class="badge-row">
+        <span class="badge-pill">🤖 Claude Skill</span>
+        <span class="badge-pill">🎨 Higgsfield</span>
+        <span class="badge-pill">🎥 Kling v2.1</span>
+        <span class="badge-pill">⚙ GSAP / Next.js</span>
+        <span class="badge-pill">🔓 Bring Your Own Key</span>
+        <span class="badge-pill">💸 Free</span>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="download-banner">
+        <div class="db-icon">📥</div>
+        <div class="db-text">
+          <h2>Grab the Whole Skill</h2>
+          <p>Playbook, scripts &amp; front-end engine — 32 KB ZIP, free.</p>
+        </div>
+        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD SKILL</a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><div class="faq-q">What exactly is the Scroll-Site Generator?</div><div class="faq-a">It's a Claude skill — a SKILL.md playbook plus scripts and front-end assets — that turns a short product brief into a cinematic, Apple-style scroll website: an AI-generated product film that scrubs frame-by-frame as you scroll, flowing into a full brand homepage with manifesto, story, specs, gallery, nav and footer. You drop it into your Claude skills folder and ask Claude to build a scroll site.</div></div>
+        <div class="faq-item"><div class="faq-q">Do I need to know how to code?</div><div class="faq-a">You need Claude Code (or an agent that runs SKILL.md skills) and some comfort with the terminal. Claude does the heavy lifting — storyboarding, generating stills and clips, slicing frames and assembling the site — but you'll install Python, ffmpeg and Pillow, add your API key, and run a local server. If you can follow setup steps, you can use it.</div></div>
+        <div class="faq-item"><div class="faq-q">Which API keys do I need?</div><div class="faq-a">Just one: a Higgsfield API key (HF_KEY), used for the AI stills (Soul model) and the Kling image-to-video clips. Those are paid credits — a typical site uses a handful of stills and 5–8 clips. Everything else (frame slicing, the website itself, hosting) is free and runs locally.</div></div>
+        <div class="faq-item"><div class="faq-q">Are any of your API keys included in the download?</div><div class="faq-a">No. The package was scrubbed before publishing — the only .env inside is a placeholder (HF_KEY=your_higgsfield_api_key_here). There are no real keys, tokens or secrets. You add your own Higgsfield key.</div></div>
+        <div class="faq-item"><div class="faq-q">What does it actually produce?</div><div class="faq-a">A complete, ready-to-host website: either a zero-build vanilla scroll-film (canvas frames scrubbed by scroll) or a GSAP/Next.js hybrid with pinned sections. Below the film it builds a full brand homepage in the same design system. You can serve it locally or deploy to GitHub Pages.</div></div>
+        <div class="faq-item"><div class="faq-q">Can I use it for my own products or clients?</div><div class="faq-a">Yes. It's meant to be customized — swap the product, brand colors, copy and scroll beats. Use it for your own launches or client work freely.</div></div>
+      </div>
+
+      <!-- Tags -->
+      <div class="post-tags">
+        <span class="post-tag">claude-skill</span>
+        <span class="post-tag">scroll-animation</span>
+        <span class="post-tag">apple-style</span>
+        <span class="post-tag">gsap</span>
+        <span class="post-tag">higgsfield</span>
+        <span class="post-tag">free-download</span>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <div class="sidebar-cta">
+        <h4>FREE DOWNLOAD</h4>
+        <p>The full scroll-site skill — playbook, scripts &amp; engine.</p>
+        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD ZIP</a>
+      </div>
+      <div class="sidebar-toc">
+        <h4>On This Page</h4>
+        <ol>
+          <li><a href="#what">What This Is</a></li>
+          <li><a href="#what-it-does">What It Does</a></li>
+          <li><a href="#inside">What's Inside</a></li>
+          <li><a href="#need">What You'll Need</a></li>
+          <li><a href="#quickstart">Quick Start</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-toc">
+        <h4>More From Me</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="content-automation.html" style="color:var(--accent);">→ Content Automation Pipeline</a></li>
+          <li style="margin-bottom:10px;"><a href="products.html" style="color:var(--accent);">→ Products &amp; Templates</a></li>
+          <li><a href="community.html" style="color:var(--muted);">→ Founders Wing</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
+        <li><a href="products.html#pdf">100 Business Ideas PDF</a></li>
+        <li><a href="products.html#templates">Automation Templates</a></li>
+        <li><a href="content-automation.html">Content Automation</a></li>
+        <li><a href="scroll-site-generator-skill.html">Scroll-Site Generator</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
