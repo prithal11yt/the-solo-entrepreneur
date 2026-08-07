@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Reel Automation Engine — Turn a Topic Into a Finished Reel (Free Download) | The Solo Entrepreneur</title>
+<meta name="description" content="Download the free code-based reel engine I use — AI presenter, sourced footage, motion graphics, captions, SFX & music, rendered entirely as code at 1080×1920, mastered to −14 LUFS. Bring your own avatar & voice. No signup."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/reel-automation"/>
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/reel-automation"/>
+<meta property="og:title" content="AI Reel Automation Engine — Reels, Rendered as Code"/>
+<meta property="og:description" content="The engine behind my faceless AI reels — presenter, sourced footage, motion graphics, captions & sound, generated as code. Free download, bring your own avatar."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="AI Reel Automation Engine — Free Download"/>
+<meta name="twitter:description" content="Turn a topic into a finished vertical reel — rendered entirely as code. Free download, bring your own avatar & voice."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Reel Automation Engine",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS, Linux, Windows (Node 18+, Python 3, ffmpeg)",
+  "description": "A code-based pipeline that turns a topic into a finished vertical reel — AI presenter, sourced footage, motion graphics, captions, SFX and music, rendered entirely as code at 1080×1920 and mastered to −14 LUFS. Built on Remotion + Python + Whisper. Bring your own avatar and voice.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "author": { "@type": "Person", "name": "Prithal Bhardwaj", "url": "https://www.thesoloentrepreneur.in" },
+  "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What exactly is the AI Reel Automation Engine?", "acceptedAnswer": { "@type": "Answer", "text": "It's a code-based reel factory — a set of docs, React (Remotion) scene components and Python build scripts — that turns a topic into a finished vertical reel: an AI presenter, real sourced footage, motion graphics, captions, SFX and music, rendered entirely as code at 1080×1920 and mastered to −14 LUFS, with zero manual editing. You point a coding agent at the folder and tell it to make a reel." } },
+    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "You drive it with a coding agent (Claude Code, Cursor, Codex) rather than editing code by hand, but you'll install a small toolchain — Node, Python, ffmpeg, yt-dlp, Whisper and headless Chrome — and run a couple of commands. If you can follow setup steps and run a terminal command, you can use it." } },
+    { "@type": "Question", "name": "What accounts or keys do I need?", "acceptedAnswer": { "@type": "Answer", "text": "An avatar/voice provider for the AI presenter — HeyGen by default, though you can swap in any provider. You put your own avatar and voice IDs into config.json. Whisper (for word-timings) runs locally and is free." } },
+    { "@type": "Question", "name": "Are your avatar, voice or API keys included in the download?", "acceptedAnswer": { "@type": "Answer", "text": "No. The download ships the engine, not an identity — there are no credentials, avatars, voice samples or personal assets inside. You add your own avatar/voice IDs to config.json (there's a config.example.json template)." } },
+    { "@type": "Question", "name": "Why is there no music in the download?", "acceptedAnswer": { "@type": "Answer", "text": "The music beds and sound effects were removed for licensing reasons — redistributing audio publicly needs clear rights. The engine plays a music bed under every reel; just drop your own royalty-free tracks into public/music/ (there's a README note inside explaining exactly where and how)." } },
+    { "@type": "Question", "name": "Can I change the look and voice?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Style packs define both the visual look and the script voice; two are included (Varun Mayya and Nick Saraev), and you can edit them or add your own. The engine keeps a STYLE-RULES ledger so it improves as you give feedback." } },
+    { "@type": "Question", "name": "What does it actually output?", "acceptedAnswer": { "@type": "Answer", "text": "A finished vertical MP4 — 1080×1920, 30fps, mastered to −14 LUFS — ready to post to Reels, Shorts or TikTok. No manual editing at any step." } }
+  ]
+}
+</script>
+<style>
+/* Header */
+.post-header { padding: 40px 0 8px; }
+.post-breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.post-breadcrumb a { color: var(--accent); }
+.post-cat { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.post-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(26px, 5vw, 50px); line-height: .98; margin-bottom: 20px; }
+.post-title em { font-style: normal; color: var(--accent); }
+.post-subtitle { font-family: 'Caveat', cursive; font-size: 22px; color: var(--muted); max-width: 700px; margin-bottom: 24px; }
+.post-meta { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+.post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 40px 0 80px; align-items: start; }
+@media(max-width:1100px){ .post-layout { grid-template-columns: 1fr; gap: 40px; } .post-sidebar { order: 2; position: static; } }
+.post-content { max-width: 740px; }
+.post-content h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(20px, 3vw, 28px); line-height: 1.05; margin: 52px 0 16px; padding-top: 12px; border-top: 2px solid var(--rule); }
+.post-content h2:first-of-type { margin-top: 0; border-top: none; }
+.post-content p { font-size: 18px; line-height: 1.65; margin-bottom: 18px; color: var(--ink); }
+.post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 18px; }
+.post-content li { font-size: 18px; line-height: 1.6; margin-bottom: 8px; }
+.post-content strong { font-weight: 700; }
+.post-content a { color: var(--accent); text-decoration: underline; }
+
+/* Download CTA */
+.download-banner { background: var(--ink); border: 2px solid var(--rule); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.download-banner .db-icon { font-size: 48px; flex-shrink: 0; }
+.download-banner .db-text { flex: 1; min-width: 200px; }
+.download-banner h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
+.download-banner p { font-family: 'Caveat', cursive; font-size: 19px; color: rgba(250,247,240,.7); margin: 0; }
+.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family: 'Rubik Mono One', sans-serif; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.download-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+
+/* Feature grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.feature-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
+.feature-card .fc-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.feature-card h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.feature-card p { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+
+/* Callout */
+.callout { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px 24px; margin: 28px 0; background: var(--paper-2); }
+.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.callout p { margin: 0; font-size: 17px; }
+
+/* Included list (columns) */
+.mvp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin: 24px 0; }
+.mvp-col { border: 2px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.mvp-col-head { background: var(--ink); color: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; padding: 10px 14px; }
+.mvp-col ul { list-style: none; padding: 0; margin: 0; }
+.mvp-col li { font-family: 'Patrick Hand', cursive; font-size: 14px; padding: 9px 14px; border-bottom: 1px solid var(--paper-2); line-height: 1.35; }
+.mvp-col li:last-child { border-bottom: none; }
+.mvp-col li::before { content: '✓ '; color: #2e7d32; font-weight: 700; }
+
+/* Badges */
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 24px; }
+.badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid var(--rule); background: var(--paper-2); }
+
+/* Quickstart code */
+.code-steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+.code-steps li { position: relative; padding: 0 0 18px 40px; font-size: 17px; }
+.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Rubik Mono One', sans-serif; font-size: 13px; }
+code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 7px; }
+.how-step-label { font-family: 'Rubik Mono One', sans-serif; font-size: 15px; margin: 30px 0 12px; display: flex; align-items: center; gap: 8px; }
+.how-step-label:first-of-type { margin-top: 14px; }
+
+/* Example prompt cards */
+.prompt-card { border: 2px solid var(--rule); border-left: 5px solid var(--accent); border-radius: var(--radius); background: var(--paper-2); padding: 14px 18px; margin: 12px 0; }
+.prompt-card .pc-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
+.prompt-card p { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink); }
+
+/* Sidebar */
+.sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
+.sidebar-cta h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; margin-bottom: 8px; }
+.sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
+.sidebar-cta .download-btn { background: var(--paper); color: var(--ink); border-color: var(--ink); width: 100%; justify-content: center; }
+.sidebar-cta .download-btn:hover { box-shadow: 3px 3px 0 var(--ink); }
+.sidebar-toc { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
+.sidebar-toc h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.sidebar-toc ol, .sidebar-toc ul { padding-left: 18px; }
+.sidebar-toc li { font-family: 'Patrick Hand', cursive; font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
+.sidebar-toc a { color: var(--ink); }
+.sidebar-toc a:hover { color: var(--accent); }
+
+/* Tags */
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; border: 1.5px solid var(--rule); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
+
+/* FAQ */
+.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section h2 { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-bottom: 24px; }
+.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q { font-family: 'Patrick Hand', cursive; font-size: 17px; font-weight: 700; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper-2); user-select: none; }
+.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { font-family: 'Patrick Hand', cursive; font-size: 17px; line-height: 1.6; padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+.faq-item.open .faq-a { max-height: 700px; padding: 16px 20px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="account.html" class="btn primary nav-cta sm">My Account</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="videos.html" onclick="toggleMenu()">Videos</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="community.html" onclick="toggleMenu()">Community</a>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+</div>
+
+<div class="container">
+  <div class="post-header">
+    <div class="post-breadcrumb"><a href="blog.html">Blog</a> › Free Tools › Reel Automation Engine</div>
+    <div class="post-cat">Free Download · Code-as-Video · AI Reels</div>
+    <h1 class="post-title">AI REEL <em>AUTOMATION</em><br>ENGINE</h1>
+    <p class="post-subtitle">Turn a topic into a finished vertical reel — AI presenter, sourced footage, motion graphics, captions, SFX &amp; music — rendered entirely as code. Zero manual editing.</p>
+    <div class="post-meta">
+      <span>✍ Prithal Bhardwaj</span>
+      <span>🎬 Remotion + Python</span>
+      <span>🧑‍🎤 Bring your own avatar &amp; voice</span>
+      <span>📦 304 KB ZIP · Free</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <main class="post-content">
+
+      <!-- Download Banner -->
+      <div class="download-banner">
+        <div class="db-icon">🎬</div>
+        <div class="db-text">
+          <h2>Download the Engine (ZIP)</h2>
+          <p>The full pipeline — docs, 34 scene renderers, build scripts &amp; style packs. Free, no signup.</p>
+        </div>
+        <a class="download-btn" href="/ai-reel-engine.zip" download>⬇ DOWNLOAD ENGINE</a>
+      </div>
+
+      <h2 id="what">What This Is</h2>
+      <p>This is the actual engine I use to turn a topic into a <strong>finished vertical reel</strong> — an AI presenter, real sourced footage, motion graphics, captions, SFX and music — rendered entirely as code, with zero manual editing. Output is <strong>1080×1920, 30fps, mastered to −14 LUFS</strong>, ready to post to Reels, Shorts or TikTok.</p>
+      <p>It's built on <a href="https://remotion.dev" target="_blank" rel="noopener">Remotion</a> (video as React) + Python build scripts + Whisper word-timings, and it's designed to be <strong>driven by a coding agent</strong>. You point Claude Code (or Cursor, Codex…) at the folder and say <em>"Read AGENT.md, then make a reel about [topic]"</em> — the folder's operating manual takes it from there.</p>
+
+      <h2 id="what-it-does">What It Does</h2>
+      <div class="feature-grid">
+        <div class="feature-card"><span class="fc-icon">🎞️</span><h4>Reels as Code</h4><p>1080×1920, 30fps, mastered to −14 LUFS — no timeline, no manual editing.</p></div>
+        <div class="feature-card"><span class="fc-icon">🧑‍🎤</span><h4>AI Presenter</h4><p>HeyGen (or any) avatar + voice — one continuous master per reel.</p></div>
+        <div class="feature-card"><span class="fc-icon">📼</span><h4>Sourced Footage</h4><p>Scouts real clips &amp; receipts first, credits them — never fakes proof.</p></div>
+        <div class="feature-card"><span class="fc-icon">🧩</span><h4>34 Scene Types</h4><p>Receipts, spec sheets, comparisons, stat cards, terminals, carousels…</p></div>
+        <div class="feature-card"><span class="fc-icon">⏱️</span><h4>Word-Perfect Timing</h4><p>Whisper word-timings anchor every cut to the exact spoken word.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎨</span><h4>Style Packs</h4><p>Swappable creator looks + script voices (Varun Mayya, Nick Saraev).</p></div>
+      </div>
+
+      <h2 id="inside">What's Inside the ZIP</h2>
+      <div class="mvp-grid">
+        <div class="mvp-col">
+          <div class="mvp-col-head">Docs &amp; Rules</div>
+          <ul>
+            <li>AGENT.md — operating manual</li>
+            <li>PIPELINE.md — technical spec</li>
+            <li>STYLE-RULES.md — rules ledger</li>
+            <li>README + config template</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">The Engine</div>
+          <ul>
+            <li>types.ts — the scene contract</li>
+            <li>34 scene components</li>
+            <li>Reel.tsx — the player</li>
+            <li>theme tokens + fonts</li>
+          </ul>
+        </div>
+        <div class="mvp-col">
+          <div class="mvp-col-head">Pipeline &amp; Packs</div>
+          <ul>
+            <li>Python build scripts</li>
+            <li>VO-tighten, frame-lint, capture, Manim tools</li>
+            <li>Varun + Nick style packs</li>
+            <li>A real example beat sheet</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="need">What You'll Need</h2>
+      <p>You drive the engine with an AI agent, but it renders on <strong>your own</strong> machine and accounts:</p>
+      <ul>
+        <li><strong>A coding agent</strong> — Claude Code, Cursor, or Codex to run the workflow.</li>
+        <li><strong>Node ≥ 18</strong> + npm, <strong>Python 3</strong>, <strong>ffmpeg</strong>, <strong>yt-dlp</strong>, and headless Chrome.</li>
+        <li><strong>Whisper</strong> — <span class="code-inline">pip install openai-whisper</span> (word-timings; runs locally, free).</li>
+        <li><strong>An avatar / voice account</strong> — HeyGen by default, swap freely. Your own IDs go in <span class="code-inline">config.json</span>.</li>
+      </ul>
+
+      <div class="callout accent">
+        <div class="callout-label">🔑 Ships the engine, not an identity</div>
+        <p>No credentials, avatars, voice samples or music are included. You add your own avatar/voice IDs to <span class="code-inline">config.json</span> (there's a <span class="code-inline">config.example.json</span> template), and your own <strong>royalty-free music beds</strong> to <span class="code-inline">public/music/</span> — a README note inside shows exactly where.</p>
+      </div>
+
+      <h2 id="how-to-use">How to Use It</h2>
+      <p>A little one-time setup, then you direct the whole thing in plain English.</p>
+
+      <div class="how-step-label">⚙️ First-time setup <span style="font-family:'Patrick Hand',cursive;font-size:14px;color:var(--muted);">(once)</span></div>
+      <ol class="code-steps">
+        <li>Unzip, then inside the folder run <span class="code-inline">npm install</span>.</li>
+        <li>Copy the config: <span class="code-inline">cp config.example.json config.json</span> and paste in <strong>your own</strong> HeyGen avatar + voice IDs.</li>
+        <li>Install the toolchain: Python 3, <span class="code-inline">ffmpeg</span>, <span class="code-inline">yt-dlp</span>, <span class="code-inline">pip install openai-whisper</span>, and headless Chrome.</li>
+        <li>Drop a royalty-free music bed into <span class="code-inline">public/music/</span> (see the README note inside for the filename the examples expect).</li>
+      </ol>
+
+      <div class="how-step-label">🎬 Every time you want a reel</div>
+      <ol class="code-steps">
+        <li><strong>Point your agent at the folder:</strong> <em>"Read AGENT.md, then make a reel about [topic]."</em> Add a style (Varun / Nick) and a length if you like.</li>
+        <li><strong>It scouts footage first</strong> — verifies the story, hunts real clips and receipts, and only then writes a script bound to what it can actually show.</li>
+        <li><strong>It generates the presenter</strong> (avatar + voice), gets Whisper word-timings, and builds a beat sheet where every cut lands on the spoken word.</li>
+        <li><strong>It renders &amp; masters</strong> to a finished −14 LUFS MP4. Preview in <span class="code-inline">npx remotion studio</span>, ask for tweaks — every scene is independently regenerable.</li>
+      </ol>
+
+      <h2 id="how-it-works">How It Works Behind the Scenes</h2>
+      <p>The whole pipeline, in the order it always runs (the order is the point):</p>
+      <div class="feature-grid">
+        <div class="feature-card"><span class="fc-icon">🔎</span><h4>1 · Scout</h4><p>Verify the story, hunt real footage &amp; receipts, write an asset manifest.</p></div>
+        <div class="feature-card"><span class="fc-icon">✍️</span><h4>2 · Direct</h4><p>Script bound to assets — every beat maps to a real clip or a graphic.</p></div>
+        <div class="feature-card"><span class="fc-icon">🗣️</span><h4>3 · Voice + Face</h4><p>One continuous avatar master; Whisper extracts word-level timings.</p></div>
+        <div class="feature-card"><span class="fc-icon">🧾</span><h4>4 · Beat Sheet</h4><p>The build script anchors every cut to the voiceover's words.</p></div>
+        <div class="feature-card"><span class="fc-icon">🖥️</span><h4>5 · Render</h4><p>Remotion renders the React scenes to 1080×1920, 30fps.</p></div>
+        <div class="feature-card"><span class="fc-icon">🎚️</span><h4>6 · Master + QC</h4><p>Normalize to −14 LUFS, then a hostile-viewer critic pass.</p></div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The one rule that runs the whole system</div>
+        <p><strong>Never script a claim you can't show.</strong> Source the footage first, then write to it. If an asset doesn't exist, re-scout for it or rewrite the line — never paper over the gap with a text card. It's the difference between a reel that shows and one that just tells.</p>
+      </div>
+
+      <h2 id="examples">Example Prompts You Can Paste</h2>
+      <p>Give one of these to your coding agent inside the folder:</p>
+      <div class="prompt-card">
+        <div class="pc-label">🗞️ AI news · Varun Mayya style</div>
+        <p>"Read AGENT.md, then make a 40-second reel about [new AI model/launch], Varun Mayya style. Scout real footage for every claim before you script."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="pc-label">⚔️ Tool comparison · Nick Saraev style</div>
+        <p>"Make a reel comparing [Tool A] vs [Tool B]. Use the spec-sheet and hcompare scenes for the differences, Nick Saraev style. Credit any third-party footage on screen."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="pc-label">📝 From your own script</div>
+        <p>"Turn this script into a reel: [paste script]. Scout footage for every claim first, and rewrite any line you can't show with real footage or a graphic."</p>
+      </div>
+
+      <div class="badge-row">
+        <span class="badge-pill">🎬 Remotion</span>
+        <span class="badge-pill">🐍 Python</span>
+        <span class="badge-pill">🗣️ Whisper</span>
+        <span class="badge-pill">🧑‍🎤 HeyGen (BYO)</span>
+        <span class="badge-pill">✂️ Zero Manual Editing</span>
+        <span class="badge-pill">💸 Free</span>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="download-banner">
+        <div class="db-icon">📥</div>
+        <div class="db-text">
+          <h2>Grab the Whole Engine</h2>
+          <p>Docs, scene renderers, build scripts &amp; style packs — 304 KB ZIP, free.</p>
+        </div>
+        <a class="download-btn" href="/ai-reel-engine.zip" download>⬇ DOWNLOAD ENGINE</a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><div class="faq-q">What exactly is the AI Reel Automation Engine?</div><div class="faq-a">It's a code-based reel factory — docs, React (Remotion) scene components and Python build scripts — that turns a topic into a finished vertical reel: an AI presenter, real sourced footage, motion graphics, captions, SFX and music, rendered entirely as code at 1080×1920 and mastered to −14 LUFS, with zero manual editing. You point a coding agent at the folder and tell it to make a reel.</div></div>
+        <div class="faq-item"><div class="faq-q">Do I need to know how to code?</div><div class="faq-a">You drive it with a coding agent (Claude Code, Cursor, Codex) rather than editing code by hand, but you'll install a small toolchain — Node, Python, ffmpeg, yt-dlp, Whisper and headless Chrome — and run a couple of commands. If you can follow setup steps and run a terminal command, you can use it.</div></div>
+        <div class="faq-item"><div class="faq-q">What accounts or keys do I need?</div><div class="faq-a">An avatar/voice provider for the AI presenter — HeyGen by default, though you can swap in any provider. You put your own avatar and voice IDs into config.json. Whisper (for word-timings) runs locally and is free.</div></div>
+        <div class="faq-item"><div class="faq-q">Are your avatar, voice or API keys included in the download?</div><div class="faq-a">No. The download ships the engine, not an identity — there are no credentials, avatars, voice samples or personal assets inside. You add your own avatar/voice IDs to config.json (there's a config.example.json template).</div></div>
+        <div class="faq-item"><div class="faq-q">Why is there no music in the download?</div><div class="faq-a">The music beds and sound effects were removed for licensing reasons — redistributing audio publicly needs clear rights. The engine plays a music bed under every reel; just drop your own royalty-free tracks into public/music/ (there's a README note inside explaining exactly where and how).</div></div>
+        <div class="faq-item"><div class="faq-q">Can I change the look and voice?</div><div class="faq-a">Yes. Style packs define both the visual look and the script voice; two are included (Varun Mayya and Nick Saraev), and you can edit them or add your own. The engine keeps a STYLE-RULES ledger so it improves as you give feedback.</div></div>
+        <div class="faq-item"><div class="faq-q">What does it actually output?</div><div class="faq-a">A finished vertical MP4 — 1080×1920, 30fps, mastered to −14 LUFS — ready to post to Reels, Shorts or TikTok. No manual editing at any step.</div></div>
+      </div>
+
+      <!-- Tags -->
+      <div class="post-tags">
+        <span class="post-tag">reel-automation</span>
+        <span class="post-tag">ai-video</span>
+        <span class="post-tag">remotion</span>
+        <span class="post-tag">faceless-content</span>
+        <span class="post-tag">creator-tools</span>
+        <span class="post-tag">free-download</span>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <div class="sidebar-cta">
+        <h4>FREE DOWNLOAD</h4>
+        <p>The full reel engine — docs, scene renderers, build scripts &amp; packs.</p>
+        <a class="download-btn" href="/ai-reel-engine.zip" download>⬇ DOWNLOAD ZIP</a>
+      </div>
+      <div class="sidebar-toc">
+        <h4>On This Page</h4>
+        <ol>
+          <li><a href="#what">What This Is</a></li>
+          <li><a href="#what-it-does">What It Does</a></li>
+          <li><a href="#inside">What's Inside</a></li>
+          <li><a href="#need">What You'll Need</a></li>
+          <li><a href="#how-to-use">How to Use It</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#examples">Example Prompts</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-toc">
+        <h4>More From Me</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="scroll-site-generator-skill.html" style="color:var(--accent);">→ Scroll-Site Generator</a></li>
+          <li style="margin-bottom:10px;"><a href="content-automation.html" style="color:var(--accent);">→ Content Automation Pipeline</a></li>
+          <li><a href="community.html" style="color:var(--muted);">→ Founders Wing</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
+        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+      </div>
+      <div class="foot-col"><h5 class="h-display">Free Tools</h5><ul>
+        <li><a href="reel-automation.html">Reel Automation Engine</a></li>
+        <li><a href="scroll-site-generator-skill.html">Scroll-Site Generator</a></li>
+        <li><a href="content-automation.html">Content Automation</a></li>
+        <li><a href="printondemand">Print-on-Demand Plan</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
+        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
+        <li><a href="videos.html">All Videos</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
+        <li><a href="community.html">Founders Wing</a></li>
+        <li><a href="index.html#about">About Prithal</a></li>
+        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-copy h-print">
+      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
+      <span class="h-hand">made solo · shipped from Bangalore ★</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
