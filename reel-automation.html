@@ -54,7 +54,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "What exactly is the AI Reel Automation Engine?", "acceptedAnswer": { "@type": "Answer", "text": "It's a code-based reel factory — a set of docs, React (Remotion) scene components and Python build scripts — that turns a topic into a finished vertical reel: an AI presenter, real sourced footage, motion graphics, captions, SFX and music, rendered entirely as code at 1080×1920 and mastered to −14 LUFS, with zero manual editing. You point a coding agent at the folder and tell it to make a reel." } },
-    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "You drive it with a coding agent (Claude Code, Cursor, Codex) rather than editing code by hand, but you'll install a small toolchain — Node, Python, ffmpeg, yt-dlp, Whisper and headless Chrome — and run a couple of commands. If you can follow setup steps and run a terminal command, you can use it." } },
+    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "No — you don't write code and you don't edit video. You open the folder in an AI coding agent (Claude Code, Codex or Cursor) and simply ask it; it reads the built-in operating manual and walks you through everything, including installing anything missing. If you can chat with an AI and follow along, you can use it." } },
     { "@type": "Question", "name": "What accounts or keys do I need?", "acceptedAnswer": { "@type": "Answer", "text": "An avatar/voice provider for the AI presenter — HeyGen by default, though you can swap in any provider. You put your own avatar and voice IDs into config.json. Whisper (for word-timings) runs locally and is free." } },
     { "@type": "Question", "name": "Are your avatar, voice or API keys included in the download?", "acceptedAnswer": { "@type": "Answer", "text": "No. The download ships the engine, not an identity — there are no credentials, avatars, voice samples or personal assets inside. You add your own avatar/voice IDs to config.json (there's a config.example.json template)." } },
     { "@type": "Question", "name": "Why is there no music in the download?", "acceptedAnswer": { "@type": "Answer", "text": "The music beds and sound effects were removed for licensing reasons — redistributing audio publicly needs clear rights. The engine plays a music bed under every reel; just drop your own royalty-free tracks into public/music/ (there's a README note inside explaining exactly where and how)." } },
@@ -132,6 +132,16 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
 .prompt-card { border: 2px solid var(--rule); border-left: 5px solid var(--accent); border-radius: var(--radius); background: var(--paper-2); padding: 14px 18px; margin: 12px 0; }
 .prompt-card .pc-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
 .prompt-card p { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink); }
+
+/* Collapsible "for technical users" block */
+.tech-details { border: 2px solid var(--rule); border-radius: var(--radius); background: var(--paper); margin: 22px 0; padding: 2px 22px; }
+.tech-details summary { font-family: 'Rubik Mono One', sans-serif; font-size: 13px; cursor: pointer; padding: 14px 0; list-style: none; color: var(--ink); }
+.tech-details summary::-webkit-details-marker { display: none; }
+.tech-details summary::before { content: '▸ '; color: var(--accent); }
+.tech-details[open] summary::before { content: '▾ '; }
+.tech-details:not([open]) > *:not(summary) { display: none; }
+.cmd-block { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--ink); color: #e8e2d4; border-radius: var(--radius); padding: 16px 18px; overflow-x: auto; line-height: 1.75; margin: 4px 0 16px; white-space: pre; }
+.cmd-block .c { color: #8f8a7c; }
 
 /* Sidebar */
 .sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
@@ -220,6 +230,7 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
       <h2 id="what">What This Is</h2>
       <p>This is the actual engine I use to turn a topic into a <strong>finished vertical reel</strong> — an AI presenter, real sourced footage, motion graphics, captions, SFX and music — rendered entirely as code, with zero manual editing. Output is <strong>1080×1920, 30fps, mastered to −14 LUFS</strong>, ready to post to Reels, Shorts or TikTok.</p>
       <p>It's built on <a href="https://remotion.dev" target="_blank" rel="noopener">Remotion</a> (video as React) + Python build scripts + Whisper word-timings, and it's designed to be <strong>driven by a coding agent</strong>. You point Claude Code (or Cursor, Codex…) at the folder and say <em>"Read AGENT.md, then make a reel about [topic]"</em> — the folder's operating manual takes it from there.</p>
+      <p><strong>You are not editing video and you are not writing code.</strong> You open the folder in an AI agent and talk to it in plain English — it does the building, and you give feedback. If you can chat with ChatGPT, you can run this.</p>
 
       <h2 id="what-it-does">What It Does</h2>
       <div class="feature-grid">
@@ -263,37 +274,39 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
       </div>
 
       <h2 id="need">What You'll Need</h2>
-      <p>You drive the engine with an AI agent, but it renders on <strong>your own</strong> machine and accounts:</p>
+      <p>Really, just two things are on you — the agent handles the rest:</p>
       <ul>
-        <li><strong>A coding agent</strong> — Claude Code, Cursor, or Codex to run the workflow.</li>
-        <li><strong>Node ≥ 18</strong> + npm, <strong>Python 3</strong>, <strong>ffmpeg</strong>, <strong>yt-dlp</strong>, and headless Chrome.</li>
-        <li><strong>Whisper</strong> — <span class="code-inline">pip install openai-whisper</span> (word-timings; runs locally, free).</li>
-        <li><strong>An avatar / voice account</strong> — HeyGen by default, swap freely. Your own IDs go in <span class="code-inline">config.json</span>.</li>
+        <li><strong>An AI coding agent</strong> — Claude Code, Codex or Cursor. This is what reads the folder and does all the technical work.</li>
+        <li><strong>An avatar / voice account</strong> — HeyGen by default (swap freely). You paste your IDs when the agent asks — nothing to set up beforehand.</li>
       </ul>
+      <p>Under the hood it also uses Node, Python, ffmpeg, yt-dlp, Whisper and headless Chrome — but <strong>you don't need to know what any of those are.</strong> Ask the agent <em>"what do I need installed?"</em> and it checks your machine and walks you through anything missing. It all runs locally and is free.</p>
 
       <div class="callout accent">
         <div class="callout-label">🔑 Ships the engine, not an identity</div>
         <p>No credentials, avatars, voice samples or music are included. You add your own avatar/voice IDs to <span class="code-inline">config.json</span> (there's a <span class="code-inline">config.example.json</span> template), and your own <strong>royalty-free music beds</strong> to <span class="code-inline">public/music/</span> — a README note inside shows exactly where.</p>
       </div>
 
-      <h2 id="how-to-use">How to Use It</h2>
-      <p>A little one-time setup, then you direct the whole thing in plain English.</p>
+      <h2 id="how-to-use">How to Use It — Just Open It and Ask</h2>
+      <p>Here's the part that trips people up, so let's be clear: <strong>you don't run this like a developer.</strong> You open the unzipped folder inside an AI coding agent — <strong>Claude Code, Codex or Cursor</strong> — and simply talk to it. The whole folder is written to be read by the AI: there's an operating manual (<span class="code-inline">AGENT.md</span>) it reads first, so it already knows the entire workflow before you say a word.</p>
 
-      <div class="how-step-label">⚙️ First-time setup <span style="font-family:'Patrick Hand',cursive;font-size:14px;color:var(--muted);">(once)</span></div>
+      <div class="how-step-label">🗣️ The actual workflow</div>
       <ol class="code-steps">
-        <li>Unzip, then inside the folder run <span class="code-inline">npm install</span>.</li>
-        <li>Copy the config: <span class="code-inline">cp config.example.json config.json</span> and paste in <strong>your own</strong> HeyGen avatar + voice IDs.</li>
-        <li>Install the toolchain: Python 3, <span class="code-inline">ffmpeg</span>, <span class="code-inline">yt-dlp</span>, <span class="code-inline">pip install openai-whisper</span>, and headless Chrome.</li>
-        <li>Drop a royalty-free music bed into <span class="code-inline">public/music/</span> (see the README note inside for the filename the examples expect).</li>
+        <li><strong>Open the folder in Claude Code (or Codex / Cursor).</strong> Drag the unzipped folder in — that's the whole "setup".</li>
+        <li><strong>Just ask.</strong> Type <em>"How does this automation work?"</em> to get oriented, or go straight to <em>"Set this up and make a reel about [my topic]."</em> It reads the manual and walks you through everything in plain English.</li>
+        <li><strong>Answer its questions.</strong> When it asks, paste your HeyGen avatar &amp; voice IDs and drop in a royalty-free music track — it tells you exactly where each one goes. You're answering prompts, not memorising commands.</li>
+        <li><strong>It builds the reel</strong> — scouts real footage, writes the script, generates the presenter, renders and masters it. You watch and give feedback (<em>"make the hook punchier", "swap that clip"</em>) — every scene is regenerable.</li>
       </ol>
 
-      <div class="how-step-label">🎬 Every time you want a reel</div>
-      <ol class="code-steps">
-        <li><strong>Point your agent at the folder:</strong> <em>"Read AGENT.md, then make a reel about [topic]."</em> Add a style (Varun / Nick) and a length if you like.</li>
-        <li><strong>It scouts footage first</strong> — verifies the story, hunts real clips and receipts, and only then writes a script bound to what it can actually show.</li>
-        <li><strong>It generates the presenter</strong> (avatar + voice), gets Whisper word-timings, and builds a beat sheet where every cut lands on the spoken word.</li>
-        <li><strong>It renders &amp; masters</strong> to a finished −14 LUFS MP4. Preview in <span class="code-inline">npx remotion studio</span>, ask for tweaks — every scene is independently regenerable.</li>
-      </ol>
+      <div class="callout accent">
+        <div class="callout-label">💡 Not technical? This part's for you</div>
+        <p>You never have to understand a single command. The agent installs whatever's missing, runs everything, and explains what it's doing as it goes — your job is to pick the topic, hand over your avatar/voice, and say what you like or don't. It's <strong>directing, not coding.</strong></p>
+      </div>
+
+      <details class="tech-details">
+        <summary>Prefer to run the commands yourself? (for technical users)</summary>
+        <p style="font-size:15px;margin:0 0 8px;">The agent runs these for you — but if you'd rather drive it manually, you'll need Node 18+, Python 3, ffmpeg, yt-dlp and headless Chrome on your PATH.</p>
+        <div class="cmd-block"><span class="c"># one-time setup</span><br>npm install<br>cp config.example.json config.json   <span class="c"># paste your HeyGen IDs</span><br>pip install openai-whisper<br>npx remotion studio                   <span class="c"># live preview</span><br><br><span class="c"># per reel (the agent normally does this):</span><br>npx remotion render &lt;slug&gt; out/&lt;slug&gt;-raw.mp4 --concurrency=2 --timeout=120000<br>ffmpeg -i out/&lt;slug&gt;-raw.mp4 -af "loudnorm=I=-14:TP=-1.2:LRA=7" -c:v copy out/&lt;slug&gt;-final.mp4</div>
+      </details>
 
       <h2 id="how-it-works">How It Works Behind the Scenes</h2>
       <p>The whole pipeline, in the order it always runs (the order is the point):</p>
@@ -348,7 +361,7 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
       <div class="faq-section">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-item"><div class="faq-q">What exactly is the AI Reel Automation Engine?</div><div class="faq-a">It's a code-based reel factory — docs, React (Remotion) scene components and Python build scripts — that turns a topic into a finished vertical reel: an AI presenter, real sourced footage, motion graphics, captions, SFX and music, rendered entirely as code at 1080×1920 and mastered to −14 LUFS, with zero manual editing. You point a coding agent at the folder and tell it to make a reel.</div></div>
-        <div class="faq-item"><div class="faq-q">Do I need to know how to code?</div><div class="faq-a">You drive it with a coding agent (Claude Code, Cursor, Codex) rather than editing code by hand, but you'll install a small toolchain — Node, Python, ffmpeg, yt-dlp, Whisper and headless Chrome — and run a couple of commands. If you can follow setup steps and run a terminal command, you can use it.</div></div>
+        <div class="faq-item"><div class="faq-q">Do I need to know how to code?</div><div class="faq-a">No — you don't write code and you don't edit video. You open the folder in an AI agent (Claude Code, Codex or Cursor) and just ask it — it reads the built-in manual and walks you through everything, including installing anything that's missing. If you can chat with an AI and follow along, you can use it.</div></div>
         <div class="faq-item"><div class="faq-q">What accounts or keys do I need?</div><div class="faq-a">An avatar/voice provider for the AI presenter — HeyGen by default, though you can swap in any provider. You put your own avatar and voice IDs into config.json. Whisper (for word-timings) runs locally and is free.</div></div>
         <div class="faq-item"><div class="faq-q">Are your avatar, voice or API keys included in the download?</div><div class="faq-a">No. The download ships the engine, not an identity — there are no credentials, avatars, voice samples or personal assets inside. You add your own avatar/voice IDs to config.json (there's a config.example.json template).</div></div>
         <div class="faq-item"><div class="faq-q">Why is there no music in the download?</div><div class="faq-a">The music beds and sound effects were removed for licensing reasons — redistributing audio publicly needs clear rights. The engine plays a music bed under every reel; just drop your own royalty-free tracks into public/music/ (there's a README note inside explaining exactly where and how).</div></div>
