@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -32,8 +33,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../site.css"/>
 <!-- JSON-LD -->
 <script type="application/ld+json">
 [
@@ -75,19 +76,19 @@
 }
 .calc-stat {
   background: var(--paper-2);
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 12px;
   text-align: center;
 }
 .calc-stat-num {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 18px;
   color: var(--ink);
   display: block;
 }
 .calc-stat-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -100,13 +101,13 @@
   margin: 20px 0;
 }
 .be-example {
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
   padding: 16px;
 }
 .be-example-type {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -114,7 +115,7 @@
   margin-bottom: 8px;
 }
 .be-example-name {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -125,47 +126,39 @@
   margin: 0;
 }
 .be-example li {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   padding: 2px 0;
 }
 .be-example .be-result {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 15px;
   color: var(--ink);
   margin-top: 10px;
   padding-top: 8px;
-  border-top: 1px dashed var(--rule);
+  border-top: 1px dashed var(--line);
 }
 @media (max-width: 620px) { .calc-stat-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
-<body>
+<body class="sub">
 
 <!-- NAVBAR -->
-<nav class="navbar">
-  <div class="wrap nav-wrap">
-    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../products.html">Products</a></li>
-      <li><a href="../blog.html">Blog</a></li>
-      <li><a href="../tools.html" class="active">Tools</a></li>
-      <li><a href="../community.html">Community</a></li>
-      <li><a href="../account.html" id="navAccountLink">My Account</a></li>
-    </ul>
-    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="../products.html">Products</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../tools.html">Tools</a>
+    <a href="../community.html">Community</a>
+    <a href="../account.html" id="navAccountLink">Log in</a>
+    <a href="../products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html" onclick="toggleMenu()">Home</a>
-  <a href="../products.html" onclick="toggleMenu()">Products</a>
-  <a href="../blog.html" onclick="toggleMenu()">Blog</a>
-  <a href="../tools.html" onclick="toggleMenu()">Tools</a>
-  <a href="../community.html" onclick="toggleMenu()">Community</a>
-  <a href="../account.html" onclick="toggleMenu()">My Account</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../community.html">Community</a><a href="../account.html">Log in</a><a href="../products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 
 <!-- TOOL HERO -->
@@ -194,12 +187,12 @@
       <div class="tool-input-group">
         <label for="variable-cost">Variable Cost per Unit (₹)</label>
         <input type="number" id="variable-cost" class="tool-input" placeholder="e.g. 200" min="0"/>
-        <span style="font-family:'Caveat',cursive;font-size:13px;color:var(--muted)">Materials, packaging, shipping per unit</span>
+        <span style="font-family:var(--font);font-size:13px;color:var(--muted)">Materials, packaging, shipping per unit</span>
       </div>
       <div class="tool-input-group">
         <label for="fixed-costs">Monthly Fixed Costs (₹)</label>
         <input type="number" id="fixed-costs" class="tool-input" placeholder="e.g. 80000" min="0"/>
-        <span style="font-family:'Caveat',cursive;font-size:13px;color:var(--muted)">Rent, salaries, subscriptions</span>
+        <span style="font-family:var(--font);font-size:13px;color:var(--muted)">Rent, salaries, subscriptions</span>
       </div>
       <div class="tool-input-group">
         <label for="expected-units">Expected Monthly Sales (units)</label>
@@ -443,23 +436,44 @@
 </div><!-- end wrap -->
 
 <!-- FOOTER -->
-<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)">
-  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
-    <div>
-      <div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div>
-      <div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="../products.html">Products</a>
+          <a href="../products.html#templates">Automation templates</a>
+          <a href="../products.html#pdf">Business-idea ebooks</a>
+          <a href="../blog.html">Playbooks &amp; blog</a>
+          <a href="../tools.html">Free tools</a>
+          <a href="../community.html">Founders Wing</a>
+          <a href="../videos.html">Videos</a>
+          <a href="../account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="../return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="../privacy-policy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
     </div>
-    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8">
-      <a href="../index.html">Home</a>
-      <a href="../products.html">Products</a>
-      <a href="../tools.html">Tools</a>
-      <a href="../blog.html">Blog</a>
-      <a href="../community.html">Community</a>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="../shared.js"></script>
+<script src="../site.js"></script>
 <script>
 function fmtNum(n) {
   if (n === Infinity || isNaN(n)) return '—';

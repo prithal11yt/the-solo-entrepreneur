@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -32,8 +33,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
 <!-- Blog index structured data -->
 <script type="application/ld+json">
 {
@@ -52,10 +53,10 @@
 <style>
 .blog-hero {
   padding: 80px 0 48px;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 .blog-hero-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .15em;
@@ -63,14 +64,14 @@
   margin-bottom: 16px;
 }
 .blog-hero h1 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(32px, 6vw, 64px);
   line-height: .95;
   margin-bottom: 20px;
 }
 .blog-hero h1 em { font-style: normal; color: var(--accent); }
 .blog-hero p {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 22px;
   color: var(--muted);
   max-width: 560px;
@@ -79,11 +80,11 @@
   display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap;
 }
 .blog-stat {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
 }
 .blog-stat strong {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 24px;
   display: block;
   color: var(--accent);
@@ -92,7 +93,7 @@
 /* Filter bar */
 .filter-bar {
   padding: 24px 0;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   background: var(--paper);
   position: sticky;
   top: var(--nav-h);
@@ -102,10 +103,10 @@
   display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
 }
 .filter-btn {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   padding: 5px 14px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 20px;
   background: var(--paper);
   cursor: pointer;
@@ -115,7 +116,7 @@
   background: var(--ink);
   color: var(--paper);
 }
-.filter-btn.active { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+.filter-btn.active { background: var(--accent); color:#fff; border-color: var(--accent); }
 
 /* Blog grid */
 .blog-grid {
@@ -125,7 +126,7 @@
   padding: 48px 0;
 }
 .blog-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
   overflow: hidden;
@@ -134,13 +135,13 @@
   flex-direction: column;
 }
 .blog-card:hover {
-  transform: translate(-3px,-3px);
-  box-shadow: 4px 4px 0 var(--rule);
+  transform: translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
 .blog-card-img {
   height: 180px;
   background: var(--paper-2);
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,7 +159,7 @@
   flex-direction: column;
 }
 .blog-card-cat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -166,7 +167,7 @@
   margin-bottom: 8px;
 }
 .blog-card h2 {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 19px;
   font-weight: 700;
   line-height: 1.25;
@@ -174,7 +175,7 @@
   flex: 1;
 }
 .blog-card-meta {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   margin-bottom: 14px;
@@ -191,20 +192,20 @@
 }
 .blog-card-tag {
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   padding: 3px 9px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--paper-2);
 }
 .blog-card-tag.saas { background: #e8f4f8; }
-.blog-card-tag.agency { background: #fff3e0; }
+.blog-card-tag.agency { background: #f3f3f3; }
 .blog-card-tag.product { background: #f3e5f5; }
 .blog-card-tag.app { background: #e8f5e9; }
 
 .read-link {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   color: var(--accent);
   font-weight: 700;
@@ -215,7 +216,7 @@
   text-align: center;
   padding: 60px 0;
   color: var(--muted);
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 22px;
   display: none;
 }
@@ -241,7 +242,7 @@
 }
 </style>
 </head>
-<body>
+<body class="sub">
 
 <!-- SVG Filters -->
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
@@ -252,33 +253,20 @@
 </svg>
 
 <!-- NAVBAR -->
-<nav class="navbar" role="navigation">
-  <div class="wrap nav-wrap">
-    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="blog.html" class="active">Blog</a></li>
-      <li><a href="tools.html">Tools</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="account.html" id="navAccountLink">My Account</a></li>
-    </ul>
-    <a href="products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <a href="account.html" id="navAccountLink">Log in</a>
+    <a href="products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="products.html" onclick="toggleMenu()">Products</a>
-  <a href="videos.html" onclick="toggleMenu()">Videos</a>
-  <a href="blog.html" onclick="toggleMenu()">Blog</a>
-  <a href="tools.html" onclick="toggleMenu()">Tools</a>
-  <a href="community.html" onclick="toggleMenu()">Community</a>
-  <a href="index.html#about" onclick="toggleMenu()">About</a>
-  <a href="account.html" onclick="toggleMenu()">My Account</a>
-  <a href="products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 
 <!-- HERO -->
@@ -318,11 +306,11 @@
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <rect width="320" height="180" fill="#0e0e14"/>
           <rect x="10" y="10" width="300" height="160" rx="8" fill="#17171f"/>
-          <text x="28" y="46" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f" letter-spacing="3">CODE-AS-VIDEO · FREE</text>
+          <text x="28" y="46" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414" letter-spacing="3">CODE-AS-VIDEO · FREE</text>
           <text x="26" y="88" font-family="'Rubik Mono One',sans-serif" font-size="20" fill="#ffffff">AI REEL</text>
-          <text x="26" y="114" font-family="'Rubik Mono One',sans-serif" font-size="20" fill="#ff5b1f">AUTOMATION</text>
-          <polygon points="250,74 250,104 274,89" fill="#ff5b1f"/>
-          <rect x="26" y="140" width="188" height="22" rx="11" fill="#ff5b1f"/>
+          <text x="26" y="114" font-family="'Rubik Mono One',sans-serif" font-size="20" fill="#141414">AUTOMATION</text>
+          <polygon points="250,74 250,104 274,89" fill="#141414"/>
+          <rect x="26" y="140" width="188" height="22" rx="11" fill="#141414"/>
           <text x="120" y="155" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ffffff">DOWNLOAD THE ENGINE</text>
         </svg>
       </a>
@@ -413,17 +401,17 @@
     <article class="blog-card" data-cat="agency">
       <a href="saas-marketing" class="blog-card-img" aria-label="Read: 12 Ways to Get US Customers for Your SaaS">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#15130f"/>
+          <rect width="320" height="180" fill="#141414"/>
           <rect x="10" y="10" width="300" height="160" rx="6" fill="#1e1b17"/>
-          <text x="64" y="66" font-family="'Rubik Mono One',sans-serif" font-size="52" text-anchor="middle" fill="#ff5b1f">12</text>
-          <text x="200" y="52" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#faf7f0">WAYS TO GET</text>
-          <text x="200" y="70" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#ff5b1f">US CUSTOMERS</text>
-          <text x="200" y="86" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">for your SaaS</text>
-          <line x1="20" y1="100" x2="300" y2="100" stroke="#ff5b1f" stroke-width="1" opacity=".4"/>
-          <text x="160" y="118" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Twitter · Reddit · Product Hunt · AppSumo</text>
-          <text x="160" y="134" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Indie Hackers · HN · DMs · Micro-Influencers</text>
-          <rect x="80" y="146" width="160" height="20" rx="10" fill="#ff5b1f"/>
-          <text x="160" y="159" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#faf7f0">PLAYBOOK FOR INDIAN FOUNDERS</text>
+          <text x="64" y="66" font-family="'Rubik Mono One',sans-serif" font-size="52" text-anchor="middle" fill="#141414">12</text>
+          <text x="200" y="52" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#ffffff">WAYS TO GET</text>
+          <text x="200" y="70" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">US CUSTOMERS</text>
+          <text x="200" y="86" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">for your SaaS</text>
+          <line x1="20" y1="100" x2="300" y2="100" stroke="#141414" stroke-width="1" opacity=".4"/>
+          <text x="160" y="118" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Twitter · Reddit · Product Hunt · AppSumo</text>
+          <text x="160" y="134" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Indie Hackers · HN · DMs · Micro-Influencers</text>
+          <rect x="80" y="146" width="160" height="20" rx="10" fill="#141414"/>
+          <text x="160" y="159" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ffffff">PLAYBOOK FOR INDIAN FOUNDERS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -465,14 +453,14 @@
     <article class="blog-card" data-cat="tools">
       <a href="blog/free-ai-tools-make-money-online-2026.html" class="blog-card-img" aria-label="Read: 10 Free AI Tools to Make Money Online in 2026">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#15130f"/>
+          <rect width="320" height="180" fill="#141414"/>
           <rect x="10" y="10" width="300" height="160" rx="6" fill="#1e1b17"/>
-          <text x="160" y="58" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#ff5b1f">10 FREE AI TOOLS</text>
-          <text x="160" y="82" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#faf7f0">TO MAKE MONEY ONLINE</text>
-          <text x="160" y="108" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">n8n · Open WebUI · AnythingLLM · Flowise</text>
-          <text x="160" y="126" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Firecrawl · CrewAI · Bolt.diy · Aider</text>
-          <rect x="90" y="140" width="140" height="22" rx="11" fill="#ff5b1f"/>
-          <text x="160" y="155" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#faf7f0">SELF-HOST · ₹800/MO VPS</text>
+          <text x="160" y="58" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#141414">10 FREE AI TOOLS</text>
+          <text x="160" y="82" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#ffffff">TO MAKE MONEY ONLINE</text>
+          <text x="160" y="108" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">n8n · Open WebUI · AnythingLLM · Flowise</text>
+          <text x="160" y="126" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Firecrawl · CrewAI · Bolt.diy · Aider</text>
+          <rect x="90" y="140" width="140" height="22" rx="11" fill="#141414"/>
+          <text x="160" y="155" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ffffff">SELF-HOST · ₹800/MO VPS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -490,15 +478,15 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-consulting-agency-india.html" class="blog-card-img" aria-label="Read: How to Start an AI Consulting Agency in India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="20" y="20" width="90" height="90" rx="8" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="210" y="70" width="90" height="90" rx="8" fill="#ff5b1f" opacity=".1" stroke="#15130f" stroke-width="1.5"/>
-          <text x="65" y="72" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#15130f">🤖</text>
-          <text x="255" y="122" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#15130f">💼</text>
-          <text x="160" y="95" font-family="'Rubik Mono One',sans-serif" font-size="18" text-anchor="middle" fill="#15130f">AI CONSULTING</text>
-          <text x="160" y="118" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#8a8678">₹9.45L in Year 1 → Possible?</text>
-          <line x1="20" y1="140" x2="300" y2="140" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,4"/>
-          <text x="160" y="162" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">AGENCY · ₹2L TO START</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="20" y="20" width="90" height="90" rx="8" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <rect x="210" y="70" width="90" height="90" rx="8" fill="#141414" opacity=".1" stroke="#141414" stroke-width="1.5"/>
+          <text x="65" y="72" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#141414">🤖</text>
+          <text x="255" y="122" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#141414">💼</text>
+          <text x="160" y="95" font-family="'Rubik Mono One',sans-serif" font-size="18" text-anchor="middle" fill="#141414">AI CONSULTING</text>
+          <text x="160" y="118" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#6f6f6f">₹9.45L in Year 1 → Possible?</text>
+          <line x1="20" y1="140" x2="300" y2="140" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <text x="160" y="162" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">AGENCY · ₹2L TO START</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -516,13 +504,13 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-prompt-engineering-agency-india.html" class="blog-card-img" aria-label="Read: AI Prompt Engineering Agency">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <text x="60" y="85" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#15130f">✍️</text>
-          <text x="250" y="100" font-family="'Patrick Hand',cursive" font-size="34" text-anchor="middle" fill="#ff5b1f">⚡</text>
-          <rect x="80" y="110" width="160" height="30" rx="6" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="130" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#15130f">prompt: "write a..."</text>
-          <text x="160" y="60" font-family="'Rubik Mono One',sans-serif" font-size="16" text-anchor="middle" fill="#15130f">PROMPT ENGINEERING</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">AGENCY · LOW INVESTMENT</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <text x="60" y="85" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#141414">✍️</text>
+          <text x="250" y="100" font-family="'Patrick Hand',cursive" font-size="34" text-anchor="middle" fill="#141414">⚡</text>
+          <rect x="80" y="110" width="160" height="30" rx="6" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="130" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">prompt: "write a..."</text>
+          <text x="160" y="60" font-family="'Rubik Mono One',sans-serif" font-size="16" text-anchor="middle" fill="#141414">PROMPT ENGINEERING</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">AGENCY · LOW INVESTMENT</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -540,15 +528,15 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/micro-saas-ideas-india.html" class="blog-card-img" aria-label="Read: 10 Micro SaaS Ideas for India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="80" cy="70" r="35" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="170" cy="90" r="40" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="255" cy="65" r="30" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,3"/>
-          <text x="80" y="77" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle" fill="#15130f">💡</text>
-          <text x="170" y="98" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#15130f">×10</text>
-          <text x="255" y="72" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#15130f">🚀</text>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#15130f">10 MICRO SAAS IDEAS</text>
-          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · INDIA-FOCUSED</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="80" cy="70" r="35" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="170" cy="90" r="40" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="255" cy="65" r="30" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="80" y="77" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle" fill="#141414">💡</text>
+          <text x="170" y="98" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#141414">×10</text>
+          <text x="255" y="72" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#141414">🚀</text>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#141414">10 MICRO SAAS IDEAS</text>
+          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · INDIA-FOCUSED</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -566,16 +554,16 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/no-code-saas-ideas-india.html" class="blog-card-img" aria-label="Read: 5 No Code SaaS Ideas">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="30" y="40" width="120" height="70" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <line x1="30" y1="60" x2="150" y2="60" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="45" cy="50" r="5" fill="#ff5b1f"/>
-          <circle cx="62" cy="50" r="5" fill="#15130f" opacity=".3"/>
-          <circle cx="79" cy="50" r="5" fill="#15130f" opacity=".3"/>
-          <text x="90" y="95" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle" fill="#8a8678">drag &amp; drop</text>
-          <text x="230" y="100" font-family="'Patrick Hand',cursive" font-size="42" text-anchor="middle" fill="#ff5b1f">✓</text>
-          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">NO-CODE SAAS IDEAS</text>
-          <text x="160" y="167" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · 0 CODING NEEDED</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="30" y="40" width="120" height="70" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <line x1="30" y1="60" x2="150" y2="60" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="45" cy="50" r="5" fill="#141414"/>
+          <circle cx="62" cy="50" r="5" fill="#141414" opacity=".3"/>
+          <circle cx="79" cy="50" r="5" fill="#141414" opacity=".3"/>
+          <text x="90" y="95" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle" fill="#6f6f6f">drag &amp; drop</text>
+          <text x="230" y="100" font-family="'Patrick Hand',cursive" font-size="42" text-anchor="middle" fill="#141414">✓</text>
+          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">NO-CODE SAAS IDEAS</text>
+          <text x="160" y="167" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · 0 CODING NEEDED</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -593,14 +581,14 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/online-course-business-india.html" class="blog-card-img" aria-label="Read: Online Course Business in India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="50" y="30" width="220" height="120" rx="8" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="50" y="30" width="220" height="35" rx="8" fill="#ff5b1f" opacity=".2" stroke="none"/>
-          <text x="160" y="54" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#15130f">How to build a ₹1Cr course business</text>
-          <text x="100" y="90" font-family="'Patrick Hand',cursive" font-size="13" fill="#15130f">▸ Lesson 1: Find your niche</text>
-          <text x="100" y="110" font-family="'Patrick Hand',cursive" font-size="13" fill="#15130f">▸ Lesson 2: Build your audience</text>
-          <text x="100" y="130" font-family="'Patrick Hand',cursive" font-size="13" fill="#8a8678">▸ Lesson 3: Launch &amp; sell</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">PRODUCT · COURSES</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="50" y="30" width="220" height="120" rx="8" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="50" y="30" width="220" height="35" rx="8" fill="#141414" opacity=".2" stroke="none"/>
+          <text x="160" y="54" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#141414">How to build a ₹1Cr course business</text>
+          <text x="100" y="90" font-family="'Patrick Hand',cursive" font-size="13" fill="#141414">▸ Lesson 1: Find your niche</text>
+          <text x="100" y="110" font-family="'Patrick Hand',cursive" font-size="13" fill="#141414">▸ Lesson 2: Build your audience</text>
+          <text x="100" y="130" font-family="'Patrick Hand',cursive" font-size="13" fill="#6f6f6f">▸ Lesson 3: Launch &amp; sell</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">PRODUCT · COURSES</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -618,13 +606,13 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/newsletter-business-india.html" class="blog-card-img" aria-label="Read: Newsletter Business India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="45" width="240" height="90" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <path d="M40 60 L160 115 L280 60" fill="none" stroke="#15130f" stroke-width="2"/>
-          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">NEWSLETTER BUSINESS</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">MEDIA · INDIA</text>
-          <circle cx="250" cy="40" r="18" fill="#ff5b1f"/>
-          <text x="250" y="46" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#15130f">NEW</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="45" width="240" height="90" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <path d="M40 60 L160 115 L280 60" fill="none" stroke="#141414" stroke-width="2"/>
+          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">NEWSLETTER BUSINESS</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">MEDIA · INDIA</text>
+          <circle cx="250" cy="40" r="18" fill="#141414"/>
+          <text x="250" y="46" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#141414">NEW</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -642,14 +630,14 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-ads-agency-india.html" class="blog-card-img" aria-label="Read: AI Ads Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="25" y="30" width="130" height="80" rx="6" fill="#ff5b1f" opacity=".12" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="165" y="50" width="130" height="80" rx="6" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,3"/>
-          <text x="90" y="78" font-family="'Patrick Hand',cursive" font-size="30" text-anchor="middle" fill="#15130f">📢</text>
-          <text x="230" y="98" font-family="'Patrick Hand',cursive" font-size="26" text-anchor="middle" fill="#ff5b1f">🤖</text>
-          <text x="90" y="96" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#15130f">Your Ad Here</text>
-          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">AI ADS AGENCY</text>
-          <text x="160" y="167" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · HIGH DEMAND</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="25" y="30" width="130" height="80" rx="6" fill="#141414" opacity=".12" stroke="#141414" stroke-width="1.5"/>
+          <rect x="165" y="50" width="130" height="80" rx="6" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="90" y="78" font-family="'Patrick Hand',cursive" font-size="30" text-anchor="middle" fill="#141414">📢</text>
+          <text x="230" y="98" font-family="'Patrick Hand',cursive" font-size="26" text-anchor="middle" fill="#141414">🤖</text>
+          <text x="90" y="96" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#141414">Your Ad Here</text>
+          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">AI ADS AGENCY</text>
+          <text x="160" y="167" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · HIGH DEMAND</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -667,13 +655,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/youtube-comment-replier-saas.html" class="blog-card-img" aria-label="Read: YouTube Comment Replier SaaS">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="30" y="35" width="260" height="50" rx="8" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="67" font-family="'Patrick Hand',cursive" font-size="15" text-anchor="middle" fill="#15130f">↳ Great video! Really helped me out...</text>
-          <rect x="60" y="100" width="200" height="35" rx="6" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="160" y="122" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#8a8678">AI auto-reply: "Thanks so much! ..."</text>
-          <text x="160" y="158" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">YT COMMENT REPLIER SAAS</text>
-          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · CREATOR TOOLS</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="30" y="35" width="260" height="50" rx="8" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="67" font-family="'Patrick Hand',cursive" font-size="15" text-anchor="middle" fill="#141414">↳ Great video! Really helped me out...</text>
+          <rect x="60" y="100" width="200" height="35" rx="6" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="160" y="122" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#6f6f6f">AI auto-reply: "Thanks so much! ..."</text>
+          <text x="160" y="158" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">YT COMMENT REPLIER SAAS</text>
+          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · CREATOR TOOLS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -691,13 +679,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/twitter-growth-manager-saas.html" class="blog-card-img" aria-label="Read: Twitter Growth Manager SaaS">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <polyline points="30,140 80,100 130,120 180,70 230,90 280,40" fill="none" stroke="#ff5b1f" stroke-width="3"/>
-          <circle cx="280" cy="40" r="8" fill="#ff5b1f" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="158" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">TWITTER GROWTH SAAS</text>
-          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · SOCIAL MEDIA TOOLS</text>
-          <text x="70" y="88" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8a8678">100 followers</text>
-          <text x="220" y="60" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f">10K followers</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <polyline points="30,140 80,100 130,120 180,70 230,90 280,40" fill="none" stroke="#141414" stroke-width="3"/>
+          <circle cx="280" cy="40" r="8" fill="#141414" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="158" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">TWITTER GROWTH SAAS</text>
+          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · SOCIAL MEDIA TOOLS</text>
+          <text x="70" y="88" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6f6f6f">100 followers</text>
+          <text x="220" y="60" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414">10K followers</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -715,14 +703,14 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-ugc-content-agency-india.html" class="blog-card-img" aria-label="Read: AI UGC Content Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="30" y="30" width="75" height="120" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="122" y="45" width="75" height="120" rx="6" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="2"/>
-          <rect x="215" y="30" width="75" height="120" rx="6" fill="none" stroke="#15130f" stroke-width="2" stroke-dasharray="4,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="30" y="30" width="75" height="120" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="122" y="45" width="75" height="120" rx="6" fill="#141414" opacity=".15" stroke="#141414" stroke-width="2"/>
+          <rect x="215" y="30" width="75" height="120" rx="6" fill="none" stroke="#141414" stroke-width="2" stroke-dasharray="4,3"/>
           <text x="67" y="95" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">📱</text>
           <text x="160" y="110" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">🎥</text>
           <text x="252" y="95" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">✨</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · UGC · AI TOOLS</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · UGC · AI TOOLS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -740,14 +728,14 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/cofounder-matching-platform-india.html" class="blog-card-img" aria-label="Read: CoFounder Matching Platform">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="110" cy="75" r="40" fill="none" stroke="#15130f" stroke-width="2"/>
-          <circle cx="210" cy="75" r="40" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="110" cy="75" r="40" fill="none" stroke="#141414" stroke-width="2"/>
+          <circle cx="210" cy="75" r="40" fill="#141414" opacity=".15" stroke="#141414" stroke-width="2"/>
           <text x="110" y="82" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">👨‍💻</text>
           <text x="210" y="82" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">👩‍💼</text>
-          <path d="M150 75 Q160 55 170 75" fill="none" stroke="#ff5b1f" stroke-width="2"/>
-          <text x="160" y="138" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">COFOUNDER MATCHING</text>
-          <text x="160" y="156" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · MARKETPLACE</text>
+          <path d="M150 75 Q160 55 170 75" fill="none" stroke="#141414" stroke-width="2"/>
+          <text x="160" y="138" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">COFOUNDER MATCHING</text>
+          <text x="160" y="156" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · MARKETPLACE</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -765,17 +753,17 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/employee-retention-saas-india.html" class="blog-card-img" aria-label="Read: Employee Retention SaaS India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="40" width="240" height="80" rx="8" fill="none" stroke="#15130f" stroke-width="2"/>
-          <line x1="40" y1="65" x2="280" y2="65" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="55" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#15130f">Employee Pulse Dashboard</text>
-          <rect x="55" y="75" width="30" height="35" rx="3" fill="#ff5b1f" opacity=".8"/>
-          <rect x="95" y="82" width="30" height="28" rx="3" fill="#ff5b1f" opacity=".5"/>
-          <rect x="135" y="68" width="30" height="42" rx="3" fill="#ff5b1f" opacity=".9"/>
-          <rect x="175" y="78" width="30" height="32" rx="3" fill="#ff5b1f" opacity=".4"/>
-          <rect x="215" y="72" width="30" height="38" rx="3" fill="#ff5b1f" opacity=".7"/>
-          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">EMPLOYEE RETENTION SAAS</text>
-          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · HR TECH</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="40" width="240" height="80" rx="8" fill="none" stroke="#141414" stroke-width="2"/>
+          <line x1="40" y1="65" x2="280" y2="65" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="55" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">Employee Pulse Dashboard</text>
+          <rect x="55" y="75" width="30" height="35" rx="3" fill="#141414" opacity=".8"/>
+          <rect x="95" y="82" width="30" height="28" rx="3" fill="#141414" opacity=".5"/>
+          <rect x="135" y="68" width="30" height="42" rx="3" fill="#141414" opacity=".9"/>
+          <rect x="175" y="78" width="30" height="32" rx="3" fill="#141414" opacity=".4"/>
+          <rect x="215" y="72" width="30" height="38" rx="3" fill="#141414" opacity=".7"/>
+          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">EMPLOYEE RETENTION SAAS</text>
+          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · HR TECH</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -793,15 +781,15 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/ai-pitch-deck-generator-india.html" class="blog-card-img" aria-label="Read: AI Pitch Deck Generator">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="60" y="25" width="200" height="120" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="60" y="25" width="200" height="35" rx="6" fill="#ff5b1f" opacity=".2" stroke="none"/>
-          <text x="160" y="48" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#15130f">Slide 1: The Problem</text>
-          <rect x="75" y="70" width="80" height="55" rx="4" fill="var(--paper-2)" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="165" y="70" width="80" height="55" rx="4" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="60" y="25" width="200" height="120" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="60" y="25" width="200" height="35" rx="6" fill="#141414" opacity=".2" stroke="none"/>
+          <text x="160" y="48" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#141414">Slide 1: The Problem</text>
+          <rect x="75" y="70" width="80" height="55" rx="4" fill="var(--paper-2)" stroke="#141414" stroke-width="1.5"/>
+          <rect x="165" y="70" width="80" height="55" rx="4" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
           <text x="115" y="100" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">📊</text>
           <text x="205" y="100" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">🤖</text>
-          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · AI TOOLS · FOUNDERS</text>
+          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · AI TOOLS · FOUNDERS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -819,14 +807,14 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-video-content-studio-india.html" class="blog-card-img" aria-label="Read: AI Video Content Studio">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="35" width="175" height="110" rx="8" fill="#15130f" opacity=".05" stroke="#15130f" stroke-width="2"/>
-          <polygon points="120,75 120,115 155,95" fill="#ff5b1f"/>
-          <rect x="230" y="55" width="55" height="40" rx="6" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="230" y="105" width="55" height="40" rx="6" fill="#ff5b1f" opacity=".2" stroke="#15130f" stroke-width="1.5"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="35" width="175" height="110" rx="8" fill="#141414" opacity=".05" stroke="#141414" stroke-width="2"/>
+          <polygon points="120,75 120,115 155,95" fill="#141414"/>
+          <rect x="230" y="55" width="55" height="40" rx="6" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <rect x="230" y="105" width="55" height="40" rx="6" fill="#141414" opacity=".2" stroke="#141414" stroke-width="1.5"/>
           <text x="257" y="78" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">🎬</text>
           <text x="257" y="128" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">🤖</text>
-          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · VIDEO · AI</text>
+          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · VIDEO · AI</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -844,11 +832,11 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/government-schemes-for-entrepreneurs-india.html" class="blog-card-img" aria-label="Read: Government Schemes for Entrepreneurs">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <polygon points="160,20 280,60 280,140 160,160 40,140 40,60" fill="none" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <polygon points="160,20 280,60 280,140 160,160 40,140 40,60" fill="none" stroke="#141414" stroke-width="2"/>
           <text x="160" y="95" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle">🏛️</text>
-          <text x="160" y="130" font-family="'Caveat',cursive" font-size="16" text-anchor="middle" fill="#ff5b1f">Free money. Real.</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">GUIDE · STARTUP INDIA SCHEMES</text>
+          <text x="160" y="130" font-family="'Caveat',cursive" font-size="16" text-anchor="middle" fill="#141414">Free money. Real.</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">GUIDE · STARTUP INDIA SCHEMES</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -866,13 +854,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/ai-domain-name-generator-saas.html" class="blog-card-img" aria-label="Read: AI Domain Name Generator SaaS">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="30" y="55" width="260" height="45" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <text x="90" y="83" font-family="'JetBrains Mono',monospace" font-size="14" fill="#8a8678">yourname</text>
-          <text x="195" y="83" font-family="'JetBrains Mono',monospace" font-size="14" fill="#ff5b1f">.in ₹599</text>
-          <text x="160" y="40" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#15130f">AI DOMAIN FINDER</text>
-          <text x="160" y="135" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#8a8678">GoDaddy · Namecheap · BigRock affiliates</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · AFFILIATE MODEL · ₹1Cr+ Y3</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="30" y="55" width="260" height="45" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <text x="90" y="83" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6f6f6f">yourname</text>
+          <text x="195" y="83" font-family="'JetBrains Mono',monospace" font-size="14" fill="#141414">.in ₹599</text>
+          <text x="160" y="40" font-family="'Rubik Mono One',sans-serif" font-size="15" text-anchor="middle" fill="#141414">AI DOMAIN FINDER</text>
+          <text x="160" y="135" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#6f6f6f">GoDaddy · Namecheap · BigRock affiliates</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · AFFILIATE MODEL · ₹1Cr+ Y3</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -890,15 +878,15 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-saas-agency-india.html" class="blog-card-img" aria-label="Read: AI SaaS Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="20" y="35" width="85" height="60" rx="6" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="118" y="50" width="85" height="60" rx="6" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="216" y="35" width="85" height="60" rx="6" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="20" y="35" width="85" height="60" rx="6" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <rect x="118" y="50" width="85" height="60" rx="6" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <rect x="216" y="35" width="85" height="60" rx="6" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
           <text x="62" y="70" font-family="'Patrick Hand',cursive" font-size="24" text-anchor="middle">🤖</text>
           <text x="160" y="85" font-family="'Patrick Hand',cursive" font-size="24" text-anchor="middle">⚙️</text>
           <text x="258" y="70" font-family="'Patrick Hand',cursive" font-size="24" text-anchor="middle">💰</text>
-          <text x="160" y="128" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">AI SAAS AGENCY</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · $125K YEAR 1 · ₹0 INVEST</text>
+          <text x="160" y="128" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">AI SAAS AGENCY</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · $125K YEAR 1 · ₹0 INVEST</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -916,14 +904,14 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/ai-ux-design-agency-india.html" class="blog-card-img" aria-label="Read: AI UX Design Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="30" width="110" height="85" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="55" y="42" width="80" height="18" rx="3" fill="#ff5b1f" opacity=".3"/>
-          <rect x="55" y="68" width="50" height="8" rx="2" fill="#15130f" opacity=".2"/>
-          <rect x="55" y="82" width="70" height="8" rx="2" fill="#15130f" opacity=".15"/>
-          <text x="230" y="90" font-family="'Patrick Hand',cursive" font-size="48" text-anchor="middle" fill="#ff5b1f">✦</text>
-          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">AI UI/UX DESIGN AGENCY</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · FIGMA + AI TOOLS</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="30" width="110" height="85" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="55" y="42" width="80" height="18" rx="3" fill="#141414" opacity=".3"/>
+          <rect x="55" y="68" width="50" height="8" rx="2" fill="#141414" opacity=".2"/>
+          <rect x="55" y="82" width="70" height="8" rx="2" fill="#141414" opacity=".15"/>
+          <text x="230" y="90" font-family="'Patrick Hand',cursive" font-size="48" text-anchor="middle" fill="#141414">✦</text>
+          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">AI UI/UX DESIGN AGENCY</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · FIGMA + AI TOOLS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -941,19 +929,19 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/content-repurposing-agency-india.html" class="blog-card-img" aria-label="Read: Content Repurposing Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="160" cy="75" r="38" fill="none" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="160" cy="75" r="38" fill="none" stroke="#141414" stroke-width="2"/>
           <text x="160" y="82" font-family="'Patrick Hand',cursive" font-size="26" text-anchor="middle">🎙️</text>
-          <text x="40" y="40" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f">YT Short</text>
-          <text x="240" y="40" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f">Thread</text>
-          <text x="22" y="120" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f">Blog Post</text>
-          <text x="238" y="120" font-family="'JetBrains Mono',monospace" font-size="10" fill="#ff5b1f">Newsletter</text>
-          <line x1="70" y1="50" x2="130" y2="68" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="250" y1="50" x2="190" y2="68" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="70" y1="110" x2="130" y2="88" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="250" y1="110" x2="190" y2="88" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">CONTENT REPURPOSING AGENCY</text>
-          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · 1 PODCAST = 20 PIECES</text>
+          <text x="40" y="40" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414">YT Short</text>
+          <text x="240" y="40" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414">Thread</text>
+          <text x="22" y="120" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414">Blog Post</text>
+          <text x="238" y="120" font-family="'JetBrains Mono',monospace" font-size="10" fill="#141414">Newsletter</text>
+          <line x1="70" y1="50" x2="130" y2="68" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="250" y1="50" x2="190" y2="68" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="70" y1="110" x2="130" y2="88" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="250" y1="110" x2="190" y2="88" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">CONTENT REPURPOSING AGENCY</text>
+          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · 1 PODCAST = 20 PIECES</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -971,12 +959,12 @@
     <article class="blog-card" data-cat="agency">
       <a href="blog/digital-marketing-agency-india.html" class="blog-card-img" aria-label="Read: Digital Marketing Agency India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <polyline points="25,140 70,100 110,120 155,60 200,85 245,45 295,70" fill="none" stroke="#ff5b1f" stroke-width="2.5"/>
-          <circle cx="295" cy="70" r="7" fill="#ff5b1f" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="25" y="145" width="270" height="1.5" fill="#15130f" opacity=".2"/>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">AGENCY · META · GOOGLE · SEO</text>
-          <text x="160" y="30" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">DIGITAL MARKETING</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <polyline points="25,140 70,100 110,120 155,60 200,85 245,45 295,70" fill="none" stroke="#141414" stroke-width="2.5"/>
+          <circle cx="295" cy="70" r="7" fill="#141414" stroke="#141414" stroke-width="1.5"/>
+          <rect x="25" y="145" width="270" height="1.5" fill="#141414" opacity=".2"/>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">AGENCY · META · GOOGLE · SEO</text>
+          <text x="160" y="30" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">DIGITAL MARKETING</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -994,18 +982,18 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/credit-card-ai-tool-india.html" class="blog-card-img" aria-label="Read: Credit Card AI Tool India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="40" width="240" height="80" rx="10" fill="#15130f" opacity=".05" stroke="#15130f" stroke-width="2"/>
-          <rect x="40" y="40" width="240" height="28" rx="10" fill="#15130f" opacity=".08"/>
-          <text x="160" y="58" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#15130f">HDFC Infinia vs Amex Plat</text>
-          <text x="75" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#ff5b1f">5X</text>
-          <text x="75" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">dining pts</text>
-          <text x="160" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#15130f">3.3%</text>
-          <text x="160" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">cashback</text>
-          <text x="245" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#ff5b1f">₹1.2K</text>
-          <text x="245" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">saved/mo</text>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">CREDIT CARD REWARDS AI</text>
-          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · FINTECH · INDIA</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="40" width="240" height="80" rx="10" fill="#141414" opacity=".05" stroke="#141414" stroke-width="2"/>
+          <rect x="40" y="40" width="240" height="28" rx="10" fill="#141414" opacity=".08"/>
+          <text x="160" y="58" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">HDFC Infinia vs Amex Plat</text>
+          <text x="75" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#141414">5X</text>
+          <text x="75" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">dining pts</text>
+          <text x="160" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#141414">3.3%</text>
+          <text x="160" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">cashback</text>
+          <text x="245" y="90" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle" fill="#141414">₹1.2K</text>
+          <text x="245" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">saved/mo</text>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">CREDIT CARD REWARDS AI</text>
+          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · FINTECH · INDIA</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1023,18 +1011,18 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/data-to-infographic-saas-india.html" class="blog-card-img" aria-label="Read: Data to Infographic SaaS India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="25" y="40" width="100" height="70" rx="4" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <text x="75" y="68" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#8a8678">12,400</text>
-          <text x="75" y="82" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#8a8678">34%</text>
-          <text x="75" y="96" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#8a8678">₹4.2L</text>
-          <text x="160" y="80" font-family="'Patrick Hand',cursive" font-size="30" text-anchor="middle" fill="#ff5b1f">→</text>
-          <rect x="195" y="95" width="18" height="30" rx="2" fill="#ff5b1f" opacity=".9"/>
-          <rect x="222" y="75" width="18" height="50" rx="2" fill="#ff5b1f" opacity=".6"/>
-          <rect x="249" y="58" width="18" height="67" rx="2" fill="#ff5b1f" opacity=".8"/>
-          <rect x="276" y="40" width="18" height="85" rx="2" fill="#ff5b1f"/>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">DATA → INFOGRAPHIC SAAS</text>
-          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · ₹1.6Cr YEAR 2 · AI</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="25" y="40" width="100" height="70" rx="4" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <text x="75" y="68" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#6f6f6f">12,400</text>
+          <text x="75" y="82" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#6f6f6f">34%</text>
+          <text x="75" y="96" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#6f6f6f">₹4.2L</text>
+          <text x="160" y="80" font-family="'Patrick Hand',cursive" font-size="30" text-anchor="middle" fill="#141414">→</text>
+          <rect x="195" y="95" width="18" height="30" rx="2" fill="#141414" opacity=".9"/>
+          <rect x="222" y="75" width="18" height="50" rx="2" fill="#141414" opacity=".6"/>
+          <rect x="249" y="58" width="18" height="67" rx="2" fill="#141414" opacity=".8"/>
+          <rect x="276" y="40" width="18" height="85" rx="2" fill="#141414"/>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">DATA → INFOGRAPHIC SAAS</text>
+          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · ₹1.6Cr YEAR 2 · AI</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1052,13 +1040,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/finsight-financial-saas-india.html" class="blog-card-img" aria-label="Read: FinSight Financial SaaS India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="160" cy="85" r="55" fill="none" stroke="#15130f" stroke-width="2"/>
-          <path d="M160 85 L160 30 A55 55 0 0 1 215 85 Z" fill="#ff5b1f" opacity=".7"/>
-          <path d="M160 85 L215 85 A55 55 0 0 1 133 138 Z" fill="#15130f" opacity=".15"/>
-          <path d="M160 85 L133 138 A55 55 0 0 1 107 45 Z" fill="#ff5b1f" opacity=".25"/>
-          <text x="160" y="165" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">FINSIGHT AI</text>
-          <text x="160" y="18" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">PERSONAL FINANCE SAAS</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="160" cy="85" r="55" fill="none" stroke="#141414" stroke-width="2"/>
+          <path d="M160 85 L160 30 A55 55 0 0 1 215 85 Z" fill="#141414" opacity=".7"/>
+          <path d="M160 85 L215 85 A55 55 0 0 1 133 138 Z" fill="#141414" opacity=".15"/>
+          <path d="M160 85 L133 138 A55 55 0 0 1 107 45 Z" fill="#141414" opacity=".25"/>
+          <text x="160" y="165" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">FINSIGHT AI</text>
+          <text x="160" y="18" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">PERSONAL FINANCE SAAS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1076,13 +1064,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/podcast-aggregator-india.html" class="blog-card-img" aria-label="Read: Podcast Aggregator India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="160" cy="75" r="35" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="160" cy="75" r="35" fill="#141414" opacity=".15" stroke="#141414" stroke-width="2"/>
           <text x="160" y="82" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">🎧</text>
-          <path d="M90 75 Q90 20 160 20 Q230 20 230 75" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,3"/>
-          <path d="M110 75 Q110 40 160 40 Q210 40 210 75" fill="none" stroke="#ff5b1f" stroke-width="1.5"/>
-          <text x="160" y="140" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">INDIAN PODCAST PLATFORM</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · MEDIA · CREATOR ECONOMY</text>
+          <path d="M90 75 Q90 20 160 20 Q230 20 230 75" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <path d="M110 75 Q110 40 160 40 Q210 40 210 75" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="140" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">INDIAN PODCAST PLATFORM</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · MEDIA · CREATOR ECONOMY</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1100,14 +1088,14 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/podconnect-podcast-guest-platform.html" class="blog-card-img" aria-label="Read: PodConnect Podcast Guest Platform">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="95" cy="80" r="32" fill="none" stroke="#15130f" stroke-width="2"/>
-          <circle cx="225" cy="80" r="32" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="95" cy="80" r="32" fill="none" stroke="#141414" stroke-width="2"/>
+          <circle cx="225" cy="80" r="32" fill="#141414" opacity=".15" stroke="#141414" stroke-width="2"/>
           <text x="95" y="87" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle">🎙️</text>
           <text x="225" y="87" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle">🧑‍💼</text>
-          <text x="160" y="77" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#ff5b1f">↔</text>
-          <text x="160" y="142" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">PODCONNECT</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · PODCAST × GUEST MATCHING</text>
+          <text x="160" y="77" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle" fill="#141414">↔</text>
+          <text x="160" y="142" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">PODCONNECT</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · PODCAST × GUEST MATCHING</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1125,13 +1113,13 @@
     <article class="blog-card" data-cat="saas">
       <a href="blog/revucollect-review-management-saas.html" class="blog-card-img" aria-label="Read: RevuCollect Review Management SaaS">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <text x="60" y="80" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#ff5b1f">★★★★★</text>
-          <text x="245" y="65" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#15130f" opacity=".2">★★★★★</text>
-          <rect x="30" y="95" width="260" height="30" rx="6" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="115" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#8a8678">"Great service! Will definitely come back."</text>
-          <text x="160" y="150" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">REVUCOLLECT</text>
-          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SAAS · REVIEWS · LOCAL BUSINESS</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <text x="60" y="80" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#141414">★★★★★</text>
+          <text x="245" y="65" font-family="'Patrick Hand',cursive" font-size="32" text-anchor="middle" fill="#141414" opacity=".2">★★★★★</text>
+          <rect x="30" y="95" width="260" height="30" rx="6" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="115" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#6f6f6f">"Great service! Will definitely come back."</text>
+          <text x="160" y="150" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">REVUCOLLECT</text>
+          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAAS · REVIEWS · LOCAL BUSINESS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1149,12 +1137,12 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/bedtime-story-app-business-india.html" class="blog-card-img" aria-label="Read: Bedtime Story App Business India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="160" cy="75" r="50" fill="#ff5b1f" opacity=".08" stroke="#15130f" stroke-width="2" stroke-dasharray="6,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="160" cy="75" r="50" fill="#141414" opacity=".08" stroke="#141414" stroke-width="2" stroke-dasharray="6,3"/>
           <text x="160" y="65" font-family="'Patrick Hand',cursive" font-size="30" text-anchor="middle">🌙</text>
-          <text x="160" y="92" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#8a8678">"Once upon a time in Rajasthan..."</text>
-          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">AI BEDTIME STORY APP</text>
-          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · PARENTING · SUBSCRIPTION</text>
+          <text x="160" y="92" font-family="'Patrick Hand',cursive" font-size="14" text-anchor="middle" fill="#6f6f6f">"Once upon a time in Rajasthan..."</text>
+          <text x="160" y="145" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">AI BEDTIME STORY APP</text>
+          <text x="160" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · PARENTING · SUBSCRIPTION</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1172,12 +1160,12 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/breed-match-dog-app-india.html" class="blog-card-img" aria-label="Read: BreedMatch Dog App India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
           <text x="90" y="95" font-family="'Patrick Hand',cursive" font-size="52" text-anchor="middle">🐕</text>
-          <text x="230" y="85" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#ff5b1f">❤️</text>
-          <text x="160" y="140" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">BREEDMATCH AI</text>
-          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · PET TECH · INDIA</text>
-          <text x="160" y="35" font-family="'Caveat',cursive" font-size="16" text-anchor="middle" fill="#8a8678">"Which dog suits your lifestyle?"</text>
+          <text x="230" y="85" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#141414">❤️</text>
+          <text x="160" y="140" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">BREEDMATCH AI</text>
+          <text x="160" y="163" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · PET TECH · INDIA</text>
+          <text x="160" y="35" font-family="'Caveat',cursive" font-size="16" text-anchor="middle" fill="#6f6f6f">"Which dog suits your lifestyle?"</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1195,14 +1183,14 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/cofounder-matching-app-india.html" class="blog-card-img" aria-label="Read: MakerMatch CoFounder App India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="60" y="25" width="200" height="115" rx="12" fill="#15130f" opacity=".04" stroke="#15130f" stroke-width="2"/>
-          <text x="160" y="60" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#15130f">MAKERMATCH</text>
-          <circle cx="115" cy="95" r="25" fill="#ff5b1f" opacity=".2" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="205" cy="95" r="25" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="60" y="25" width="200" height="115" rx="12" fill="#141414" opacity=".04" stroke="#141414" stroke-width="2"/>
+          <text x="160" y="60" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#141414">MAKERMATCH</text>
+          <circle cx="115" cy="95" r="25" fill="#141414" opacity=".2" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="205" cy="95" r="25" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
           <text x="115" y="102" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">👨‍💻</text>
           <text x="205" y="102" font-family="'Patrick Hand',cursive" font-size="20" text-anchor="middle">👩‍🎨</text>
-          <text x="160" y="160" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · CREATORS · TINDER FOR FOUNDERS</text>
+          <text x="160" y="160" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · CREATORS · TINDER FOR FOUNDERS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1220,15 +1208,15 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/influencer-marketplace-india.html" class="blog-card-img" aria-label="Read: Influencer Marketplace India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <circle cx="80" cy="60" r="28" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="160" cy="85" r="35" fill="#ff5b1f" opacity=".2" stroke="#15130f" stroke-width="2"/>
-          <circle cx="240" cy="60" r="28" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <circle cx="80" cy="60" r="28" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="160" cy="85" r="35" fill="#141414" opacity=".2" stroke="#141414" stroke-width="2"/>
+          <circle cx="240" cy="60" r="28" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
           <text x="80" y="67" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle">📸</text>
           <text x="160" y="93" font-family="'Patrick Hand',cursive" font-size="28" text-anchor="middle">⭐</text>
           <text x="240" y="67" font-family="'Patrick Hand',cursive" font-size="22" text-anchor="middle">🎬</text>
-          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">INFLUENCER MARKETPLACE</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · D2C BRANDS · CREATORS</text>
+          <text x="160" y="148" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">INFLUENCER MARKETPLACE</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · D2C BRANDS · CREATORS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1246,17 +1234,17 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/personalized-learning-platform-india.html" class="blog-card-img" aria-label="Read: Personalized Learning Platform India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="30" y="35" width="260" height="90" rx="8" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="30" y="35" width="260" height="28" rx="8" fill="#ff5b1f" opacity=".15"/>
-          <text x="160" y="54" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#15130f">Your Learning Path · Day 12</text>
-          <rect x="50" y="73" width="65" height="10" rx="2" fill="#ff5b1f" opacity=".8"/>
-          <rect x="50" y="73" width="100" height="10" rx="2" fill="#15130f" opacity=".1"/>
-          <text x="160" y="90" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Next: Advanced SQL → estimated 45 min</text>
-          <rect x="50" y="100" width="40" height="10" rx="2" fill="#ff5b1f" opacity=".4"/>
-          <rect x="50" y="100" width="100" height="10" rx="2" fill="#15130f" opacity=".1"/>
-          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">PERSONALIZED LEARNING AI</text>
-          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · EDTECH · INDIA</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="30" y="35" width="260" height="90" rx="8" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="30" y="35" width="260" height="28" rx="8" fill="#141414" opacity=".15"/>
+          <text x="160" y="54" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">Your Learning Path · Day 12</text>
+          <rect x="50" y="73" width="65" height="10" rx="2" fill="#141414" opacity=".8"/>
+          <rect x="50" y="73" width="100" height="10" rx="2" fill="#141414" opacity=".1"/>
+          <text x="160" y="90" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Next: Advanced SQL → estimated 45 min</text>
+          <rect x="50" y="100" width="40" height="10" rx="2" fill="#141414" opacity=".4"/>
+          <rect x="50" y="100" width="100" height="10" rx="2" fill="#141414" opacity=".1"/>
+          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">PERSONALIZED LEARNING AI</text>
+          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · EDTECH · INDIA</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1274,11 +1262,11 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/safeshe-women-safety-platform-india.html" class="blog-card-img" aria-label="Read: SafeShe Women Safety Platform India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <path d="M160 20 L220 50 L220 105 Q220 145 160 165 Q100 145 100 105 L100 50 Z" fill="#ff5b1f" opacity=".12" stroke="#15130f" stroke-width="2"/>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <path d="M160 20 L220 50 L220 105 Q220 145 160 165 Q100 145 100 105 L100 50 Z" fill="#141414" opacity=".12" stroke="#141414" stroke-width="2"/>
           <text x="160" y="100" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle">🛡️</text>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#15130f">SAFESHE</text>
-          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · WOMEN SAFETY · INDIA</text>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="14" text-anchor="middle" fill="#141414">SAFESHE</text>
+          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · WOMEN SAFETY · INDIA</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1296,15 +1284,15 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/scan-safe-product-safety-app-india.html" class="blog-card-img" aria-label="Read: ScanSafe Product Safety App India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="70" y="30" width="90" height="120" rx="8" fill="none" stroke="#15130f" stroke-width="2"/>
-          <line x1="70" y1="65" x2="160" y2="65" stroke="#ff5b1f" stroke-width="2" opacity=".5"/>
-          <rect x="82" y="75" width="66" height="55" rx="3" fill="#ff5b1f" opacity=".08"/>
-          <text x="115" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">|||||||||||</text>
-          <text x="230" y="65" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#ff5b1f">✓</text>
-          <text x="230" y="100" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#15130f">SAFE</text>
-          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · CONSUMER SAFETY · INDIA</text>
-          <text x="160" y="17" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">SCANSAFE AI</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="70" y="30" width="90" height="120" rx="8" fill="none" stroke="#141414" stroke-width="2"/>
+          <line x1="70" y1="65" x2="160" y2="65" stroke="#141414" stroke-width="2" opacity=".5"/>
+          <rect x="82" y="75" width="66" height="55" rx="3" fill="#141414" opacity=".08"/>
+          <text x="115" y="108" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">|||||||||||</text>
+          <text x="230" y="65" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#141414">✓</text>
+          <text x="230" y="100" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SAFE</text>
+          <text x="160" y="168" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · CONSUMER SAFETY · INDIA</text>
+          <text x="160" y="17" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">SCANSAFE AI</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1322,14 +1310,14 @@
     <article class="blog-card" data-cat="app">
       <a href="blog/youtube-assets-marketplace-india.html" class="blog-card-img" aria-label="Read: YouTube Assets Marketplace India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="35" y="38" width="120" height="68" rx="6" fill="#15130f" opacity=".06" stroke="#15130f" stroke-width="2"/>
-          <polygon points="82,62 82,90 107,76" fill="#ff5b1f"/>
-          <text x="95" y="115" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">42K subs · ₹8L offer</text>
-          <text x="230" y="78" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#ff5b1f">💰</text>
-          <line x1="155" y1="72" x2="200" y2="72" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="160" y="150" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">TUBEASSETS MARKETPLACE</text>
-          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">APP · YOUTUBE CHANNELS · M&amp;A</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="35" y="38" width="120" height="68" rx="6" fill="#141414" opacity=".06" stroke="#141414" stroke-width="2"/>
+          <polygon points="82,62 82,90 107,76" fill="#141414"/>
+          <text x="95" y="115" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">42K subs · ₹8L offer</text>
+          <text x="230" y="78" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle" fill="#141414">💰</text>
+          <line x1="155" y1="72" x2="200" y2="72" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="160" y="150" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">TUBEASSETS MARKETPLACE</text>
+          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">APP · YOUTUBE CHANNELS · M&amp;A</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1347,14 +1335,14 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/dog-subscription-box-business-india.html" class="blog-card-img" aria-label="Read: Dog Subscription Box Business India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="80" y="55" width="160" height="100" rx="6" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="80" y="55" width="160" height="40" rx="6" fill="#ff5b1f" opacity=".2"/>
-          <text x="160" y="81" font-family="'Patrick Hand',cursive" font-size="15" text-anchor="middle" fill="#15130f">🐕 Monthly Dog Box</text>
-          <text x="160" y="115" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#8a8678">Treats · Toys · Accessories</text>
-          <text x="160" y="140" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">₹799/mo → ₹1,499/mo</text>
-          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">PRODUCT · PET · D2C SUBSCRIPTION</text>
-          <text x="160" y="34" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">DOG SUBSCRIPTION BOX</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="80" y="55" width="160" height="100" rx="6" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="80" y="55" width="160" height="40" rx="6" fill="#141414" opacity=".2"/>
+          <text x="160" y="81" font-family="'Patrick Hand',cursive" font-size="15" text-anchor="middle" fill="#141414">🐕 Monthly Dog Box</text>
+          <text x="160" y="115" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#6f6f6f">Treats · Toys · Accessories</text>
+          <text x="160" y="140" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">₹799/mo → ₹1,499/mo</text>
+          <text x="160" y="172" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">PRODUCT · PET · D2C SUBSCRIPTION</text>
+          <text x="160" y="34" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">DOG SUBSCRIPTION BOX</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1372,19 +1360,19 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/government-schemes-consulting-india.html" class="blog-card-img" aria-label="Read: Government Schemes Consulting India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="40" y="50" width="100" height="70" rx="4" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="40" y="50" width="100" height="18" fill="#ff5b1f" opacity=".2"/>
-          <text x="90" y="62" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#15130f">MUDRA LOAN</text>
-          <text x="90" y="82" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Up to ₹10L</text>
-          <text x="90" y="98" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#ff5b1f">0% interest</text>
-          <rect x="180" y="50" width="100" height="70" rx="4" fill="none" stroke="#15130f" stroke-width="1.5"/>
-          <rect x="180" y="50" width="100" height="18" fill="#15130f" opacity=".08"/>
-          <text x="230" y="62" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#15130f">STARTUP INDIA</text>
-          <text x="230" y="82" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Tax exempt 3yr</text>
-          <text x="230" y="98" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#ff5b1f">DPIIT certified</text>
-          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">GOVT SCHEMES CONSULTING</text>
-          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SERVICE · ₹53L YEAR 3 · B2B</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="40" y="50" width="100" height="70" rx="4" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <rect x="40" y="50" width="100" height="18" fill="#141414" opacity=".2"/>
+          <text x="90" y="62" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#141414">MUDRA LOAN</text>
+          <text x="90" y="82" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Up to ₹10L</text>
+          <text x="90" y="98" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#141414">0% interest</text>
+          <rect x="180" y="50" width="100" height="70" rx="4" fill="none" stroke="#141414" stroke-width="1.5"/>
+          <rect x="180" y="50" width="100" height="18" fill="#141414" opacity=".08"/>
+          <text x="230" y="62" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#141414">STARTUP INDIA</text>
+          <text x="230" y="82" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Tax exempt 3yr</text>
+          <text x="230" y="98" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#141414">DPIIT certified</text>
+          <text x="160" y="152" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">GOVT SCHEMES CONSULTING</text>
+          <text x="160" y="170" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SERVICE · ₹53L YEAR 3 · B2B</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1402,13 +1390,13 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/map-art-generator-business.html" class="blog-card-img" aria-label="Read: Map Art Generator Business">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="60" y="25" width="200" height="125" rx="4" fill="none" stroke="#15130f" stroke-width="2"/>
-          <path d="M90 80 Q110 50 140 70 Q160 85 180 60 Q200 40 230 65" fill="none" stroke="#ff5b1f" stroke-width="2"/>
-          <path d="M80 110 Q100 95 120 105 Q150 118 170 100 Q195 82 220 95 Q240 105 250 120" fill="none" stroke="#15130f" stroke-width="1.5" opacity=".4"/>
-          <circle cx="160" cy="70" r="8" fill="#ff5b1f"/>
-          <text x="160" y="165" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#15130f">MAP ART GENERATOR</text>
-          <text x="160" y="17" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">PRODUCT · PRINT-ON-DEMAND · ₹18L/MO</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="60" y="25" width="200" height="125" rx="4" fill="none" stroke="#141414" stroke-width="2"/>
+          <path d="M90 80 Q110 50 140 70 Q160 85 180 60 Q200 40 230 65" fill="none" stroke="#141414" stroke-width="2"/>
+          <path d="M80 110 Q100 95 120 105 Q150 118 170 100 Q195 82 220 95 Q240 105 250 120" fill="none" stroke="#141414" stroke-width="1.5" opacity=".4"/>
+          <circle cx="160" cy="70" r="8" fill="#141414"/>
+          <text x="160" y="165" font-family="'Rubik Mono One',sans-serif" font-size="12" text-anchor="middle" fill="#141414">MAP ART GENERATOR</text>
+          <text x="160" y="17" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">PRODUCT · PRINT-ON-DEMAND · ₹18L/MO</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1426,17 +1414,17 @@
     <article class="blog-card" data-cat="product">
       <a href="blog/virtual-event-planning-ai-india.html" class="blog-card-img" aria-label="Read: Virtual Event Planning AI India">
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="180" fill="#f3eee2"/>
-          <rect x="25" y="35" width="270" height="90" rx="8" fill="none" stroke="#15130f" stroke-width="2"/>
-          <rect x="25" y="35" width="270" height="28" rx="8" fill="#ff5b1f" opacity=".15"/>
-          <text x="160" y="54" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#15130f">LIVE: SaaS Summit India 2025 • 847 attendees</text>
-          <circle cx="65" cy="95" r="18" fill="#15130f" opacity=".08" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="115" cy="95" r="18" fill="#ff5b1f" opacity=".15" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="165" cy="95" r="18" fill="none" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <circle cx="215" cy="95" r="18" fill="#15130f" opacity=".05" stroke="#15130f" stroke-width="1.5"/>
-          <circle cx="265" cy="95" r="18" fill="#ff5b1f" opacity=".1" stroke="#15130f" stroke-width="1.5"/>
-          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#15130f">AI VIRTUAL EVENT PLANNER</text>
-          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#ff5b1f">SERVICE · B2B · EVENTS</text>
+          <rect width="320" height="180" fill="#f3f3f3"/>
+          <rect x="25" y="35" width="270" height="90" rx="8" fill="none" stroke="#141414" stroke-width="2"/>
+          <rect x="25" y="35" width="270" height="28" rx="8" fill="#141414" opacity=".15"/>
+          <text x="160" y="54" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">LIVE: SaaS Summit India 2025 • 847 attendees</text>
+          <circle cx="65" cy="95" r="18" fill="#141414" opacity=".08" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="115" cy="95" r="18" fill="#141414" opacity=".15" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="165" cy="95" r="18" fill="none" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <circle cx="215" cy="95" r="18" fill="#141414" opacity=".05" stroke="#141414" stroke-width="1.5"/>
+          <circle cx="265" cy="95" r="18" fill="#141414" opacity=".1" stroke="#141414" stroke-width="1.5"/>
+          <text x="160" y="155" font-family="'Rubik Mono One',sans-serif" font-size="11" text-anchor="middle" fill="#141414">AI VIRTUAL EVENT PLANNER</text>
+          <text x="160" y="173" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#141414">SERVICE · B2B · EVENTS</text>
         </svg>
       </a>
       <div class="blog-card-body">
@@ -1455,7 +1443,7 @@
   <p class="no-results" id="noResults">No posts found in this category yet. More coming soon! 🚀</p>
 
   <!-- Community CTA -->
-  <div style="border:2px solid var(--rule);border-radius:var(--radius);padding:40px;text-align:center;margin-bottom:60px;background:var(--paper-2);">
+  <div style="border:1px solid var(--line);border-radius:var(--radius);padding:40px;text-align:center;margin-bottom:60px;background:var(--paper-2);">
     <p class="h-display" style="font-size:28px;margin-bottom:10px;">Want Even More Ideas?</p>
     <p class="h-hand" style="font-size:20px;color:var(--muted);">Join the community — new business ideas, real founder stories, and product launches every week.</p>
     <a href="community.html" class="btn primary" style="margin-top:20px;display:inline-flex">Join the Community →</a>
@@ -1463,24 +1451,44 @@
 </div>
 
 <!-- FOOTER -->
-<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)">
-  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
-    <div>
-      <div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div>
-      <div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
-    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="blog.html">Blog</a>
-      <a href="community.html">Community</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="shared.js"></script>
+<script src="site.js"></script>
 <script>
 function filterPosts(cat, btn) {
   // Update button states

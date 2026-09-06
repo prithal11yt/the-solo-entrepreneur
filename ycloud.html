@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -34,8 +35,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
@@ -135,10 +136,10 @@
 <style>
 .post-header {
   padding: 64px 0 48px;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 .post-breadcrumb {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   color: var(--muted);
   margin-bottom: 20px;
@@ -147,7 +148,7 @@
 }
 .post-breadcrumb a { color: var(--accent); }
 .post-cat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .15em;
@@ -155,21 +156,21 @@
   margin-bottom: 14px;
 }
 .post-title {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(26px, 5vw, 52px);
   line-height: .95;
   margin-bottom: 20px;
 }
 .post-title em { font-style: normal; color: var(--accent); }
 .post-subtitle {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 22px;
   color: var(--muted);
   max-width: 680px;
   margin-bottom: 24px;
 }
 .post-meta {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
@@ -190,16 +191,16 @@
 }
 .post-content { max-width: 720px; }
 .post-content h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(20px, 3vw, 28px);
   line-height: 1;
   margin: 52px 0 16px;
   padding-top: 12px;
-  border-top: 2px solid var(--rule);
+  border-top: 1px solid var(--line);
 }
 .post-content h2:first-of-type { margin-top: 0; border-top: none; }
 .post-content h3 {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 21px;
   font-weight: 700;
   margin: 32px 0 10px;
@@ -222,23 +223,23 @@
 .post-content strong { font-weight: 700; }
 .post-content a { color: var(--accent); text-decoration: underline; }
 .callout {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px 24px;
   margin: 28px 0;
   background: var(--paper-2);
 }
 .callout-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--muted);
   margin-bottom: 8px;
 }
-.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout.accent { background: #f3f3f3; border-color: var(--accent); }
 .callout.ink { background: var(--ink); color: var(--paper); }
-.callout.ink .callout-label { color: rgba(250,247,240,.6); }
+.callout.ink .callout-label { color: rgba(255,255,255,.6); }
 .callout.warn { background: #fff8e1; border-color: #f59e0b; }
 .callout.danger { background: #fef2f2; border-color: #dc2626; }
 .callout-icon { font-size: 20px; margin-bottom: 6px; }
@@ -258,7 +259,7 @@
   border-radius: 50%;
   background: var(--accent);
   color: var(--paper);
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -269,7 +270,7 @@
   flex: 1;
 }
 .step-body strong {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 18px;
   font-weight: 700;
   display: block;
@@ -280,10 +281,10 @@
   margin-bottom: 10px;
 }
 .path {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 13px;
   background: var(--paper-2);
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 8px 14px;
   display: inline-flex;
@@ -302,14 +303,14 @@
   margin: 24px 0;
 }
 .option-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--paper);
 }
-.option-card.highlight { border-color: var(--accent); background: #fff3ed; }
+.option-card.highlight { border-color: var(--accent); background: #f3f3f3; }
 .option-card .oc-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -317,13 +318,13 @@
   margin-bottom: 6px;
 }
 .option-card .oc-title {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 18px;
   margin-bottom: 10px;
 }
 .option-card .oc-title.green { color: #059669; }
 .option-card .oc-desc {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   line-height: 1.4;
@@ -331,16 +332,16 @@
 }
 .pill {
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   padding: 3px 10px;
   border-radius: 20px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   background: var(--paper-2);
   margin: 2px 2px 2px 0;
 }
 .pill.green { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
-.pill.orange { background: #fff3ed; border-color: var(--accent); color: var(--accent); }
+.pill.orange { background: #f3f3f3; border-color: var(--accent); color: var(--accent); }
 .pill.red { background: #fef2f2; border-color: #dc2626; color: #dc2626; }
 
 /* Checklist */
@@ -351,10 +352,10 @@
 }
 .chk li {
   padding: 10px 14px 10px 38px;
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   background: var(--paper-2);
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   margin-bottom: 8px;
   position: relative;
@@ -376,20 +377,20 @@
 }
 @media(max-width:600px) { .issue-grid { grid-template-columns: 1fr; } }
 .issue-card {
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px 18px;
   background: var(--paper);
 }
 .issue-card .issue-title {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   font-weight: 700;
   color: #dc2626;
   margin-bottom: 6px;
 }
 .issue-card .issue-fix {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   color: var(--muted);
   line-height: 1.4;
@@ -406,7 +407,7 @@
   display: block;
 }
 .post-table th {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -414,13 +415,13 @@
   padding: 10px 14px;
   background: var(--ink);
   color: var(--paper);
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   white-space: nowrap;
 }
 .post-table td {
   padding: 10px 14px;
-  border: 1.5px solid var(--rule);
-  font-family: 'Patrick Hand', cursive;
+  border: 1px solid var(--line);
+  font-family:var(--font);
   vertical-align: top;
 }
 .post-table tr:nth-child(even) td { background: var(--paper-2); }
@@ -433,14 +434,14 @@
   top: calc(var(--nav-h) + 24px);
 }
 .sidebar-toc {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--paper);
   margin-bottom: 24px;
 }
 .sidebar-toc h4 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -449,7 +450,7 @@
 }
 .sidebar-toc ol { padding-left: 18px; }
 .sidebar-toc li {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   margin-bottom: 8px;
   line-height: 1.3;
@@ -457,7 +458,7 @@
 .sidebar-toc a { color: var(--ink); }
 .sidebar-toc a:hover { color: var(--accent); }
 .sidebar-cta {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--accent);
@@ -465,7 +466,7 @@
   color: var(--paper);
 }
 .sidebar-cta h4 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 18px;
   margin-bottom: 8px;
 }
@@ -477,13 +478,13 @@
   border-radius: var(--radius);
   padding: 40px 32px;
   margin: 32px 0 40px;
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   color: #fff;
   text-align: center;
 }
 .whatsapp-hero .wh-icon { font-size: 52px; display: block; margin-bottom: 12px; }
 .whatsapp-hero h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(18px, 3vw, 26px);
   color: #fff;
   margin-bottom: 8px;
@@ -492,34 +493,34 @@
   margin-top: 0;
 }
 .whatsapp-hero p {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 20px;
   color: rgba(255,255,255,.85);
   margin: 0;
 }
 
 /* Tags */
-.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 .post-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   padding: 4px 12px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper-2);
   color: var(--muted);
 }
 
 /* FAQ */
-.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 24px; }
 .faq-section h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 26px;
   margin-bottom: 24px;
 }
-.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-item { border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
 .faq-q {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   font-weight: 700;
   padding: 16px 20px;
@@ -530,10 +531,10 @@
   background: var(--paper-2);
   user-select: none;
 }
-.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-q::after { content: '+'; font-family:var(--font-mono); font-size: 20px; color: var(--accent); flex-shrink: 0; }
 .faq-item.open .faq-q::after { content: '−'; }
 .faq-a {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   line-height: 1.6;
   padding: 0 20px;
@@ -551,35 +552,50 @@
   margin: 24px 0;
 }
 .prereq-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px 16px;
   background: var(--paper);
   text-align: center;
 }
 .prereq-card .pc-num {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 28px;
   color: var(--accent);
   display: block;
   margin-bottom: 6px;
 }
 .prereq-card .pc-title {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 6px;
 }
 .prereq-card .pc-desc {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   color: var(--muted);
   line-height: 1.4;
 }
 </style>
 </head>
-<body>
-<script src="shared.js"></script>
+<body class="sub">
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <a href="account.html" id="navAccountLink">Log in</a>
+    <a href="products.html#lead" class="nav-cta">Get free eBook</a>
+  </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
+</div>
+<script src="site.js"></script>
 
 <!-- NAV inserted by shared.js -->
 
@@ -1007,7 +1023,7 @@
           <div class="step-body">
             <strong>Set the Assignment Rules — critical step</strong>
             <p>Go to <strong>WhatsApp Accounts → Number Settings → Assignment</strong>. Set it exactly like this:</p>
-            <div style="margin-top:10px;background:var(--paper-2);border-radius:8px;padding:14px 16px;font-family:'Patrick Hand',cursive;font-size:15px;border:1.5px solid var(--rule)">
+            <div style="margin-top:10px;background:var(--paper-2);border-radius:8px;padding:14px 16px;font-family:var(--font);font-size:15px;border:1px solid var(--line)">
               <div style="margin:5px 0"><strong>Priority 1</strong> — Assign to owner → <span style="color:#dc2626;font-weight:700">OFF</span></div>
               <div style="margin:5px 0"><strong>Priority 2</strong> — Assign to last handling agent → <span style="color:#dc2626;font-weight:700">OFF</span></div>
               <div style="margin:5px 0"><strong>Priority 3</strong> — Assign to: <code>AI Agent</code> → Your agent name → <span style="color:#059669;font-weight:700">ACTIVE ✓</span></div>
@@ -1085,7 +1101,7 @@
 
       <div class="callout ink">
         <div class="callout-label">💡 Want to Build a Business Around This?</div>
-        <p style="margin:0;font-size:17px;color:var(--paper);">Setting up WhatsApp AI Agents is a genuine productised service. Local restaurants, D2C brands, coaches, and SMEs will pay ₹15,000–₹50,000 for a setup + ₹5,000/month for maintenance. If this interests you, read our <a href="blog/digital-marketing-agency-india.html" style="color:#ff5b1f;">digital marketing agency guide</a> for the full business model.</p>
+        <p style="margin:0;font-size:17px;color:var(--paper);">Setting up WhatsApp AI Agents is a genuine productised service. Local restaurants, D2C brands, coaches, and SMEs will pay ₹15,000–₹50,000 for a setup + ₹5,000/month for maintenance. If this interests you, read our <a href="blog/digital-marketing-agency-india.html" style="color:#141414;">digital marketing agency guide</a> for the full business model.</p>
       </div>
 
       <!-- FAQ -->
@@ -1158,7 +1174,7 @@
       <div class="sidebar-cta">
         <h4>GET THE FREE EBOOK</h4>
         <p>100 startup ideas validated for the Indian market — with revenue models.</p>
-        <a href="products.html" class="btn" style="background:var(--paper);color:var(--ink);font-size:15px;padding:10px 20px;display:inline-block;border-radius:var(--radius);font-family:'Rubik Mono One',sans-serif;text-decoration:none;">GET IT FREE →</a>
+        <a href="products.html" class="btn" style="background:var(--paper);color:var(--ink);font-size:15px;padding:10px 20px;display:inline-block;border-radius:var(--radius);font-family:var(--font);font-weight:650;letter-spacing:-.02em;text-decoration:none;">GET IT FREE →</a>
       </div>
       <div class="sidebar-toc" style="margin-top:20px;">
         <h4>Related Reading</h4>
@@ -1195,5 +1211,41 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 </script>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

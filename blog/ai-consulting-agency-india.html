@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -34,8 +35,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../site.css"/>
 <!-- Article structured data -->
 <script type="application/ld+json">
 {
@@ -64,10 +65,10 @@
 /* Blog post specific styles */
 .post-header {
   padding: 64px 0 48px;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 .post-breadcrumb {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   color: var(--muted);
   margin-bottom: 20px;
@@ -76,7 +77,7 @@
 }
 .post-breadcrumb a { color: var(--accent); }
 .post-cat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .15em;
@@ -84,21 +85,21 @@
   margin-bottom: 14px;
 }
 .post-title {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(26px, 5vw, 52px);
   line-height: .95;
   margin-bottom: 20px;
 }
 .post-title em { font-style: normal; color: var(--accent); }
 .post-subtitle {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 22px;
   color: var(--muted);
   max-width: 680px;
   margin-bottom: 24px;
 }
 .post-meta {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
@@ -123,16 +124,16 @@
   max-width: 720px;
 }
 .post-content h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(20px, 3vw, 28px);
   line-height: 1;
   margin: 48px 0 16px;
   padding-top: 12px;
-  border-top: 2px solid var(--rule);
+  border-top: 1px solid var(--line);
 }
 .post-content h2:first-of-type { margin-top: 0; border-top: none; }
 .post-content h3 {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 21px;
   font-weight: 700;
   margin: 28px 0 10px;
@@ -158,7 +159,7 @@
 
 /* Callout boxes */
 .callout {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px 24px;
   margin: 28px 0;
@@ -166,16 +167,16 @@
   position: relative;
 }
 .callout-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--muted);
   margin-bottom: 8px;
 }
-.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout.accent { background: #f3f3f3; border-color: var(--accent); }
 .callout.ink { background: var(--ink); color: var(--paper); }
-.callout.ink .callout-label { color: rgba(250,247,240,.6); }
+.callout.ink .callout-label { color: rgba(255,255,255,.6); }
 
 /* Number boxes */
 .number-grid {
@@ -185,21 +186,21 @@
   margin: 24px 0;
 }
 .number-box {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px;
   background: var(--paper);
   text-align: center;
 }
 .number-box .num {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 26px;
   color: var(--accent);
   display: block;
   margin-bottom: 4px;
 }
 .number-box .label {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   color: var(--muted);
 }
@@ -212,7 +213,7 @@
   font-size: 15px;
 }
 .post-table th {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -220,12 +221,12 @@
   padding: 10px 14px;
   background: var(--ink);
   color: var(--paper);
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
 }
 .post-table td {
   padding: 10px 14px;
-  border: 1.5px solid var(--rule);
-  font-family: 'Patrick Hand', cursive;
+  border: 1px solid var(--line);
+  font-family:var(--font);
   vertical-align: top;
 }
 .post-table tr:nth-child(even) td { background: var(--paper-2); }
@@ -236,14 +237,14 @@
   top: calc(var(--nav-h) + 24px);
 }
 .sidebar-toc {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--paper);
   margin-bottom: 24px;
 }
 .sidebar-toc h4 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -254,7 +255,7 @@
   padding-left: 18px;
 }
 .sidebar-toc li {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   margin-bottom: 8px;
   line-height: 1.3;
@@ -263,14 +264,14 @@
 .sidebar-toc a:hover { color: var(--accent); }
 
 .sidebar-cta {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--accent);
   text-align: center;
-}
+;color:#fff}
 .sidebar-cta h4 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 18px;
   margin-bottom: 8px;
 }
@@ -283,35 +284,35 @@
 /* Post illustration */
 .post-hero-img {
   margin: 32px 0 40px;
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--paper-2);
 }
 
 /* Tags */
-.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 .post-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   padding: 4px 12px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper-2);
 }
 
 /* Related posts */
-.related-posts { padding: 48px 0; border-top: 2px solid var(--rule); }
-.related-posts h3 { font-family: 'Rubik Mono One', sans-serif; font-size: 24px; margin-bottom: 24px; }
+.related-posts { padding: 48px 0; border-top: 1px solid var(--line); }
+.related-posts h3 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 24px; margin-bottom: 24px; }
 .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 .related-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   transition: transform .15s, box-shadow .15s;
 }
-.related-card:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--rule); }
-.related-card h4 { font-family: 'Patrick Hand', cursive; font-size: 17px; margin-bottom: 8px; }
+.related-card:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.08); }
+.related-card h4 { font-family:var(--font); font-size: 17px; margin-bottom: 8px; }
 .related-card p { font-size: 14px; color: var(--muted); }
 
 @media(max-width:600px) {
@@ -322,7 +323,7 @@
 }
 </style>
 </head>
-<body>
+<body class="sub">
 
 <!-- SVG Filters -->
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
@@ -333,31 +334,20 @@
 </svg>
 
 <!-- NAVBAR -->
-<nav class="navbar" role="navigation">
-  <div class="wrap nav-wrap">
-    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../products.html">Products</a></li>
-      <li><a href="../videos.html">Videos</a></li>
-      <li><a href="../blog.html" class="active">Blog</a></li>
-      <li><a href="../community.html">Community</a></li>
-      <li><a href="../index.html#about">About</a></li>
-      <li><a href="../account.html" id="navAccountLink">My Account</a></li>
-    </ul>
-    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="../products.html">Products</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../tools.html">Tools</a>
+    <a href="../community.html">Community</a>
+    <a href="../account.html" id="navAccountLink">Log in</a>
+    <a href="../products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html" onclick="toggleMenu()">Home</a>
-  <a href="../products.html" onclick="toggleMenu()">Products</a>
-  <a href="../videos.html" onclick="toggleMenu()">Videos</a>
-  <a href="../blog.html" onclick="toggleMenu()">Blog</a>
-  <a href="../community.html" onclick="toggleMenu()">Community</a>
-  <a href="../index.html#about" onclick="toggleMenu()">About</a>
-  <a href="../account.html" onclick="toggleMenu()">My Account</a>
-  <a href="../products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../community.html">Community</a><a href="../account.html">Log in</a><a href="../products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 
 <!-- POST HEADER -->
@@ -388,50 +378,50 @@
       <!-- Hero illustration -->
       <div class="post-hero-img">
         <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-          <rect width="720" height="340" fill="#f3eee2"/>
+          <rect width="720" height="340" fill="#f3f3f3"/>
           <!-- Grid lines -->
-          <line x1="0" y1="60" x2="720" y2="60" stroke="#15130f" stroke-width=".5" opacity=".15"/>
-          <line x1="0" y1="120" x2="720" y2="120" stroke="#15130f" stroke-width=".5" opacity=".15"/>
-          <line x1="0" y1="180" x2="720" y2="180" stroke="#15130f" stroke-width=".5" opacity=".15"/>
-          <line x1="0" y1="240" x2="720" y2="240" stroke="#15130f" stroke-width=".5" opacity=".15"/>
+          <line x1="0" y1="60" x2="720" y2="60" stroke="#141414" stroke-width=".5" opacity=".15"/>
+          <line x1="0" y1="120" x2="720" y2="120" stroke="#141414" stroke-width=".5" opacity=".15"/>
+          <line x1="0" y1="180" x2="720" y2="180" stroke="#141414" stroke-width=".5" opacity=".15"/>
+          <line x1="0" y1="240" x2="720" y2="240" stroke="#141414" stroke-width=".5" opacity=".15"/>
           <!-- Main box: Agency -->
-          <rect x="50" y="60" width="180" height="120" rx="8" fill="#faf7f0" stroke="#15130f" stroke-width="2"/>
+          <rect x="50" y="60" width="180" height="120" rx="8" fill="#ffffff" stroke="#141414" stroke-width="2"/>
           <text x="140" y="110" font-family="'Patrick Hand',cursive" font-size="38" text-anchor="middle">🤖</text>
-          <text x="140" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#15130f">YOUR AGENCY</text>
-          <text x="140" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#8a8678">₹2L to launch</text>
+          <text x="140" y="148" font-family="'Rubik Mono One',sans-serif" font-size="13" text-anchor="middle" fill="#141414">YOUR AGENCY</text>
+          <text x="140" y="165" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle" fill="#6f6f6f">₹2L to launch</text>
           <!-- Arrow right -->
-          <path d="M240 120 L310 120" stroke="#ff5b1f" stroke-width="2.5" marker-end="url(#arr)"/>
+          <path d="M240 120 L310 120" stroke="#141414" stroke-width="2.5" marker-end="url(#arr)"/>
           <defs>
             <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="#ff5b1f"/>
+              <polygon points="0 0, 8 3, 0 6" fill="#141414"/>
             </marker>
           </defs>
           <!-- Client boxes -->
-          <rect x="310" y="40" width="150" height="60" rx="6" fill="#fff3ed" stroke="#ff5b1f" stroke-width="1.5"/>
-          <text x="385" y="65" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#15130f">SMB Client A</text>
-          <text x="385" y="82" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">₹75,000 basic</text>
-          <rect x="310" y="115" width="150" height="60" rx="6" fill="#fff3ed" stroke="#ff5b1f" stroke-width="1.5"/>
-          <text x="385" y="140" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#15130f">SMB Client B</text>
-          <text x="385" y="157" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">₹1,50,000 premium</text>
-          <rect x="310" y="190" width="150" height="60" rx="6" fill="#fff3ed" stroke="#ff5b1f" stroke-width="1.5"/>
-          <text x="385" y="215" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#15130f">Enterprise Client</text>
-          <text x="385" y="232" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#ff5b1f">₹5,00,000+</text>
+          <rect x="310" y="40" width="150" height="60" rx="6" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/>
+          <text x="385" y="65" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#141414">SMB Client A</text>
+          <text x="385" y="82" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">₹75,000 basic</text>
+          <rect x="310" y="115" width="150" height="60" rx="6" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/>
+          <text x="385" y="140" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#141414">SMB Client B</text>
+          <text x="385" y="157" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">₹1,50,000 premium</text>
+          <rect x="310" y="190" width="150" height="60" rx="6" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/>
+          <text x="385" y="215" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="#141414">Enterprise Client</text>
+          <text x="385" y="232" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="#141414">₹5,00,000+</text>
           <!-- Connect lines -->
-          <line x1="310" y1="70" x2="280" y2="70" stroke="#8a8678" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="280" y1="70" x2="280" y2="145" stroke="#8a8678" stroke-width="1.5"/>
-          <line x1="280" y1="145" x2="310" y2="145" stroke="#8a8678" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="280" y1="220" x2="310" y2="220" stroke="#8a8678" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <line x1="280" y1="145" x2="280" y2="220" stroke="#8a8678" stroke-width="1.5"/>
+          <line x1="310" y1="70" x2="280" y2="70" stroke="#6f6f6f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="280" y1="70" x2="280" y2="145" stroke="#6f6f6f" stroke-width="1.5"/>
+          <line x1="280" y1="145" x2="310" y2="145" stroke="#6f6f6f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="280" y1="220" x2="310" y2="220" stroke="#6f6f6f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="280" y1="145" x2="280" y2="220" stroke="#6f6f6f" stroke-width="1.5"/>
           <!-- Revenue box -->
-          <rect x="510" y="80" width="175" height="110" rx="8" fill="#15130f"/>
-          <text x="597" y="115" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="rgba(250,247,240,.6)">YEAR 1 REVENUE</text>
-          <text x="597" y="150" font-family="'Rubik Mono One',sans-serif" font-size="28" text-anchor="middle" fill="#ff5b1f">₹9.45L</text>
-          <text x="597" y="172" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="rgba(250,247,240,.7)">net profit ₹7.95L</text>
+          <rect x="510" y="80" width="175" height="110" rx="8" fill="#141414"/>
+          <text x="597" y="115" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.6)">YEAR 1 REVENUE</text>
+          <text x="597" y="150" font-family="'Rubik Mono One',sans-serif" font-size="28" text-anchor="middle" fill="#141414">₹9.45L</text>
+          <text x="597" y="172" font-family="'Patrick Hand',cursive" font-size="13" text-anchor="middle" fill="rgba(255,255,255,.7)">net profit ₹7.95L</text>
           <!-- Arrow to revenue -->
-          <path d="M465 145 L510 145" stroke="#15130f" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <path d="M465 145 L510 145" stroke="#141414" stroke-width="1.5" stroke-dasharray="4,3"/>
           <!-- Bottom text -->
-          <text x="360" y="295" font-family="'Caveat',cursive" font-size="18" text-anchor="middle" fill="#8a8678">India has 40% YoY AI adoption growth in SMBs. The opportunity is real.</text>
-          <line x1="50" y1="275" x2="670" y2="275" stroke="#15130f" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <text x="360" y="295" font-family="'Caveat',cursive" font-size="18" text-anchor="middle" fill="#6f6f6f">India has 40% YoY AI adoption growth in SMBs. The opportunity is real.</text>
+          <line x1="50" y1="275" x2="670" y2="275" stroke="#141414" stroke-width="1.5" stroke-dasharray="5,5"/>
         </svg>
       </div>
 
@@ -580,31 +570,31 @@
       <p>I'll walk you through what a realistic year looks like, not a best-case scenario. Months 1–3 are mostly setup and early prospecting. You'll probably land your first client in month 2 or 3.</p>
 
       <!-- Revenue illustration -->
-      <div style="border:2px solid var(--rule);border-radius:var(--radius);background:var(--paper-2);padding:20px;margin:24px 0;overflow-x:auto">
+      <div style="border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-2);padding:20px;margin:24px 0;overflow-x:auto">
         <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:400px;height:auto;display:block">
-          <rect width="640" height="200" fill="#f3eee2"/>
+          <rect width="640" height="200" fill="#f3f3f3"/>
           <!-- Month labels -->
-          <text x="45" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">Q1</text>
-          <text x="165" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">Q2</text>
-          <text x="285" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">Q3</text>
-          <text x="450" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#8a8678">Q4</text>
+          <text x="45" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">Q1</text>
+          <text x="165" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">Q2</text>
+          <text x="285" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">Q3</text>
+          <text x="450" y="185" font-family="'JetBrains Mono',monospace" font-size="9" text-anchor="middle" fill="#6f6f6f">Q4</text>
           <!-- Bars -->
           <!-- Q1: 0 revenue -->
-          <rect x="15" y="158" width="60" height="10" rx="2" fill="#ff5b1f" opacity=".2" stroke="#ff5b1f" stroke-width="1"/>
-          <text x="45" y="145" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#8a8678">₹0</text>
+          <rect x="15" y="158" width="60" height="10" rx="2" fill="#141414" opacity=".2" stroke="#141414" stroke-width="1"/>
+          <text x="45" y="145" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#6f6f6f">₹0</text>
           <!-- Q2: 1.5L (first client) -->
-          <rect x="135" y="108" width="60" height="60" rx="2" fill="#ff5b1f" opacity=".5" stroke="#ff5b1f" stroke-width="1"/>
-          <text x="165" y="98" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#15130f">₹1.5L</text>
+          <rect x="135" y="108" width="60" height="60" rx="2" fill="#141414" opacity=".5" stroke="#141414" stroke-width="1"/>
+          <text x="165" y="98" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#141414">₹1.5L</text>
           <!-- Q3: 3L (2-3 clients) -->
-          <rect x="255" y="68" width="60" height="100" rx="2" fill="#ff5b1f" opacity=".75" stroke="#ff5b1f" stroke-width="1"/>
-          <text x="285" y="58" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#15130f">₹3L</text>
+          <rect x="255" y="68" width="60" height="100" rx="2" fill="#141414" opacity=".75" stroke="#141414" stroke-width="1"/>
+          <text x="285" y="58" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#141414">₹3L</text>
           <!-- Q4: 4.95L (referrals + enterprise) -->
-          <rect x="420" y="20" width="60" height="148" rx="2" fill="#ff5b1f" stroke="#ff5b1f" stroke-width="1"/>
-          <text x="450" y="12" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#ff5b1f">₹4.95L</text>
+          <rect x="420" y="20" width="60" height="148" rx="2" fill="#141414" stroke="#141414" stroke-width="1"/>
+          <text x="450" y="12" font-family="'Patrick Hand',cursive" font-size="10" text-anchor="middle" fill="#141414">₹4.95L</text>
           <!-- Total label -->
-          <text x="570" y="100" font-family="'Rubik Mono One',sans-serif" font-size="18" text-anchor="middle" fill="#15130f">₹9.45L</text>
-          <text x="570" y="120" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#8a8678">Year 1 Total</text>
-          <line x1="0" y1="168" x2="640" y2="168" stroke="#15130f" stroke-width="1" opacity=".2"/>
+          <text x="570" y="100" font-family="'Rubik Mono One',sans-serif" font-size="18" text-anchor="middle" fill="#141414">₹9.45L</text>
+          <text x="570" y="120" font-family="'Patrick Hand',cursive" font-size="12" text-anchor="middle" fill="#6f6f6f">Year 1 Total</text>
+          <line x1="0" y1="168" x2="640" y2="168" stroke="#141414" stroke-width="1" opacity=".2"/>
         </svg>
       </div>
 
@@ -682,7 +672,7 @@
       </ol>
 
       <div class="callout ink">
-        <div class="callout-label" style="color:rgba(250,247,240,.6)">🔑 The real secret</div>
+        <div class="callout-label" style="color:rgba(255,255,255,.6)">🔑 The real secret</div>
         <p style="margin:0;color:var(--paper)">Most people who read this will nod, think "that's interesting," and not do anything. The ones who start a consulting business aren't smarter or more experienced — they just start before they feel ready. Action creates clarity. Reading more guides doesn't.</p>
       </div>
 
@@ -732,12 +722,12 @@
         <a href="../products.html" class="btn ink" style="display:inline-flex;font-size:15px">Book a Call →</a>
       </div>
 
-      <div style="margin-top:20px;border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--paper)">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px">📚 Also Read</div>
+      <div style="margin-top:20px;border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--paper)">
+        <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px">📚 Also Read</div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <a href="ai-prompt-engineering-agency-india.html" style="font-family:'Patrick Hand',cursive;font-size:15px;color:var(--ink);text-decoration:none">→ AI Prompt Engineering Agency Guide</a>
-          <a href="micro-saas-ideas-india.html" style="font-family:'Patrick Hand',cursive;font-size:15px;color:var(--ink);text-decoration:none">→ 10 Micro SaaS Ideas for India</a>
-          <a href="no-code-saas-ideas-india.html" style="font-family:'Patrick Hand',cursive;font-size:15px;color:var(--ink);text-decoration:none">→ 5 No-Code SaaS Ideas</a>
+          <a href="ai-prompt-engineering-agency-india.html" style="font-family:var(--font);font-size:15px;color:var(--ink);text-decoration:none">→ AI Prompt Engineering Agency Guide</a>
+          <a href="micro-saas-ideas-india.html" style="font-family:var(--font);font-size:15px;color:var(--ink);text-decoration:none">→ 10 Micro SaaS Ideas for India</a>
+          <a href="no-code-saas-ideas-india.html" style="font-family:var(--font);font-size:15px;color:var(--ink);text-decoration:none">→ 5 No-Code SaaS Ideas</a>
         </div>
       </div>
     </aside>
@@ -746,22 +736,22 @@
 </div>
 
 <!-- RELATED POSTS -->
-<div style="border-top:2px solid var(--rule);padding:48px 0;background:var(--paper-2)">
+<div style="border-top:1px solid var(--line);padding:48px 0;background:var(--paper-2)">
   <div class="wrap">
-    <h3 style="font-family:'Rubik Mono One',sans-serif;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3>
+    <h3 style="font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3>
     <div class="related-grid">
       <a href="ai-prompt-engineering-agency-india.html" class="related-card" style="text-decoration:none;color:inherit">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">Agency</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">Agency</div>
         <h4>AI Prompt Engineering Services Agency</h4>
         <p>Turn your AI knowledge into a service business. Businesses are paying ₹30K–₹2L/month for this.</p>
       </a>
       <a href="micro-saas-ideas-india.html" class="related-card" style="text-decoration:none;color:inherit">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">SaaS</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">SaaS</div>
         <h4>10 Micro SaaS Ideas for India in 2025</h4>
         <p>Small software products with real revenue potential. Each validated against actual Indian market needs.</p>
       </a>
       <a href="online-course-business-india.html" class="related-card" style="text-decoration:none;color:inherit">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">Online Business</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase">Online Business</div>
         <h4>Build a ₹1 Crore Course Business in India</h4>
         <p>If consulting feels too slow, here's how to productize your knowledge into scalable courses.</p>
       </a>
@@ -770,23 +760,43 @@
 </div>
 
 <!-- FOOTER -->
-<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)">
-  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
-    <div>
-      <div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div>
-      <div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="../products.html">Products</a>
+          <a href="../products.html#templates">Automation templates</a>
+          <a href="../products.html#pdf">Business-idea ebooks</a>
+          <a href="../blog.html">Playbooks &amp; blog</a>
+          <a href="../tools.html">Free tools</a>
+          <a href="../community.html">Founders Wing</a>
+          <a href="../videos.html">Videos</a>
+          <a href="../account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="../return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="../privacy-policy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
     </div>
-    <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8">
-      <a href="../index.html">Home</a>
-      <a href="../products.html">Products</a>
-      <a href="../blog.html">Blog</a>
-      <a href="../community.html">Community</a>
-      <a href="../privacy.html">Privacy</a>
-      <a href="../terms.html">Terms</a>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="../shared.js"></script>
+<script src="../site.js"></script>
 </body>
 </html>

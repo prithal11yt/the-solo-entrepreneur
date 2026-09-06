@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -18,22 +19,22 @@
 <link rel="canonical" href="https://www.thesoloentrepreneur.in/account"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 .account-hero {
   padding: 48px 0 40px;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 .account-greeting {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(28px, 5vw, 48px);
   line-height: .95;
   margin-bottom: 8px;
 }
 .account-meta {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 20px;
   color: var(--muted);
   display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
@@ -49,60 +50,60 @@
   margin-top: 28px;
 }
 .my-product-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
   padding: 24px;
   display: flex; flex-direction: column; gap: 14px;
   transition: transform .15s, box-shadow .15s;
 }
-.my-product-card:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--rule); }
+.my-product-card:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.08); }
 .my-product-card.consultation { background: var(--paper-2); }
 .mpc-icon { font-size: 32px; line-height: 1; }
 .mpc-name {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 17px; line-height: 1.1;
 }
 .mpc-date {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px; color: var(--muted);
 }
 .mpc-amount {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 22px; color: var(--accent);
 }
 .mpc-note {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 17px; color: var(--muted); line-height: 1.4;
 }
 .mpc-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
 .dl-btn {
   display: flex; align-items: center; gap: 8px;
   padding: 10px 16px;
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 20px;
   background: var(--ink); color: var(--paper);
-  font-family: 'Patrick Hand', cursive; font-size: 16px;
+  font-family:var(--font); font-size: 16px;
   cursor: pointer; transition: transform .12s, box-shadow .12s;
   text-decoration: none;
 }
-.dl-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+.dl-btn:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.08); }
 .dl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 .dl-btn svg { flex-shrink: 0; }
 
 /* Founders Wing member banner */
 .member-banner {
   display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;
-  border: 2px solid var(--rule); border-radius: var(--radius);
-  background: var(--paper-2); box-shadow: 5px 5px 0 var(--accent);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper-2); box-shadow:0 12px 30px rgba(0,0,0,.08);
   padding: 22px 26px; margin-top: 26px;
 }
-.mb-badge { font-family: 'Patrick Hand', cursive; font-size: 13px; letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
-.mb-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px,3vw,22px); line-height: 1.1; margin: 7px 0 7px; }
-.mb-sub { font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted); max-width: 540px; line-height: 1.35; }
+.mb-badge { font-family:var(--font); font-size: 13px; letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
+.mb-title { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(18px,3vw,22px); line-height: 1.1; margin: 7px 0 7px; }
+.mb-sub { font-family:var(--font); font-size: 18px; color: var(--muted); max-width: 540px; line-height: 1.35; }
 .member-banner .btn { white-space: nowrap; }
 .mpc-tag {
-  display: inline-block; font-family: 'Patrick Hand', cursive; font-size: 12px;
+  display: inline-block; font-family:var(--font); font-size: 12px;
   letter-spacing: .06em; text-transform: uppercase; color: var(--accent);
 }
 
@@ -110,7 +111,7 @@
 .empty-state {
   text-align: center;
   padding: 64px 24px;
-  border: 2px dashed var(--rule);
+  border: 1px dashed var(--line);
   border-radius: var(--radius);
   margin-top: 28px;
 }
@@ -130,24 +131,24 @@
 .auth-gate {
   max-width: 440px; margin: 80px auto; text-align: center;
   padding: 40px 32px;
-  border: 2px solid var(--rule); border-radius: var(--radius);
+  border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--paper-2);
-  box-shadow: 5px 5px 0 var(--rule);
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
-.auth-gate h2 { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-bottom: 10px; }
-.auth-gate p { font-family: 'Caveat', cursive; font-size: 19px; color: var(--muted); margin-bottom: 24px; }
+.auth-gate h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 26px; margin-bottom: 10px; }
+.auth-gate p { font-family:var(--font); font-size: 19px; color: var(--muted); margin-bottom: 24px; }
 
 /* Auth tabs (reused from products.html) */
-.auth-tabs { display: flex; border: 2px solid var(--rule); border-radius: 30px; overflow: hidden; margin-bottom: 20px; }
-.auth-tab { flex: 1; padding: 10px 16px; background: none; border: none; font-family: 'Patrick Hand', cursive; font-size: 16px; cursor: pointer; transition: background .15s; }
+.auth-tabs { display: flex; border: 1px solid var(--line); border-radius: 30px; overflow: hidden; margin-bottom: 20px; }
+.auth-tab { flex: 1; padding: 10px 16px; background: none; border: none; font-family:var(--font); font-size: 16px; cursor: pointer; transition: background .15s; }
 .auth-tab.active { background: var(--ink); color: var(--paper); }
-.auth-error   { font-family: 'Caveat', cursive; font-size: 16px; color: #e53e3e; min-height: 20px; }
-.auth-success { font-family: 'Caveat', cursive; font-size: 16px; color: #2f9e44; min-height: 20px; }
+.auth-error   { font-family:var(--font); font-size: 16px; color: #e53e3e; min-height: 20px; }
+.auth-success { font-family:var(--font); font-size: 16px; color: #2f9e44; min-height: 20px; }
 
 .ck-field  { display: flex; flex-direction: column; gap: 5px; text-align: left; }
-.ck-label  { font-family: 'Patrick Hand', cursive; font-size: 14px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
-.ck-input  { font-family: 'Patrick Hand', cursive; font-size: 17px; padding: 10px 14px; border: 2px solid var(--rule); border-radius: 6px 9px 5px 8px; background: var(--paper); color: var(--ink); outline: none; width: 100%; transition: border-color .15s, box-shadow .15s; }
-.ck-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
+.ck-label  { font-family:var(--font); font-size: 14px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.ck-input  { font-family:var(--font); font-size: 17px; padding: 10px 14px; border: 1px solid var(--line); border-radius:12px; background: var(--paper); color: var(--ink); outline: none; width: 100%; transition: border-color .15s, box-shadow .15s; }
+.ck-input:focus { border-color: var(--accent); box-shadow:0 12px 30px rgba(0,0,0,.08); }
 .ck-pay-btn { width: 100%; justify-content: center; font-size: 18px; margin-top: 4px; }
 
 @media (max-width: 620px) {
@@ -155,7 +156,7 @@
 }
 </style>
 </head>
-<body>
+<body class="sub">
 
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
   <defs>
@@ -164,28 +165,19 @@
 </svg>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-  <div class="wrap nav-wrap">
-    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="index.html#about">About</a></li>
-    </ul>
-    <button class="btn primary nav-cta sm" id="navAuthBtn" onclick="handleNavAuth()">My Account</button>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <button id="navAuthBtn" class="nav-cta" onclick="handleNavAuth()" type="button">Sign In</button>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="products.html" onclick="toggleMenu()">Products</a>
-  <a href="videos.html" onclick="toggleMenu()">Videos</a>
-  <a href="blog.html" onclick="toggleMenu()">Blog</a>
-  <a href="community.html" onclick="toggleMenu()">Community</a>
-  <a href="index.html#about" onclick="toggleMenu()">About</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -215,11 +207,11 @@
         <button type="submit" id="siBtnSubmit" class="btn primary lg ck-pay-btn">Sign In →</button>
         <div style="display:flex;align-items:center;gap:10px;color:var(--muted)">
           <span style="flex:1;height:2px;background:var(--rule);opacity:.35"></span>
-          <span style="font-family:'Caveat',cursive;font-size:16px">or</span>
+          <span style="font-family:var(--font);font-size:16px">or</span>
           <span style="flex:1;height:2px;background:var(--rule);opacity:.35"></span>
         </div>
-        <button type="button" id="magicBtn" onclick="handleMagicLink()" class="btn lg ck-pay-btn" style="background:var(--paper);color:var(--ink);border:2px solid var(--rule)">✉️ Email me a one-tap login link</button>
-        <p style="font-family:'Caveat',cursive;font-size:15px;color:var(--muted)"><a href="#" onclick="handleForgot(event)" style="color:var(--muted)">Forgot password?</a></p>
+        <button type="button" id="magicBtn" onclick="handleMagicLink()" class="btn lg ck-pay-btn" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">✉️ Email me a one-tap login link</button>
+        <p style="font-family:var(--font);font-size:15px;color:var(--muted)"><a href="#" onclick="handleForgot(event)" style="color:var(--muted)">Forgot password?</a></p>
       </form>
       <!-- Create Account -->
       <form id="formSignUp" style="display:none;flex-direction:column;gap:14px" onsubmit="handleSignUp(event)" novalidate>
@@ -310,40 +302,44 @@
 </div><!-- /wrap -->
 
 <!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
-        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
       </div>
-      <div class="foot-col"><h5 class="h-display">Products</h5><ul>
-        <li><a href="products.html#pdf">100 Business Ideas PDF</a></li>
-        <li><a href="products.html#templates">Automation Templates</a></li>
-        <li><a href="products.html#combo">Combo Deal</a></li>
-        <li><a href="products.html#consultation">Consultations</a></li>
-      </ul></div>
-      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
-        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
-        <li><a href="videos.html">All Videos</a></li>
-      </ul></div>
-      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
-        <li><a href="community.html">Founders Wing</a></li>
-        <li><a href="index.html#about">About Prithal</a></li>
-        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="return-policy.html">Return Policy</a></li>
-        <li><a href="terms.html">Terms &amp; Conditions</a></li>
-      </ul></div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
-    <div class="foot-copy h-print">
-      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
-      <span class="h-hand">made solo · shipped from Bangalore ★</span>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="shared.js"></script>
+<script src="site.js"></script>
 <script>
 const { createClient } = window.supabase;
 const db = createClient(

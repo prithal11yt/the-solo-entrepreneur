@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
@@ -22,69 +23,72 @@
 <meta name="twitter:title" content="Build a Credit Card Optimizer AI App for India"/>
 <meta name="twitter:description" content="How to build an AI app that tells Indians which credit card to use for each purchase. Freemium model, ₹400/month premium tier, $93K revenue potential in Year 1."/>
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../site.css"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Build a Credit Card Optimizer AI App for India","author":{"@type":"Person","name":"Prithal Bhardwaj"},"publisher":{"@type":"Organization","name":"The Solo Entrepreneur","url":"https://www.thesoloentrepreneur.in"},"datePublished":"2025-05-19","mainEntityOfPage":"https://www.thesoloentrepreneur.in/blog/credit-card-ai-tool-india.html"}</script>
 <style>
-.post-header{padding:64px 0 48px;border-bottom:2px solid var(--rule)}
-.post-breadcrumb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.1em}
+.post-header{padding:64px 0 48px;border-bottom:1px solid var(--line)}
+.post-breadcrumb{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.1em}
 .post-breadcrumb a{color:var(--accent)}
-.post-cat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}
-.post-title{font-family:'Rubik Mono One',sans-serif;font-size:clamp(26px,5vw,52px);line-height:.95;margin-bottom:20px}
+.post-cat{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}
+.post-title{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:clamp(26px,5vw,52px);line-height:.95;margin-bottom:20px}
 .post-title em{font-style:normal;color:var(--accent)}
-.post-subtitle{font-family:'Caveat',cursive;font-size:22px;color:var(--muted);max-width:680px;margin-bottom:24px}
-.post-meta{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
+.post-subtitle{font-family:var(--font);font-size:22px;color:var(--muted);max-width:680px;margin-bottom:24px}
+.post-meta{font-family:var(--font);font-size:15px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
 .post-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;padding:48px 0 80px;align-items:start}
 @media(max-width:900px){.post-layout{grid-template-columns:1fr}}
-.post-content h2{font-family:'Rubik Mono One',sans-serif;font-size:clamp(20px,3vw,28px);line-height:1;margin:48px 0 16px;padding-top:12px;border-top:2px solid var(--rule)}
+.post-content h2{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:clamp(20px,3vw,28px);line-height:1;margin:48px 0 16px;padding-top:12px;border-top:1px solid var(--line)}
 .post-content h2:first-of-type{margin-top:0;border-top:none}
-.post-content h3{font-family:'Patrick Hand',cursive;font-size:21px;font-weight:700;margin:28px 0 10px}
+.post-content h3{font-family:var(--font);font-size:21px;font-weight:700;margin:28px 0 10px}
 .post-content p{font-size:18px;line-height:1.65;margin-bottom:18px}
 .post-content ul,.post-content ol{padding-left:24px;margin-bottom:18px}
 .post-content li{font-size:18px;line-height:1.6;margin-bottom:8px}
 .post-content strong{font-weight:700}
 .post-content a{color:var(--accent);text-decoration:underline}
-.callout{border:2px solid var(--rule);border-radius:var(--radius);padding:20px 24px;margin:28px 0;background:var(--paper-2)}
-.callout.accent{background:#fff3ed;border-color:var(--accent)}
+.callout{border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin:28px 0;background:var(--paper-2)}
+.callout.accent{background:#f3f3f3;border-color:var(--accent)}
 .callout.ink{background:var(--ink);color:var(--paper)}
-.callout-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
-.callout.ink .callout-label{color:rgba(250,247,240,.6)}
+.callout-label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.callout.ink .callout-label{color:rgba(255,255,255,.6)}
 .number-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin:24px 0}
-.number-box{border:2px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--paper);text-align:center}
-.number-box .num{font-family:'Rubik Mono One',sans-serif;font-size:24px;color:var(--accent);display:block;margin-bottom:4px}
-.number-box .label{font-family:'Patrick Hand',cursive;font-size:13px;color:var(--muted)}
+.number-box{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--paper);text-align:center}
+.number-box .num{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:24px;color:var(--accent);display:block;margin-bottom:4px}
+.number-box .label{font-family:var(--font);font-size:13px;color:var(--muted)}
 .post-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
-.post-table th{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);border:2px solid var(--rule)}
-.post-table td{padding:10px 14px;border:1.5px solid var(--rule);font-family:'Patrick Hand',cursive;vertical-align:top}
+.post-table th{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);border:1px solid var(--line)}
+.post-table td{padding:10px 14px;border:1px solid var(--line);font-family:var(--font);vertical-align:top}
 .post-table tr:nth-child(even) td{background:var(--paper-2)}
 .post-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}
-.sidebar-toc{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px}
-.sidebar-toc h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.sidebar-toc{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px}
+.sidebar-toc h4{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
 .sidebar-toc ol{padding-left:18px}
-.sidebar-toc li{font-family:'Patrick Hand',cursive;font-size:15px;margin-bottom:8px}
+.sidebar-toc li{font-family:var(--font);font-size:15px;margin-bottom:8px}
 .sidebar-toc a{color:var(--ink)}
-.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:2px solid var(--rule)}
-.post-tag{font-family:'JetBrains Mono',monospace;font-size:12px;padding:4px 12px;border:1.5px solid var(--rule);border-radius:12px;background:var(--paper-2)}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.post-tag{font-family:var(--font-mono);font-size:12px;padding:4px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2)}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-.related-card{border:2px solid var(--rule);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
-.related-card:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--rule)}
-.related-card h4{font-family:'Patrick Hand',cursive;font-size:17px;margin-bottom:8px}
+.related-card{border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+.related-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.08)}
+.related-card h4{font-family:var(--font);font-size:17px;margin-bottom:8px}
 .related-card p{font-size:14px;color:var(--muted)}
 </style>
 </head>
-<body>
+<body class="sub">
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><defs><filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs></svg>
-<nav class="navbar" role="navigation">
-  <div class="wrap nav-wrap">
-    <a href="../index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../products.html">Products</a></li><li><a href="../videos.html">Videos</a></li><li><a href="../blog.html" class="active">Blog</a></li><li><a href="../community.html">Community</a></li><li><a href="../index.html#about">About</a></li><li><a href="../account.html" id="navAccountLink">My Account</a></li></ul>
-    <a href="../products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="../products.html">Products</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../tools.html">Tools</a>
+    <a href="../community.html">Community</a>
+    <a href="../account.html" id="navAccountLink">Log in</a>
+    <a href="../products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html" onclick="toggleMenu()">Home</a><a href="../products.html" onclick="toggleMenu()">Products</a><a href="../videos.html" onclick="toggleMenu()">Videos</a><a href="../blog.html" onclick="toggleMenu()">Blog</a><a href="../community.html" onclick="toggleMenu()">Community</a><a href="../index.html#about" onclick="toggleMenu()">About</a><a href="../account.html" onclick="toggleMenu()">My Account</a>
-  <a href="../products.html#lead" class="btn primary sm" style="margin-top:10px" onclick="toggleMenu()">Get Free eBook →</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../community.html">Community</a><a href="../account.html">Log in</a><a href="../products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 <header class="post-header">
   <div class="wrap">
@@ -101,37 +105,37 @@
 
       <!-- Hero SVG -->
       <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;margin-bottom:32px">
-        <rect width="720" height="280" fill="#f3eee2"/>
+        <rect width="720" height="280" fill="#f3f3f3"/>
         <!-- Multiple credit cards fanned out left -->
-        <rect x="35" y="80" width="160" height="100" rx="8" fill="#15130f" transform="rotate(-8 115 130)"/>
-        <text x="90" y="120" font-family="monospace" font-size="9" fill="rgba(250,247,240,.5)" transform="rotate(-8 115 130)">HDFC Regalia</text>
-        <rect x="45" y="75" width="160" height="100" rx="8" fill="#ff5b1f" opacity=".8" transform="rotate(-3 125 125)"/>
+        <rect x="35" y="80" width="160" height="100" rx="8" fill="#141414" transform="rotate(-8 115 130)"/>
+        <text x="90" y="120" font-family="monospace" font-size="9" fill="rgba(255,255,255,.5)" transform="rotate(-8 115 130)">HDFC Regalia</text>
+        <rect x="45" y="75" width="160" height="100" rx="8" fill="#141414" opacity=".8" transform="rotate(-3 125 125)"/>
         <text x="100" y="115" font-family="monospace" font-size="9" fill="white" transform="rotate(-3 125 125)">Amex Gold</text>
-        <rect x="55" y="70" width="160" height="100" rx="8" fill="white" stroke="#15130f" stroke-width="2"/>
-        <text x="110" y="110" font-family="monospace" font-size="9" fill="#15130f">SBI SimplyCLICK</text>
-        <text x="110" y="128" font-family="monospace" font-size="8" fill="#ff5b1f">5% on Amazon</text>
+        <rect x="55" y="70" width="160" height="100" rx="8" fill="white" stroke="#141414" stroke-width="2"/>
+        <text x="110" y="110" font-family="monospace" font-size="9" fill="#141414">SBI SimplyCLICK</text>
+        <text x="110" y="128" font-family="monospace" font-size="8" fill="#141414">5% on Amazon</text>
         <!-- Arrow -->
-        <line x1="225" y1="130" x2="290" y2="130" stroke="#15130f" stroke-width="2.5" stroke-dasharray="6,3"/>
-        <polygon points="290,123 305,130 290,137" fill="#15130f"/>
+        <line x1="225" y1="130" x2="290" y2="130" stroke="#141414" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <polygon points="290,123 305,130 290,137" fill="#141414"/>
         <!-- App screen center -->
-        <rect x="305" y="50" width="170" height="180" rx="12" fill="#15130f"/>
-        <text x="390" y="85" font-family="monospace" font-size="11" fill="#ff5b1f" text-anchor="middle">CardGPT India</text>
-        <rect x="320" y="95" width="140" height="30" rx="6" fill="rgba(250,247,240,.1)"/>
-        <text x="390" y="112" font-family="monospace" font-size="10" fill="rgba(250,247,240,.8)" text-anchor="middle">Swiggy · ₹450</text>
-        <rect x="320" y="138" width="140" height="50" rx="6" fill="#ff5b1f"/>
+        <rect x="305" y="50" width="170" height="180" rx="12" fill="#141414"/>
+        <text x="390" y="85" font-family="monospace" font-size="11" fill="#141414" text-anchor="middle">CardGPT India</text>
+        <rect x="320" y="95" width="140" height="30" rx="6" fill="rgba(255,255,255,.1)"/>
+        <text x="390" y="112" font-family="monospace" font-size="10" fill="rgba(255,255,255,.8)" text-anchor="middle">Swiggy · ₹450</text>
+        <rect x="320" y="138" width="140" height="50" rx="6" fill="#141414"/>
         <text x="390" y="156" font-family="monospace" font-size="10" fill="white" text-anchor="middle">USE: Amex Gold</text>
         <text x="390" y="172" font-family="monospace" font-size="9" fill="rgba(255,255,255,.8)" text-anchor="middle">5X points on dining</text>
-        <text x="390" y="208" font-family="monospace" font-size="8" fill="rgba(250,247,240,.5)" text-anchor="middle">Saved: ₹22.50</text>
+        <text x="390" y="208" font-family="monospace" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle">Saved: ₹22.50</text>
         <!-- Arrow right -->
-        <line x1="480" y1="130" x2="545" y2="130" stroke="#15130f" stroke-width="2.5" stroke-dasharray="6,3"/>
-        <polygon points="545,123 560,130 545,137" fill="#15130f"/>
+        <line x1="480" y1="130" x2="545" y2="130" stroke="#141414" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <polygon points="545,123 560,130 545,137" fill="#141414"/>
         <!-- Savings box right -->
-        <rect x="560" y="80" width="130" height="100" rx="8" fill="none" stroke="#ff5b1f" stroke-width="2.5"/>
-        <text x="625" y="115" font-family="monospace" font-size="10" fill="#15130f" text-anchor="middle">Savings/year</text>
-        <text x="625" y="140" font-family="monospace" font-size="18" fill="#ff5b1f" text-anchor="middle">₹8,400</text>
-        <text x="625" y="160" font-family="monospace" font-size="9" fill="#15130f" text-anchor="middle">auto-optimized</text>
+        <rect x="560" y="80" width="130" height="100" rx="8" fill="none" stroke="#141414" stroke-width="2.5"/>
+        <text x="625" y="115" font-family="monospace" font-size="10" fill="#141414" text-anchor="middle">Savings/year</text>
+        <text x="625" y="140" font-family="monospace" font-size="18" fill="#141414" text-anchor="middle">₹8,400</text>
+        <text x="625" y="160" font-family="monospace" font-size="9" fill="#141414" text-anchor="middle">auto-optimized</text>
         <!-- Bottom label -->
-        <text x="360" y="260" font-family="monospace" font-size="11" fill="#15130f" text-anchor="middle">No bank link needed. Manual input. Instant recommendation.</text>
+        <text x="360" y="260" font-family="monospace" font-size="11" fill="#141414" text-anchor="middle">No bank link needed. Manual input. Instant recommendation.</text>
       </svg>
 
       <div class="callout accent"><div class="callout-label">💡 Quick Summary</div><p style="margin:0;font-size:17px">Indians with 2+ credit cards leave thousands in rewards unclaimed every year because no one remembers which card gives 5% on groceries vs. fuel vs. dining. An AI app that takes your card list and tells you which card to swipe — without connecting to your bank — is a simple, sticky product with no strong direct competition in India today.</p></div>
@@ -241,12 +245,47 @@
         <li><a href="#marketing">Getting First 1,000 Users</a></li>
         <li><a href="#thisweek">Build Plan</a></li>
       </ol></nav>
-      <div style="border:2px solid var(--rule);border-radius:var(--radius);padding:20px;background:var(--accent);text-align:center"><h4 style="font-family:'Rubik Mono One',sans-serif;font-size:18px;margin-bottom:8px">Want 1:1 Advice?</h4><p style="font-size:15px;margin-bottom:16px;opacity:.85">Book a strategy call with Prithal.</p><a href="../products.html" class="btn ink" style="display:inline-flex;font-size:15px">Book a Call →</a></div>
+      <div style="border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--accent);text-align:center"><h4 style="font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:18px;margin-bottom:8px">Want 1:1 Advice?</h4><p style="font-size:15px;margin-bottom:16px;opacity:.85">Book a strategy call with Prithal.</p><a href="../products.html" class="btn ink" style="display:inline-flex;font-size:15px">Book a Call →</a></div>
     </aside>
   </div>
 </div>
-<div style="border-top:2px solid var(--rule);padding:48px 0;background:var(--paper-2)"><div class="wrap"><h3 style="font-family:'Rubik Mono One',sans-serif;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3><div class="related-grid"><a href="ai-consulting-agency-india.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">AGENCY</div><h4>AI Consulting Agency in India</h4><p>₹2L investment, ₹9.45L year-1 revenue plan.</p></a><a href="../blog.html" class="related-card"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px">ALL IDEAS</div><h4>Browse All 45+ Business Ideas →</h4><p>Agency, SaaS, App and product business plans.</p></a></div></div></div>
-<footer style="border-top:2px solid var(--rule);padding:40px 0;background:var(--ink);color:var(--paper)"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px"><div><div class="h-display" style="font-size:18px;margin-bottom:6px">★ THE SOLO ENTREPRENEUR</div><div style="font-size:14px;opacity:.6">© 2025 thesoloentrepreneur.in · Made with ☕ in Bangalore</div></div><div style="display:flex;gap:20px;flex-wrap:wrap;font-size:15px;opacity:.8"><a href="../index.html">Home</a><a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../community.html">Community</a></div></div></footer>
-<script src="../shared.js"></script>
+<div style="border-top:1px solid var(--line);padding:48px 0;background:var(--paper-2)"><div class="wrap"><h3 style="font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:24px;margin-bottom:24px">More Startup Ideas →</h3><div class="related-grid"><a href="ai-consulting-agency-india.html" class="related-card"><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px">AGENCY</div><h4>AI Consulting Agency in India</h4><p>₹2L investment, ₹9.45L year-1 revenue plan.</p></a><a href="../blog.html" class="related-card"><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px">ALL IDEAS</div><h4>Browse All 45+ Business Ideas →</h4><p>Agency, SaaS, App and product business plans.</p></a></div></div></div>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="../products.html">Products</a>
+          <a href="../products.html#templates">Automation templates</a>
+          <a href="../products.html#pdf">Business-idea ebooks</a>
+          <a href="../blog.html">Playbooks &amp; blog</a>
+          <a href="../tools.html">Free tools</a>
+          <a href="../community.html">Founders Wing</a>
+          <a href="../videos.html">Videos</a>
+          <a href="../account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="../return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="../privacy-policy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="../site.js"></script>
 </body>
 </html>

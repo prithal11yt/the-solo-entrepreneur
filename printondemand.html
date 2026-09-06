@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -32,8 +33,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/ebook-cover.webp"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
@@ -52,72 +53,72 @@
 <style>
 /* Header */
 .post-header { padding: 40px 0 8px; }
-.post-breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.post-breadcrumb { font-family:var(--font-mono); font-size: 13px; color: var(--muted); margin-bottom: 16px; }
 .post-breadcrumb a { color: var(--accent); }
-.post-cat { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
-.post-title { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(26px, 5vw, 50px); line-height: .98; margin-bottom: 20px; }
+.post-cat { font-family:var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.post-title { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(26px, 5vw, 50px); line-height: .98; margin-bottom: 20px; }
 .post-title em { font-style: normal; color: var(--accent); }
-.post-subtitle { font-family: 'Caveat', cursive; font-size: 22px; color: var(--muted); max-width: 700px; margin-bottom: 24px; }
-.post-meta { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.post-subtitle { font-family:var(--font); font-size: 22px; color: var(--muted); max-width: 700px; margin-bottom: 24px; }
+.post-meta { font-family:var(--font); font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
 
 .post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 40px 0 80px; align-items: start; }
 @media(max-width:1100px){ .post-layout { grid-template-columns: 1fr; gap: 40px; } .post-sidebar { order: 2; position: static; } }
 .post-content { max-width: 760px; }
-.post-content h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(20px, 3vw, 27px); line-height: 1.05; margin: 56px 0 16px; padding-top: 14px; border-top: 2px solid var(--rule); }
+.post-content h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(20px, 3vw, 27px); line-height: 1.05; margin: 56px 0 16px; padding-top: 14px; border-top: 1px solid var(--line); }
 .post-content h2:first-of-type { margin-top: 0; border-top: none; }
 .post-content h2 .sec-no { color: var(--accent); margin-right: 10px; }
-.post-content h3 { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; line-height: 1.15; margin: 32px 0 12px; color: var(--ink); }
+.post-content h3 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 18px; line-height: 1.15; margin: 32px 0 12px; color: var(--ink); }
 .post-content p { font-size: 17.5px; line-height: 1.65; margin-bottom: 18px; color: var(--ink); }
 .post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 18px; }
 .post-content li { font-size: 17.5px; line-height: 1.6; margin-bottom: 9px; }
 .post-content strong { font-weight: 700; }
 .post-content a { color: var(--accent); text-decoration: underline; }
-.sub-note { font-family: 'Patrick Hand', cursive; font-size: 16px; color: var(--muted); margin-top: -6px; margin-bottom: 14px; }
+.sub-note { font-family:var(--font); font-size: 16px; color: var(--muted); margin-top: -6px; margin-bottom: 14px; }
 
 /* Download CTA */
-.download-banner { background: var(--ink); border: 2px solid var(--rule); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.download-banner { background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; ;color:#fff}
 .download-banner .db-icon { font-size: 48px; flex-shrink: 0; }
 .download-banner .db-text { flex: 1; min-width: 200px; }
-.download-banner h2 { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
-.download-banner p { font-family: 'Caveat', cursive; font-size: 19px; color: rgba(250,247,240,.7); margin: 0; }
-.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family: 'Rubik Mono One', sans-serif; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
-.download-btn:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--accent); }
+.download-banner h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
+.download-banner p { font-family:var(--font); font-size: 19px; color: rgba(255,255,255,.7); margin: 0; }
+.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.download-btn:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.08); }
 
 /* Stat cards */
 .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 14px; margin: 26px 0; }
-.stat-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 18px 16px; text-align: center; background: var(--paper); }
-.stat-card .sc-num { font-family: 'Rubik Mono One', sans-serif; font-size: clamp(19px, 3.4vw, 28px); color: var(--accent); line-height: 1; margin-bottom: 9px; }
-.stat-card .sc-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); line-height: 1.4; }
+.stat-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; text-align: center; background: var(--paper); }
+.stat-card .sc-num { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(19px, 3.4vw, 28px); color: var(--accent); line-height: 1; margin-bottom: 9px; }
+.stat-card .sc-label { font-family:var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); line-height: 1.4; }
 
 /* Data tables */
-.table-wrap { overflow-x: auto; margin: 20px 0 24px; border: 2px solid var(--rule); border-radius: var(--radius); }
+.table-wrap { overflow-x: auto; margin: 20px 0 24px; border: 1px solid var(--line); border-radius: var(--radius); }
 .data-table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 540px; }
-.data-table th { background: var(--ink); color: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; text-align: left; padding: 11px 14px; vertical-align: top; }
-.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.45; }
+.data-table th { background: var(--ink); color: var(--paper); font-family:var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; text-align: left; padding: 11px 14px; vertical-align: top; }
+.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
 .data-table tbody tr:last-child td { border-bottom: none; }
 .data-table tbody tr:nth-child(even) { background: var(--paper-2); }
-.data-table .row-total td { font-weight: 700; background: #fff3ed; }
+.data-table .row-total td { font-weight: 700; background: #f3f3f3; }
 .data-table .rec { color: #14633a; font-weight: 700; }
 
 /* Flow (business model) */
 .flow-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0; }
-.flow-step { border: 2px solid var(--rule); border-radius: var(--radius); padding: 16px; background: var(--paper); }
-.flow-step .fs-n { font-family: 'Rubik Mono One', sans-serif; font-size: 20px; color: var(--accent); line-height: 1; }
-.flow-step h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 12.5px; margin: 8px 0 6px; letter-spacing: .02em; }
-.flow-step p { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+.flow-step { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; background: var(--paper); }
+.flow-step .fs-n { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 20px; color: var(--accent); line-height: 1; }
+.flow-step h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 12.5px; margin: 8px 0 6px; letter-spacing: .02em; }
+.flow-step p { font-family:var(--font); font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
 
 /* Feature grid (tool/mockup mini-cards where useful) */
 .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
-.feature-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
+.feature-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
 .feature-card .fc-icon { font-size: 26px; margin-bottom: 8px; display: block; }
-.feature-card h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
-.feature-card p { font-family: 'Patrick Hand', cursive; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+.feature-card h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.feature-card p { font-family:var(--font); font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
 
 /* Callouts */
-.callout { border: 2px solid var(--rule); border-left: 5px solid var(--rule); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; background: var(--paper-2); }
-.callout .callout-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.callout { border: 1px solid var(--line); border-left: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; background: var(--paper-2); }
+.callout .callout-label { font-family:var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
 .callout p { margin: 0; font-size: 16.5px; line-height: 1.6; }
-.callout.accent { background: #fff3ed; border-color: var(--accent); border-left-color: var(--accent); }
+.callout.accent { background: #f3f3f3; border-color: var(--accent); border-left-color: var(--accent); }
 .callout.accent .callout-label { color: var(--accent); }
 .callout.warn { background: #fde8e4; border-color: #b91c1c; border-left-color: #b91c1c; }
 .callout.warn .callout-label { color: #b91c1c; }
@@ -134,68 +135,60 @@
 /* Numbered steps (risks) */
 .code-steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
 .code-steps li { position: relative; padding: 0 0 18px 42px; font-size: 16.5px; line-height: 1.55; }
-.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 27px; height: 27px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Rubik Mono One', sans-serif; font-size: 13px; }
-code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 7px; }
+.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 27px; height: 27px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 13px; }
+code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; }
 
 /* 30-60-90 phases */
-.phase { border: 2px solid var(--rule); border-left: 5px solid var(--accent); border-radius: var(--radius); padding: 16px 22px; margin: 14px 0; background: var(--paper); }
-.phase .ph-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 3px; }
-.phase h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 16px; margin: 0 0 10px; }
+.phase { border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: var(--radius); padding: 16px 22px; margin: 14px 0; background: var(--paper); }
+.phase .ph-label { font-family:var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 3px; }
+.phase h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 16px; margin: 0 0 10px; }
 .phase ul { margin: 0; padding-left: 20px; }
 .phase li { font-size: 16px; margin-bottom: 6px; }
 
 /* Sources */
 .source-group { margin-bottom: 16px; }
-.source-group h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 13.5px; margin: 0 0 3px; }
-.source-group p { font-family: 'Patrick Hand', cursive; font-size: 15.5px; color: var(--muted); margin: 0; line-height: 1.4; }
+.source-group h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 13.5px; margin: 0 0 3px; }
+.source-group p { font-family:var(--font); font-size: 15.5px; color: var(--muted); margin: 0; line-height: 1.4; }
 
 /* Badges */
 .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 24px; }
-.badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid var(--rule); background: var(--paper-2); }
+.badge-pill { font-family:var(--font-mono); font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--line); background: var(--paper-2); }
 
 /* Sidebar */
-.sidebar-cta { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
-.sidebar-cta h4 { font-family: 'Rubik Mono One', sans-serif; font-size: 18px; margin-bottom: 8px; }
+.sidebar-cta { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
+.sidebar-cta h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 18px; margin-bottom: 8px; }
 .sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
 .sidebar-cta .download-btn { background: var(--paper); color: var(--ink); border-color: var(--ink); width: 100%; justify-content: center; }
-.sidebar-cta .download-btn:hover { box-shadow: 3px 3px 0 var(--ink); }
-.sidebar-toc { border: 2px solid var(--rule); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
-.sidebar-toc h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.sidebar-cta .download-btn:hover { box-shadow:0 12px 30px rgba(0,0,0,.08); }
+.sidebar-toc { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
+.sidebar-toc h4 { font-family:var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
 .sidebar-toc ol, .sidebar-toc ul { padding-left: 20px; }
-.sidebar-toc li { font-family: 'Patrick Hand', cursive; font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
+.sidebar-toc li { font-family:var(--font); font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
 .sidebar-toc a { color: var(--ink); }
 .sidebar-toc a:hover { color: var(--accent); }
 
 /* Tags */
-.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
-.post-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; border: 1.5px solid var(--rule); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+.post-tag { font-family:var(--font-mono); font-size: 12px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
 </style>
 </head>
-<body>
+<body class="sub">
 
 <!-- NAVBAR -->
-<nav class="navbar">
-  <div class="wrap nav-wrap">
-    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="index.html#about">About</a></li>
-    </ul>
-    <a href="account.html" class="btn primary nav-cta sm">My Account</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <a href="account.html" id="navAccountLink">Log in</a>
+    <a href="products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="products.html" onclick="toggleMenu()">Products</a>
-  <a href="videos.html" onclick="toggleMenu()">Videos</a>
-  <a href="blog.html" onclick="toggleMenu()">Blog</a>
-  <a href="community.html" onclick="toggleMenu()">Community</a>
-  <a href="index.html#about" onclick="toggleMenu()">About</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 
 <div class="container">
@@ -724,38 +717,43 @@ code, .code-inline { font-family: 'JetBrains Mono', monospace; font-size: 14px; 
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-logo h-display">★ THE SOLO <span>ENTREPRENEUR</span></div>
-        <p class="foot-tagline h-hand">Build smarter. Automate more. Earn online — without a co-founder.</p>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
       </div>
-      <div class="foot-col"><h5 class="h-display">Playbooks</h5><ul>
-        <li><a href="printondemand">Print-on-Demand Plan</a></li>
-        <li><a href="agency">Zero to Agency</a></li>
-        <li><a href="content-automation.html">Content Automation</a></li>
-        <li><a href="blog.html">All Playbooks</a></li>
-      </ul></div>
-      <div class="foot-col"><h5 class="h-display">Watch</h5><ul>
-        <li><a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank">YouTube Channel</a></li>
-        <li><a href="videos.html">All Videos</a></li>
-      </ul></div>
-      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
-        <li><a href="community.html">Founders Wing</a></li>
-        <li><a href="index.html#about">About Prithal</a></li>
-        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms &amp; Conditions</a></li>
-      </ul></div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
-    <div class="foot-copy h-print">
-      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
-      <span class="h-hand">made solo · shipped from Bangalore ★</span>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="shared.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

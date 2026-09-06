@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -17,38 +18,37 @@
 <meta name="description" content="Return and refund policy for The Solo Entrepreneur."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
 <style>
 .legal-wrap { max-width: 760px; margin: 0 auto; padding: calc(var(--nav-h) + 48px) 24px 80px; }
-.legal-wrap h1 { font-family: 'Rubik Mono One', monospace; font-size: clamp(28px,5vw,46px); line-height: .95; margin-bottom: 8px; }
-.legal-wrap .updated { font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted); margin-bottom: 40px; display: block; }
-.legal-wrap h2 { font-family: 'Rubik Mono One', monospace; font-size: 20px; margin: 36px 0 10px; color: var(--accent); }
-.legal-wrap p, .legal-wrap li { font-family: 'Patrick Hand', cursive; font-size: 18px; line-height: 1.6; color: var(--ink); margin-bottom: 12px; }
+.legal-wrap h1 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(28px,5vw,46px); line-height: .95; margin-bottom: 8px; }
+.legal-wrap .updated { font-family:var(--font); font-size: 18px; color: var(--muted); margin-bottom: 40px; display: block; }
+.legal-wrap h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 20px; margin: 36px 0 10px; color: var(--accent); }
+.legal-wrap p, .legal-wrap li { font-family:var(--font); font-size: 18px; line-height: 1.6; color: var(--ink); margin-bottom: 12px; }
 .legal-wrap ul { padding-left: 20px; margin-bottom: 12px; }
 .legal-wrap a { color: var(--accent); text-decoration: underline; }
-.no-refund-box { background: var(--paper-2); border: 2.5px solid var(--rule); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
-.no-refund-box p { margin: 0; font-size: 20px; font-family: 'Rubik Mono One', monospace; }
+.no-refund-box { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+.no-refund-box p { margin: 0; font-size: 20px; font-family:var(--font);font-weight:650;letter-spacing:-.02em; }
 </style>
 </head>
-<body>
+<body class="sub">
 
-<nav class="navbar">
-  <div class="wrap nav-wrap">
-    <a href="index.html" class="nav-logo">★ THE SOLO <span>ENTREPRENEUR</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="account.html" id="navAccountLink">My Account</a></li>
-    </ul>
-    <a href="products.html#lead" class="btn primary nav-cta sm">Get Free eBook →</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <a href="account.html" id="navAccountLink">Log in</a>
+    <a href="products.html#lead" class="nav-cta">Get free eBook</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
+</div>
 
 <div class="legal-wrap">
   <h1>Return Policy</h1>
@@ -75,32 +75,44 @@
   <p>For any questions related to your order, email: <a href="mailto:prithal@thesoloentrepreneur.in">prithal@thesoloentrepreneur.in</a></p>
 </div>
 
-<footer class="footer">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="index.html" class="nav-logo" style="font-size:18px">★ THE SOLO <span>ENTREPRENEUR</span></a>
-        <p class="h-hand" style="font-size:16px;opacity:.7;margin-top:8px">Built solo. Shipped from Bangalore.</p>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
       </div>
-      <div class="foot-col"><h5 class="h-display">Legal</h5><ul>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="return-policy.html">Return Policy</a></li>
-        <li><a href="terms.html">Terms &amp; Conditions</a></li>
-      </ul></div>
-      <div class="foot-col"><h5 class="h-display">Other</h5><ul>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="index.html#about">About Prithal</a></li>
-        <li><a href="mailto:prithal@thesoloentrepreneur.in">Contact</a></li>
-      </ul></div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
-    <div class="foot-copy h-print">
-      <span>© 2025 The Solo Entrepreneur. All rights reserved.</span>
-      <span class="h-hand">made solo · shipped from Bangalore ★</span>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
-<script src="shared.js"></script>
+<script src="site.js"></script>
 
 <!-- Dify Chatbot -->
 <script>

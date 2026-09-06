@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -34,8 +35,8 @@
 <meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/free-ai-tools-money-online.webp"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../site.css"/>
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
@@ -135,10 +136,10 @@
 <style>
 .post-header {
   padding: 64px 0 48px;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 .post-breadcrumb {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   color: var(--muted);
   margin-bottom: 20px;
@@ -147,7 +148,7 @@
 }
 .post-breadcrumb a { color: var(--accent); }
 .post-cat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .15em;
@@ -155,21 +156,21 @@
   margin-bottom: 14px;
 }
 .post-title {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(26px, 5vw, 52px);
   line-height: .95;
   margin-bottom: 20px;
 }
 .post-title em { font-style: normal; color: var(--accent); }
 .post-subtitle {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 22px;
   color: var(--muted);
   max-width: 680px;
   margin-bottom: 24px;
 }
 .post-meta {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   color: var(--muted);
   display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
@@ -190,16 +191,16 @@
 }
 .post-content { max-width: 720px; }
 .post-content h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: clamp(20px, 3vw, 28px);
   line-height: 1;
   margin: 52px 0 16px;
   padding-top: 12px;
-  border-top: 2px solid var(--rule);
+  border-top: 1px solid var(--line);
 }
 .post-content h2:first-of-type { margin-top: 0; border-top: none; }
 .post-content h3 {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 21px;
   font-weight: 700;
   margin: 32px 0 10px;
@@ -222,23 +223,23 @@
 .post-content strong { font-weight: 700; }
 .post-content a { color: var(--accent); text-decoration: underline; }
 .callout {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px 24px;
   margin: 28px 0;
   background: var(--paper-2);
 }
 .callout-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--muted);
   margin-bottom: 8px;
 }
-.callout.accent { background: #fff3ed; border-color: var(--accent); }
+.callout.accent { background: #f3f3f3; border-color: var(--accent); }
 .callout.ink { background: var(--ink); color: var(--paper); }
-.callout.ink .callout-label { color: rgba(250,247,240,.6); }
+.callout.ink .callout-label { color: rgba(255,255,255,.6); }
 .number-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -246,21 +247,21 @@
   margin: 24px 0;
 }
 .number-box {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px;
   background: var(--paper);
   text-align: center;
 }
 .number-box .num {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 26px;
   color: var(--accent);
   display: block;
   margin-bottom: 4px;
 }
 .number-box .label {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 14px;
   color: var(--muted);
 }
@@ -271,7 +272,7 @@
   font-size: 15px;
 }
 .post-table th {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -279,12 +280,12 @@
   padding: 10px 14px;
   background: var(--ink);
   color: var(--paper);
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
 }
 .post-table td {
   padding: 10px 14px;
-  border: 1.5px solid var(--rule);
-  font-family: 'Patrick Hand', cursive;
+  border: 1px solid var(--line);
+  font-family:var(--font);
   vertical-align: top;
 }
 .post-table tr:nth-child(even) td { background: var(--paper-2); }
@@ -293,14 +294,14 @@
   top: calc(var(--nav-h) + 24px);
 }
 .sidebar-toc {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--paper);
   margin-bottom: 24px;
 }
 .sidebar-toc h4 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -309,7 +310,7 @@
 }
 .sidebar-toc ol { padding-left: 18px; }
 .sidebar-toc li {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 15px;
   margin-bottom: 8px;
   line-height: 1.3;
@@ -317,7 +318,7 @@
 .sidebar-toc a { color: var(--ink); }
 .sidebar-toc a:hover { color: var(--accent); }
 .sidebar-cta {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
   background: var(--accent);
@@ -325,24 +326,24 @@
   color: var(--paper);
 }
 .sidebar-cta h4 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 18px;
   margin-bottom: 8px;
 }
 .sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
 .post-hero-img {
   margin: 32px 0 40px;
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--paper-2);
 }
-.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 .post-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 12px;
   padding: 4px 12px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper-2);
   color: var(--muted);
@@ -350,32 +351,32 @@
 
 /* Tool cards */
 .tool-card-blog {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 24px;
   margin: 36px 0;
   background: var(--paper);
   position: relative;
 }
-.tool-card-blog:hover { box-shadow: 4px 4px 0 var(--rule); }
+.tool-card-blog:hover { box-shadow:0 12px 30px rgba(0,0,0,.08); }
 .tool-number {
   position: absolute;
   top: -16px;
   left: 20px;
   background: var(--accent);
   color: var(--paper);
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 13px;
   padding: 2px 12px;
   border-radius: 20px;
 }
 .tool-name {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 22px;
   margin-bottom: 4px;
 }
 .tool-tagline {
-  font-family: 'Caveat', cursive;
+  font-family:var(--font);
   font-size: 18px;
   color: var(--muted);
   margin-bottom: 16px;
@@ -387,17 +388,17 @@
   margin-bottom: 14px;
 }
 .tool-pill {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   padding: 3px 10px;
   border-radius: 20px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   background: var(--paper-2);
 }
 .tool-pill.green { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
-.tool-pill.orange { background: #fff3ed; border-color: var(--accent); color: var(--accent); }
+.tool-pill.orange { background: #f3f3f3; border-color: var(--accent); color: var(--accent); }
 .tool-money {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 16px;
   color: var(--accent);
   margin: 12px 0 6px;
@@ -405,11 +406,11 @@
 .tool-github-link {
   display: inline-block;
   margin-top: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 13px;
   color: var(--ink);
   text-decoration: none;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   padding: 4px 14px;
   border-radius: 20px;
 }
@@ -421,13 +422,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border: 1.5px solid var(--rule);
+  border: 1px solid var(--line);
   margin-bottom: 8px;
   border-radius: 6px;
   background: var(--paper);
 }
-.earnings-band .service { font-family: 'Patrick Hand', cursive; font-size: 17px; }
-.earnings-band .amount { font-family: 'Rubik Mono One', sans-serif; font-size: 16px; color: var(--accent); }
+.earnings-band .service { font-family:var(--font); font-size: 17px; }
+.earnings-band .amount { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 16px; color: var(--accent); }
 
 .related-posts-grid {
   display: grid;
@@ -437,7 +438,7 @@
 }
 @media(max-width:600px) { .related-posts-grid { grid-template-columns: 1fr; } }
 .related-post-card {
-  border: 2px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px;
   background: var(--paper-2);
@@ -445,31 +446,31 @@
   color: var(--ink);
   display: block;
 }
-.related-post-card:hover { background: var(--paper); box-shadow: 3px 3px 0 var(--rule); }
+.related-post-card:hover { background: var(--paper); box-shadow:0 12px 30px rgba(0,0,0,.08); }
 .related-post-card .rp-cat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 6px;
 }
 .related-post-card .rp-title {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.3;
 }
 
 /* FAQ */
-.faq-section { margin-top: 48px; border-top: 2px solid var(--rule); padding-top: 24px; }
+.faq-section { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 24px; }
 .faq-section h2 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family:var(--font);font-weight:650;letter-spacing:-.02em;
   font-size: 26px;
   margin-bottom: 24px;
 }
-.faq-item { border: 1.5px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-item { border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
 .faq-q {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   font-weight: 700;
   padding: 16px 20px;
@@ -480,10 +481,10 @@
   background: var(--paper-2);
   user-select: none;
 }
-.faq-q::after { content: '+'; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-q::after { content: '+'; font-family:var(--font-mono); font-size: 20px; color: var(--accent); flex-shrink: 0; }
 .faq-item.open .faq-q::after { content: '−'; }
 .faq-a {
-  font-family: 'Patrick Hand', cursive;
+  font-family:var(--font);
   font-size: 17px;
   line-height: 1.6;
   padding: 0 20px;
@@ -494,8 +495,23 @@
 .faq-item.open .faq-a { max-height: 400px; padding: 16px 20px; }
 </style>
 </head>
-<body>
-<script src="../shared.js"></script>
+<body class="sub">
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo"><span class="mark">S</span>The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="../products.html">Products</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../tools.html">Tools</a>
+    <a href="../community.html">Community</a>
+    <a href="../account.html" id="navAccountLink">Log in</a>
+    <a href="../products.html#lead" class="nav-cta">Get free eBook</a>
+  </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../community.html">Community</a><a href="../account.html">Log in</a><a href="../products.html#lead"><strong>Get free eBook →</strong></a>
+</div>
+<script src="../site.js"></script>
 
 <!-- NAV inserted by shared.js -->
 
@@ -939,7 +955,7 @@
       <div class="sidebar-cta">
         <h4>GET THE FREE EBOOK</h4>
         <p>100 startup ideas validated for the Indian market — with revenue models.</p>
-        <a href="../products.html" class="btn" style="background:var(--paper);color:var(--ink);font-size:15px;padding:10px 20px;display:inline-block;border-radius:var(--radius);font-family:'Rubik Mono One',sans-serif;text-decoration:none;">GET IT FREE →</a>
+        <a href="../products.html" class="btn" style="background:var(--paper);color:var(--ink);font-size:15px;padding:10px 20px;display:inline-block;border-radius:var(--radius);font-family:var(--font);font-weight:650;letter-spacing:-.02em;text-decoration:none;">GET IT FREE →</a>
       </div>
       <div class="sidebar-toc" style="margin-top:20px;">
         <h4>Free AI Tools</h4>
@@ -969,5 +985,41 @@ document.querySelectorAll('.faq-q').forEach(q => {
 });
 // Scroll reveal handled by shared.js
 </script>
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><span class="mark">S</span>The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="../products.html">Products</a>
+          <a href="../products.html#templates">Automation templates</a>
+          <a href="../products.html#pdf">Business-idea ebooks</a>
+          <a href="../blog.html">Playbooks &amp; blog</a>
+          <a href="../tools.html">Free tools</a>
+          <a href="../community.html">Founders Wing</a>
+          <a href="../videos.html">Videos</a>
+          <a href="../account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur07/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="../return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="../privacy-policy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
