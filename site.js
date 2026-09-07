@@ -74,7 +74,7 @@ document.documentElement.classList.add('js');
       .fw-pop-ov.open .fw-pop-card{transform:none}
       .fw-pop-x{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:#f3f3f3;border:0;font-size:15px;cursor:pointer;color:#6f6f6f;display:grid;place-items:center}
       .fw-pop-x:hover{background:#e9e9e9;color:#141414}
-      .fw-pop-logo{width:56px;height:56px;border-radius:16px;margin:0 auto 14px;display:block;box-shadow:0 10px 24px rgba(0,0,0,.14)}
+      .fw-pop-logo{width:56px;height:56px;border-radius:16px;margin:0 auto 14px;display:block;box-shadow:0 10px 24px rgba(0,0,0,.14),inset 0 0 0 1px #e6e6e6;background:#fff;padding:12px;box-sizing:border-box;object-fit:contain}
       .fw-pop-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;color:#6f6f6f;background:#f3f3f3;padding:5px 12px;border-radius:999px;margin-bottom:14px}
       .fw-pop-card h3{font-size:30px;font-weight:650;letter-spacing:-.025em;line-height:1.05;margin:0 0 10px}
       .fw-pop-sub{font-size:15px;line-height:1.5;color:#6f6f6f;margin:0 0 18px}
@@ -86,14 +86,14 @@ document.documentElement.classList.add('js');
       .fw-pop-scar{font-size:12px;color:#6f6f6f;margin:12px 0 0}
       .fw-pop-later{display:inline-block;margin-top:10px;font-size:13px;color:#9a9a9a;background:none;border:0;cursor:pointer}
       .fw-pop-later:hover{color:#141414}
-      @media(max-width:480px){.fw-pop-card{padding:28px 22px 22px;border-radius:22px}.fw-pop-card h3{font-size:26px}}`;
+      @media(max-width:480px){.fw-pop-ov{align-items:flex-end;padding:0}.fw-pop-card{max-width:none;border-radius:24px 24px 0 0;padding:26px 22px calc(22px + env(safe-area-inset-bottom));transform:translateY(40px)}.fw-pop-card h3{font-size:26px}.fw-pop-logo{width:48px;height:48px}}`;
     document.head.appendChild(css);
     const ov = document.createElement('div');
     ov.id = 'fwPop'; ov.className = 'fw-pop-ov';
     ov.innerHTML = `
       <div class="fw-pop-card" role="dialog" aria-modal="true" aria-label="Founders Wing">
         <button class="fw-pop-x" aria-label="Close">✕</button>
-        <img class="fw-pop-logo" src="/images/fw-icon.png" alt="Founders Wing" onerror="this.style.display='none'"/>
+        <img class="fw-pop-logo" src="/images/fw-mark.png" alt="Founders Wing" onerror="this.style.display='none'"/>
         <div class="fw-pop-badge">FOUNDERS WING</div>
         <h3>Stop building alone.</h3>
         <p class="fw-pop-sub">India's AI-first founder community — where solo builders actually ship, together.</p>
@@ -116,7 +116,15 @@ document.documentElement.classList.add('js');
     document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
     requestAnimationFrame(() => ov.classList.add('open'));
   }
-  setTimeout(build, 6000);
+  // desktop: 6s. phones: only once the reader has actually scrolled into the page, then a few seconds later,
+  // so the card never lands on top of the hero or the first thing they're reading.
+  if (matchMedia('(max-width: 640px)').matches) {
+    let armed = false;
+    const arm = () => { if (armed || window.scrollY < 900) return; armed = true; removeEventListener('scroll', arm); setTimeout(build, 5000); };
+    addEventListener('scroll', arm, { passive: true });
+  } else {
+    setTimeout(build, 6000);
+  }
 })();
 
 /* ---- Legacy helpers (older pages still call these) ---- */

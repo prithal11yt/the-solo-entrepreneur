@@ -59,25 +59,56 @@
   </div>
 </header>
 
-<!-- ===== SHOWCASE (store mock inside grey panel) ===== -->
+<!-- ===== SHOWCASE (store inside grey panel) ===== -->
 <section class="showcase rv rv-scale" id="showcase">
   <div class="panel">
     <div class="store" id="store">
       <div class="store-top">
-        <div class="nav-logo"><span class="mark">S</span>Store</div>
-        <div class="search">⌕ &nbsp;Search <span id="typed"></span><span class="caret"></span></div>
-        <img src="images/prithal.jpg" alt="" style="width:34px;height:34px;border-radius:50%;object-fit:cover"/>
+        <div class="store-title"><span class="mark">S</span>Store <span class="store-count" id="storeCount">8 products</span></div>
+        <div class="search" aria-hidden="true">⌕ &nbsp;Search <span id="typed"></span><span class="caret"></span></div>
+        <a class="store-all" href="products.html">All products <span class="arr">→</span></a>
       </div>
-      <div class="store-cats"><span class="on">All</span><span>Automation templates</span><span>Business ideas</span><span>Playbooks</span><span>Free tools</span><span>Consulting</span></div>
-      <div class="store-grid">
-        <a class="pcard" href="products.html#pdf"><div class="cover" style="background:#141414;color:#fff"><span class="tag">eBook</span><div class="big">100<br><span style="font-size:14px;font-weight:500;letter-spacing:0;opacity:.7">business ideas</span></div></div><div class="meta"><div class="t">100 Business Ideas</div><div class="p"><b>₹499</b> · instant PDF</div></div></a>
-        <a class="pcard" href="products.html#templates"><div class="cover" style="background:#f3f3f3"><span class="tag">Templates</span><div class="icon-cluster"><span class="tile md inv" style="background:#EA4B71"><img src="images/logos/n8n.svg" alt=""></span><span class="tile md inv" style="background:#000"><img src="images/logos/openai.svg" alt=""></span><span class="tile md bordered" style="background:#fff"><img src="images/logos/notion.svg" alt=""></span></div></div><div class="meta"><div class="t">AI Automation Templates</div><div class="p"><b>₹499</b> · n8n + ChatGPT</div></div></a>
-        <a class="pcard" href="products.html#combo"><div class="cover" style="background:#e9e9e9"><span class="tag">Bundle</span><div class="big">2×<br><span style="font-size:14px;font-weight:500;letter-spacing:0;color:var(--muted)">ideas + templates</span></div></div><div class="meta"><div class="t">The Combo</div><div class="p"><b>₹799</b> <s style="color:var(--muted-2)">₹998</s> · save ₹199</div></div></a>
-        <a class="pcard" href="products.html#lead"><div class="cover" style="background:#fff;box-shadow:inset 0 0 0 1px var(--line)"><span class="tag" style="background:#141414;color:#fff">Free</span><div class="big">10<br><span style="font-size:14px;font-weight:500;letter-spacing:0;color:var(--muted)">startup ideas</span></div></div><div class="meta"><div class="t">10 Startup Ideas</div><div class="p"><b>Free</b> · with a free account</div></div></a>
-        <a class="pcard" href="reel-automation"><div class="cover" style="background:#f3f3f3"><span class="tag" style="background:#141414;color:#fff">Free</span><div class="icon-cluster"><span class="tile md inv" style="background:#FF0000"><img src="images/logos/youtube.svg" alt=""></span><span class="tile md inv" style="background:#000"><img src="images/logos/cursor.svg" alt=""></span></div></div><div class="meta"><div class="t">Reel Automation Engine</div><div class="p"><b>Free</b> · code-as-video</div></div></a>
-        <a class="pcard" href="content-automation"><div class="cover" style="background:#f3f3f3"><span class="tag" style="background:#141414;color:#fff">Free</span><div class="icon-cluster"><span class="tile md inv" style="background:#0A66C2"><img src="images/logos/linkedin.svg" alt=""></span><span class="tile md inv" style="background:#000"><img src="images/logos/openai.svg" alt=""></span></div></div><div class="meta"><div class="t">Content Automation Pipeline</div><div class="p"><b>Free</b> · daily LinkedIn posts</div></div></a>
-        <a class="pcard" href="printondemand"><div class="cover" style="background:#f3f3f3"><span class="tag" style="background:#141414;color:#fff">Free</span><div class="icon-cluster"><span class="tile md inv" style="background:#96BF48"><img src="images/logos/shopify.svg" alt=""></span><span class="tile md inv" style="background:#00C4CC"><img src="images/logos/canva.svg" alt=""></span></div></div><div class="meta"><div class="t">AI Print-on-Demand Plan</div><div class="p"><b>Free</b> · 25-page business plan</div></div></a>
-        <a class="pcard" href="products.html#consultation"><div class="cover" style="background:#f3f3f3"><span class="tag">Consulting</span><div style="text-align:center"><img src="images/prithal.jpg" alt="Prithal" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 8px"/><div style="font-weight:700;font-size:22px;letter-spacing:-.02em">1:1 with Prithal</div></div></div><div class="meta"><div class="t">Consulting Call</div><div class="p"><b>from ₹999</b> · 30 or 60 min</div></div></a>
+      <div class="store-cats" id="storeCats" role="tablist" aria-label="Filter products">
+        <button class="on" data-cat="all">All</button>
+        <button data-cat="templates">Automation templates</button>
+        <button data-cat="ideas">Business ideas</button>
+        <button data-cat="playbooks">Playbooks</button>
+        <button data-cat="free">Free</button>
+        <button data-cat="consulting">Consulting</button>
+      </div>
+      <div class="store-grid" id="storeGrid">
+        <a class="pcard" href="products.html#pdf" data-cat="ideas">
+          <div class="cover"><span class="tag">eBook</span><div class="art"><div class="book"><b>100</b><span>business ideas</span></div></div></div>
+          <div class="meta"><div class="t">100 Business Ideas</div><div class="p"><b>₹499</b><span>Instant PDF</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="products.html#templates" data-cat="templates">
+          <div class="cover"><span class="tag">Templates</span><div class="art"><div class="mini-flow"><span class="tile sm inv" style="background:#EA4B71"><img src="images/logos/n8n.svg" alt=""></span><i></i><span class="tile sm inv" style="background:#000"><img src="images/logos/openai.svg" alt=""></span><i></i><span class="tile sm bordered"><img src="images/logos/notion.svg" alt=""></span></div></div></div>
+          <div class="meta"><div class="t">AI Automation Templates</div><div class="p"><b>₹499</b><span>n8n + ChatGPT</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="products.html#combo" data-cat="ideas templates">
+          <div class="cover"><span class="tag tag-dark">Best value</span><div class="art"><div class="combo"><span class="tile sm inv" style="background:#EA4B71"><img src="images/logos/n8n.svg" alt=""></span><span class="tile sm inv" style="background:#000"><img src="images/logos/openai.svg" alt=""></span><div class="book"><b>100</b><span>business ideas</span></div></div></div></div>
+          <div class="meta"><div class="t">The Combo</div><div class="p"><b>₹799</b><s>₹998</s><span>Save ₹199</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="products.html#lead" data-cat="ideas free">
+          <div class="cover"><span class="tag tag-dark">Free</span><div class="art"><div class="book book-light"><b>10</b><span>startup ideas</span></div></div></div>
+          <div class="meta"><div class="t">10 Startup Ideas</div><div class="p"><b>Free</b><span>With a free account</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="reel-automation" data-cat="templates free">
+          <div class="cover"><span class="tag tag-dark">Free</span><div class="art"><div class="mini-flow"><span class="tile sm inv" style="background:#D97757"><img src="images/logos/claude.svg" alt=""></span><i></i><span class="tile sm inv" style="background:#FF0000"><img src="images/logos/youtube.svg" alt=""></span></div></div></div>
+          <div class="meta"><div class="t">Reel Automation Engine</div><div class="p"><b>Free</b><span>Code-as-video</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="content-automation" data-cat="templates free">
+          <div class="cover"><span class="tag tag-dark">Free</span><div class="art"><div class="mini-flow"><span class="tile sm inv" style="background:#000"><img src="images/logos/openai.svg" alt=""></span><i></i><span class="tile sm inv" style="background:#0A66C2"><img src="images/logos/linkedin.svg" alt=""></span></div></div></div>
+          <div class="meta"><div class="t">Content Automation Pipeline</div><div class="p"><b>Free</b><span>Daily LinkedIn posts</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="printondemand" data-cat="playbooks free">
+          <div class="cover"><span class="tag tag-dark">Free</span><div class="art"><div class="doc"><i></i><i></i><i></i><i></i><span class="tile sm inv doc-badge" style="background:#96BF48"><img src="images/logos/shopify.svg" alt=""></span></div></div></div>
+          <div class="meta"><div class="t">AI Print-on-Demand Plan</div><div class="p"><b>Free</b><span>25-page business plan</span></div><span class="go">→</span></div>
+        </a>
+        <a class="pcard" href="products.html#consultation" data-cat="consulting">
+          <div class="cover"><span class="tag">Consulting</span><div class="art"><div class="call"><img src="images/prithal.jpg" alt="Prithal"><span class="pulse"></span><em>30 · 60 min</em></div></div></div>
+          <div class="meta"><div class="t">1:1 Call with Prithal</div><div class="p"><b>from ₹999</b><span>Google Meet</span></div><span class="go">→</span></div>
+        </a>
       </div>
     </div>
   </div>
@@ -156,28 +187,38 @@
 <div class="hairline"></div>
 
 <!-- ===== WATCH (YouTube + Founders Wing) ===== -->
-<section class="section">
+<section class="section" id="watch">
   <div class="wrap">
     <h2 class="h2 split">Watch it built.<br>Then build it yourself.</h2>
-    <div class="cards-2">
-      <div class="fcard">
+    <p class="lead rv">Every template on this site started as a YouTube build. Watch the process, then ship it alongside founders doing the same.</p>
+    <div class="cards-2 watch-cards">
+      <div class="fcard wcard">
         <div class="panel"><div class="yt-frame"><iframe id="ytLatest" src="https://www.youtube.com/embed/VvA72Kly-mU?rel=0&modestbranding=1" title="The Solo Entrepreneur on YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
-        <h3>Watch on YouTube</h3>
-        <p>672 videos on AI, automation and online business — a new one every week. See the build before you buy the template. <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener" style="text-decoration:underline">Subscribe →</a></p>
-      </div>
-      <div class="fcard">
-        <div class="panel">
-          <div style="text-align:center;padding:24px">
-            <div style="display:flex;justify-content:center;margin-bottom:18px">
-              <span class="avatar" style="width:52px;height:52px;margin-right:-10px;background:#dcdcdc;z-index:5">AM</span><span class="avatar" style="width:52px;height:52px;margin-right:-10px;background:#cfcfcf;z-index:4">PS</span><span class="avatar" style="width:52px;height:52px;margin-right:-10px;background:#141414;color:#fff;z-index:3;overflow:hidden"><img src="images/fw-icon.png" alt="" style="width:30px;height:30px;object-fit:contain" onerror="this.style.display='none';this.parentElement.textContent='FW'"></span><span class="avatar" style="width:52px;height:52px;margin-right:-10px;background:#cfcfcf;z-index:2">RK</span><span class="avatar" style="width:52px;height:52px;background:#dcdcdc;z-index:1">+26</span>
-            </div>
-            <div style="font-weight:700;font-size:30px;letter-spacing:-.025em;line-height:1">Founders Wing</div>
-            <div style="color:var(--muted);margin-top:8px;font-size:16px">India's AI-first founder community</div>
-            <div style="display:inline-flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center"><span class="chip" style="padding:7px 12px;font-size:13px">🎥 Weekly live sessions</span><span class="chip" style="padding:7px 12px;font-size:13px">🤝 Accountability buddy</span><span class="chip" style="padding:7px 12px;font-size:13px">🏆 ₹10K Sprint</span></div>
+        <div class="wcard-body">
+          <div class="wcard-meta"><img class="wcard-av" src="images/prithal.jpg" alt=""><div><div class="wcard-name">The Solo Entrepreneur <span class="verified" aria-hidden="true">✓</span></div><div class="wcard-sub">49.2K subscribers · 672 videos · new every week</div></div></div>
+          <h3>Watch on YouTube</h3>
+          <p>AI tools, automation walkthroughs and online-business ideas — the builds behind every template and playbook on this site.</p>
+          <div class="wcard-ctas">
+            <a class="btn btn-primary" href="https://www.youtube.com/@thesoloentrepreneur07?sub_confirmation=1" target="_blank" rel="noopener"><img src="images/logos/youtube.svg" alt="" class="btn-ico">Subscribe</a>
+            <a class="btn btn-ghost" href="videos.html">Browse all videos <span class="arr">→</span></a>
           </div>
         </div>
-        <h3>Join Founders Wing</h3>
-        <p>Stop building alone. Weekly live sessions with Prithal, an accountability buddy matched to you, and a private community of solo builders who actually ship. <a href="community.html" style="text-decoration:underline">See the community →</a></p>
+      </div>
+      <div class="fcard wcard">
+        <div class="panel fw-panel">
+          <div class="fw-lockup" role="img" aria-label="Founders Wing"><span>Founders</span><img src="images/fw-mark.png" alt=""><span>ing</span></div>
+          <div class="fw-members" aria-hidden="true"><span>AM</span><span>PS</span><span>RK</span><span>SS</span><span class="more">+26</span></div>
+          <div class="fw-feats"><span><i>🎥</i>Weekly live sessions</span><span><i>🤝</i>Accountability buddy</span><span><i>🏆</i>₹10K Sprint</span></div>
+        </div>
+        <div class="wcard-body">
+          <div class="wcard-meta"><span class="wcard-av fw-av"><img src="images/fw-mark.png" alt=""></span><div><div class="wcard-name">Founders Wing</div><div class="wcard-sub">India's AI-first founder community</div></div></div>
+          <h3>Stop building alone</h3>
+          <p>Weekly live sessions with Prithal, an accountability buddy matched to you, and a private community of solo builders who actually ship.</p>
+          <div class="wcard-ctas">
+            <a class="btn btn-primary" href="https://www.founderswing.com/?utm_source=thesoloentrepreneur&utm_medium=homepage&utm_campaign=watch_section" target="_blank" rel="noopener">Join Founders Wing <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="community.html">See what's inside</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -354,6 +395,7 @@ const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>70);
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 /* ---- Pinned stats: scroll-scrub numbers + parallax icons + cursor drift ---- */
+const PIN=matchMedia('(min-width:769px)').matches;
 const stats=document.getElementById('stats'),sticky=document.getElementById('statsSticky');
 const lines=[...stats.querySelectorAll('.stat-line')],fls=[...stats.querySelectorAll('.floater')];
 if(!RM)lines.forEach(l=>l.classList.remove('on'));
@@ -364,7 +406,7 @@ function countUp(el){if(el._c)return;el._c=true;const target=+el.dataset.count,d
 const store=document.getElementById('store'),showcase=document.getElementById('showcase');
 function tick(){
   const r=stats.getBoundingClientRect(),vh=innerHeight;
-  if(r.bottom>0&&r.top<vh){
+  if(PIN&&r.bottom>0&&r.top<vh){
     const raw=(vh*0.6-r.top)/(r.height-vh*0.4),p=Math.min(1,Math.max(0,raw));
     lines.forEach((l,i)=>{const on=raw>=0&&p>=i*0.22-0.001;l.classList.toggle('on',on);if(on)countUp(l);});
     mx+=(tmx-mx)*.07;my+=(tmy-my)*.07;
@@ -375,6 +417,17 @@ function tick(){
   requestAnimationFrame(tick);
 }
 if(!RM) requestAnimationFrame(tick); else lines.forEach(l=>l.classList.add('on'));
+/* phones/tablets: stats are a normal section — light the lines up in sequence when they scroll into view */
+if(!PIN&&!RM){const sio=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;sio.disconnect();lines.forEach((l,i)=>setTimeout(()=>{l.classList.add('on');countUp(l);},i*260));},{threshold:.3});sio.observe(stats);}
+
+/* ---- Store category filter ---- */
+const storeCards=[...document.querySelectorAll('#storeGrid .pcard')],storeCount=document.getElementById('storeCount');
+document.querySelectorAll('#storeCats button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#storeCats button').forEach(x=>x.classList.toggle('on',x===b));
+  const c=b.dataset.cat;let n=0;
+  storeCards.forEach(k=>{const show=c==='all'||(k.dataset.cat||'').split(' ').includes(c);k.classList.toggle('hide',!show);if(show){n++;k.classList.add('in');k.style.transitionDelay='0ms';k.classList.remove('pop');void k.offsetWidth;k.style.animationDelay=(n*45)+'ms';k.classList.add('pop');}});
+  storeCount.textContent=n+(n===1?' product':' products');
+}));
 
 /* ---- Latest YouTube upload (auto-updates via /api/latest-video; keeps baked-in video otherwise) ---- */
 fetch("/api/latest-video").then(r=>r.ok?r.json():null).then(d=>{const v=d&&d.videos&&d.videos[0];const f=document.getElementById("ytLatest");if(v&&f&&!f.src.includes(v.id)){f.src="https://www.youtube.com/embed/"+v.id+"?rel=0&modestbranding=1";}}).catch(()=>{});
