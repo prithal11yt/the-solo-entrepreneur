@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- PRIVATE internal tool — keep it out of search engines -->
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<title>Channel Dashboard — The Solo Entrepreneur (private)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ---- Dashboard-scoped styles (built on shared.css tokens) ---- */
+.dash { max-width: 1180px; margin: 0 auto; padding: 22px 18px 80px; }
+.dash-top {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 14px 0 18px; border-bottom: 2px solid var(--rule); margin-bottom: 26px;
+}
+.dash-top h1 { font-family: 'Rubik Mono One', sans-serif; font-size: 24px; letter-spacing: -.01em; }
+.dash-top .sub { font-family: 'Caveat', cursive; font-size: 19px; color: var(--muted); }
+.dash-spacer { flex: 1; }
+.btn {
+  font-family: 'Patrick Hand', cursive; font-size: 16px; padding: 9px 16px;
+  border: 2px solid var(--rule); border-radius: var(--radius); background: var(--paper);
+  color: var(--ink); transition: transform .1s ease, background .15s ease;
+}
+.btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--rule); }
+.btn:active { transform: translate(1px,1px); box-shadow: none; }
+.btn-accent { background: var(--accent); color: #fff; border-color: var(--rule); }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.card {
+  border: 2px solid var(--rule); border-radius: var(--radius); background: #fff;
+  padding: 18px; box-shadow: 4px 4px 0 var(--grid);
+}
+.section-title {
+  font-family: 'Rubik Mono One', sans-serif; font-size: 15px; letter-spacing: .02em;
+  margin: 34px 0 14px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::after { content: ''; flex: 1; height: 2px; background: var(--grid); }
+
+/* KPI row */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.kpi { border: 2px solid var(--rule); border-radius: var(--radius); background: #fff; padding: 14px 16px; }
+.kpi .label { font-family: 'Patrick Hand', cursive; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.kpi .value { font-family: 'Rubik Mono One', sans-serif; font-size: 26px; margin-top: 4px; }
+.kpi .value small { font-size: 13px; color: var(--muted); font-family:'Caveat',cursive; }
+
+/* Latest video hero */
+.hero { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+.hero img { width: 100%; border: 2px solid var(--rule); border-radius: var(--radius); display: block; }
+.hero h2 { font-family: 'Patrick Hand', cursive; font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
+.hero .when { font-family: 'Caveat', cursive; font-size: 17px; color: var(--muted); margin-bottom: 14px; }
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 12px; }
+.mini { border: 1.5px dashed var(--rule); border-radius: var(--radius); padding: 10px 12px; }
+.mini .m-label { font-family:'Patrick Hand',cursive; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em;}
+.mini .m-val { font-family:'JetBrains Mono',monospace; font-weight:600; font-size:20px; margin-top:2px; }
+
+/* Video table */
+.controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; align-items:center;}
+.controls .lbl { font-family:'Caveat',cursive; font-size:17px; color:var(--muted); }
+.pill { font-family:'Patrick Hand',cursive; font-size:14px; padding:5px 12px; border:2px solid var(--rule); border-radius:var(--radius); background:var(--paper); }
+.pill.active { background: var(--accent); color:#fff; }
+table.vids { width:100%; border-collapse: collapse; }
+table.vids th, table.vids td { text-align:left; padding:10px 8px; border-bottom:1.5px solid var(--grid); vertical-align:middle; }
+table.vids th { font-family:'Patrick Hand',cursive; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+table.vids td { font-family:'JetBrains Mono',monospace; font-size:14px; }
+table.vids td.t { font-family:'Patrick Hand',cursive; font-size:15px; max-width:340px; }
+table.vids img { width:88px; height:50px; object-fit:cover; border-radius:4px; border:1.5px solid var(--rule); display:block;}
+.vrow-title { display:flex; gap:10px; align-items:center; }
+.vrow-title a { color: var(--ink); text-decoration: none; }
+.vrow-title a:hover { text-decoration: underline; }
+.tag-hot { font-family:'Caveat',cursive; font-size:14px; color:var(--accent); }
+
+/* Competitor table */
+.comp-table { width:100%; border-collapse: collapse; }
+.comp-table th, .comp-table td { padding:11px 10px; border-bottom:1.5px solid var(--grid); text-align:right; font-family:'JetBrains Mono',monospace; font-size:14px;}
+.comp-table th { font-family:'Patrick Hand',cursive; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.04em;}
+.comp-table td.name, .comp-table th.name { text-align:left; font-family:'Patrick Hand',cursive; font-size:16px;}
+.comp-table tr.me { background: rgba(255,91,31,.07); }
+.comp-table .ch-cell { display:flex; align-items:center; gap:10px; }
+.comp-table .ch-cell img { width:34px;height:34px;border-radius:50%;border:1.5px solid var(--rule);}
+.chart-wrap { position: relative; height: 300px; margin-top: 10px; }
+.chart-grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+
+/* Settings / channels editor */
+.chip { display:inline-flex; align-items:center; gap:8px; font-family:'Patrick Hand',cursive; font-size:15px;
+  border:2px solid var(--rule); border-radius:var(--radius); padding:6px 10px; margin:0 8px 8px 0; background:#fff;}
+.chip.me { background: var(--accent); color:#fff; }
+.chip button { background:none; border:none; color:inherit; font-size:16px; line-height:1; padding:0 2px; }
+.field { font-family:'Patrick Hand',cursive; font-size:16px; padding:9px 12px; border:2px solid var(--rule); border-radius:var(--radius); background:var(--paper); min-width:240px; }
+.hint { font-family:'Caveat',cursive; font-size:16px; color:var(--muted); margin-top:6px; }
+.err { font-family:'Patrick Hand',cursive; color:#c0392b; margin-top:10px; }
+.muted { color: var(--muted); }
+.hidden { display:none !important; }
+.spin { display:inline-block; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; }
+  .chart-grid { grid-template-columns: 1fr; }
+  table.vids .hide-sm { display:none; }
+}
+</style>
+</head>
+<body>
+<div class="dash">
+
+  <!-- ===== Top bar ===== -->
+  <div class="dash-top">
+    <div>
+      <h1>Channel Dashboard</h1>
+      <div class="sub">what's working, what's not — you vs the competition</div>
+    </div>
+    <div class="dash-spacer"></div>
+    <span id="lastUpdated" class="sub"></span>
+    <button class="btn" id="settingsBtn">⚙ Channels</button>
+    <button class="btn btn-accent" id="refreshBtn">↻ Refresh</button>
+  </div>
+
+  <div id="errBox" class="err hidden"></div>
+
+  <!-- ===== Settings / channel editor ===== -->
+  <div id="settings" class="card hidden" style="margin-bottom:26px;">
+    <div class="section-title" style="margin-top:0;">Your channels &amp; competitors</div>
+    <div id="chips"></div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start; margin-top:10px;">
+      <input class="field" id="addInput" placeholder="Paste channel URL, @handle, or channel ID"/>
+      <label style="font-family:'Patrick Hand',cursive;font-size:15px;display:flex;align-items:center;gap:6px;">
+        <input type="checkbox" id="addIsMe"/> this is my channel
+      </label>
+      <button class="btn" id="addBtn">+ Add</button>
+    </div>
+    <div class="hint">Tip: you can paste <code>https://youtube.com/@handle</code>, <code>@handle</code>, or a <code>UC…</code> channel ID. Your list is saved in this browser only.</div>
+  </div>
+
+  <!-- ===== Empty / loading state ===== -->
+  <div id="emptyState" class="card" style="text-align:center; padding:40px;">
+    <div style="font-family:'Rubik Mono One',sans-serif;font-size:18px;margin-bottom:8px;">Ready when you are</div>
+    <div class="hint">Hit <b>↻ Refresh</b> to pull live data, or open <b>⚙ Channels</b> to add competitors.</div>
+  </div>
+
+  <!-- ===== My channel KPIs ===== -->
+  <div id="mySection" class="hidden">
+    <div class="section-title" id="myTitle">My channel</div>
+    <div class="kpi-grid" id="kpis"></div>
+  </div>
+
+  <!-- ===== Latest video hero ===== -->
+  <div id="heroSection" class="hidden">
+    <div class="section-title">Latest video</div>
+    <div class="card hero" id="hero"></div>
+  </div>
+
+  <!-- ===== What's working (recent videos) ===== -->
+  <div id="videosSection" class="hidden">
+    <div class="section-title">What's working — recent videos</div>
+    <div class="controls">
+      <span class="lbl">sort by</span>
+      <button class="pill active" data-sort="viewsPerDay">🔥 views / day</button>
+      <button class="pill" data-sort="views">total views</button>
+      <button class="pill" data-sort="engagementRate">engagement</button>
+      <button class="pill" data-sort="publishedAt">newest</button>
+    </div>
+    <div class="card" style="overflow-x:auto;">
+      <table class="vids" id="vidTable"></table>
+    </div>
+  </div>
+
+  <!-- ===== Competitor comparison ===== -->
+  <div id="compSection" class="hidden">
+    <div class="section-title">You vs competitors</div>
+    <div class="card" style="overflow-x:auto; margin-bottom:18px;">
+      <table class="comp-table" id="compTable"></table>
+    </div>
+    <div class="chart-grid">
+      <div class="card"><b style="font-family:'Patrick Hand',cursive;">Subscribers</b><div class="chart-wrap"><canvas id="chartSubs"></canvas></div></div>
+      <div class="card"><b style="font-family:'Patrick Hand',cursive;">Avg views (recent uploads)</b><div class="chart-wrap"><canvas id="chartViews"></canvas></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* =========================================================================
+   Channel Dashboard — client logic
+   Data comes from /api/youtube (serverless). The API key stays on the server.
+   ========================================================================= */
+
+const LS_KEY = 'tse_dash_channels_v1';
+const DEFAULT_CHANNELS = [
+  { id: 'UCV_DLB3VW0szIGQnwel1Nsw', label: 'The Solo Entrepreneur', isMe: true }
+];
+
+let CHANNELS = load();
+let DATA = null;            // last API response
+let sortKey = 'viewsPerDay';
+
+/* ---------- storage ---------- */
+function load() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return structuredClone(DEFAULT_CHANNELS);
+}
+function save() { localStorage.setItem(LS_KEY, JSON.stringify(CHANNELS)); }
+
+/* ---------- formatting helpers ---------- */
+const nf = new Intl.NumberFormat('en-IN');
+function compact(n) {
+  if (n == null) return '—';
+  if (n >= 1e7) return (n/1e7).toFixed(2).replace(/\.00$/,'') + 'Cr';
+  if (n >= 1e5) return (n/1e5).toFixed(2).replace(/\.00$/,'') + 'L';
+  if (n >= 1e3) return (n/1e3).toFixed(1).replace(/\.0$/,'') + 'K';
+  return nf.format(Math.round(n));
+}
+function pct(n) { return (n*100).toFixed(1) + '%'; }
+function ago(iso) {
+  const d = (Date.now() - new Date(iso).getTime())/1000;
+  const day = 86400;
+  if (d < 3600) return Math.round(d/60) + 'm ago';
+  if (d < day)  return Math.round(d/3600) + 'h ago';
+  if (d < day*30) return Math.round(d/day) + 'd ago';
+  if (d < day*365) return Math.round(d/(day*30)) + 'mo ago';
+  return Math.round(d/(day*365)) + 'y ago';
+}
+function parseDuration(iso) {
+  if (!iso) return '';
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return '';
+  const h = +m[1]||0, mi = +m[2]||0, s = +m[3]||0;
+  const pad = x => String(x).padStart(2,'0');
+  return h ? `${h}:${pad(mi)}:${pad(s)}` : `${mi}:${pad(s)}`;
+}
+/* Extract {id} or {handle} from a pasted URL / @handle / raw ID */
+function parseChannelInput(raw) {
+  raw = raw.trim();
+  if (!raw) return null;
+  if (/^UC[\w-]{20,}$/.test(raw)) return { id: raw };
+  const url = raw.match(/youtube\.com\/(channel\/(UC[\w-]+)|@([\w.\-]+)|c\/([\w.\-]+)|user\/([\w.\-]+))/i);
+  if (url) {
+    if (url[2]) return { id: url[2] };
+    if (url[3]) return { handle: url[3] };
+    if (url[4]) return { handle: url[4] };
+    if (url[5]) return { handle: url[5] };
+  }
+  if (raw.startsWith('@')) return { handle: raw.slice(1) };
+  return { handle: raw };
+}
+
+/* ---------- error UI ---------- */
+function showError(msg) {
+  const box = document.getElementById('errBox');
+  box.textContent = '⚠ ' + msg;
+  box.classList.remove('hidden');
+}
+function clearError() { document.getElementById('errBox').classList.add('hidden'); }
+
+/* ---------- fetch ---------- */
+async function refresh() {
+  clearError();
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">↻</span> Loading…';
+  try {
+    const payload = {
+      recentCount: 10,
+      channels: CHANNELS.map(c => c.id ? { id: c.id } : { handle: c.handle })
+    };
+    const r = await fetch('/api/youtube', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Request failed');
+    DATA = data;
+    // fold isMe flag + label back onto results by matching id/handle order
+    DATA.channels.forEach((ch, i) => { ch.isMe = !!CHANNELS[i]?.isMe; });
+    render();
+    document.getElementById('lastUpdated').textContent =
+      'updated ' + new Date(data.fetchedAt).toLocaleTimeString() + ' · ' + data.quotaUnits + ' quota units';
+  } catch (e) {
+    showError(e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '↻ Refresh';
+  }
+}
+
+/* ---------- render ---------- */
+function myChannel() { return DATA?.channels.find(c => c.isMe) || DATA?.channels[0]; }
+
+function render() {
+  if (!DATA || !DATA.channels.length) return;
+  document.getElementById('emptyState').classList.add('hidden');
+  renderKpis();
+  renderHero();
+  renderVideos();
+  renderCompetitors();
+}
+
+function renderKpis() {
+  const ch = myChannel();
+  if (!ch || ch.error) return;
+  document.getElementById('mySection').classList.remove('hidden');
+  document.getElementById('myTitle').textContent = 'My channel — ' + ch.title;
+  const vids = ch.videos || [];
+  const avgRecent = vids.length ? vids.reduce((s,v)=>s+v.views,0)/vids.length : 0;
+  const avgAll = ch.videoCount ? ch.viewCount/ch.videoCount : 0;
+  const kpis = [
+    ['Subscribers', ch.hiddenSubscriberCount ? 'hidden' : compact(ch.subscriberCount)],
+    ['Total views', compact(ch.viewCount)],
+    ['Videos', nf.format(ch.videoCount)],
+    ['Avg views / video (all time)', compact(avgAll)],
+    ['Avg views (last ' + vids.length + ')', compact(avgRecent)],
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(([l,v]) =>
+    `<div class="kpi"><div class="label">${l}</div><div class="value">${v}</div></div>`).join('');
+}
+
+function renderHero() {
+  const ch = myChannel();
+  const v = ch?.videos?.[0];
+  if (!v) return;
+  document.getElementById('heroSection').classList.remove('hidden');
+  document.getElementById('hero').innerHTML = `
+    <a href="https://youtu.be/${v.id}" target="_blank" rel="noopener"><img src="${v.thumbnail}" alt=""/></a>
+    <div>
+      <h2><a href="https://youtu.be/${v.id}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">${escapeHtml(v.title)}</a></h2>
+      <div class="when">published ${ago(v.publishedAt)} · ${parseDuration(v.duration)}</div>
+      <div class="hero-stats">
+        <div class="mini"><div class="m-label">Views</div><div class="m-val">${compact(v.views)}</div></div>
+        <div class="mini"><div class="m-label">Likes</div><div class="m-val">${compact(v.likes)}</div></div>
+        <div class="mini"><div class="m-label">Comments</div><div class="m-val">${compact(v.comments)}</div></div>
+        <div class="mini"><div class="m-label">Views / day</div><div class="m-val">${compact(v.viewsPerDay)}</div></div>
+        <div class="mini"><div class="m-label">Engagement</div><div class="m-val">${pct(v.engagementRate)}</div></div>
+      </div>
+    </div>`;
+}
+
+function renderVideos() {
+  const ch = myChannel();
+  const vids = [...(ch?.videos || [])];
+  if (!vids.length) return;
+  document.getElementById('videosSection').classList.remove('hidden');
+
+  vids.sort((a,b) => sortKey === 'publishedAt'
+    ? new Date(b.publishedAt) - new Date(a.publishedAt)
+    : b[sortKey] - a[sortKey]);
+
+  const median = vids.map(v=>v.viewsPerDay).sort((a,b)=>a-b)[Math.floor(vids.length/2)] || 0;
+
+  const rows = vids.map((v,i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td class="t"><div class="vrow-title">
+        <a href="https://youtu.be/${v.id}" target="_blank" rel="noopener"><img src="${v.thumbnail}" alt=""/></a>
+        <a href="https://youtu.be/${v.id}" target="_blank" rel="noopener">${escapeHtml(v.title)}
+        ${v.viewsPerDay > median*1.5 ? '<span class="tag-hot">🔥 outperforming</span>':''}</a>
+      </div></td>
+      <td>${compact(v.views)}</td>
+      <td class="hide-sm">${compact(v.viewsPerDay)}</td>
+      <td class="hide-sm">${pct(v.engagementRate)}</td>
+      <td class="hide-sm">${ago(v.publishedAt)}</td>
+    </tr>`).join('');
+
+  document.getElementById('vidTable').innerHTML = `
+    <thead><tr>
+      <th>#</th><th>Video</th><th>Views</th>
+      <th class="hide-sm">Views/day</th><th class="hide-sm">Engmt</th><th class="hide-sm">Age</th>
+    </tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderCompetitors() {
+  const chans = DATA.channels.filter(c => !c.error);
+  if (chans.length < 2) { document.getElementById('compSection').classList.add('hidden'); return; }
+  document.getElementById('compSection').classList.remove('hidden');
+
+  const withMetrics = chans.map(c => {
+    const vids = c.videos || [];
+    const avgViews = vids.length ? vids.reduce((s,v)=>s+v.views,0)/vids.length : 0;
+    const avgEng = vids.length ? vids.reduce((s,v)=>s+v.engagementRate,0)/vids.length : 0;
+    // upload cadence: days between newest and oldest of recent set / count
+    let cadence = null;
+    if (vids.length >= 2) {
+      const newest = new Date(vids[0].publishedAt), oldest = new Date(vids[vids.length-1].publishedAt);
+      cadence = (newest - oldest)/86400000/(vids.length-1); // days per upload
+    }
+    return { c, avgViews, avgEng, cadence };
+  });
+
+  const rows = withMetrics.map(m => `
+    <tr class="${m.c.isMe ? 'me':''}">
+      <td class="name"><div class="ch-cell">
+        ${m.c.thumbnail ? `<img src="${m.c.thumbnail}" alt=""/>`:''}
+        <span>${escapeHtml(m.c.title)} ${m.c.isMe?'<span class="tag-hot">(you)</span>':''}</span>
+      </div></td>
+      <td>${m.c.hiddenSubscriberCount ? '—' : compact(m.c.subscriberCount)}</td>
+      <td>${compact(m.c.viewCount)}</td>
+      <td>${nf.format(m.c.videoCount)}</td>
+      <td>${compact(m.avgViews)}</td>
+      <td>${pct(m.avgEng)}</td>
+      <td>${m.cadence!=null ? 'every '+m.cadence.toFixed(1)+'d' : '—'}</td>
+    </tr>`).join('');
+
+  document.getElementById('compTable').innerHTML = `
+    <thead><tr>
+      <th class="name">Channel</th><th>Subs</th><th>Total views</th><th>Videos</th>
+      <th>Avg views*</th><th>Avg engmt*</th><th>Upload pace</th>
+    </tr></thead><tbody>${rows}</tbody>
+    <caption style="caption-side:bottom;text-align:left;font-family:'Caveat',cursive;color:var(--muted);padding-top:8px;">* based on the last ~10 uploads</caption>`;
+
+  drawChart('chartSubs', withMetrics.map(m=>m.c.title), withMetrics.map(m=>m.c.subscriberCount), withMetrics.map(m=>m.c.isMe));
+  drawChart('chartViews', withMetrics.map(m=>m.c.title), withMetrics.map(m=>Math.round(m.avgViews)), withMetrics.map(m=>m.c.isMe));
+}
+
+let charts = {};
+function drawChart(id, labels, values, meFlags) {
+  const ctx = document.getElementById(id);
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: meFlags.map(me => me ? '#ff5b1f' : 'rgba(21,19,15,.28)'),
+        borderColor: '#15130f', borderWidth: 1.5, borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display:false }, tooltip: { callbacks: { label: c => compact(c.parsed.y) } } },
+      scales: {
+        y: { ticks: { callback: v => compact(v), font: { family:'JetBrains Mono' } } },
+        x: { ticks: { font: { family:'Patrick Hand', size: 13 } } }
+      }
+    }
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ---------- settings / channel editor ---------- */
+function renderChips() {
+  document.getElementById('chips').innerHTML = CHANNELS.map((c,i) => `
+    <span class="chip ${c.isMe?'me':''}">
+      ${c.isMe?'★ ':''}${escapeHtml(c.label || c.handle || c.id)}
+      <button data-rm="${i}" title="remove">×</button>
+    </span>`).join('') || '<span class="hint">No channels yet — add one below.</span>';
+}
+function addChannel() {
+  const input = document.getElementById('addInput');
+  const parsed = parseChannelInput(input.value);
+  if (!parsed) return;
+  const isMe = document.getElementById('addIsMe').checked;
+  if (isMe) CHANNELS.forEach(c => c.isMe = false);
+  CHANNELS.push({ ...parsed, isMe, label: input.value.trim() });
+  save(); renderChips();
+  input.value = ''; document.getElementById('addIsMe').checked = false;
+}
+
+/* ---------- wire up ---------- */
+document.getElementById('refreshBtn').addEventListener('click', refresh);
+document.getElementById('settingsBtn').addEventListener('click', () => {
+  document.getElementById('settings').classList.toggle('hidden'); renderChips();
+});
+document.getElementById('addBtn').addEventListener('click', addChannel);
+document.getElementById('addInput').addEventListener('keydown', e => { if (e.key==='Enter') addChannel(); });
+document.getElementById('chips').addEventListener('click', e => {
+  const i = e.target.getAttribute('data-rm');
+  if (i!=null) { CHANNELS.splice(+i,1); save(); renderChips(); }
+});
+document.querySelectorAll('.pill[data-sort]').forEach(p => p.addEventListener('click', () => {
+  document.querySelectorAll('.pill[data-sort]').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); sortKey = p.dataset.sort; renderVideos();
+}));
+
+renderChips();
+</script>
+</body>
+</html>
