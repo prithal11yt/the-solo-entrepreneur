@@ -1079,7 +1079,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 @keyframes navIn{from{opacity:0;transform:translateX(-50%) translateY(-14px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .nav.scrolled{width:min(760px,calc(100% - 32px));box-shadow:0 10px 34px rgba(0,0,0,.08)}
 .nav-logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em;white-space:nowrap}
-.nav-logo .mark{width:26px;height:26px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800;transition:transform .3s var(--spring)}
+.nav-logo .mark{width:26px;height:26px;display:block;flex-shrink:0;transition:transform .3s var(--spring)}
 .nav-logo:hover .mark{transform:rotate(-8deg) scale(1.08)}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nav-links a{padding:8px 12px;font-size:16px;font-weight:500;color:var(--ink);border-radius:var(--pill);white-space:nowrap;transition:background .2s,color .2s}
@@ -1174,7 +1174,7 @@ html.js .hairline.in{transform:none}
 .store{background:#fff;border-radius:22px 22px 0 0;box-shadow:0 30px 80px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.05);padding:22px 26px 0;margin:0 auto;max-width:1120px;min-height:560px;will-change:transform}
 .store-top{display:flex;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .store-title{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em;white-space:nowrap}
-.store-title .mark{width:26px;height:26px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800}
+.store-title .mark{width:26px;height:26px;display:block;flex-shrink:0}
 .store-count{font-weight:500;color:var(--muted-2);font-size:13px;margin-left:4px;letter-spacing:0}
 .store-top .search{flex:1;max-width:420px;height:40px;border-radius:12px;background:var(--panel);display:flex;align-items:center;gap:6px;padding:0 14px;color:var(--muted-2);font-size:14px;margin:0 auto}
 .search .caret{display:inline-block;width:1px;height:14px;background:var(--muted);animation:blink 1s steps(2) infinite}
@@ -1337,7 +1337,7 @@ html.js .chips.show .chip:hover{transform:translateY(-2px)}
 .footer{padding:80px 0 36px}
 .foot-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:40px}
 .foot-brand{font-size:28px;font-weight:700;letter-spacing:-.025em;display:flex;align-items:center;gap:10px}
-.foot-brand .mark{width:30px;height:30px;border-radius:9px;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:15px;font-weight:800}
+.foot-brand .mark{width:30px;height:30px;display:block;flex-shrink:0}
 .foot-tag{color:#a3a3a3;margin-top:12px;font-size:15px;max-width:340px}
 .foot-col a{display:block;font-size:16px;font-weight:500;margin-bottom:12px;color:#fff;transition:color .2s,transform .2s var(--spring)}
 .foot-col a:hover{color:#bdbdbd;transform:translateX(3px)}
