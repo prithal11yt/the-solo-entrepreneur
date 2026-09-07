@@ -1356,6 +1356,15 @@ html.js .chips.show .chip:hover{transform:translateY(-2px)}
 @media(max-width:960px){.nav-links{display:none}.nav-burger{display:grid}.nav{padding:0 10px 0 18px}}
 @media(max-width:900px){.cards-3,.cards-2{grid-template-columns:1fr}.masonry{columns:2}.foot-grid,.foot-bottom{grid-template-columns:1fr 1fr}.store-grid{grid-template-columns:repeat(2,1fr)}.showcase .panel{padding:24px 24px 0;min-height:auto}.store{padding:18px 18px 0}.section{padding:96px 0}.stats{height:220vh}}
 @media(max-width:640px){.seg{flex-wrap:wrap;justify-content:center;border-radius:20px}.seg button{padding:8px 12px;font-size:14px}.pcard .cover .tile.md{width:40px;height:40px}.icon-cluster{gap:6px}.masonry{columns:1}.showcase{margin:64px 12px 0}.foot-grid,.foot-bottom{grid-template-columns:1fr;gap:28px}.foot-bottom{margin-top:64px}.store-grid{grid-template-columns:1fr 1fr;gap:12px}.pcard .cover .big{font-size:26px}.hero{padding-top:140px}.trusted-row{gap:22px}.yt-frame{inset:16px}.section{padding:72px 0}.final{padding:110px 0 80px}.showcase .panel{padding:12px 12px 0}.store{padding:14px 12px 0;border-radius:16px 16px 0 0;min-height:auto}.store-top{flex-wrap:wrap;gap:10px;padding-bottom:14px}.store-top .search{order:3;flex-basis:100%;max-width:none;height:38px}.store-count{display:none}.store-all{padding:6px 8px}.store-grid{grid-template-columns:1fr 1fr;gap:10px}.pcard{--art:.85}.mini-flow{gap:5px}.mini-flow .tile{width:36px;height:36px}.mini-flow i{width:10px}.combo{width:120px;height:104px}.combo .book{width:74px;height:96px}.pcard .meta .p{gap:2px 6px}.pcard .meta .p span{flex-basis:100%}.pcard .meta .p span::before{content:none}.pcard .meta{padding:11px 12px 12px}.pcard .meta .t{font-size:14px;padding-right:0}.pcard .meta .p{font-size:12.5px}.pcard .go{display:none}.watch-cards{margin-top:40px}.fcard .panel.fw-panel{aspect-ratio:auto;padding:40px 20px}.wcard h3{font-size:22px}.wcard-body{padding-top:18px}.wcard-ctas .btn{flex:1 1 auto;justify-content:center}.masonry .tcard:nth-child(n+5){display:none}.chips .chip:nth-child(n+15){display:none}}
+/* blog posts: grid items default to min-width:auto, so a wide table stretches the
+   whole page instead of scrolling. Let the column shrink, then scroll the table. */
+.post-layout>*{min-width:0}
+.post-content{max-width:100%}
+@media(max-width:760px){
+  .post-content table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .post-content table td,.post-content table th{white-space:normal;min-width:110px}
+  .post-content pre{max-width:100%;overflow-x:auto}
+}
 @media(max-width:768px){.stats{height:auto;padding:110px 0 90px}.stats-sticky{position:static;height:auto;overflow:visible}.stat-line{font-size:clamp(30px,9.2vw,44px);line-height:1.18}.stat-label{font-size:18px}.stats-inner{padding:0 20px}}
 
 /* ===== 4. COMPAT OVERRIDES ===== */
