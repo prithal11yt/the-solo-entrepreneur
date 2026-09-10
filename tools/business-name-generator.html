@@ -492,12 +492,13 @@ function renderNames(names) {
     card.className = 'result-card';
     card.innerHTML = `
       <div class="result-text">
-        <div style="font-family:var(--font);font-size:26px;font-weight:700;margin-bottom:6px;">${item.name}</div>
-        <div style="font-family:var(--font);font-size:18px;color:var(--accent);margin-bottom:8px;">${item.tagline}</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.4;">${item.why}</div>
+        <div style="font-family:var(--font);font-size:26px;font-weight:700;margin-bottom:6px;">${escapeText(item.name)}</div>
+        <div style="font-family:var(--font);font-size:18px;color:var(--accent);margin-bottom:8px;">${escapeText(item.tagline)}</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.4;">${escapeText(item.why)}</div>
       </div>
-      <button class="result-copy-btn" onclick="copyResult(this, '${item.name.replace(/'/g,"\\'")}')">Copy</button>
+      <button class="result-copy-btn" type="button">Copy</button>
     `;
+    card.querySelector('.result-copy-btn').addEventListener('click', event => copyResult(event.currentTarget, String(item.name ?? '')));
     grid.appendChild(card);
   });
   document.getElementById('results').classList.add('active');

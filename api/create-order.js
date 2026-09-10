@@ -1,3 +1,5 @@
+export const config = { api: { bodyParser: { sizeLimit: '8kb' } } };
+
 // Plans and coupons live here, on the server, so the browser can never decide
 // what a customer pays. Previously the client POSTed `amount` and this handler
 // trusted it, which meant anyone could buy a 9,999 membership for 1 rupee.
@@ -24,7 +26,8 @@ const COUPONS = {
 
 function resolveCoupon(rawCode, planKey) {
   if (!rawCode || typeof rawCode !== 'string') return null;
-  const coupon = COUPONS[rawCode.trim().toUpperCase()];
+  const code = rawCode.trim().toUpperCase();
+  const coupon = Object.hasOwn(COUPONS, code) ? COUPONS[code] : null;
   if (!coupon) return null;
   if (!coupon.plans.includes(planKey)) return null;
   return coupon;
@@ -35,9 +38,23 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { plan, product_id, coupon, name, email, phone, user_id } = req.body;
+  if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+    return res.status(400).json({ error: 'Invalid request' });
+  }
+  const { plan, product_id, coupon, name, email, phone } = req.body;
+  if (typeof name !== 'string' || !name.trim() || name.length > 120 ||
+      typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+      (phone != null && (typeof phone !== 'string' || phone.length > 30)) ||
+      (coupon != null && (typeof coupon !== 'string' || coupon.length > 64)) ||
+      (plan != null && typeof plan !== 'string') ||
+      (product_id != null && typeof product_id !== 'string')) {
+    return res.status(400).json({ error: 'Invalid checkout details' });
+  }
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    return res.status(503).json({ error: 'Checkout is temporarily unavailable' });
+  }
 
-  const planKey = PLANS[plan] ? plan : PLAN_BY_PRODUCT_ID[product_id];
+  const planKey = Object.hasOwn(PLANS, plan) ? plan : (Object.hasOwn(PLAN_BY_PRODUCT_ID, product_id) ? PLAN_BY_PRODUCT_ID[product_id] : null);
   const selectedPlan = PLANS[planKey];
   if (!selectedPlan) {
     return res.status(400).json({ error: 'Invalid plan' });
@@ -62,7 +79,9 @@ export default async function handler(req, res) {
         product_name: selectedPlan.name,
         name, email,
         phone: phone || '',
-        user_id: user_id || '',
+        // Guest checkout: never trust a caller-supplied account ID.
+        // claim_my_orders must bind this email to a verified account in the DB.
+        user_id: '',
         coupon: appliedCoupon ? coupon.trim().toUpperCase() : '',
       },
     };
@@ -89,7 +108,7 @@ export default async function handler(req, res) {
       // A rejected offer shouldn't block the sale — fall back to full price so
       // the customer can still pay, rather than showing a dead checkout.
       if (appliedCoupon) {
-        console.error('[create-order] Offer rejected, retrying without it:', order.error?.description);
+        console.warn('[create-order] Offer rejected; retrying without it');
         delete orderPayload.offers;
         delete orderPayload.force_offer;
         orderPayload.notes.coupon = '';
@@ -111,7 +130,7 @@ export default async function handler(req, res) {
         }
       }
       return res.status(response.status).json({
-        error: order.error?.description || 'Failed to create order',
+        error: 'Failed to create order',
       });
     }
 
@@ -125,6 +144,6 @@ export default async function handler(req, res) {
       couponError: coupon && !appliedCoupon ? 'That code isn\'t valid for this plan.' : '',
     });
   } catch (err) {
-    res.status(500).json({ error: 'Server error: ' + err.message });
+    res.status(500).json({ error: 'Could not create order. Please try again.' });
   }
 }

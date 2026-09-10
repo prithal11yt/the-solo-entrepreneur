@@ -1,3 +1,10 @@
+// Encode untrusted text before inserting it into HTML templates.
+function escapeText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+}
+
 /* ============================================================
    THE SOLO ENTREPRENEUR — site.js (v2)
    Nav state, word-split reveals, staggered groups, Founders Wing

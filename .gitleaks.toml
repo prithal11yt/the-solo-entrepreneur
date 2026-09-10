@@ -1,0 +1,13 @@
+title = "Secret scanning with reviewed public browser identifiers"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact public Supabase anon JWTs, Razorpay checkout key ID, and Dify embed IDs reviewed on 2026-09-11. Never add server credentials."
+regexTarget = "secret"
+regexes = [
+  '''^eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0\.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU\-dDVcUUJo$''',
+  '''^gDME2HMZZzC8u8Kw$''',
+  '''^rzp_live_SizwsLeDvmH69E$''',
+  '''^rzp_live_SoVUf3reYGaO8O$''',
+]

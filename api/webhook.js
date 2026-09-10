@@ -9,7 +9,12 @@ export const config = {
 function getRawBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    req.on('data', chunk => chunks.push(chunk));
+    let size = 0;
+    req.on('data', chunk => {
+      size += chunk.length;
+      if (size > 1024 * 1024) { reject(new Error('Body too large')); return; }
+      chunks.push(chunk);
+    });
     req.on('end', () => resolve(Buffer.concat(chunks)));
     req.on('error', reject);
   });
@@ -21,7 +26,10 @@ export default async function handler(req, res) {
   }
 
   // 1. Read raw body before any parsing
-  const rawBody = await getRawBody(req);
+  if (!process.env.RAZORPAY_WEBHOOK_SECRET) return res.status(503).json({ error: 'Webhook unavailable' });
+  let rawBody;
+  try { rawBody = await getRawBody(req); }
+  catch { return res.status(413).json({ error: 'Invalid or oversized body' }); }
   const signature = req.headers['x-razorpay-signature'];
 
   // 2. Verify the webhook signature
@@ -30,7 +38,8 @@ export default async function handler(req, res) {
     .update(rawBody)
     .digest('hex');
 
-  if (expectedSignature !== signature) {
+  if (typeof signature !== 'string' || !/^[a-f0-9]{64}$/i.test(signature) ||
+      !crypto.timingSafeEqual(Buffer.from(expectedSignature, 'hex'), Buffer.from(signature, 'hex'))) {
     console.warn('[webhook] Invalid signature — possible spoofed request');
     return res.status(400).json({ error: 'Invalid signature' });
   }
@@ -44,11 +53,16 @@ export default async function handler(req, res) {
   }
 
   // 4. Only handle payment.captured (ignore other event types)
-  if (event.event !== 'payment.captured') {
-    return res.status(200).json({ received: true, skipped: event.event });
+  if (event?.event !== 'payment.captured') {
+    return res.status(200).json({ received: true, skipped: true });
   }
 
-  const payment   = event.payload.payment.entity;
+  const payment   = event.payload?.payment?.entity;
+  if (!payment || typeof payment.order_id !== 'string' || !/^order_[A-Za-z0-9]{1,64}$/.test(payment.order_id) ||
+      typeof payment.id !== 'string' || !/^pay_[A-Za-z0-9]{1,64}$/.test(payment.id) ||
+      !Number.isSafeInteger(payment.amount) || payment.amount <= 0 || payment.currency !== 'INR') {
+    return res.status(400).json({ error: 'Invalid payment event' });
+  }
   const orderId   = payment.order_id;
   const paymentId = payment.id;
   const amountPaise = payment.amount;
@@ -66,7 +80,7 @@ export default async function handler(req, res) {
     const order = await orderRes.json();
     notes = order.notes || {};
   } catch (err) {
-    console.error('[webhook] Failed to fetch order notes:', err.message);
+    console.error('[webhook] Failed to fetch order notes:');
     // Return 200 so Razorpay doesn't keep retrying; we'll handle manually
     return res.status(200).json({ received: true, warning: 'Could not fetch order' });
   }
@@ -79,7 +93,7 @@ export default async function handler(req, res) {
   const userId      = notes.user_id      || null;
 
   if (!productId || !userEmail) {
-    console.error('[webhook] Missing product_id or email in order notes for', orderId, '— notes:', JSON.stringify(notes));
+    console.error('[webhook] Missing order metadata');
     // Still 200: this can happen for old orders created before this change
     return res.status(200).json({ received: true, warning: 'Missing product/user info in notes' });
   }
@@ -109,19 +123,18 @@ export default async function handler(req, res) {
       }),
     });
   } catch (err) {
-    console.error('[webhook] Supabase RPC fetch failed:', err.message);
+    console.error('[webhook] Supabase RPC fetch failed:');
     // 200 to avoid Razorpay retries
     return res.status(200).json({ received: true, warning: 'DB request failed' });
   }
 
   if (!rpcRes.ok) {
-    const errText = await rpcRes.text();
-    console.error('[webhook] record_purchase error:', errText);
+    console.error('[webhook] record_purchase failed with status', rpcRes.status);
     // 200 to avoid Razorpay retries — investigate logs manually
     return res.status(200).json({ received: true, warning: 'DB write failed' });
   }
 
-  console.log(`[webhook] ✓ Recorded purchase: ${paymentId} → ${productId} for ${userEmail}`);
+  console.log('[webhook] Purchase recorded');
 
   // 7. Founders Wing membership purchases also get a record in FW's own Supabase project
   if (productId.startsWith('fw-membership-')) {
@@ -150,13 +163,12 @@ export default async function handler(req, res) {
       });
 
       if (!fwRes.ok) {
-        const errText = await fwRes.text();
-        console.error('[webhook] fw_memberships insert error:', errText);
+        console.error('[webhook] fw_memberships insert failed with status', fwRes.status);
       } else {
-        console.log(`[webhook] ✓ Recorded Founders Wing membership: ${paymentId} → ${plan} for ${userEmail}`);
+        console.log('[webhook] Purchase recorded');
       }
     } catch (err) {
-      console.error('[webhook] fw_memberships insert failed:', err.message);
+      console.error('[webhook] fw_memberships insert failed:');
     }
   }
 

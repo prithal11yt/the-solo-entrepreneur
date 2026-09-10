@@ -500,10 +500,11 @@ function renderResults(raw) {
     const card = document.createElement('div');
     card.className = 'result-card';
     card.innerHTML = `
-      <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px">Variation ${item.variation || (i + 1)}</div>
+      <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px">Variation ${escapeText(item.variation || (i + 1))}</div>
       <div class="result-text">${escapeHtml(item.bio)}</div>
-      <button class="result-copy-btn" onclick="copyResult(this, ${JSON.stringify(item.bio)})">Copy</button>
+      <button class="result-copy-btn" type="button">Copy</button>
     `;
+    card.querySelector('.result-copy-btn').addEventListener('click', event => copyResult(event.currentTarget, String(item.bio ?? '')));
     grid.appendChild(card);
   });
 
