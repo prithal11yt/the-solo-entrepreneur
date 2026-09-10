@@ -479,8 +479,8 @@ function renderPitch(pitch, length) {
   const card = document.createElement('div');
   card.className = 'result-card';
   card.innerHTML = `
-    <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;">${length} pitch</div>
-    <div class="result-text" style="font-size:17px;line-height:1.6;white-space:pre-wrap;">${pitch}</div>
+    <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;">${escapeText(length)} pitch</div>
+    <div class="result-text" style="font-size:17px;line-height:1.6;white-space:pre-wrap;">${escapeText(pitch)}</div>
     <button class="result-copy-btn" style="margin-top:16px;" onclick="copyPitch(this)">Copy Pitch</button>
   `;
   grid.appendChild(card);

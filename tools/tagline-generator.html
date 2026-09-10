@@ -473,11 +473,12 @@ function renderTaglines(taglines) {
     card.className = 'result-card';
     card.innerHTML = `
       <div class="result-text">
-        <div style="font-family:var(--font);font-size:28px;font-weight:600;margin-bottom:8px;line-height:1.2;">"${item.tagline}"</div>
-        <div style="font-family:var(--font-mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">${item.style}</div>
+        <div style="font-family:var(--font);font-size:28px;font-weight:600;margin-bottom:8px;line-height:1.2;">"${escapeText(item.tagline)}"</div>
+        <div style="font-family:var(--font-mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">${escapeText(item.style)}</div>
       </div>
-      <button class="result-copy-btn" onclick="copyResult(this, ${JSON.stringify(item.tagline)})">Copy</button>
+      <button class="result-copy-btn" type="button">Copy</button>
     `;
+    card.querySelector('.result-copy-btn').addEventListener('click', event => copyResult(event.currentTarget, String(item.tagline ?? '')));
     grid.appendChild(card);
   });
   document.getElementById('results').classList.add('active');

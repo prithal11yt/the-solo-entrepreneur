@@ -514,8 +514,9 @@ function renderResults(raw) {
       </div>
       <div class="result-text">${escapeHtml(item.body)}</div>
       ${item.note ? `<div style="font-family:var(--font);font-size:15px;color:var(--muted);font-style:italic;margin-top:4px">→ ${escapeHtml(item.note)}</div>` : ''}
-      <button class="result-copy-btn" onclick="copyResult(this, ${JSON.stringify(copyText)})">Copy</button>
+      <button class="result-copy-btn" type="button">Copy</button>
     `;
+    card.querySelector('.result-copy-btn').addEventListener('click', event => copyResult(event.currentTarget, String(copyText ?? '')));
     grid.appendChild(card);
   });
 

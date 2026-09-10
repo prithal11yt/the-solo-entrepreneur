@@ -578,14 +578,14 @@ function renderProductCard(order) {
           </svg>
           📁 Open ${l.label}
         </a>`).join('')
-    : `<p class="mpc-note">📅 Booking link will be sent to <strong>${order.customer_email}</strong> within 24 hours of purchase.</p>
+    : `<p class="mpc-note">📅 Booking link will be sent to <strong>${escapeText(order.customer_email)}</strong> within 24 hours of purchase.</p>
        <a href="mailto:prithal@thesoloentrepreneur.in?subject=Consultation Booking - ${encodeURIComponent(order.product_name)}" class="btn sm">Email to Schedule →</a>`;
 
   return `
     <div class="my-product-card ${isDigital ? '' : 'consultation'}">
       <div class="mpc-icon">${icon}</div>
       <div>
-        <div class="mpc-name">${order.product_name}</div>
+        <div class="mpc-name">${escapeText(order.product_name)}</div>
         <div class="mpc-date">Purchased ${date}</div>
       </div>
       <div class="mpc-amount">${amount}</div>
