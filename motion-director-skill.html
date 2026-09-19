@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QRXY0C7RZR');
+</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#141414"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Motion Director — Turn a Video Script Into Motion Graphics (Free Skill) | The Solo Entrepreneur</title>
+<meta name="description" content="Download the free Motion Director skill: paste a video script, it picks the moments that need a graphic, fetches the real logos and screenshots, and renders broadcast-quality clips. Works with Claude, Codex and Cursor."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/motion-director-skill"/>
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The Solo Entrepreneur"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/motion-director-skill"/>
+<meta property="og:title" content="Motion Director — A Script In, Motion Graphics Out"/>
+<meta property="og:description" content="The skill I use to storyboard and render motion graphics for my videos. Free download, no signup."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/og-default.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_IN"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="Motion Director — Free Skill Download"/>
+<meta name="twitter:description" content="Paste a script, get a shot list, render the graphics. 35 templates, real assets fetched for you."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/og-default.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Motion Director",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS (recommended), Linux, Windows — Node 18+, ffmpeg",
+  "description": "An agent skill that reads a video script, decides which moments need a motion graphic, fetches the real logos and screenshots those moments name, and renders 1920x1080 ProRes clips with alpha.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "author": { "@type": "Person", "name": "Prithal Bhardwaj", "url": "https://www.thesoloentrepreneur.in" },
+  "publisher": { "@type": "Organization", "name": "The Solo Entrepreneur", "url": "https://www.thesoloentrepreneur.in" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the Motion Director skill?", "acceptedAnswer": { "@type": "Answer", "text": "It is a folder of instructions and templates that turns a coding agent into a motion designer. You paste a video script, it tells you which moments deserve a graphic, proposes a shot list for your approval, fetches the real logos and screenshots for anything the script names, and renders finished clips." } },
+    { "@type": "Question", "name": "Do I need to know how to code?", "acceptedAnswer": { "@type": "Answer", "text": "No. You open the folder inside Claude, Codex or Cursor and talk to it in plain English. The folder contains the instructions the agent follows, so you never write code or open an editing timeline." } },
+    { "@type": "Question", "name": "Are any API keys included in the download?", "acceptedAnswer": { "@type": "Answer", "text": "No. There are no keys, tokens or accounts in the download, and the skill does not need any paid API to render. The asset fetchers use public sources such as Simple Icons, Lucide and Mixkit." } },
+    { "@type": "Question", "name": "Why are there no sound effects in the download?", "acceptedAnswer": { "@type": "Answer", "text": "The sound system is wired up but ships empty, because the library it was built with is a commercial pack that is not mine to redistribute. Everything renders fine silently, and a README explains how to drop your own sounds in and rebuild the index in one command." } },
+    { "@type": "Question", "name": "What does it output?", "acceptedAnswer": { "@type": "Answer", "text": "1920x1080 ProRes 4444 .mov files with a transparent background for overlays, plus an H.264 preview of each shot. You drop them straight onto your timeline over your talking-head footage." } },
+    { "@type": "Question", "name": "Does it work on Windows?", "acceptedAnswer": { "@type": "Answer", "text": "The rendering works anywhere Node and ffmpeg run. The look was designed around SF Pro, which the setup script copies from a Mac, so on Windows or Linux you substitute a similar font such as Inter." } }
+  ]
+}
+</script>
+<style>
+/* Header */
+.post-header { padding: 40px 0 8px; }
+.post-breadcrumb { font-family:var(--font-mono); font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.post-breadcrumb a { color: var(--accent); }
+.post-cat { font-family:var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.post-title { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(26px, 5vw, 50px); line-height: .98; margin-bottom: 20px; }
+.post-title em { font-style: normal; color: var(--accent); }
+.post-subtitle { font-family:var(--font); font-size: 22px; color: var(--muted); max-width: 700px; margin-bottom: 24px; }
+.post-meta { font-family:var(--font); font-size: 15px; color: var(--muted); display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+.post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 40px 0 80px; align-items: start; }
+@media(max-width:1100px){ .post-layout { grid-template-columns: 1fr; gap: 40px; } .post-sidebar { order: 2; position: static; } }
+.post-content { max-width: 740px; }
+.post-content h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(20px, 3vw, 28px); line-height: 1.05; margin: 52px 0 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.post-content h2:first-of-type { margin-top: 0; border-top: none; }
+.post-content p { font-size: 18px; line-height: 1.65; margin-bottom: 18px; color: var(--ink); }
+.post-content ul, .post-content ol { padding-left: 24px; margin-bottom: 18px; }
+.post-content li { font-size: 18px; line-height: 1.6; margin-bottom: 8px; }
+.post-content strong { font-weight: 700; }
+.post-content a { color: var(--accent); text-decoration: underline; }
+
+/* Download CTA */
+.download-banner { background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin: 8px 0 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; ;color:#fff}
+.download-banner .db-icon { font-size: 48px; flex-shrink: 0; }
+.download-banner .db-text { flex: 1; min-width: 200px; }
+.download-banner h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: clamp(18px, 3vw, 24px); color: var(--paper); margin: 0 0 6px; border: none; padding: 0; }
+.download-banner p { font-family:var(--font); font-size: 19px; color: rgba(255,255,255,.7); margin: 0; }
+.post-content a.download-btn, .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--paper); border: 2px solid var(--paper); border-radius: var(--radius); font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 14px; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.download-btn:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,.08); }
+
+/* Feature grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.feature-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; background: var(--paper); }
+.feature-card .fc-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.feature-card h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 14px; margin-bottom: 6px; line-height: 1.2; }
+.feature-card p { font-family:var(--font); font-size: 15px; color: var(--muted); margin: 0; line-height: 1.4; }
+
+/* Callout */
+.callout { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin: 28px 0; background: var(--paper-2); }
+.callout.accent { background: #f3f3f3; border-color: var(--accent); }
+.callout-label { font-family:var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.callout p { margin: 0; font-size: 17px; }
+
+/* Included list (columns) */
+.mvp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin: 24px 0; }
+.mvp-col { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.mvp-col-head { background: var(--ink); color: var(--paper); font-family:var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; padding: 10px 14px; }
+.mvp-col ul { list-style: none; padding: 0; margin: 0; }
+.mvp-col li { font-family:var(--font); font-size: 14px; padding: 9px 14px; border-bottom: 1px solid var(--paper-2); line-height: 1.35; }
+.mvp-col li:last-child { border-bottom: none; }
+.mvp-col li::before { content: '✓ '; color: #2e7d32; font-weight: 700; }
+
+/* Badges */
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 24px; }
+.badge-pill { font-family:var(--font-mono); font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--line); background: var(--paper-2); }
+
+/* Quickstart code */
+.code-steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+.code-steps li { position: relative; padding: 0 0 18px 40px; font-size: 17px; }
+.code-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; background: var(--accent); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 13px; }
+code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; }
+.how-step-label { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 15px; margin: 30px 0 12px; display: flex; align-items: center; gap: 8px; }
+.how-step-label:first-of-type { margin-top: 14px; }
+
+/* Example prompt cards */
+.prompt-card { border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: var(--radius); background: var(--paper-2); padding: 14px 18px; margin: 12px 0; }
+.prompt-card .pc-label { font-family:var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
+.prompt-card p { font-family:var(--font-mono); font-size: 13.5px; line-height: 1.55; margin: 0; color: var(--ink); }
+
+/* Collapsible "for technical users" block */
+.tech-details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); margin: 22px 0; padding: 2px 22px; }
+.tech-details summary { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 13px; cursor: pointer; padding: 14px 0; list-style: none; color: var(--ink); }
+.tech-details summary::-webkit-details-marker { display: none; }
+.tech-details summary::before { content: '▸ '; color: var(--accent); }
+.tech-details[open] summary::before { content: '▾ '; }
+.tech-details:not([open]) > *:not(summary) { display: none; }
+.cmd-block { font-family:var(--font-mono); font-size: 12.5px; background: var(--ink); color: #e8e2d4; border-radius: var(--radius); padding: 16px 18px; overflow-x: auto; line-height: 1.75; margin: 4px 0 16px; white-space: pre; }
+.cmd-block .c { color: #8f8a7c; }
+
+/* Sidebar */
+.sidebar-cta { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; background: var(--accent); text-align: center; color: var(--paper); }
+.sidebar-cta h4 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 18px; margin-bottom: 8px; }
+.sidebar-cta p { font-size: 15px; margin-bottom: 16px; opacity: .9; }
+.sidebar-cta .download-btn { background: var(--paper); color: var(--ink); border-color: var(--ink); width: 100%; justify-content: center; }
+.sidebar-cta .download-btn:hover { box-shadow:0 12px 30px rgba(0,0,0,.08); }
+.sidebar-toc { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; background: var(--paper); margin-top: 20px; }
+.sidebar-toc h4 { font-family:var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+.sidebar-toc ol, .sidebar-toc ul { padding-left: 18px; }
+.sidebar-toc li { font-family:var(--font); font-size: 15px; margin-bottom: 8px; line-height: 1.3; }
+.sidebar-toc a { color: var(--ink); }
+.sidebar-toc a:hover { color: var(--accent); }
+
+/* Tags */
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+.post-tag { font-family:var(--font-mono); font-size: 12px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); color: var(--muted); }
+
+/* FAQ */
+.faq-section { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 24px; }
+.faq-section h2 { font-family:var(--font);font-weight:650;letter-spacing:-.02em; font-size: 26px; margin-bottom: 24px; }
+.faq-item { border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q { font-family:var(--font); font-size: 17px; font-weight: 700; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper-2); user-select: none; }
+.faq-q::after { content: '+'; font-family:var(--font-mono); font-size: 20px; color: var(--accent); flex-shrink: 0; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { font-family:var(--font); font-size: 17px; line-height: 1.6; padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+.faq-item.open .faq-a { max-height: 700px; padding: 16px 20px; }
+</style>
+</head>
+<body class="sub">
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><img class="mark" src="/images/logo-mark.svg" alt="" width="26" height="26">The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blog</a>
+    <a href="tools.html">Tools</a>
+    <a href="community.html">Community</a>
+    <a href="account.html" id="navAccountLink">Log in</a>
+    <a href="products.html#lead" class="nav-cta">Get free eBook</a>
+  </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
+</div>
+
+<div class="container">
+  <div class="post-header">
+    <div class="post-breadcrumb"><a href="blog.html">Blog</a> &rsaquo; Free Tools &rsaquo; Motion Director</div>
+    <div class="post-cat">Free Download &middot; Agent Skill &middot; Motion Graphics</div>
+    <h1 class="post-title">MOTION <em>DIRECTOR</em><br>SKILL</h1>
+    <p class="post-subtitle">Paste a video script. It tells you which moments actually need a graphic, fetches the real logos and screenshots for everything the script names, and renders the clips. No editing timeline, no design work.</p>
+    <div class="post-meta">
+      <span>&#9997; Prithal Bhardwaj</span>
+      <span>&#127916; 35 templates</span>
+      <span>&#129302; Claude &middot; Codex &middot; Cursor</span>
+      <span>&#128230; 640 KB ZIP &middot; Free</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <main class="post-content">
+
+      <!-- Download Banner -->
+      <div class="download-banner">
+        <div class="db-icon">&#127916;</div>
+        <div class="db-text">
+          <h2>Download the Skill (ZIP)</h2>
+          <p>35 templates, asset fetchers, render pipeline and the instruction file your agent reads. Free, no signup.</p>
+        </div>
+        <a class="download-btn" href="/motion-director-skill.zip" download>&#11015; DOWNLOAD SKILL</a>
+      </div>
+
+      <h2 id="what">What This Is</h2>
+      <p>Most of the work in a good explainer video is not the talking. It is the <strong>graphics that carry the proof</strong> — the number, the comparison, the actual pricing page you are describing. That work is slow, and it is why most videos end up as a face talking over nothing.</p>
+      <p>This is the skill I use to do that part. It is a folder of instructions plus a kit of templates. You point a coding agent at it, paste your script, and it behaves like a motion designer: it reads the whole script, decides where a visual earns its place, and leaves the emotional beats alone on your face.</p>
+      <p>It is built on <a href="https://remotion.dev" target="_blank" rel="noopener">Remotion</a>, which renders video from code. You never open Remotion yourself.</p>
+
+      <h2 id="what-it-does">What It Actually Does</h2>
+      <p>Four things, in order:</p>
+      <ol>
+        <li><strong>Reads your script like a designer.</strong> Numbers, lists, offers, comparisons and named tools get a graphic. Personal stories, honesty beats and transitions stay on your face, because a graphic would step on the moment.</li>
+        <li><strong>Fetches the real thing.</strong> If your script says "Supabase", it pulls the official Supabase mark. If it says "the docs say it's free", it screenshots that actual page and puts a ring around the sentence. Never a generic pictogram when the real asset exists.</li>
+        <li><strong>Shows you a shot list first.</strong> One row per proposed graphic: the script line, the template, what appears on screen, which assets, roughly how long. You approve or edit before anything renders.</li>
+        <li><strong>Renders the clips.</strong> 1920&times;1080 ProRes with a transparent background, so overlays drop straight onto your timeline over your footage.</li>
+      </ol>
+
+      <h2 id="inside">What's Inside</h2>
+      <ul>
+        <li><strong>35 templates</strong> — stat cards, comparisons, funnels, checklists, step flows, line and bar charts, quotes, pricing stacks, screen frames, plus overlays that sit beside your face: captions, side notes, lower thirds, progress trackers and highlight rings.</li>
+        <li><strong>Asset fetchers</strong> — official brand logos, Lucide icons, free Mixkit footage, full-page screenshots, and a screen recorder that scrolls and clicks a real page so you can show it instead of describing it.</li>
+        <li><strong>A coordinate prober</strong> — so a highlight ring lands exactly on the sentence or the number, measured rather than eyeballed.</li>
+        <li><strong>A render pipeline</strong> — batch rendering, plus a frame linter that flags clipped text, content sitting on the frame edge, and frozen holds.</li>
+        <li><strong>The instruction file</strong> — <code>SKILL.md</code>, which is what makes an agent behave like a director instead of guessing.</li>
+      </ul>
+
+      <h2 id="need">What You'll Need</h2>
+      <ul>
+        <li><strong>An agentic tool</strong> — Claude Code, Codex or Cursor. This is the only part that matters.</li>
+        <li><strong>Node and ffmpeg</strong> — the agent installs what it needs on the first run. If you do not have them, ask it to set them up and it will.</li>
+        <li><strong>A Mac, ideally.</strong> The look is designed around SF Pro, which the setup script copies from your system fonts. On Windows or Linux it still renders; swap in a similar font such as Inter.</li>
+        <li><strong>No API keys.</strong> Nothing here calls a paid service. There is nothing to sign up for.</li>
+      </ul>
+
+      <div class="callout accent">
+        <div class="callout-label">&#128273; What is not in the download</div>
+        <p>No keys, no tokens, no accounts, and none of my own brand or business data. The sound system is wired but the audio folder ships <strong>empty</strong> — the library it was built with is a commercial pack I cannot legally pass on. Everything renders fine silently, and a README inside shows you how to add your own sounds and rebuild the index with one command.</p>
+      </div>
+
+      <h2 id="how-to-use">How to Use It — Just Open It and Ask</h2>
+      <p>You do not install anything in the usual sense. You give the folder to your agent and talk to it.</p>
+      <ol>
+        <li><strong>Download and unzip.</strong> You get one folder called <code>motion-director</code>.</li>
+        <li><strong>Open that folder in your agent.</strong> In Claude Code, Codex or Cursor, open the folder as your project. That is the whole setup.</li>
+        <li><strong>Ask it to install itself:</strong><br><em>"Read motion-director/SKILL.md and set this up as a skill I can use."</em></li>
+        <li><strong>Then paste your script and ask for the graphics:</strong><br><em>"Here's my video script. Which parts need motion graphics? Give me a shot list first."</em></li>
+        <li><strong>Approve the shot list, then say:</strong> <em>"Looks good, render them."</em> Your clips land in an <code>out</code> folder.</li>
+      </ol>
+
+      <div class="callout accent">
+        <div class="callout-label">&#128161; Not technical? This part's for you</div>
+        <p>You never write code, never open a video editor, and never touch a template file. You talk to the agent in plain English and it does the work. If something looks wrong in a preview, you say what looks wrong — "the number is touching the line", "put the overlay on the other side" — and it fixes it and re-renders.</p>
+      </div>
+
+      <details class="tech-details">
+        <summary>Prefer to run things yourself? (for technical users)</summary>
+        <p>The kit is a standard Remotion project. <code>scripts/setup.sh</code> scaffolds a working project and copies fonts, <code>npx remotion studio</code> opens the live preview, and <code>scripts/render-batch.sh</code> takes a list of shots and renders them. Templates are plain React components in <code>kit/src/templates</code>, and each shot's content is a JSON file, so you can edit props by hand and re-render without touching the components.</p>
+      </details>
+
+      <h2 id="how-it-works">How It Works Behind the Scenes</h2>
+      <p>The skill's real value is not the templates, it is the judgement encoded in <code>SKILL.md</code>: rules for where a graphic helps and where it intrudes, roughly six to twelve graphics per ten minutes, on-screen text as a headline of three to six words rather than a transcript, and never two consecutive shots using the same entrance.</p>
+      <p>When no template fits, it is expected to design a new one rather than force a bad fit — roughly one shot in three on a real script ends up bespoke. It writes the design brief into the shot list so you approve the idea before it gets built.</p>
+      <p>Before rendering anything long it renders single frames and inspects them for clipped text, a number sitting on a line, or a ring that missed its target. That check is why the output looks deliberate rather than generated.</p>
+
+      <h2 id="examples">Example Prompts You Can Paste</h2>
+      <ul>
+        <li><em>"Read SKILL.md. Here's my script — which moments need a graphic and which should stay on my face?"</em></li>
+        <li><em>"Make a comparison graphic for the pricing section, and pull the real logos for every tool I mention."</em></li>
+        <li><em>"Screenshot that pricing page and put a ring on the free tier line."</em></li>
+        <li><em>"My face is on the left in this footage, so put all overlays on the right."</em></li>
+        <li><em>"Render everything we approved and give me the previews."</em></li>
+      </ul>
+
+      <div class="callout">
+        <div class="callout-label">The rule that runs the whole thing</div>
+        <p>Graphics carry information and proof. Your face carries trust and emotion. Never let one compete with the other.</p>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="post-sidebar">
+      <div class="sidebar-cta">
+        <h4>FREE DOWNLOAD</h4>
+        <p>35 templates, asset fetchers and the render pipeline. No signup, no keys.</p>
+        <a class="download-btn" href="/motion-director-skill.zip" download>&#11015; DOWNLOAD ZIP</a>
+      </div>
+      <div class="sidebar-toc">
+        <h4>On This Page</h4>
+        <ol>
+          <li><a href="#what">What This Is</a></li>
+          <li><a href="#what-it-does">What It Actually Does</a></li>
+          <li><a href="#inside">What's Inside</a></li>
+          <li><a href="#need">What You'll Need</a></li>
+          <li><a href="#how-to-use">How to Use It</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#examples">Example Prompts</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-toc">
+        <h4>More From Me</h4>
+        <ul style="padding-left:0;list-style:none;">
+          <li style="margin-bottom:10px;"><a href="reel-automation.html" style="color:var(--accent);">&rarr; AI Reel Automation Engine</a></li>
+          <li style="margin-bottom:10px;"><a href="scroll-site-generator-skill.html" style="color:var(--accent);">&rarr; Scroll-Site Generator</a></li>
+          <li><a href="community.html" style="color:var(--muted);">&rarr; Founders Wing</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><img class="mark" src="/images/logo-mark-light.svg" alt="" width="30" height="30">The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="products.html">Products</a>
+          <a href="products.html#templates">Automation templates</a>
+          <a href="products.html#pdf">Business-idea ebooks</a>
+          <a href="blog.html">Playbooks &amp; blog</a>
+          <a href="tools.html">Free tools</a>
+          <a href="community.html">Founders Wing</a>
+          <a href="videos.html">Videos</a>
+          <a href="account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur.yt/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="mailto:prithal@thesoloentrepreneur.in">Contact</a>
+          <a href="return-policy.html">Return policy</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="site.js"></script>
+<script>
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
