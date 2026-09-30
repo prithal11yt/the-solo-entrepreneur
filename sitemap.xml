@@ -62,7 +62,19 @@
   </url>
   <url>
     <loc>https://www.thesoloentrepreneur.in/return-policy</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.thesoloentrepreneur.in/shipping-policy</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.thesoloentrepreneur.in/contact</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
