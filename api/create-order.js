@@ -4,8 +4,10 @@ export const config = { api: { bodyParser: { sizeLimit: '8kb' } } };
 // what a customer pays. Previously the client POSTed `amount` and this handler
 // trusted it, which meant anyone could buy a 9,999 membership for 1 rupee.
 const PLANS = {
-  starter: { id: 'fw-membership-starter', name: 'Founders Wing — Starter (6 Months)', amount: 599900 },
-  annual:  { id: 'fw-membership-annual',  name: 'Founders Wing — Annual (12 Months)', amount: 999900 },
+  // Cohort 2 list prices (Oct 2026). Code DIWALI (20%) brings them back to the
+  // founding ₹5,999 / ₹9,999.
+  starter: { id: 'fw-membership-starter', name: 'Founders Wing — Starter (6 Months)', amount: 749900 },
+  annual:  { id: 'fw-membership-annual',  name: 'Founders Wing — Annual (12 Months)', amount: 1249900 },
 };
 
 // Older cached copies of the checkout page send product_id instead of plan.
@@ -17,8 +19,8 @@ const PLAN_BY_PRODUCT_ID = Object.fromEntries(
 // the actual discount maths, so the code can't be used to invent a price.
 // Create/edit the underlying offer in Razorpay Dashboard -> Offers.
 const COUPONS = {
-  FESTIVAL: {
-    offerId: 'offer_TYJdxbaukr1WwP',
+  DIWALI: {
+    offerId: 'offer_TYJdxbaukr1WwP', // Razorpay's flat-20% offer, previously sold as FESTIVAL
     label: '20% off',
     plans: ['starter', 'annual'],
   },
