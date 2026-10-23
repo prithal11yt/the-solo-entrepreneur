@@ -361,16 +361,14 @@ const db = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpndWpwdHZtcmR1YXltdmhqd2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODY4MzgsImV4cCI6MjA5Mjk2MjgzOH0.NBSVC2_PWLtqpJZc937eOoebTosmRYwpHU-dDVcUUJo'
 );
 const RZP_KEY = 'rzp_live_SoVUf3reYGaO8O';
-const DRIVE = {
-  pdf:       'https://drive.google.com/drive/folders/1g7f5kgyb6T9nckjy0YgbhwhdkzU6g_R4',
-  templates: 'https://drive.google.com/drive/folders/1zGebVQl8VqALBg_jNFSGkuG32QsWi2QB'
-};
+// Download links are deliberately not in this file. After a verified payment,
+// /api/verify-payment returns the links for the product on that order.
 const PRODUCTS = {
-  pdf:       { name: '100 Business Ideas PDF', amount: 49900, afterNote: '📁 Your folder is ready — open it below.', links: [{ url: DRIVE.pdf, label: '100 Business Ideas Folder' }] },
-  templates: { name: 'Automation Templates Pack', amount: 49900, afterNote: '📁 Your folder is ready — open it below.', links: [{ url: DRIVE.templates, label: 'Automation Templates Folder' }] },
-  combo:     { name: 'Combo Deal — PDF + Templates', amount: 79900, afterNote: '📁 Both folders are ready — open them below.', links: [{ url: DRIVE.pdf, label: '100 Business Ideas Folder' }, { url: DRIVE.templates, label: 'Automation Templates Folder' }] },
-  consult30: { name: '1:1 Consultation — 30 Minutes', amount: 99900, afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.', links: [], whatsapp: '30-minute consultation' },
-  consult60: { name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900, afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.', links: [], whatsapp: '1-hour deep dive session' }
+  pdf:       { name: '100 Business Ideas PDF', amount: 49900, digital: true, afterNote: '📁 Your folder is ready — open it below.' },
+  templates: { name: 'Automation Templates Pack', amount: 49900, digital: true, afterNote: '📁 Your folder is ready — open it below.' },
+  combo:     { name: 'Combo Deal — PDF + Templates', amount: 79900, digital: true, afterNote: '📁 Both folders are ready — open them below.' },
+  consult30: { name: '1:1 Consultation — 30 Minutes', amount: 99900, afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.', whatsapp: '30-minute consultation' },
+  consult60: { name: '1:1 Consultation — 1 Hour Deep Dive', amount: 199900, afterNote: '✅ Payment confirmed! Tap below to book your slot on WhatsApp.', whatsapp: '1-hour deep dive session' }
 };
 let activeProduct = null, activeProductId = null, pendingProductId = null;
 
@@ -481,25 +479,30 @@ async function submitCheckout(e) {
     name: 'The Solo Entrepreneur', description: product.name, image: 'https://www.founderswing.com/logo-icon.png',
     prefill: { name, email }, notes: { product: product.name }, theme: { color: '#141414' },
     handler: async function (response) {
+      let verifyData;
       try {
         const verifyRes = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ razorpay_order_id: response.razorpay_order_id, razorpay_payment_id: response.razorpay_payment_id, razorpay_signature: response.razorpay_signature }) });
-        const verifyData = await verifyRes.json();
+        verifyData = await verifyRes.json();
         if (!verifyData.valid) { alert('Payment verification failed. If money was deducted it will be refunded automatically.\n\nContact: prithal@thesoloentrepreneur.in'); return; }
       } catch (err) { alert('Could not verify payment. Please contact prithal@thesoloentrepreneur.in with Payment ID: ' + response.razorpay_payment_id); return; }
 
-      db.rpc('record_purchase', { p_name: name, p_email: email, p_phone: '', p_product_id: prodId, p_product_name: product.name, p_amount_paise: product.amount, p_razorpay_payment_id: response.razorpay_payment_id, p_user_id: user?.id || null })
-        .then(({ error }) => { if (error) console.error('[TSE] DB error:', error.message); });
-
+      // The purchase is recorded server-side by the Razorpay webhook. The links
+      // come from the server, for the product on the verified order.
+      const links = Array.isArray(verifyData.links) ? verifyData.links : [];
+      const linksMissing = product.digital && links.length === 0;
       const linksEl = document.getElementById('successLinks'); const linkItems = [];
-      (product.links || []).forEach(l => linkItems.push(`<a href="${l.url}" target="_blank" rel="noopener" class="btn" style="justify-content:center">📁 Open ${l.label} →</a>`));
+      links.forEach(l => linkItems.push(`<a href="${escapeText(l.url)}" target="_blank" rel="noopener" class="btn" style="justify-content:center">📁 Open ${escapeText(l.label)} →</a>`));
+      if (linksMissing) linkItems.push(`<a href="/account" class="btn" style="justify-content:center">Open my account →</a>`);
       if (product.whatsapp) {
         const waText = encodeURIComponent(`Hi Prithal, I just paid for the ${product.whatsapp}. Please help me book a slot.`);
         linkItems.push(`<a href="https://wa.me/916239330641?text=${waText}" target="_blank" rel="noopener" class="btn" style="justify-content:center;background:#25D366;color:#fff;border-color:#25D366">💬 Book a time on WhatsApp →</a>`);
       }
       linksEl.style.display = linkItems.length ? 'flex' : 'none'; linksEl.innerHTML = linkItems.join('');
       document.getElementById('successPaymentId').textContent = response.razorpay_payment_id;
-      document.getElementById('successMessage').textContent = product.afterNote;
+      document.getElementById('successMessage').textContent = linksMissing
+        ? `✅ Payment confirmed. Your download links are waiting in your account — sign in with ${email} to open them.`
+        : product.afterNote;
       document.getElementById('successOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     },
@@ -532,8 +535,10 @@ function showLeadDownload() {
   document.getElementById('leadDownloadBox').style.display = 'flex';
   document.getElementById('leadFootnote').style.display = 'none';
 }
-async function recordFreeEbook(user) {
-  await db.rpc('record_purchase', { p_name: user.user_metadata?.full_name || user.email.split('@')[0], p_email: user.email, p_phone: '', p_product_id: 'free_ebook', p_product_name: '10 Startup Ideas eBook (Free)', p_amount_paise: 0, p_razorpay_payment_id: 'FREE_EBOOK_' + user.id, p_user_id: user.id });
+async function recordFreeEbook() {
+  // The server records it against whoever is signed in; nothing here is trusted.
+  const { error } = await db.rpc('claim_free_ebook');
+  if (error) console.error('[TSE] free ebook not recorded:', error.message);
 }
 async function claimEbook(mode) {
   const errEl = document.getElementById('leadError'); errEl.textContent = ''; errEl.className = 'auth-error';

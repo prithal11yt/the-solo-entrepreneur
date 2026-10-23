@@ -353,23 +353,15 @@ const db = createClient(
   { auth: { detectSessionInUrl: false, persistSession: true, autoRefreshToken: true } }
 );
 
-// Google Drive folder links per product
-const DRIVE = {
-  pdf:       'https://drive.google.com/drive/folders/1g7f5kgyb6T9nckjy0YgbhwhdkzU6g_R4',
-  templates: 'https://drive.google.com/drive/folders/1zGebVQl8VqALBg_jNFSGkuG32QsWi2QB'
-};
-
 const EBOOK_URL = 'https://docs.google.com/presentation/d/1t_snK4kbgu8ZEUF4e-CPlChd85Clpy2BC2RzMH7ZDxM/edit?usp=sharing';
 
-const PRODUCT_LINKS = {
-  pdf:        [{ url: DRIVE.pdf,       label: '100 Business Ideas Folder' }],
-  templates:  [{ url: DRIVE.templates, label: 'Automation Templates Folder' }],
-  combo:      [
-    { url: DRIVE.pdf,       label: '100 Business Ideas Folder' },
-    { url: DRIVE.templates, label: 'Automation Templates Folder' }
-  ],
-  free_ebook: [{ url: EBOOK_URL, label: '10 Startup Ideas eBook' }]
-};
+// Paid download links are deliberately not in this file. loadOrders() asks the
+// server (my_downloads) for the links this account's own paid orders unlock.
+const FREE_LINKS = { free_ebook: [{ url: EBOOK_URL, label: '10 Startup Ideas eBook' }] };
+let PRODUCT_LINKS = { ...FREE_LINKS };            // product id -> links
+let ASSET_LINKS = {};                             // asset key  -> link (member library)
+const LIBRARY_ASSET = { pdf: 'pdf_folder', templates: 'templates_folder' };
+const DIGITAL_PRODUCTS = new Set(['pdf', 'templates', 'combo', 'free_ebook']);
 
 const PRODUCT_ICONS = { pdf: '📄', templates: '⚡', combo: '🎁', consult30: '💬', consult60: '🎯', free_ebook: '📖' };
 
@@ -502,6 +494,8 @@ async function loadOrders(user) {
     return;
   }
 
+  await loadDownloads();
+
   const membershipOrder = orders.find(o => (o.product_id || '').startsWith('fw-membership-'));
   const isMember = !!membershipOrder;
 
@@ -526,6 +520,35 @@ async function loadOrders(user) {
   document.getElementById('productsGrid').innerHTML = cards.join('');
 }
 
+async function loadDownloads() {
+  PRODUCT_LINKS = { ...FREE_LINKS };
+  ASSET_LINKS = {};
+  try {
+    const { data, error } = await db.rpc('my_downloads');
+    if (error) throw error;
+    for (const d of data || []) {
+      const link = { url: d.url, label: d.label };
+      (PRODUCT_LINKS[d.product_id] ||= []).push(link);
+      ASSET_LINKS[d.asset_key] = link;
+    }
+  } catch (e) {
+    console.error('[TSE] download links not loaded');
+  }
+}
+
+function downloadButtons(links) {
+  if (!links.length) {
+    return `<p class="mpc-note">We couldn't load your download link just now. Refresh the page, or email <a href="mailto:prithal@thesoloentrepreneur.in">prithal@thesoloentrepreneur.in</a>.</p>`;
+  }
+  return links.map(l => `
+    <a class="dl-btn" href="${escapeText(l.url)}" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      </svg>
+      📁 Open ${escapeText(l.label)}
+    </a>`).join('');
+}
+
 function renderMemberBanner(order) {
   const el = document.getElementById('memberBanner');
   if (!el) return;
@@ -545,14 +568,9 @@ function renderMemberBanner(order) {
 function renderLibraryCard(pid) {
   const icon    = PRODUCT_ICONS[pid] || '📦';
   const name    = PRODUCT_NAMES[pid] || pid;
-  const links   = PRODUCT_LINKS[pid] || [];
-  const actions = links.map(l => `
-    <a class="dl-btn" href="${l.url}" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-      </svg>
-      📁 Open ${l.label}
-    </a>`).join('');
+  const asset   = ASSET_LINKS[LIBRARY_ASSET[pid]];
+  const links   = FREE_LINKS[pid] || (asset ? [asset] : []);
+  const actions = downloadButtons(links);
   return `
     <div class="my-product-card">
       <div class="mpc-icon">${icon}</div>
@@ -566,19 +584,12 @@ function renderLibraryCard(pid) {
 
 function renderProductCard(order) {
   const icon      = PRODUCT_ICONS[order.product_id] || '📦';
-  const links     = PRODUCT_LINKS[order.product_id];
-  const isDigital = !!links;
+  const isDigital = DIGITAL_PRODUCTS.has(order.product_id);
   const date      = new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   const amount    = '₹' + (order.amount_paise / 100);
 
   const actions = isDigital
-    ? links.map(l => `
-        <a class="dl-btn" href="${l.url}" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-          </svg>
-          📁 Open ${l.label}
-        </a>`).join('')
+    ? downloadButtons(PRODUCT_LINKS[order.product_id] || [])
     : `<p class="mpc-note">📅 Booking link will be sent to <strong>${escapeText(order.customer_email)}</strong> within 24 hours of purchase.</p>
        <a href="mailto:prithal@thesoloentrepreneur.in?subject=Consultation Booking - ${encodeURIComponent(order.product_name)}" class="btn sm">Email to Schedule →</a>`;
 

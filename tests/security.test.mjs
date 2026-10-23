@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { createHmac } from 'node:crypto';
 import { Readable } from 'node:stream';
 
@@ -78,12 +78,47 @@ test('valid coupon and full-price fallback still work',async t=>{
   const res=response();await createOrder(request({plan:'starter',coupon:'DIWALI',name:'Test',email:'test@example.com'}),res);
   assert.equal(payloads[0].force_offer,true);assert.equal(payloads[1].offers,undefined);assert.equal(payloads[1].amount,749900);assert.equal(res.body.couponApplied,false);
 });
-test('payment signatures accept genuine data and reject tampering',async()=>{
-  const body={razorpay_order_id:'order_test',razorpay_payment_id:'pay_test'};
-  body.razorpay_signature=createHmac('sha256','test-only').update('order_test|pay_test').digest('hex');
-  const ok=response();verify(request(body),ok);assert.equal(ok.body.valid,true);
-  const bad=response();verify(request({...body,razorpay_payment_id:'pay_changed'}),bad);assert.equal(bad.statusCode,400);
-  for(const signature of ['x',{},'g'.repeat(64)]) {const res=response();verify(request({...body,razorpay_signature:signature}),res);assert.equal(res.statusCode,400);}
+const signed=(orderId,paymentId)=>({razorpay_order_id:orderId,razorpay_payment_id:paymentId,
+  razorpay_signature:createHmac('sha256','test-only').update(`${orderId}|${paymentId}`).digest('hex')});
+test('payment signatures accept genuine data and reject tampering',async t=>{
+  process.env.SUPABASE_URL='https://database.example';process.env.SUPABASE_SERVICE_ROLE_KEY='test-only';
+  t.mock.method(globalThis,'fetch',async url=>({ok:true,json:async()=>String(url).includes('razorpay')?{notes:{product_id:'consult30'}}:[]}));
+  const body=signed('order_test','pay_test');
+  const ok=response();await verify(request(body),ok);assert.equal(ok.body.valid,true);
+  const bad=response();await verify(request({...body,razorpay_payment_id:'pay_changed'}),bad);assert.equal(bad.statusCode,400);
+  for(const signature of ['x',{},'g'.repeat(64)]) {const res=response();await verify(request({...body,razorpay_signature:signature}),res);assert.equal(res.statusCode,400);}
+});
+test('download links come from the paid order, never from the browser',async t=>{
+  process.env.SUPABASE_URL='https://database.example';process.env.SUPABASE_SERVICE_ROLE_KEY='test-only';
+  const calls=[];t.mock.method(globalThis,'fetch',async(url,opts)=>{
+    calls.push({url:String(url),body:opts?.body&&JSON.parse(opts.body)});
+    if(String(url)==='https://api.razorpay.com/v1/orders/order_paid') return {ok:true,json:async()=>({notes:{product_id:'pdf'}})};
+    return {ok:true,json:async()=>[{asset_key:'pdf_folder',label:'100 Business Ideas Folder',url:'https://drive.example/pdf'},{asset_key:'x',label:'bad',url:'javascript:alert(1)'}]};
+  });
+  // The browser claiming a pricier product changes nothing: the order says pdf.
+  const res=response();await verify(request({...signed('order_paid','pay_paid'),product_id:'combo'}),res);
+  assert.equal(res.body.valid,true);assert.equal(res.body.deliveryError,false);
+  assert.deepEqual(res.body.links,[{label:'100 Business Ideas Folder',url:'https://drive.example/pdf'}]);
+  assert.equal(calls[1].url,'https://database.example/rest/v1/rpc/downloads_for_product');
+  assert.deepEqual(calls[1].body,{p_product_id:'pdf'});
+});
+test('a forged payment never reaches the order or the links',async t=>{
+  let calls=0;t.mock.method(globalThis,'fetch',async()=>{calls++;throw Error('must not fetch');});
+  const res=response();await verify(request({...signed('order_paid','pay_paid'),razorpay_order_id:'order_other'}),res);
+  assert.equal(res.statusCode,400);assert.equal(res.body.links,undefined);assert.equal(calls,0);
+});
+test('a genuine payment still verifies when the link lookup fails',async t=>{
+  process.env.SUPABASE_URL='https://database.example';process.env.SUPABASE_SERVICE_ROLE_KEY='test-only';
+  t.mock.method(globalThis,'fetch',async()=>{throw Error('network down');});
+  const res=response();await verify(request(signed('order_paid','pay_paid')),res);
+  assert.equal(res.body.valid,true);assert.deepEqual(res.body.links,[]);assert.equal(res.body.deliveryError,true);
+});
+test('no page or function ships a paid Drive folder link',()=>{
+  const root=new URL('../',import.meta.url);
+  const offenders=readdirSync(root,{recursive:true})
+    .filter(f=>/\.(html|js)$/.test(f)&&!/(^|\/)(node_modules|graphify-out|tests)\//.test(f)&&!/backup/.test(f))
+    .filter(f=>/drive\.google\.com\/drive\/folders\//.test(readFileSync(new URL(f,root),'utf8')));
+  assert.deepEqual(offenders,[]);
 });
 async function sendWebhook(raw, signature) {
   const req=Readable.from([Buffer.from(raw)]);req.method='POST';req.headers={'x-razorpay-signature':signature};
@@ -115,4 +150,15 @@ test('a genuine captured membership reaches both purchase stores',async t=>{
   assert.equal(res.body.success,true);assert.equal(calls.length,3);
   assert.equal(calls[1].body.p_user_id,null);assert.equal(calls[1].body.p_razorpay_payment_id,'pay_test');
   assert.equal(calls[2].body.plan,'annual');assert.equal(calls[2].body.razorpay_payment_id,'pay_test');
+});
+test('a failed purchase write is retried, not dropped',async t=>{
+  process.env.SUPABASE_URL='https://database.example';process.env.SUPABASE_SERVICE_ROLE_KEY='test-only';
+  const raw=JSON.stringify({event:'payment.captured',payload:{payment:{entity:{order_id:'order_test',id:'pay_test',amount:49900,currency:'INR'}}}});
+  const sig=createHmac('sha256','test-only-webhook').update(raw).digest('hex');
+  const notes={ok:true,json:async()=>({notes:{product_id:'pdf',product_name:'PDF',email:'test@example.com',name:'Test'}})};
+  t.mock.method(globalThis,'fetch',async url=>String(url).startsWith('https://api.razorpay.com')?notes:{ok:false,status:500,json:async()=>({})});
+  assert.equal((await sendWebhook(raw,sig)).statusCode,503);
+  t.mock.restoreAll();
+  t.mock.method(globalThis,'fetch',async()=>({ok:false,status:500,json:async()=>({})}));
+  assert.equal((await sendWebhook(raw,sig)).statusCode,503);
 });

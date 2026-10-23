@@ -77,12 +77,15 @@ export default async function handler(req, res) {
     const orderRes = await fetch(`https://api.razorpay.com/v1/orders/${orderId}`, {
       headers: { Authorization: `Basic ${credentials}` },
     });
+    if (!orderRes.ok) throw new Error(`order fetch returned ${orderRes.status}`);
     const order = await orderRes.json();
     notes = order.notes || {};
   } catch (err) {
     console.error('[webhook] Failed to fetch order notes:');
-    // Return 200 so Razorpay doesn't keep retrying; we'll handle manually
-    return res.status(200).json({ received: true, warning: 'Could not fetch order' });
+    // 503 so Razorpay retries. This webhook is the only place a purchase gets
+    // recorded, so a transient failure must not lose it. Retries are safe:
+    // record_purchase ignores a payment id it has already stored.
+    return res.status(503).json({ received: false, error: 'Could not fetch order' });
   }
 
   const productId   = notes.product_id   || '';
@@ -124,14 +127,14 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('[webhook] Supabase RPC fetch failed:');
-    // 200 to avoid Razorpay retries
-    return res.status(200).json({ received: true, warning: 'DB request failed' });
+    // 503 so Razorpay retries (see above); runtime logs don't last long enough
+    // to fix lost purchases by hand.
+    return res.status(503).json({ received: false, error: 'DB request failed' });
   }
 
   if (!rpcRes.ok) {
     console.error('[webhook] record_purchase failed with status', rpcRes.status);
-    // 200 to avoid Razorpay retries — investigate logs manually
-    return res.status(200).json({ received: true, warning: 'DB write failed' });
+    return res.status(503).json({ received: false, error: 'DB write failed' });
   }
 
   console.log('[webhook] Purchase recorded');
