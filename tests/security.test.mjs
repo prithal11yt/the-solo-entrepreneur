@@ -48,7 +48,23 @@ test('provider errors do not reach the browser',async t=>{
 test('server price and identity cannot be replaced by caller values',async t=>{
   let payload;t.mock.method(globalThis,'fetch',async(url,opts)=>{payload=JSON.parse(opts.body);return {ok:true,json:async()=>({id:'order_test'})};});
   const res=response();await createOrder(request({plan:'annual',name:'Test',email:'test@example.com',amount:1,user_id:'another-user'}),res);
-  assert.equal(res.statusCode,200);assert.equal(payload.amount,999900);assert.equal(payload.notes.user_id,'');
+  assert.equal(res.statusCode,200);assert.equal(payload.amount,1249900);assert.equal(payload.notes.user_id,'');
+});
+test('every product the products page sells can be checked out at its listed price',async t=>{
+  // Guards the regression where pricing moved server-side but only the
+  // membership plans were added, so every products-page checkout returned "Invalid plan".
+  const page=readFileSync(new URL('../products.html',import.meta.url),'utf8');
+  const block=page.slice(page.indexOf('const PRODUCTS = {'),page.indexOf('};',page.indexOf('const PRODUCTS = {')));
+  const products=[...block.matchAll(/^\s*([a-z0-9_]+):\s*\{\s*name:\s*'([^']+)',\s*amount:\s*(\d+)/gm)].map(m=>({id:m[1],name:m[2],amount:Number(m[3])}));
+  assert.ok(products.length>=5,'expected to find the products page catalogue');
+  let payload;t.mock.method(globalThis,'fetch',async(url,opts)=>{payload=JSON.parse(opts.body);return {ok:true,json:async()=>({id:'order_test'})};});
+  for(const p of products){
+    // Send exactly what the page sends, including a forged amount the server must ignore.
+    const res=response();await createOrder(request({amount:1,product_id:p.id,product_name:'tampered',name:'Test',email:'test@example.com'}),res);
+    assert.equal(res.statusCode,200,`${p.id} should create an order`);
+    assert.equal(payload.amount,p.amount,`${p.id} server price should match the page`);
+    assert.equal(payload.notes.product_id,p.id);assert.equal(payload.notes.product_name,p.name);
+  }
 });
 test('invalid checkout and inherited property names cannot create orders',async t=>{
   let calls=0;t.mock.method(globalThis,'fetch',async()=>{calls++;throw Error('must not fetch');});
@@ -59,8 +75,8 @@ test('invalid checkout and inherited property names cannot create orders',async 
 });
 test('valid coupon and full-price fallback still work',async t=>{
   const payloads=[];t.mock.method(globalThis,'fetch',async(url,opts)=>{payloads.push(JSON.parse(opts.body));return {ok:payloads.length>1,status:400,json:async()=>payloads.length>1?{id:'order_retry'}:{error:{description:'private diagnostic'}}};});
-  const res=response();await createOrder(request({plan:'starter',coupon:'FESTIVAL',name:'Test',email:'test@example.com'}),res);
-  assert.equal(payloads[0].force_offer,true);assert.equal(payloads[1].offers,undefined);assert.equal(payloads[1].amount,599900);assert.equal(res.body.couponApplied,false);
+  const res=response();await createOrder(request({plan:'starter',coupon:'DIWALI',name:'Test',email:'test@example.com'}),res);
+  assert.equal(payloads[0].force_offer,true);assert.equal(payloads[1].offers,undefined);assert.equal(payloads[1].amount,749900);assert.equal(res.body.couponApplied,false);
 });
 test('payment signatures accept genuine data and reject tampering',async()=>{
   const body={razorpay_order_id:'order_test',razorpay_payment_id:'pay_test'};

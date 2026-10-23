@@ -8,9 +8,20 @@ const PLANS = {
   // founding ₹5,999 / ₹9,999.
   starter: { id: 'fw-membership-starter', name: 'Founders Wing — Starter (6 Months)', amount: 749900 },
   annual:  { id: 'fw-membership-annual',  name: 'Founders Wing — Annual (12 Months)', amount: 1249900 },
+
+  // The Solo Entrepreneur products page. Each id must match the product id that
+  // products.html sends and account.html unlocks downloads by, and each amount
+  // must match the price shown on the page. Every product sold there needs an
+  // entry here, or its checkout fails with "Invalid plan".
+  pdf:       { id: 'pdf',       name: '100 Business Ideas PDF',               amount: 49900 },
+  templates: { id: 'templates', name: 'Automation Templates Pack',            amount: 49900 },
+  combo:     { id: 'combo',     name: 'Combo Deal — PDF + Templates',         amount: 79900 },
+  consult30: { id: 'consult30', name: '1:1 Consultation — 30 Minutes',        amount: 99900 },
+  consult60: { id: 'consult60', name: '1:1 Consultation — 1 Hour Deep Dive',  amount: 199900 },
 };
 
-// Older cached copies of the checkout page send product_id instead of plan.
+// The products page and older cached copies of the membership checkout send
+// product_id instead of plan.
 const PLAN_BY_PRODUCT_ID = Object.fromEntries(
   Object.entries(PLANS).map(([key, p]) => [p.id, key])
 );
