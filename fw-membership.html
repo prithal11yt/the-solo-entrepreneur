@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Contact details arrive in the URL fragment. Take them off the address before the
+     Google tag reads it, so they never reach analytics. Query params are old links. -->
+<script>
+  (function () {
+    var hash = new URLSearchParams(location.hash.slice(1));
+    var url = new URL(location.href);
+    var found = false;
+    window.fwPrefill = {};
+    ['name', 'email', 'whatsapp'].forEach(function (key) {
+      var value = hash.get(key) || url.searchParams.get(key) || '';
+      if (value || url.searchParams.has(key) || hash.has(key)) found = true;
+      window.fwPrefill[key] = value;
+      url.searchParams.delete(key);
+    });
+    if (found) {
+      url.hash = '';
+      history.replaceState(null, '', url);
+    }
+  })();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
 <script>
@@ -747,15 +767,15 @@ function closeExpress(e) {
 
 document.addEventListener('DOMContentLoaded', () => { if (!offerRunning()) { document.querySelectorAll('.plan-deal, #dealLine').forEach(el => el.remove()); } });
 
-/* ===== Entry from the URL (?plan=starter|annual&name=&email=&whatsapp=&coupon=) ===== */
+/* ===== Entry from the URL (?plan=starter|annual&coupon=#name=&email=&whatsapp=) ===== */
 (function () {
   const params = new URLSearchParams(window.location.search);
   const plan = params.get('plan');
   if (plan !== 'starter' && plan !== 'annual') return;
   const prefill = {
-    name:     (params.get('name') || '').trim(),
-    email:    (params.get('email') || '').trim(),
-    whatsapp: (params.get('whatsapp') || '').trim(),
+    name:     window.fwPrefill.name.trim(),
+    email:    window.fwPrefill.email.trim(),
+    whatsapp: window.fwPrefill.whatsapp.trim(),
     coupon:   (params.get('coupon') || '').trim().toUpperCase(),
   };
   if (!prefill.coupon && offerRunning()) prefill.coupon = OFFER_CODE;
