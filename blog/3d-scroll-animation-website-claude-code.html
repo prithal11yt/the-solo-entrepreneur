@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#141414"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Create a 3D Scroll Animation Website with Claude Code</title>
+<meta name="description" content="Free 15-page playbook: build a cinematic 3D scroll website with a 3D mascot and a real-looking shop using Claude Code, without typing a line of code."/>
+<link rel="canonical" href="https://www.thesoloentrepreneur.in/blog/3d-scroll-animation-website-claude-code"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://www.thesoloentrepreneur.in/blog/3d-scroll-animation-website-claude-code"/>
+<meta property="og:title" content="How to Create Cinematic 3D Scroll Animation Websites Using Claude Code"/>
+<meta property="og:description" content="A 3D mascot, a real-looking shop and a story that plays as you scroll. Ten steps, 17 tools, two days, zero lines typed by hand. Free PDF playbook."/>
+<meta property="og:image" content="https://www.thesoloentrepreneur.in/images/og-3d-scroll-playbook.jpg"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="article:author" content="Prithal Bhardwaj"/>
+<meta property="article:published_time" content="2026-11-12"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@NotesByPrithal"/>
+<meta name="twitter:title" content="How to Create Cinematic 3D Scroll Animation Websites Using Claude Code"/>
+<meta name="twitter:description" content="A 3D mascot, a real-looking shop and a story that plays as you scroll. Ten steps, two days, zero lines typed by hand. Free PDF playbook."/>
+<meta name="twitter:image" content="https://www.thesoloentrepreneur.in/images/og-3d-scroll-playbook.jpg"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../site.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Create Cinematic 3D Scroll Animation Websites Using Claude Code","description":"A step-by-step playbook for building a scroll-driven 3D website with a mascot and a real-looking shop using Claude Code, Blender, three.js and GSAP ScrollTrigger.","image":"https://www.thesoloentrepreneur.in/images/og-3d-scroll-playbook.jpg","author":{"@type":"Person","name":"Prithal Bhardwaj","url":"https://www.thesoloentrepreneur.in"},"publisher":{"@type":"Organization","name":"The Solo Entrepreneur","url":"https://www.thesoloentrepreneur.in","logo":{"@type":"ImageObject","url":"https://www.thesoloentrepreneur.in/images/icon-512.png"}},"datePublished":"2026-11-12","dateModified":"2026-11-12","mainEntityOfPage":"https://www.thesoloentrepreneur.in/blog/3d-scroll-animation-website-claude-code"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thesoloentrepreneur.in/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.thesoloentrepreneur.in/blog"},{"@type":"ListItem","position":3,"name":"3D Scroll Animation Website with Claude Code","item":"https://www.thesoloentrepreneur.in/blog/3d-scroll-animation-website-claude-code"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do I need to know how to code to build a 3D scroll website with Claude Code?","acceptedAnswer":{"@type":"Answer","text":"No. The example site in the playbook was built in two days with zero lines of code typed by hand. You describe the story, look at each result and say what feels wrong in plain words. Claude Code writes the code, runs Blender and tests the site in a browser."}},
+{"@type":"Question","name":"What tools do I need for a 3D scroll animation website?","acceptedAnswer":{"@type":"Answer","text":"Seventeen tools are involved, but you only touch four yourself: Claude Code, an AI image generator, Tripo AI and Mixamo. Claude installs and runs the rest, including Blender, three.js, GSAP ScrollTrigger, Lenis, Vite and glTF-Transform. Everything except Claude Code and the image generator has a free option."}},
+{"@type":"Question","name":"How much does it cost to build?","acceptedAnswer":{"@type":"Answer","text":"Claude Code needs a paid Claude plan; Pro was about ₹2,399 a month in September 2026. Tripo has free credits and a paid tier. Blender, Mixamo, three.js, GSAP and the other tools are free. Check each tool's own site before you start because prices change."}},
+{"@type":"Question","name":"Will a 3D scroll website work on phones?","acceptedAnswer":{"@type":"Answer","text":"It can, if you plan for it. The playbook bakes the lighting in Blender so a phone has almost nothing to calculate, compresses the 3D files, and asks Claude to respect reduced-motion settings. The example build was about 18 MB and still needed shrinking before launch, so test on a real mid-range Android phone."}},
+{"@type":"Question","name":"Is the playbook PDF free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 15-page PDF is a free download with no signup."}}
+]}</script>
+<style>
+.post-header{padding:64px 0 48px;border-bottom:1px solid var(--line)}.post-breadcrumb{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.1em}.post-breadcrumb a{color:var(--accent)}.post-cat{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:14px}.post-title{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:clamp(26px,5vw,52px);line-height:.95;margin-bottom:20px}.post-title em{font-style:normal;color:var(--accent)}.post-subtitle{font-family:var(--font);font-size:22px;color:var(--muted);max-width:680px;margin-bottom:24px}.post-meta{font-family:var(--font);font-size:15px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}.post-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;padding:48px 0 80px;align-items:start}@media(max-width:900px){.post-layout{grid-template-columns:1fr}}.post-content h2{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:clamp(20px,3vw,28px);line-height:1;margin:48px 0 16px;padding-top:12px;border-top:1px solid var(--line)}.post-content h2:first-of-type{margin-top:0;border-top:none}.post-content h3{font-family:var(--font);font-size:21px;font-weight:700;margin:28px 0 10px}.post-content p{font-size:18px;line-height:1.65;margin-bottom:18px}.post-content ul,.post-content ol{padding-left:24px;margin-bottom:18px}.post-content li{font-size:18px;line-height:1.6;margin-bottom:8px}.post-content strong{font-weight:700}.callout{border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin:28px 0;background:var(--paper-2)}.callout.accent{background:#f3f3f3;border-color:var(--accent)}.callout.ink{background:var(--ink);color:var(--paper)}.callout-label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}.callout.ink .callout-label{color:rgba(255,255,255,.6)}.number-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin:24px 0}.number-box{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--paper);text-align:center}.number-box .num{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:24px;color:var(--accent);display:block;margin-bottom:4px}.number-box .label{font-family:var(--font);font-size:13px;color:var(--muted)}.post-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}.post-table th{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);border:1px solid var(--line)}.post-table td{padding:10px 14px;border:1px solid var(--line);font-family:var(--font);vertical-align:top}.post-table tr:nth-child(even) td{background:var(--paper-2)}.post-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}.sidebar-toc{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px}.sidebar-toc h4{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}.sidebar-toc ol{padding-left:18px}.sidebar-toc li{font-family:var(--font);font-size:15px;margin-bottom:8px}.sidebar-toc a{color:var(--ink)}.sidebar-toc a:hover{color:var(--accent)}.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}.post-tag{font-family:var(--font-mono);font-size:12px;padding:4px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2)}.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}.related-card{border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}.related-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.08)}.related-card h4{font-family:var(--font);font-size:17px;margin-bottom:8px}.related-card p{font-size:14px;color:var(--muted)}
+</style>
+<style>
+.download-banner{background:var(--ink);color:#fff;border-radius:var(--radius);padding:24px;margin:8px 0 40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.download-banner img{width:96px;height:auto;border-radius:6px;flex-shrink:0;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.download-banner .db-text{flex:1;min-width:200px}
+.download-banner .db-title{font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:clamp(18px,3vw,23px);margin:0 0 6px;color:#fff}
+.download-banner p{font-size:16px;color:rgba(255,255,255,.72);margin:0;line-height:1.5}
+.post-content a.download-btn,.download-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:#fff;color:var(--ink);border-radius:var(--radius);font-family:var(--font);font-weight:650;font-size:15px;text-decoration:none;white-space:nowrap;transition:transform .12s,box-shadow .12s}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.sidebar-cta{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--paper);margin-bottom:24px;text-align:center}
+.sidebar-cta img{width:120px;height:auto;border-radius:6px;margin:0 auto 12px;display:block;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.sidebar-cta h4{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.sidebar-cta p{font-size:14px;color:var(--muted);margin-bottom:14px}
+.sidebar-cta .download-btn{background:var(--ink);color:#fff;width:100%;justify-content:center}
+.post-fig{margin:28px 0}
+.post-fig img{width:100%;height:auto;display:block;border-radius:var(--radius);border:1px solid var(--line)}
+.post-fig figcaption{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.5}
+.timeline{display:flex;border:1px solid var(--ink);border-radius:10px;overflow:hidden;margin:24px 0 6px}
+.timeline span{display:block;padding:10px 2px;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#f3f3f3;border-right:1px solid #d6d6d6}
+.timeline span:nth-child(even){background:#141414;color:#fff}
+.timeline span:last-child{border-right:none}
+.timeline-ends{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:24px}
+.post-content pre{background:#141414;color:#f1f1f1;border-radius:var(--radius);padding:18px 20px;margin:18px 0 24px;font-family:var(--font-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.post-content pre .lbl{display:block;color:#9a9a9a;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.post-content code{font-family:var(--font-mono);font-size:.88em;background:#f1f1f1;padding:1px 6px;border-radius:5px}
+.step-num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#141414;color:#fff;font-size:14px;font-weight:700;margin-right:10px;vertical-align:2px}
+.who{display:inline-block;font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);margin-right:6px;vertical-align:2px}
+.who.you{background:#141414;color:#fff;border-color:#141414}
+.check-list{list-style:none;padding-left:0}
+.check-list li{position:relative;padding-left:32px}
+.check-list li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border:2px solid #141414;border-radius:4px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.faq h3{font-size:19px}
+.post-content p a,.post-content li a,.post-content td a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+@media(max-width:620px){.timeline{flex-wrap:wrap}.timeline span{flex:1 1 25%!important;font-size:10px;padding:9px 0;border-bottom:1px solid #d6d6d6}.download-banner{padding:20px}.download-banner img{width:72px}}
+</style>
+</head>
+<body class="sub">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><defs><filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter></defs></svg>
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo"><img class="mark" src="/images/logo-mark.svg" alt="" width="26" height="26">The Solo Entrepreneur</a>
+  <div class="nav-links">
+    <a href="../products.html">Products</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../tools.html">Tools</a>
+    <a href="../community.html">Community</a>
+    <a href="../account.html" id="navAccountLink">Log in</a>
+    <a href="../products.html#lead" class="nav-cta">Get free eBook</a>
+  </div>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="../products.html">Products</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../community.html">Community</a><a href="../account.html">Log in</a><a href="../products.html#lead"><strong>Get free eBook →</strong></a>
+</div>
+
+<header class="post-header">
+  <div class="wrap">
+    <div class="post-breadcrumb"><a href="../blog.html">Blog</a> / Build With AI</div>
+    <div class="post-cat">§ Claude Code · 3D Websites · Free PDF Playbook</div>
+    <h1 class="post-title">How to create <em>cinematic 3D scroll animation</em> websites using Claude Code</h1>
+    <p class="post-subtitle">A 3D mascot, a shop that looks real, and a story that plays as you scroll. We built one in two days by talking to Claude Code, and never typed a line of code. Here is the whole route, plus the 15-page playbook to keep next to you while you build.</p>
+    <div class="post-meta"><span>✍️ Prithal Bhardwaj</span><span>📅 November 2026</span><span>⏱ 14 min read</span><span>📄 Free 15-page PDF</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="post-layout">
+    <article class="post-content" id="article">
+
+      <div class="download-banner">
+        <img src="/images/3d-scroll/cover.webp" alt="Cover of the 3D Scroll-Story Website Playbook showing the Sharma Sweets shop and its mascot Lalaji" width="520" height="736" loading="eager">
+        <div class="db-text">
+          <p class="db-title">Download the 3D Scroll Website Playbook</p>
+          <p>15 pages. Every step, every prompt we used, the eight bugs we hit and how each one got fixed. Free, no signup.</p>
+        </div>
+        <a class="download-btn" href="/downloads/3d-scroll-website-playbook.pdf" download>⬇ Download PDF (12 MB)</a>
+      </div>
+
+      <figure class="post-fig">
+        <img src="/images/3d-scroll/moments.webp" alt="Eight screenshots from the Sharma Sweets 3D scroll website, from the shop shutter at dawn to the map at the end" width="1100" height="946" loading="eager">
+        <figcaption>Eight moments from the finished site. The percentage under each one is how far down the page you are.</figcaption>
+      </figure>
+
+      <div class="number-grid">
+        <div class="number-box"><span class="num">10</span><span class="label">steps, in order</span></div>
+        <div class="number-box"><span class="num">17</span><span class="label">tools, you touch 4</span></div>
+        <div class="number-box"><span class="num">2</span><span class="label">days to build</span></div>
+        <div class="number-box"><span class="num">0</span><span class="label">lines typed by hand</span></div>
+      </div>
+
+      <p>Most "3D website" tutorials assume you already write JavaScript. You open one, see a wall of three.js code, and close the tab. This guide assumes the opposite. You are the director. You decide the story, look at what comes back and say what feels wrong. <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">Claude Code</a> is the crew that writes the code, runs Blender and checks its own work in a browser.</p>
+
+      <p>The worked example is Sharma Sweets, a made-up mithai shop from 1965. When the page opens, the shutter is down and Lalaji, the shop's mascot, is standing at the door. You scroll, the shutter goes up, you follow him inside, the camera glides along the sweet counter, he packs a box, hands you a bill with a pay-by-QR code, and waves you off with directions to the shop.</p>
+
+      <h2 id="what-is">What is a 3D scroll animation website?</h2>
+
+      <p>It is a normal web page with a 3D scene sitting behind it. Your words (headlines, prices, buttons) scroll past on the left like any other page. The scene behind them never scrolls away. Instead, how far down the page you are becomes a number from 0 to 100%, and that number decides where the camera is and what the mascot is doing.</p>
+
+      <p>So the scrollbar is the film's timeline. At 0% the camera is on the street at dawn. At 100% Lalaji is waving goodbye. Scroll back up and the film runs backwards, shutter and all.</p>
+
+      <div class="timeline" role="img" aria-label="Scroll timeline split into eight chapters: Dawn 0 to 9 percent, Shutter 9 to 20, Counter 20 to 39, Halwai 39 to 52, Legacy 52 to 63, Gifting 63 to 79, Bill 79 to 89, Visit 89 to 100">
+        <span style="flex:9">Dawn</span><span style="flex:11">Shutter</span><span style="flex:19">Counter</span><span style="flex:13">Halwai</span><span style="flex:11">Legacy</span><span style="flex:16">Gifting</span><span style="flex:10">Bill</span><span style="flex:11">Visit</span>
+      </div>
+      <div class="timeline-ends"><span>0% · top of the page</span><span>100% · the end</span></div>
+
+      <p>What makes it feel like a film and not a slideshow is one rule. Each chapter holds a single camera shot while you read. Between chapters, the text fades out, the camera travels, and the next text fades in. Words and moving things are never on screen at the same time.</p>
+
+      <h2 id="two-ways">Video frames or real 3D: two ways to build one</h2>
+
+      <p>There are two common ways to make a scroll website feel three-dimensional, and they suit different projects.</p>
+
+      <div class="table-scroll">
+      <table class="post-table">
+        <tr><th></th><th>Video frames (Apple AirPods style)</th><th>Real 3D scene (this playbook)</th></tr>
+        <tr><td><strong>How it works</strong></td><td>An AI video is cut into frames, and scrolling flips through them</td><td>A 3D model of the place sits in the page and a camera moves through it</td></tr>
+        <tr><td><strong>Best for</strong></td><td>One product turning, opening or assembling</td><td>A place people walk into: a shop, café, studio, showroom</td></tr>
+        <tr><td><strong>Can visitors interact?</strong></td><td>No, it plays the same every time</td><td>Yes. Pick a weight, add to a box, get a bill</td></tr>
+        <tr><td><strong>Effort</strong></td><td>An afternoon</td><td>About two days</td></tr>
+        <tr><td><strong>Where to start</strong></td><td><a href="../scroll-site-generator-skill.html">Scroll-Site Generator skill</a> (free)</td><td>The playbook on this page (free)</td></tr>
+      </table>
+      </div>
+
+      <p>If you only need one product looking beautiful, the <a href="../scroll-site-generator-skill.html">Scroll-Site Generator skill</a> is faster. If you want a world with a character in it, read on.</p>
+
+      <h2 id="tools">The tools: 17 in total, and you only touch four</h2>
+
+      <p>You use four tools yourself: the Claude app, an AI image generator, Tripo and Mixamo. Claude installs and runs everything else. You never open Blender.</p>
+
+      <div class="table-scroll">
+      <table class="post-table">
+        <tr><th>Job</th><th>Tool</th><th>What it does</th><th>Cost</th></tr>
+        <tr><td>The builder</td><td><a href="https://claude.com/download" target="_blank" rel="noopener">Claude Code</a> (desktop app)</td><td>Writes the code, runs Blender, tests the site in a browser</td><td>Paid plan</td></tr>
+        <tr><td rowspan="3">The mascot</td><td>Any AI image generator</td><td>A front and back picture of your character in a T-pose</td><td>Varies</td></tr>
+        <tr><td><a href="https://www.tripo3d.ai/" target="_blank" rel="noopener">Tripo AI</a></td><td>Turns the picture into a 3D model (.glb)</td><td>Free credits + paid</td></tr>
+        <tr><td><a href="https://www.mixamo.com/" target="_blank" rel="noopener">Mixamo</a></td><td>Adds a skeleton and ready-made animations</td><td>Free</td></tr>
+        <tr><td rowspan="2">The world</td><td><a href="https://www.blender.org/" target="_blank" rel="noopener">Blender</a></td><td>Builds the shop, lights it, renders it. Claude drives it</td><td>Free</td></tr>
+        <tr><td><a href="https://polyhaven.com/" target="_blank" rel="noopener">Poly Haven</a></td><td>Real wood, plaster, tile and metal surfaces</td><td>Free</td></tr>
+        <tr><td rowspan="3">The website</td><td><a href="https://threejs.org/" target="_blank" rel="noopener">three.js</a></td><td>Shows 3D models inside a web page</td><td>Free</td></tr>
+        <tr><td><a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/" target="_blank" rel="noopener">GSAP ScrollTrigger</a></td><td>Ties animation to how far the visitor has scrolled</td><td>Free</td></tr>
+        <tr><td><a href="https://lenis.darkroom.engineering/" target="_blank" rel="noopener">Lenis</a></td><td>Makes scrolling glide instead of jump</td><td>Free</td></tr>
+        <tr><td>Finishing</td><td><a href="https://gltf-transform.dev/" target="_blank" rel="noopener">glTF-Transform</a></td><td>Shrinks 3D files. Our mascot went from 19.8 MB to 5.6 MB</td><td>Free</td></tr>
+      </table>
+      </div>
+
+      <p>The other seven run quietly in the background: Node.js, Vite, Pexels and Unsplash for reference photos, headless Chrome for drawing signboards with correct Hindi lettering, Google Fonts, Google Maps and a small QR-code library. The full list with links is on page 4 of the PDF.</p>
+
+      <p>On cost, Claude Code needs a paid Claude plan. Pro was ₹2,399 a month when we compared <a href="which-ai-coding-tool-to-buy-india.html">AI coding tools priced in rupees</a>. Almost everything else is free. Prices change, so check each tool's own site on the day you start.</p>
+
+      <h2 id="steps">How to build a 3D scroll website with Claude Code in 10 steps</h2>
+
+      <p>Each step ends with something you can look at. Do not start the next one until you like what you see.</p>
+
+      <h3 id="step-1"><span class="step-num">1</span>Set up the workshop (about 15 minutes)</h3>
+      <p>Install the Claude desktop app and open its Code tab. Install <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js</a> (the LTS version) and Blender. Make free accounts on Tripo and Mixamo. Create an empty folder, open it in Claude, and save two or three pictures with the mood you want. They are references for the feeling, not things to copy. Then send your first message:</p>
+      <pre><span class="lbl">Your first prompt</span>This is a new project for a 3D mithai shop website. Please:
+1. Create these folders: assets/character/1-images, assets/character/2-model, assets/character/3-animations, assets/references, public/models.
+2. Check that Node.js and Blender are installed on this computer, and tell me where Blender is installed.
+3. Show me the final folder structure.
+I'm not a coder, so explain anything I need to do in simple words.</pre>
+
+      <h3 id="step-2"><span class="step-num">2</span>Make the 3D mascot</h3>
+      <p>This is the part people ask about most. A picture becomes a 3D model, the model gets a skeleton, the skeleton gets animations, and Claude packs it all into one small file.</p>
+      <ol>
+        <li><span class="who you">You</span>Generate a front and a back picture of your character, arms straight out in a T-pose, on a plain background.</li>
+        <li><span class="who you">You</span>Upload them to Tripo and download the 3D model as a .glb file.</li>
+        <li><span class="who">Claude</span>Converts the .glb to .fbx in Blender so Mixamo accepts it.</li>
+        <li><span class="who you">You</span>In Mixamo, place the markers on chin, wrists, elbows, knees and groin. Download an idle animation "With Skin", then every other move "Without Skin", all at 30 fps.</li>
+        <li><span class="who">Claude</span>Merges every animation into one character, compresses it, and builds a test page with one button per move.</li>
+      </ol>
+      <figure class="post-fig">
+        <img src="/images/3d-scroll/moves.webp" alt="The Lalaji 3D mascot in seven animations: greet, bow, clap, thumbs up, walk, point and stir" width="1100" height="287" loading="lazy">
+        <figcaption>One 5.6 MB file holds the character and all nine moves: idle, walk, greet, point, clap, thumbs up, bow, lift (for the shutter) and stir (for the kadhai).</figcaption>
+      </figure>
+      <p>Keep the arms well away from the body in your picture. If they touch, Mixamo cannot tell where the elbows are. And if clothes stretch like rubber when the character walks (Lalaji's kurta did), describe exactly what you see and ask Claude to render the whole body frame by frame before it guesses at a fix.</p>
+
+      <h3 id="step-3"><span class="step-num">3</span>Write the brief and ask for a plan first</h3>
+      <p>This is the most important step in the playbook. Do not ask for "a 3D website". Describe the film you want, set the rules, and ask for a plan before any code is written. The brief we used has seven parts:</p>
+      <ul>
+        <li><strong>Big picture.</strong> What the shop is, since when, for whom, and who the mascot is.</li>
+        <li><strong>Assets.</strong> Where the character file and reference pictures live.</li>
+        <li><strong>Colours and lettering.</strong> Background, text and accent colours, and the tone of the copy (ours was warm, short Hinglish).</li>
+        <li><strong>Story by scroll percentage.</strong> "0–15%: what the visitor sees, what the mascot does." This turns "make it cool" into chapters the AI can build and you can judge.</li>
+        <li><strong>Layout rule.</strong> Text on the left, 3D on the right or centre, and text must never overlap the mascot or the products.</li>
+        <li><strong>Negative rules.</strong> Must not lag on mid-range Android phones. Show a loading screen. Respect people who switch motion off.</li>
+        <li><strong>Phases.</strong> "Build Phase 1 only, then stop so I can check it." End with "If you are confused about anything, don't assume. Ask me."</li>
+      </ul>
+      <p>The full fill-in-the-dots brief is on page 8 of the PDF. Expect your first plan to be wrong somewhere. Ours was. Three phases in, we looked at the result and said: "It doesn't look like real websites at all. Sweets don't look like real sweets." We threw that idea away, kept the foundation, and the rest of the playbook is the second plan. Building in phases is what made that change cheap.</p>
+
+      <h3 id="step-4"><span class="step-num">4</span>Build the world in Blender</h3>
+      <p>We built the shop three times. Version one drew laddoos and jalebis as simple shapes in code, and they looked like toys. Version two was a Blender shop at night that still felt like a game level. Version three was a real bazaar shop by day, with a painted shutter, Hindi signboards, twenty kinds of sweets in steel trays, a calendar and a small mandir. The prompt that got us there was a plain one.</p>
+      <pre><span class="lbl">The prompt that fixed it</span>The shop doesn't look realistic to me. We have Blender, we could use it to develop a realistic website. Please build it like a real shop, and instead of night, let's make it day.</pre>
+      <figure class="post-fig">
+        <img src="/images/3d-scroll/world.webp" alt="Outside and inside of the Sharma Sweets shop rendered in Blender, with neighbouring shops, a sweet counter, shelves and a halwai corner" width="1100" height="329" loading="lazy">
+        <figcaption>Outside and inside, both rendered in Blender. Neighbours, wires and a bicycle make it a street. One room holds four chapters.</figcaption>
+      </figure>
+      <p>Ask Claude to check how real Indian sweet shops look before designing. Have it build everything from a script, so changing the recipe rebuilds the shop in seconds. Then bake the lighting. Blender spends minutes working out sunlight and soft shadows once and saves the result as pictures, so a visitor's phone has almost nothing left to calculate. Our shop came to 165,000 triangles and shrank from 17.9 MB to 10.8 MB.</p>
+
+      <h3 id="step-5"><span class="step-num">5</span>Direct the scroll story</h3>
+      <p>The story started as one paragraph: the shutter is closed when the site opens, the character stands at the door, he opens it, and inside is a beautiful shop. That became eight chapters, each with a share of the scroll, one camera shot and one job for the mascot.</p>
+      <div class="table-scroll">
+      <table class="post-table">
+        <tr><th>Chapter</th><th>Scroll</th><th>Camera</th><th>Mascot</th></tr>
+        <tr><td>Dawn</td><td>0–9%</td><td>Wide street view, pushing in</td><td>Greets you at the door</td></tr>
+        <tr><td>Shutter</td><td>9–20%</td><td>Close on the shutter</td><td>Lifts it, tied to your scroll</td></tr>
+        <tr><td>Counter</td><td>20–39%</td><td>Close-ups, tray to tray</td><td>Waits behind the counter</td></tr>
+        <tr><td>Halwai</td><td>39–52%</td><td>Over the kadhai</td><td>Stirs the jalebi</td></tr>
+        <tr><td>Legacy</td><td>52–63%</td><td>The photo wall</td><td>Keeps cooking, off screen</td></tr>
+        <tr><td>Gifting</td><td>63–79%</td><td>Across the counter</td><td>Bows as the box closes</td></tr>
+        <tr><td>Bill</td><td>79–89%</td><td>Moves in on Lalaji</td><td>Hands over the bill</td></tr>
+        <tr><td>Visit</td><td>89–100%</td><td>Stays with Lalaji</td><td>Waves you over</td></tr>
+      </table>
+      </div>
+      <p>Four rules made it feel directed. Text holds while a shot holds, then fades before the camera travels. The mascot walks to where the story wants him at human speed, so scrolling fast makes him hurry but never teleport. Only one or two hero moments, like the shutter, are tied directly to the scrollbar. And Claude wrote a checker that walks the whole story at three screen sizes and reports the smallest gap between text and subject in pixels.</p>
+
+      <h3 id="step-6"><span class="step-num">6</span>Showcase the products inside the story</h3>
+      <p>Our first product section was a grid of cards at the bottom of the page. It worked, but it broke the spell, because you had to leave the shop to read a menu. So we asked for the sweets to live inside the counter instead, with the camera zooming into one tray and then moving to the next, the way you browse in a real shop.</p>
+      <figure class="post-fig">
+        <img src="/images/3d-scroll/tray.webp" alt="Close-up of a tray of besan barfi in the 3D sweet counter with a price card reading ₹600 per kg and weight buttons" width="718" height="486" loading="lazy">
+        <figcaption>The tray tour. The card on the left changes as the camera glides from tray to tray.</figcaption>
+      </figure>
+      <p>Keep every price in one list so the card, the price tags in the scene and the bill all read from the same place. Put the text on a solid panel during close-ups so trays never slide underneath the words.</p>
+
+      <h3 id="step-7"><span class="step-num">7</span>Polish for realism</h3>
+      <p>Once the site worked, we asked one open question: "How can we make this website more realistic and better?" Claude came back with options. We picked one and got syrup gloss on the jalebi, lens blur on trays behind the one in focus, a real sky, ceiling fans that turn and a marigold toran that sways. Pick one improvement at a time. Ten at once means ten things to check.</p>
+
+      <h3 id="step-8"><span class="step-num">8</span>Brand it</h3>
+      <p>The shop began as a made-up name. Changing it to Sharma Sweets took one prompt ("Assume we are Sharma Sweets. Build its branding from scratch and implement it.") because the name, colours and logo live in one small file that everything else reads. Claude designed a marigold seal, redrew the signboard, shutter, boxes and price tags, and re-lit the shop. Use a brand of your own. Putting a famous company's name on your shop makes visitors think they stand behind you.</p>
+
+      <h3 id="step-9"><span class="step-num">9</span>Let people order</h3>
+      <p>The showcase became a shop with one more prompt. Visitors tap a brass weight (250 g, 500 g, 1 kg or 2 kg), the item hops into a box in the header, and at the end Lalaji hands over a paper bill with a QR code for the total, then a map with directions. Before launch, fill in your real UPI ID (until then the QR is stamped DEMO and cannot take money), your WhatsApp number so orders reach you, and your real address for the map pin.</p>
+
+      <h3 id="step-10"><span class="step-num">10</span>Check, fix, ship</h3>
+      <p>Half the work is looking. Say what you see, not how to fix it. "His kurta is getting stretched when he walks" is a perfect bug report. Change one thing at a time, and say "love it" when something is right, because the AI keeps what you praise. Then ask Claude to prove its work: screenshots at two or three screen sizes, the smallest text-to-subject gap in pixels, a clean final build, and a list of what it could not check.</p>
+
+      <h2 id="mistakes">Eight things that went wrong, and what fixed them</h2>
+      <p>None of these were found by reading code. Every one was found by looking at the screen and saying "that looks wrong".</p>
+      <div class="table-scroll">
+      <table class="post-table">
+        <tr><th>What we saw</th><th>The cause</th><th>The fix</th></tr>
+        <tr><td>Sweets looked like toys</td><td>They were shapes drawn by code</td><td>Modelled them in Blender, in real trays, under real light</td></tr>
+        <tr><td>The shop felt fake</td><td>Night lighting and empty space</td><td>Daylight, and the clutter of a real shop</td></tr>
+        <tr><td>Everything was too dark</td><td>A colour setting was wrong on export</td><td>Asked why the site was darker than the Blender picture. One fix, three times brighter</td></tr>
+        <tr><td>Lalaji's kurta stretched</td><td>Only his hips were held in place while walking</td><td>Held every bone in place, rendered full-body frames to confirm</td></tr>
+        <tr><td>He jumped when scrolling fast</td><td>His position was tied directly to the scroll</td><td>He now walks to where the story wants him</td></tr>
+        <tr><td>Trays slid under the text</td><td>The camera moved behind see-through text</td><td>A solid panel behind the text during close-ups</td></tr>
+        <tr><td>He lunged into the counter</td><td>A big "thumbs up" in a close shot</td><td>Swapped it for a small bow</td></tr>
+        <tr><td>The map was sometimes blank</td><td>It waited for a signal some browsers never sent</td><td>It now loads when the story reaches the last counter</td></tr>
+      </table>
+      </div>
+
+      <h2 id="prompts">The 10 Claude Code prompts that did the work</h2>
+      <p>Every one is a real message from the build, and none contains a technical word.</p>
+      <ol>
+        <li>"I'm not a coder, so explain anything I need to do in simple words."</li>
+        <li>"Don't write code yet. First make a plan."</li>
+        <li>"Build Phase 1 only, then stop so I can check it."</li>
+        <li>"If you are confused about anything, don't assume. Ask me."</li>
+        <li>"Check how real shops look, then design it."</li>
+        <li>"It doesn't look realistic to me."</li>
+        <li>"Love it. Now make the character's movement smooth throughout."</li>
+        <li>"When he is walking his kurta is getting stretched."</li>
+        <li>"How can we make this website more realistic and better?"</li>
+        <li>"Make it creative somehow." (This one gave us brass weights and a paper bill.)</li>
+      </ol>
+      <div class="callout accent">
+        <div class="callout-label">💡 Keep notes between sessions</div>
+        <p style="margin:0;font-size:17px">Ask Claude to remember what you approved, what you rejected and why. It saves you explaining the story twice when you come back the next day.</p>
+      </div>
+
+      <h2 id="checklist">Before you share the link</h2>
+      <ul class="check-list">
+        <li><strong>Real prices.</strong> Ours were still placeholders.</li>
+        <li><strong>Real address and map pin.</strong> The demo points at an example street.</li>
+        <li><strong>UPI ID and WhatsApp number.</strong> So payments and orders reach the shop.</li>
+        <li><strong>Your own photos.</strong> The founder's portrait and the shopfront.</li>
+        <li><strong>Test on a phone.</strong> Our build was about 18 MB, which is too heavy for mobile data. Shrink it before launch.</li>
+        <li><strong>Reduced-motion check.</strong> For visitors who <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener">switch animation off</a> in their phone settings.</li>
+        <li><strong>Put it online.</strong> Ask Claude to deploy it to a web host. We had not done this step when the playbook was written.</li>
+      </ul>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq">
+        <h3>Do I need to know how to code?</h3>
+        <p>No. Your job is to describe the story and react to what you see. Claude Code writes the code, runs Blender and tests the site. If you can say "the shop looks fake" or "he's walking into the counter", you can direct this.</p>
+        <h3>How long does it take?</h3>
+        <p>The Sharma Sweets build took two days, including one full restart after the first plan. Step 1 takes about 15 minutes. The mascot and the shop take the longest.</p>
+        <h3>Can I use Cursor, Codex or Lovable instead of Claude Code?</h3>
+        <p>The prompts and the order of steps carry over to any agent that can run programs on your computer, because the AI has to drive Blender and open a browser. Browser-only builders like Lovable cannot run Blender. If you are still choosing, our <a href="which-ai-coding-tool-to-buy-india.html">comparison of AI coding tools in India</a> covers what each one is good at.</p>
+        <h3>Will it work on phones?</h3>
+        <p>It can, if you plan for it from the brief. Baked lighting and compressed models do most of the work, but test on a real mid-range Android phone before you share the link.</p>
+        <h3>What kind of business suits a 3D scroll website?</h3>
+        <p>Any place people enjoy walking into: a bakery, a tailor, a bookshop, a chai stall, a café or a showroom. Give it a character and tell its story one scroll at a time. If you want ideas for the business itself, start with our <a href="micro-saas-ideas-india.html">startup ideas for India</a>.</p>
+      </div>
+
+      <div class="download-banner" style="margin-top:40px">
+        <img src="/images/3d-scroll/cover.webp" alt="" width="520" height="736" loading="lazy">
+        <div class="db-text">
+          <p class="db-title">Keep the playbook open while you build</p>
+          <p>All ten steps, the full brief template, the mascot prompts and the launch checklist in one PDF.</p>
+        </div>
+        <a class="download-btn" href="/downloads/3d-scroll-website-playbook.pdf" download>⬇ Download PDF (12 MB)</a>
+      </div>
+
+      <p>Want a second pair of eyes on your build, or help picking the story for your own business? <a href="../products.html#consultation">Book a 1:1 call</a>. Founders building with AI every week also trade notes inside <a href="../community.html">Founders Wing</a>.</p>
+
+      <div class="post-tags">
+        <span class="post-tag">Claude Code</span>
+        <span class="post-tag">3D Website</span>
+        <span class="post-tag">Scroll Animation</span>
+        <span class="post-tag">three.js</span>
+        <span class="post-tag">GSAP ScrollTrigger</span>
+        <span class="post-tag">Blender</span>
+        <span class="post-tag">Free Download</span>
+      </div>
+    </article>
+
+    <aside class="post-sidebar">
+      <div class="sidebar-cta">
+        <img src="/images/3d-scroll/cover.webp" alt="" width="520" height="736" loading="lazy">
+        <h4>Free PDF · 15 pages</h4>
+        <p>Steps, prompts, fixes and a launch checklist. No signup.</p>
+        <a class="download-btn" href="/downloads/3d-scroll-website-playbook.pdf" download>⬇ Download PDF</a>
+      </div>
+      <nav class="sidebar-toc">
+        <h4>📋 In This Post</h4>
+        <ol>
+          <li><a href="#what-is">What Is a 3D Scroll Website?</a></li>
+          <li><a href="#two-ways">Video Frames or Real 3D</a></li>
+          <li><a href="#tools">The 17 Tools</a></li>
+          <li><a href="#steps">The 10 Steps</a></li>
+          <li><a href="#mistakes">8 Things That Went Wrong</a></li>
+          <li><a href="#prompts">10 Prompts That Worked</a></li>
+          <li><a href="#checklist">Launch Checklist</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+    </aside>
+  </div>
+</div>
+
+<div style="border-top:1px solid var(--line);padding:48px 0;background:var(--paper-2)">
+  <div class="wrap">
+    <h3 style="font-family:var(--font);font-weight:650;letter-spacing:-.02em;font-size:24px;margin-bottom:24px">Keep building with AI →</h3>
+    <div class="related-grid">
+      <a href="../scroll-site-generator-skill.html" class="related-card"><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px">FREE SKILL</div><h4>Scroll-Site Generator</h4><p>The faster route: an Apple-style scroll film for a single product.</p></a>
+      <a href="../motion-director-skill.html" class="related-card"><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px">FREE SKILL</div><h4>Motion Director</h4><p>Turn a video script into motion graphics with the same director-and-crew approach.</p></a>
+      <a href="which-ai-coding-tool-to-buy-india.html" class="related-card"><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:6px">AI TOOLS</div><h4>Which AI Coding Tool to Buy</h4><p>Claude Code, Cursor, Codex, Lovable and Replit, priced in rupees.</p></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="foot-wrap">
+  <div class="foot-curve"></div>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand"><img class="mark" src="/images/logo-mark-light.svg" alt="" width="30" height="30">The Solo Entrepreneur</div>
+          <p class="foot-tag">Build smarter. Automate more. Earn online — without a co-founder.</p>
+        </div>
+        <div class="foot-col">
+          <a href="../products.html">Products</a>
+          <a href="../products.html#templates">Automation templates</a>
+          <a href="../products.html#pdf">Business-idea ebooks</a>
+          <a href="../blog.html">Playbooks &amp; blog</a>
+          <a href="../tools.html">Free tools</a>
+          <a href="../community.html">Founders Wing</a>
+          <a href="../videos.html">Videos</a>
+          <a href="../account.html">My account</a>
+        </div>
+        <div class="foot-col">
+          <a href="https://www.youtube.com/@thesoloentrepreneur07" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/thesoloentrepreneur.yt/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://twitter.com/NotesByPrithal" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="/contact">Contact</a>
+          <a href="/return-policy">Refund &amp; cancellation</a>
+          <a href="/shipping-policy">Shipping &amp; delivery</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© The Solo Entrepreneur 2025–2026</span>
+        <a href="../privacy-policy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="../site.js"></script>
+</body>
+</html>
