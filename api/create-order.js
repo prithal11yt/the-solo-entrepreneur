@@ -26,16 +26,20 @@ const PLAN_BY_PRODUCT_ID = Object.fromEntries(
   Object.entries(PLANS).map(([key, p]) => [p.id, key])
 );
 
-// Coupon code -> Razorpay offer. The code is just a lookup key; Razorpay owns
-// the actual discount maths, so the code can't be used to invent a price.
-// Create/edit the underlying offer in Razorpay Dashboard -> Offers.
+// Coupon code -> discount, applied here by creating the order at the reduced
+// price. The code is only a lookup key, so it can't be used to invent a price.
+// This used to be a forced Razorpay offer, but that offer wasn't enabled for
+// UPI, so checkout hid UPI whenever the code was applied.
 const COUPONS = {
   DIWALI: {
-    offerId: 'offer_TYJdxbaukr1WwP', // Razorpay's flat-20% offer, previously sold as FESTIVAL
+    percentOff: 20,
     label: '20% off',
     plans: ['starter', 'annual'],
+    endsOn: '2026-11-15', // last day, IST
   },
 };
+
+const todayIST = () => new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
 
 function resolveCoupon(rawCode, planKey) {
   if (!rawCode || typeof rawCode !== 'string') return null;
@@ -43,6 +47,7 @@ function resolveCoupon(rawCode, planKey) {
   const coupon = Object.hasOwn(COUPONS, code) ? COUPONS[code] : null;
   if (!coupon) return null;
   if (!coupon.plans.includes(planKey)) return null;
+  if (coupon.endsOn && todayIST() > coupon.endsOn) return null;
   return coupon;
 }
 
@@ -74,6 +79,9 @@ export default async function handler(req, res) {
   }
 
   const appliedCoupon = resolveCoupon(coupon, planKey);
+  const amount = appliedCoupon
+    ? Math.round(selectedPlan.amount * (100 - appliedCoupon.percentOff) / 100)
+    : selectedPlan.amount;
 
   const credentials = Buffer.from(
     `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
@@ -81,9 +89,7 @@ export default async function handler(req, res) {
 
   try {
     const orderPayload = {
-      // Always the full price. Razorpay applies the offer discount at payment
-      // time, so order.amount stays full while amount_paid reflects the discount.
-      amount: selectedPlan.amount,
+      amount,
       currency: 'INR',
       payment_capture: 1,
       // Store everything the webhook needs to record the purchase in the DB
@@ -99,13 +105,6 @@ export default async function handler(req, res) {
       },
     };
 
-    if (appliedCoupon) {
-      orderPayload.offers = [appliedCoupon.offerId];
-      // Locks checkout to this one offer so the discount is actually applied
-      // rather than being one option among several.
-      orderPayload.force_offer = true;
-    }
-
     const response = await fetch('https://api.razorpay.com/v1/orders', {
       method: 'POST',
       headers: {
@@ -118,30 +117,6 @@ export default async function handler(req, res) {
     const order = await response.json();
 
     if (!response.ok) {
-      // A rejected offer shouldn't block the sale — fall back to full price so
-      // the customer can still pay, rather than showing a dead checkout.
-      if (appliedCoupon) {
-        console.warn('[create-order] Offer rejected; retrying without it');
-        delete orderPayload.offers;
-        delete orderPayload.force_offer;
-        orderPayload.notes.coupon = '';
-
-        const retry = await fetch('https://api.razorpay.com/v1/orders', {
-          method: 'POST',
-          headers: { 'Authorization': `Basic ${credentials}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload),
-        });
-        const retryOrder = await retry.json();
-        if (retry.ok) {
-          return res.json({
-            orderId: retryOrder.id,
-            amount: selectedPlan.amount,
-            productName: selectedPlan.name,
-            couponApplied: false,
-            couponError: 'This code could not be applied to your order.',
-          });
-        }
-      }
       return res.status(response.status).json({
         error: 'Failed to create order',
       });
@@ -149,11 +124,10 @@ export default async function handler(req, res) {
 
     res.json({
       orderId: order.id,
-      amount: selectedPlan.amount,
+      amount,
       productName: selectedPlan.name,
       couponApplied: Boolean(appliedCoupon),
       couponLabel: appliedCoupon?.label || '',
-      // Only ever a hint for the UI; Razorpay computes the real charge.
       couponError: coupon && !appliedCoupon ? 'That code isn\'t valid for this plan.' : '',
     });
   } catch (err) {
