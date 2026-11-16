@@ -209,7 +209,6 @@ a { color: inherit; text-decoration: none; }
 .plan-price { font-family: 'Space Grotesk', sans-serif; font-size: 46px; font-weight: 700; line-height: 1; }
 .plan-price .per { font-size: 16px; font-weight: 500; color: var(--muted); }
 .plan-desc { font-size: 15px; color: var(--muted); }
-.plan-deal { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--warm); background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); padding: 5px 10px; border-radius: 30px; width: fit-content; margin-top: -6px; }
 .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .plan-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: #d7e2f4; }
 .plan-features li svg { flex-shrink: 0; margin-top: 3px; color: var(--cyan); }
@@ -343,7 +342,7 @@ footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 0;
     <div class="section-head">
       <div class="label">Choose your plan</div>
       <h2>Cohort 2 pricing</h2>
-      <p>One payment for your full term. Nothing renews by itself. <span id="dealLine">Use code <b>DIWALI</b> at checkout for 20% off until 15 November.</span></p>
+      <p>One payment for your full term. Nothing renews by itself.</p>
     </div>
 
     <div class="plans">
@@ -352,7 +351,6 @@ footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 0;
         <div class="plan-name">Starter</div>
         <div class="plan-sub">6 months · ₹1,250/mo</div>
         <div class="plan-price">₹7,499</div>
-        <div class="plan-deal">₹5,999 with code <b>DIWALI</b></div>
         <p class="plan-desc">Full access to Founders Wing for 6 months — everything you need to build it, launch it and get customers.</p>
         <ul class="plan-features">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Weekly live group sessions with Prithal</li>
@@ -370,7 +368,6 @@ footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 0;
         <div class="plan-name">Annual</div>
         <div class="plan-sub">12 months · ₹1,042/mo</div>
         <div class="plan-price">₹12,499</div>
-        <div class="plan-deal">₹9,999 with code <b>DIWALI</b></div>
         <p class="plan-desc">Everything in Starter, plus priority hot-seat coaching and first access to offline meetups — for a full year.</p>
         <ul class="plan-features">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Starter</li>
@@ -504,21 +501,17 @@ const db = window.supabase.createClient(
 // Cohort 2 WhatsApp group (from 13 Oct 2026). Cohort 1 group was HauGHkg1ODs12vtDWokrZb.
 const WHATSAPP_GROUP = 'https://chat.whatsapp.com/DmQhvlBwB8iCHcbiagwAdQ?mode=gi_t';
 
-const OFFER_CODE = 'DIWALI';
-const OFFER_ENDS = '2026-11-15'; // last day, IST
-function offerRunning() { return new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10) <= OFFER_ENDS; }
-
 const PLANS = {
   starter: {
     id: 'fw-membership-starter',
     name: 'Founders Wing — Starter (6 Months)',
-    amount: 599900,
+    amount: 749900,
     afterNote: "We'll reach out on WhatsApp/email within 24 hours with your community invite and onboarding steps."
   },
   annual: {
     id: 'fw-membership-annual',
     name: 'Founders Wing — Annual (12 Months)',
-    amount: 999900,
+    amount: 1249900,
     afterNote: "We'll reach out on WhatsApp/email within 24 hours with your community invite and onboarding steps."
   }
 };
@@ -540,10 +533,9 @@ function openCheckout(planKey, prefill = {}) {
   document.getElementById('ckPhone').value = prefill.whatsapp || '';
   ['ckName','ckEmail'].forEach(id => document.getElementById(id).classList.remove('error'));
 
-  // Links like ?coupon=DIWALI arrive with the code filled in; otherwise the running
-  // offer is prefilled while it lasts. Anyone can clear the field.
+  // Links with ?coupon=CODE arrive with the code filled in. Anyone can clear the field.
   const urlCoupon = new URLSearchParams(location.search).get('coupon');
-  document.getElementById('ckCoupon').value = (urlCoupon || (offerRunning() ? OFFER_CODE : '')).toUpperCase();
+  document.getElementById('ckCoupon').value = (urlCoupon || '').toUpperCase();
   const msg = document.getElementById('ckCouponMsg');
   msg.textContent = ''; msg.className = 'ck-coupon-msg';
 
@@ -765,7 +757,6 @@ function closeExpress(e) {
   if (expressState) openCheckout(expressState.planKey, expressState.prefill);
 }
 
-document.addEventListener('DOMContentLoaded', () => { if (!offerRunning()) { document.querySelectorAll('.plan-deal, #dealLine').forEach(el => el.remove()); } });
 
 /* ===== Entry from the URL (?plan=starter|annual&coupon=#name=&email=&whatsapp=) ===== */
 (function () {
@@ -778,7 +769,6 @@ document.addEventListener('DOMContentLoaded', () => { if (!offerRunning()) { doc
     whatsapp: window.fwPrefill.whatsapp.trim(),
     coupon:   (params.get('coupon') || '').trim().toUpperCase(),
   };
-  if (!prefill.coupon && offerRunning()) prefill.coupon = OFFER_CODE;
   const complete = prefill.name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(prefill.email);
   document.addEventListener('DOMContentLoaded', () => {
     if (complete) expressCheckout(plan, prefill);

@@ -4,8 +4,7 @@ export const config = { api: { bodyParser: { sizeLimit: '8kb' } } };
 // what a customer pays. Previously the client POSTed `amount` and this handler
 // trusted it, which meant anyone could buy a 9,999 membership for 1 rupee.
 const PLANS = {
-  // Cohort 2 list prices (Oct 2026). Code DIWALI (20%) brings them back to the
-  // founding ₹5,999 / ₹9,999.
+  // Cohort 2 list prices (Oct 2026).
   starter: { id: 'fw-membership-starter', name: 'Founders Wing — Starter (6 Months)', amount: 749900 },
   annual:  { id: 'fw-membership-annual',  name: 'Founders Wing — Annual (12 Months)', amount: 1249900 },
 
@@ -30,14 +29,9 @@ const PLAN_BY_PRODUCT_ID = Object.fromEntries(
 // price. The code is only a lookup key, so it can't be used to invent a price.
 // This used to be a forced Razorpay offer, but that offer wasn't enabled for
 // UPI, so checkout hid UPI whenever the code was applied.
-const COUPONS = {
-  DIWALI: {
-    percentOff: 20,
-    label: '20% off',
-    plans: ['starter', 'annual'],
-    endsOn: '2026-11-15', // last day, IST
-  },
-};
+// No code is running now (DIWALI ended 15 Nov 2026). To run one, add e.g.
+//   CODE: { percentOff: 20, label: '20% off', plans: ['starter', 'annual'], endsOn: 'YYYY-MM-DD' }
+const COUPONS = {};
 
 const todayIST = () => new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
 
@@ -128,7 +122,7 @@ export default async function handler(req, res) {
       productName: selectedPlan.name,
       couponApplied: Boolean(appliedCoupon),
       couponLabel: appliedCoupon?.label || '',
-      couponError: coupon && !appliedCoupon ? 'That code isn\'t valid for this plan.' : '',
+      couponError: coupon && !appliedCoupon ? 'That code isn\'t valid or has expired.' : '',
     });
   } catch (err) {
     res.status(500).json({ error: 'Could not create order. Please try again.' });

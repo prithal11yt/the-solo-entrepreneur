@@ -73,10 +73,11 @@ test('invalid checkout and inherited property names cannot create orders',async 
   }
   assert.equal(calls,0);
 });
-test('valid coupon and full-price fallback still work',async t=>{
-  const payloads=[];t.mock.method(globalThis,'fetch',async(url,opts)=>{payloads.push(JSON.parse(opts.body));return {ok:payloads.length>1,status:400,json:async()=>payloads.length>1?{id:'order_retry'}:{error:{description:'private diagnostic'}}};});
+test('an ended or unknown coupon charges full price and says so',async t=>{
+  const payloads=[];t.mock.method(globalThis,'fetch',async(url,opts)=>{payloads.push(JSON.parse(opts.body));return {ok:true,status:200,json:async()=>({id:'order_full'})};});
   const res=response();await createOrder(request({plan:'starter',coupon:'DIWALI',name:'Test',email:'test@example.com'}),res);
-  assert.equal(payloads[0].force_offer,true);assert.equal(payloads[1].offers,undefined);assert.equal(payloads[1].amount,749900);assert.equal(res.body.couponApplied,false);
+  assert.equal(payloads.length,1);assert.equal(payloads[0].offers,undefined);assert.equal(payloads[0].amount,749900);
+  assert.equal(res.body.amount,749900);assert.equal(res.body.couponApplied,false);assert.ok(res.body.couponError);
 });
 const signed=(orderId,paymentId)=>({razorpay_order_id:orderId,razorpay_payment_id:paymentId,
   razorpay_signature:createHmac('sha256','test-only').update(`${orderId}|${paymentId}`).digest('hex')});
