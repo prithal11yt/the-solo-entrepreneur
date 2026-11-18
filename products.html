@@ -438,7 +438,10 @@ function showCheckoutModal(productId, user) {
   document.getElementById('ckProductName').textContent  = activeProduct.name;
   document.getElementById('ckProductPrice').textContent = '₹' + (activeProduct.amount / 100);
   document.getElementById('ckPayBtn').textContent       = 'Pay ₹' + (activeProduct.amount / 100) + ' →';
-  document.getElementById('ckAfterNote').textContent    = activeProduct.afterNote;
+  // Shown before payment, so it says what happens next. afterNote is for the success screen.
+  document.getElementById('ckAfterNote').textContent    = activeProduct.whatsapp
+    ? '💬 After payment, you book your slot with Prithal on WhatsApp.'
+    : '📁 Your download link opens right after payment, and stays in your account.';
   const meta = user.user_metadata || {}, nameEl = document.getElementById('ckName'), emailEl = document.getElementById('ckEmail');
   nameEl.value = meta.full_name || ''; emailEl.value = user.email || ''; emailEl.readOnly = true; emailEl.style.opacity = '.65';
   ['ckName','ckEmail'].forEach(id => document.getElementById(id).classList.remove('error'));
