@@ -5,9 +5,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Page not found — The Solo Entrepreneur</title>
-<meta http-equiv="refresh" content="4;url=/products"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());if(!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname))window['ga-disable-G-QRXY0C7RZR']=true;gtag('config','G-QRXY0C7RZR');</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
@@ -21,10 +20,7 @@
   .nf{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;gap:14px}
   .nf-code{font-size:clamp(96px,22vw,200px);font-weight:700;letter-spacing:-.06em;line-height:.9;background:linear-gradient(180deg,#141414,#9a9a9a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .nf-sub{color:var(--muted);font-size:18px;max-width:420px}
-  .nf-count{font-size:14px;color:var(--muted-2)}
-  .nf-count span{color:var(--ink);font-weight:600}
 </style>
-<script>setTimeout(function(){window.location.href='/products';},4000);</script>
 </head>
 <body>
 <nav class="nav scrolled" id="nav">
@@ -39,11 +35,34 @@
 <main class="nf">
   <div class="nf-code">404</div>
   <h1 class="h2 split">This page doesn't exist.</h1>
-  <p class="nf-sub">But the products do — and you're on your way there.</p>
-  <p class="nf-count">Redirecting in <span id="sec">4</span>s</p>
-  <div class="hero-ctas" style="margin-top:8px"><a href="/products" class="btn btn-primary">Take me there now</a><a href="/" class="btn btn-ghost">Home <span class="arr">→</span></a></div>
+  <p class="nf-sub" id="nfSub">It may have moved. These are the pages people usually look for:</p>
+  <div class="hero-ctas" id="nfLinks" style="margin-top:8px;flex-wrap:wrap;justify-content:center"><a href="/scroll-site-generator-skill" class="btn btn-primary">Scroll Site Generator skill</a><a href="/products" class="btn btn-ghost">Products <span class="arr">→</span></a><a href="/" class="btn btn-ghost">Home <span class="arr">→</span></a></div>
 </main>
 <script src="site.js"></script>
-<script>let s=4;const el=document.getElementById('sec');const t=setInterval(()=>{s--;if(el)el.textContent=s;if(s<=0)clearInterval(t);},1000);</script>
+<script>
+// Point a mistyped address at the page it most likely meant. No automatic
+// redirect: a timed bounce hides the real page from people and from Google.
+(function () {
+  var p = decodeURIComponent(location.pathname).toLowerCase().replace(/[^a-z]/g, '');
+  var guesses = [
+    [/scrol|sitegen|skill/, '/scroll-site-generator-skill', 'Scroll Site Generator skill'],
+    [/motion|director/, '/motion-director-skill', 'Motion Director skill'],
+    [/reel/, '/reel-automation', 'AI Reel Engine'],
+    [/agen/, '/agency', 'AI agency playbook'],
+    [/content|contand/, '/content-automation', 'Content automation'],
+    [/idea|shop|store|pric|cours|product/, '/products', 'Products'],
+    [/tool|calc|generator/, '/tools', 'Free tools'],
+    [/blog|post/, '/blog', 'Blog']
+  ];
+  for (var i = 0; i < guesses.length; i++) {
+    if (guesses[i][0].test(p)) {
+      document.getElementById('nfSub').textContent = 'Were you looking for this?';
+      var first = document.querySelector('#nfLinks .btn-primary');
+      first.href = guesses[i][1]; first.textContent = guesses[i][2] + ' →';
+      return;
+    }
+  }
+})();
+</script>
 </body>
 </html>

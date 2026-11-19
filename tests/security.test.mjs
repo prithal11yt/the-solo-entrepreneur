@@ -9,6 +9,7 @@ const generate = await load('generate.js');
 const createOrder = await load('create-order.js');
 const verify = await load('verify-payment.js');
 const webhook = await load('webhook.js');
+const lead = await load('lead.js');
 function response() {
   return { statusCode: 200, headers: {}, setHeader(k,v) { this.headers[k]=v; }, status(s) { this.statusCode=s; return this; }, json(body) { this.body=body; return this; } };
 }
@@ -162,4 +163,35 @@ test('a failed purchase write is retried, not dropped',async t=>{
   t.mock.restoreAll();
   t.mock.method(globalThis,'fetch',async()=>({ok:false,status:500,json:async()=>({})}));
   assert.equal((await sendWebhook(raw,sig)).statusCode,503);
+});
+
+test('free-download leads: origin, validation, honeypot and a server-built insert',async t=>{
+  process.env.SUPABASE_URL='https://database.example';process.env.SUPABASE_SERVICE_ROLE_KEY='test-only';
+  const calls=[];t.mock.method(globalThis,'fetch',async(url,opts)=>{calls.push({url:String(url),body:JSON.parse(opts.body)});return {ok:true,json:async()=>({})};});
+  const send=async(body,origin='https://www.thesoloentrepreneur.in')=>{const res=response();await lead({method:'POST',headers:{origin},body},res);return res;};
+  assert.equal((await send({email:'a@b.co',source:'motion-director'},'https://attacker.example')).statusCode,403);
+  for(const body of [{email:'nope',source:'motion-director'},{email:'a@b.co',source:'unknown'},{email:'a@b.co',source:'__proto__'},{email:{},source:'motion-director'},{email:'a@b.co',name:'x'.repeat(121),source:'motion-director'}]){
+    assert.equal((await send(body)).statusCode,400);
+  }
+  assert.equal(calls.length,0);
+  const bot=await send({email:'a@b.co',source:'motion-director',website:'spam'});assert.equal(bot.body.ok,true);assert.equal(calls.length,0);
+  const ok=await send({email:' A@B.co ',name:' Asha ',source:'scroll-site-generator',extra:'ignored'});
+  assert.equal(ok.statusCode,200);
+  assert.equal(calls[0].url,'https://database.example/rest/v1/tse_leads?on_conflict=email,source');
+  assert.deepEqual(calls[0].body,{email:'a@b.co',name:'Asha',source:'scroll-site-generator'});
+});
+test('the most-typed broken URLs redirect permanently',()=>{
+  const v=JSON.parse(readFileSync(new URL('../vercel.json',import.meta.url),'utf8'));
+  const to=Object.fromEntries(v.redirects.map(r=>[r.source,r]));
+  for(const [from,dest] of [['/scroll-site-generator','/scroll-site-generator-skill'],['/scroll-site-genrator','/scroll-site-generator-skill'],['/ideas','/products#pdf'],['/shop','/products']]){
+    assert.equal(to[from]?.destination,dest,from);assert.equal(to[from].permanent,true);
+  }
+  // The skill page and its zip must never be caught by a redirect.
+  assert.ok(!v.redirects.some(r=>r.source==='/scroll-site-generator-skill'||r.source.endsWith('.zip')));
+});
+test('analytics ignore development copies of the site',()=>{
+  const root=new URL('../',import.meta.url);
+  const pages=readdirSync(root,{recursive:true}).filter(f=>/\.html$/.test(f)&&!/(^|\/)(node_modules|graphify-out|tests|\.claude)\//.test(f)&&!/backup/.test(f));
+  const unguarded=pages.filter(f=>{const s=readFileSync(new URL(f,root),'utf8');return s.includes("gtag('config'")&&!s.includes("ga-disable-G-QRXY0C7RZR");});
+  assert.deepEqual(unguarded,[]);
 });

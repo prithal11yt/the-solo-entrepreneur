@@ -3,6 +3,166 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/scroll-site-generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/Scroll-Site-Generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-genrator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-generater",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scrool-site-generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scrollsitegenerator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-genrater",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-generation",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-genratetor",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-genetor",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-gnerator-skill",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-ste-generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll_site_generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scrollsitegeneration",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroller-site-generatoe",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/skill-site-generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/solo-site-generator",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-g",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/scroll-site-generator-skills",
+      "destination": "/scroll-site-generator-skill",
+      "permanent": true
+    },
+    {
+      "source": "/ideas",
+      "destination": "/products#pdf",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/store",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/Agency",
+      "destination": "/agency",
+      "permanent": true
+    },
+    {
+      "source": "/contentautomation",
+      "destination": "/content-automation",
+      "permanent": true
+    },
+    {
+      "source": "/contandautomation",
+      "destination": "/content-automation",
+      "permanent": true
+    },
+    {
+      "source": "/content-creation",
+      "destination": "/content-automation",
+      "permanent": true
+    },
+    {
+      "source": "/yclaud",
+      "destination": "/ycloud",
+      "permanent": true
+    },
+    {
+      "source": "/courses",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/course",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
       "source": "/delivery-policy",
       "destination": "/shipping-policy",
       "permanent": true

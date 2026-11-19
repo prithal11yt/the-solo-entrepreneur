@@ -3,7 +3,7 @@
 <head>
 <script>document.documentElement.classList.add('js')</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXY0C7RZR"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QRXY0C7RZR');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());if(!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname))window['ga-disable-G-QRXY0C7RZR']=true;gtag('config','G-QRXY0C7RZR');</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
@@ -476,6 +476,8 @@ async function submitCheckout(e) {
     if (!orderRes.ok) throw new Error(orderData.error || 'Could not create order');
     orderId = orderData.orderId;
   } catch (err) { alert('Could not initiate payment. Please try again.\n\n' + err.message); return; }
+  const gaItems = [{ item_id: prodId, item_name: product.name, price: product.amount / 100, quantity: 1 }];
+  gtag('event', 'begin_checkout', { currency: 'INR', value: product.amount / 100, items: gaItems });
 
   const rzp = new Razorpay({
     key: RZP_KEY, order_id: orderId, amount: product.amount, currency: 'INR',
@@ -489,6 +491,8 @@ async function submitCheckout(e) {
         verifyData = await verifyRes.json();
         if (!verifyData.valid) { alert('Payment verification failed. If money was deducted it will be refunded automatically.\n\nContact: prithal@thesoloentrepreneur.in'); return; }
       } catch (err) { alert('Could not verify payment. Please contact prithal@thesoloentrepreneur.in with Payment ID: ' + response.razorpay_payment_id); return; }
+
+      gtag('event', 'purchase', { transaction_id: response.razorpay_payment_id, currency: 'INR', value: product.amount / 100, items: gaItems });
 
       // The purchase is recorded server-side by the Razorpay webhook. The links
       // come from the server, for the product on the verified order.
@@ -563,7 +567,11 @@ async function claimEbook(mode) {
     if (error) { errEl.textContent = error.message; return; }
     user = data.user;
   }
-  if (user) { await recordFreeEbook(user); showLeadDownload(); }
+  if (user) {
+    gtag('event', mode === 'signup' ? 'sign_up' : 'login', { method: 'email' });
+    gtag('event', 'generate_lead', { lead_source: 'free_ebook' });
+    await recordFreeEbook(user); showLeadDownload();
+  }
 }
 db.auth.getUser().then(({ data: { user } }) => { if (user) { showLeadDownload(); recordFreeEbook(user); setNavAuth(true); } });
 db.auth.onAuthStateChange((event, session) => setNavAuth(!!session));

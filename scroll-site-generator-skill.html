@@ -8,7 +8,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-QRXY0C7RZR');
+  if(!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname))window['ga-disable-G-QRXY0C7RZR']=true;gtag('config', 'G-QRXY0C7RZR');
 </script>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -209,9 +209,9 @@ code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: 
         <div class="db-icon">🎬</div>
         <div class="db-text">
           <h2>Download the Skill (ZIP)</h2>
-          <p>Playbook, scripts &amp; front-end engine — free, no signup. Bring your own key.</p>
+          <p>Playbook, scripts &amp; front-end engine — free. Bring your own key.</p>
         </div>
-        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD SKILL</a>
+        <a class="download-btn" href="/scroll-site-generator.zip" data-lead="scroll-site-generator" download>⬇ DOWNLOAD SKILL</a>
       </div>
 
       <h2 id="what">What This Is</h2>
@@ -343,7 +343,7 @@ code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: 
           <h2>Grab the Whole Skill</h2>
           <p>Playbook, scripts &amp; front-end engine — 32 KB ZIP, free.</p>
         </div>
-        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD SKILL</a>
+        <a class="download-btn" href="/scroll-site-generator.zip" data-lead="scroll-site-generator" download>⬇ DOWNLOAD SKILL</a>
       </div>
 
       <!-- FAQ -->
@@ -374,7 +374,7 @@ code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: 
       <div class="sidebar-cta">
         <h4>FREE DOWNLOAD</h4>
         <p>The full scroll-site skill — playbook, scripts &amp; engine.</p>
-        <a class="download-btn" href="/scroll-site-generator.zip" download>⬇ DOWNLOAD ZIP</a>
+        <a class="download-btn" href="/scroll-site-generator.zip" data-lead="scroll-site-generator" download>⬇ DOWNLOAD ZIP</a>
       </div>
       <div class="sidebar-toc">
         <h4>On This Page</h4>
@@ -440,6 +440,7 @@ code, .code-inline { font-family:var(--font-mono); font-size: 14px; background: 
 </div>
 
 <script src="site.js"></script>
+<script src="lead-gate.js" defer></script>
 <script>
 /* FAQ accordion */
 document.querySelectorAll('.faq-q').forEach(q => {

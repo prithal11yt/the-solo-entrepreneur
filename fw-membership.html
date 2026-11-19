@@ -27,7 +27,16 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  // Development copies must not count as traffic.
+  if (!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname)) {
+    window['ga-disable-G-QRXY0C7RZR'] = true;
+    window['ga-disable-G-X1QTL8HQ6M'] = true;
+  }
+  // Checkout for founderswing.com happens here, so link the two domains and
+  // also report to the Founders Wing property (G-X1QTL8HQ6M).
+  gtag('set', 'linker', { domains: ['founderswing.com', 'thesoloentrepreneur.in'] });
   gtag('config', 'G-QRXY0C7RZR');
+  gtag('config', 'G-X1QTL8HQ6M');
 </script>
 <link rel="icon" type="image/png" href="https://www.founderswing.com/favicon.png"/>
 <link rel="shortcut icon" href="https://www.founderswing.com/favicon.png"/>
@@ -576,6 +585,10 @@ async function createOrder({ planKey, coupon, name, email, phone }) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Could not create order');
+  gtag('event', 'begin_checkout', {
+    currency: 'INR', value: data.amount / 100,
+    items: [{ item_id: plan.id, item_name: plan.name, price: data.amount / 100, quantity: 1 }]
+  });
   return data;
 }
 
@@ -593,7 +606,7 @@ function launchRazorpay({ planKey, orderId, amount, name, email, phone, onDismis
     prefill: { name, email, contact: phone },
     notes: { product: plan.name },
     theme: { color: '#0ea5e9' },
-    handler: response => onPaid(response, { name, email, plan }),
+    handler: response => onPaid(response, { name, email, plan, amount }),
     modal: { ondismiss: () => { document.body.style.overflow = ''; if (onDismiss) onDismiss(); } }
   });
   rzp.on('payment.failed', res => {
@@ -603,7 +616,7 @@ function launchRazorpay({ planKey, orderId, amount, name, email, phone, onDismis
   return rzp;
 }
 
-async function onPaid(response, { name, email, plan }) {
+async function onPaid(response, { name, email, plan, amount }) {
   // Verify payment signature server-side
   try {
     const verifyRes = await fetch('/api/verify-payment', {
@@ -624,6 +637,18 @@ async function onPaid(response, { name, email, plan }) {
     alert('Could not verify payment. Please contact prithalbhardwaj@gmail.com with Payment ID: ' + response.razorpay_payment_id);
     return;
   }
+
+  // The sale, now that the server has verified it. Sent to both properties;
+  // the redirect below waits for it (at most 1.5s) so the page change can't drop it.
+  await new Promise(resolve => {
+    const done = setTimeout(resolve, 1500);
+    gtag('event', 'purchase', {
+      transaction_id: response.razorpay_payment_id,
+      currency: 'INR', value: amount / 100,
+      items: [{ item_id: plan.id, item_name: plan.name, price: amount / 100, quantity: 1 }],
+      event_callback: () => { clearTimeout(done); resolve(); }
+    });
+  });
 
   // Show a brief loader, then send the passwordless magic login link
   document.getElementById('expressOverlay').classList.remove('open');

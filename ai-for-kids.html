@@ -8,7 +8,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-QRXY0C7RZR');
+  if(!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname))window['ga-disable-G-QRXY0C7RZR']=true;gtag('config', 'G-QRXY0C7RZR');
 </script>
 <link rel="icon" href="/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -547,6 +547,7 @@
   <a href="products.html">Products</a><a href="blog.html">Blog</a><a href="tools.html">Tools</a><a href="community.html">Community</a><a href="account.html">Log in</a><a href="products.html#lead"><strong>Get free eBook →</strong></a>
 </div>
 <script src="site.js"></script>
+<script src="lead-gate.js" defer></script>
 
 <!-- NAV inserted by shared.js -->
 
@@ -576,9 +577,9 @@
         <div class="db-icon">📄</div>
         <div class="db-text">
           <h2>Download the Full Product Concept (PDF)</h2>
-          <p>Features, MVP scope, safety rules, user flows &amp; pitch — free, no signup.</p>
+          <p>Features, MVP scope, safety rules, user flows &amp; pitch — free.</p>
         </div>
-        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" download>⬇ DOWNLOAD PDF</a>
+        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" data-lead="ai-for-kids-plan" download>⬇ DOWNLOAD PDF</a>
       </div>
 
       <p>AI is moving faster than schools can keep up. Most kids today will use AI tools daily — for homework, creativity, and curiosity — long before anyone teaches them how AI actually works, when to trust it, and when not to.</p>
@@ -752,7 +753,7 @@
           <h2>Get the Full 9-Page Document</h2>
           <p>Complete feature specs, user flows, safety requirements &amp; pitch — free PDF download.</p>
         </div>
-        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" download>⬇ DOWNLOAD PDF</a>
+        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" data-lead="ai-for-kids-plan" download>⬇ DOWNLOAD PDF</a>
       </div>
 
       <!-- FAQ -->
@@ -807,7 +808,7 @@
       <div class="sidebar-cta">
         <h4>FREE PDF</h4>
         <p>9-page product concept — features, MVP, safety &amp; pitch.</p>
-        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" download>⬇ DOWNLOAD PDF</a>
+        <a href="downloads/ai-learning-platform-for-kids-plan.pdf" class="download-btn" data-lead="ai-for-kids-plan" download>⬇ DOWNLOAD PDF</a>
       </div>
       <div class="sidebar-toc" style="margin-top:20px;">
         <h4>On This Page</h4>

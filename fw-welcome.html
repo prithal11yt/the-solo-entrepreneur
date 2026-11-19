@@ -7,7 +7,13 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  if (!/(^|\.)thesoloentrepreneur\.in$/.test(location.hostname)) {
+    window['ga-disable-G-QRXY0C7RZR'] = true;
+    window['ga-disable-G-X1QTL8HQ6M'] = true;
+  }
+  gtag('set', 'linker', { domains: ['founderswing.com', 'thesoloentrepreneur.in'] });
   gtag('config', 'G-QRXY0C7RZR');
+  gtag('config', 'G-X1QTL8HQ6M');
 </script>
 <link rel="icon" type="image/png" href="https://www.founderswing.com/favicon.png"/>
 <link rel="shortcut icon" href="https://www.founderswing.com/favicon.png"/>
